@@ -1,0 +1,18 @@
+{
+  "name": "corgo-77-collection",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "node tools/compile.mjs",
+    "validate": "node tools/validate.mjs dist/corgo-77-collection",
+    "parse": "python3 tools/parse_weapons.py && python3 tools/parse_upgrades.py && python3 tools/parse_cyberware.py",
+    "build": "python3 tools/build.py && node tools/compile.mjs",
+    "build:original": "python3 tools/build.py --original-text data/corgo-77-v3.md --out build/packs && node tools/compile.mjs build/packs",
+    "test": "python3 tests/test_original_text.py",
+    "check:original": "python3 tools/build.py --original-text data/corgo-77-v3.md --out build/packs && python3 tools/check_original.py build/packs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "1.1.0",
+    "classic-level": "^3.0.0"
+  }
+}

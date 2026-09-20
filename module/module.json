@@ -1,0 +1,132 @@
+{
+  "id": "corgo-77-collection",
+  "title": "Corgo's 77 Collection V3 (Unofficial) for Cyberpunk RED - Core",
+  "description": "<p>Unofficial Foundry conversion of <strong>Corgo's 77 Collection V3</strong> by Corgopolis, a 2070s-era homebrew supplement for Cyberpunk RED. Adds compendiums only; it does not change the Cyberpunk RED - Core system.</p><p>This is unofficial content provided under the Homebrew Content Policy of R. Talsorian Games and is not approved or endorsed by RTG. This content references materials that are the property of R. Talsorian Games and its licensees.</p>",
+  "version": "0.6.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "Corgopolis (original content)",
+      "url": "https://patreon.com/Corgopolis"
+    },
+    {
+      "name": "Kane (Foundry conversion)"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "cyberpunk-red-core",
+        "type": "system"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "name": "weapons",
+      "label": "Corgo's 77: Weapons",
+      "path": "packs/weapons",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "weapon-attachments",
+      "label": "Corgo's 77: Weapon Attachments",
+      "path": "packs/weapon-attachments",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "weapon-mods",
+      "label": "Corgo's 77: Weapon Mods",
+      "path": "packs/weapon-mods",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "ammo",
+      "label": "Corgo's 77: Ammunition",
+      "path": "packs/ammo",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "armor",
+      "label": "Corgo's 77: Armor & Shields",
+      "path": "packs/armor",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "armor-upgrades",
+      "label": "Corgo's 77: Armor & Shield Upgrades",
+      "path": "packs/armor-upgrades",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "gear",
+      "label": "Corgo's 77: Gear, Frames & Drugs",
+      "path": "packs/gear",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "cyberware",
+      "label": "Corgo's 77: Cyberware",
+      "path": "packs/cyberware",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "cyberware-upgrades",
+      "label": "Corgo's 77: Cyberware Enhancements",
+      "path": "packs/cyberware-upgrades",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "operating-systems",
+      "label": "Corgo's 77: Operating Systems",
+      "path": "packs/operating-systems",
+      "type": "Item",
+      "system": "cyberpunk-red-core"
+    },
+    {
+      "name": "dv-tables",
+      "label": "Corgo's 77: DV Tables (Solo of Fortune 2045)",
+      "path": "packs/dv-tables",
+      "type": "RollTable"
+    },
+    {
+      "name": "macros",
+      "label": "Corgo's 77: Setup Macros",
+      "path": "packs/macros",
+      "type": "Macro"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Corgo's 77 Collection",
+      "sorting": "m",
+      "color": "#7a1f2b",
+      "packs": [
+        "weapons",
+        "weapon-attachments",
+        "weapon-mods",
+        "ammo",
+        "armor",
+        "armor-upgrades",
+        "gear",
+        "cyberware",
+        "cyberware-upgrades",
+        "operating-systems",
+        "dv-tables",
+        "macros"
+      ]
+    }
+  ]
+}

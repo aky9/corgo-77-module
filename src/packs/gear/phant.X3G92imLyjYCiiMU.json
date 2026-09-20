@@ -1,0 +1,181 @@
+{
+ "_id": "X3G92imLyjYCiiMU",
+ "_key": "!items!X3G92imLyjYCiiMU",
+ "name": "Phant",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Phant Primary",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 250eb (Expensive) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (1 hour): +1 Base Death Save Penalty, returned if you avoid the Secondary Effect. Your sense of reality warps and your memory of it blurs. Anyone who beats you in an opposed Persuasion check can roll or choose your Personality and How You Feel About Most People from the Lifepath tables; you act that way, believing you always have, for the rest of the high. Secondary (DV19): take 1d6 Humanity Loss; addiction. While addicted: -2 to Acting, Concentration, Conversation, Deduction, Human Perception, and Persuasion.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Phant Addiction\" effect.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 250
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "dHUcBFi0A50xk5FS",
+   "_key": "!items.effects!X3G92imLyjYCiiMU.dHUcBFi0A50xk5FS",
+   "name": "Phant Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "bonuses.deathSavePenalty",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "combat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "ziifgwn8KfyvhWy4",
+   "_key": "!items.effects!X3G92imLyjYCiiMU.ziifgwn8KfyvhWy4",
+   "name": "Phant Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "bonuses.acting",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.concentration",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.conversation",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.deduction",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.humanPerception",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.persuasion",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill",
+       "1": "skill",
+       "2": "skill",
+       "3": "skill",
+       "4": "skill",
+       "5": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "3": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "4": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "5": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,72 @@
+{
+ "_id": "bB246hPiyZNThIwh",
+ "_key": "!items!bB246hPiyZNThIwh",
+ "name": "Tsunami Arms Tamamo",
+ "type": "weapon",
+ "img": "systems/cyberpunk-red-core/icons/compendium/weapons/AssaultRifle_excellent.svg",
+ "system": {
+  "ammoVariety": [
+   "rifle"
+  ],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": false,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "critFailEffect": "jammed",
+  "damage": "6d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 7,500eb (Super Luxury)<br><strong>Class:</strong> EQ Assault Rifle<br><strong>Range:</strong> Battle Rifle<br><strong>Pre-installed:</strong> Flared Magwell (w/ Extended Magazine), Magrail Kit (w/ Kanetsugu Short Scope &amp; Silencer), Power Rebuild, Sling, Smartgun Link (effects already included in these stats)<br><strong>Alt. fire:</strong> Autofire (Assault Rifle 4), Suppressive Fire</p>\n<p>In Single Shot, fire 1 extra round (2 total) to ignore Critical Failures on the attack check (no implosion roll; the die still counts as a 1). Without BODY 10+, paired Cyberarms, or a mount, Autofire checks take -4.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>Damage is 6d6, dropping the lowest die. CPR 0.92.4 can't drop dice automatically, so drop them by hand from the damage roll.</li><li>Its range tables come from this module's DV Tables compendium; run the module's \"Use Corgo's 77 DV Tables\" macro once per world (see the module README).</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Weapons &gt; Weapon Catalog).</em></p>"
+  },
+  "dvTable": "DV Battle Rifle [AR]",
+  "equipped": "owned",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 4,
+   "suppressiveFire": true
+  },
+  "handsReq": 2,
+  "ignoreArmorPercent": 0,
+  "ignoreBelowSP": 0,
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade",
+    "ammo"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isRanged": true,
+  "magazine": {
+   "ammoData": null,
+   "max": 30,
+   "value": 0
+  },
+  "price": {
+   "market": 7500
+  },
+  "quality": "excellent",
+  "revealed": true,
+  "rof": 1,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "unarmedAutomaticCalculation": true,
+  "usage": "equipped",
+  "usesType": "magazine",
+  "weaponSkill": "Shoulder Arms",
+  "weaponType": "assaultRifle"
+ },
+ "effects": [],
+ "folder": "MLQ6Y9AGJbGLig1D",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.zip
+
+# Other people's work: not published in this repo.
+# Corgo's full document text and anything extracted verbatim from it (regenerate with `npm run parse`).
+data/
+# Pinned copy of Schism989's module, used only to refresh tools/compat/ (his repo has no license).
+reference/
+__pycache__/
+# Output of `npm run build:original` (contains Corgo's own text)
+build/

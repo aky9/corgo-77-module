@@ -1,0 +1,103 @@
+{
+ "_id": "rg1B7ecy8c3lPNU4",
+ "_key": "!items!rg1B7ecy8c3lPNU4",
+ "name": "Militech SPECTER",
+ "type": "gear",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/linearframe_sigma.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "description": {
+   "value": "<p><strong>Cost:</strong> Super Luxury at minimum (Corgo lists it as [REDACTED])</p>\n<p>External Frame only. Connecting needs three Interface Plug installations, and putting it on or taking it off takes 3 Actions. While connected: BODY becomes 14 and MOVE becomes 6 unless yours is higher (both automated while equipped); REF, DEX, and MOVE penalties from worn armor and wielded weapons are halved (rounded up); and it works as Jump Boosters, Reinforced Cyberlimb Upgrades (Legs), and Skate Feet. The BODY increase doesn't change HP or your Death Save; the sheet may recalculate them, so check and correct by hand. With both hands on its controls, you run two back-mounted robotic arms that act as Vehicle Heavy Weapon Mounts, each aimed independently at anything you can see. Weapons in them are always One-Handed, count as connected for Smart Rebuilds and Smartgun Links, and can't be knocked away by Aimed Shots. It's Hardened (immune to EMP, Microwavers, and Black-ICE-style effects) and can't be Quickhacked or disabled by netrunning; a coded manual release on the chest extracts an injured pilot. Either arm can instead hold a custom Advanced Optical Shield (a 25 HP Bulletproof Shield that counts as two active FBC Chameleon Coatings when seen from the front beyond 25m/yds), or the EX-75 IronWind or EX-76 EarthBreaker, which only work in this frame. Priced at the Super Luxury minimum.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>Corgo lists no exact price; see Cost.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; External Linear Frames).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "installedItems": {
+   "allowed": false,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isElectronic": false,
+  "price": {
+   "market": 10000
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "equipped"
+ },
+ "effects": [
+  {
+   "_id": "GGwRt7MA5Id71mQ3",
+   "_key": "!items.effects!rg1B7ecy8c3lPNU4.GGwRt7MA5Id71mQ3",
+   "name": "Militech SPECTER",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/linearframe_sigma.svg",
+   "changes": [
+    {
+     "key": "system.stats.body.value",
+     "mode": 4,
+     "priority": null,
+     "value": "14"
+    },
+    {
+     "key": "system.stats.move.value",
+     "mode": 4,
+     "priority": null,
+     "value": "6"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "LsbJnBCqgqIaLO20",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

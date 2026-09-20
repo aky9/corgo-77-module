@@ -1,0 +1,73 @@
+{
+ "_id": "GabqxC8x6sCdxaer",
+ "_key": "!items!GabqxC8x6sCdxaer",
+ "name": "Techtronika VST-37 Pozhar",
+ "type": "weapon",
+ "img": "systems/cyberpunk-red-core/icons/compendium/weapons/Shotgun.svg",
+ "system": {
+  "ammoVariety": [
+   "shotgunShell",
+   "shotgunSlug"
+  ],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": false,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "critFailEffect": "jammed",
+  "damage": "5d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 1,500eb (Very Expensive)<br><strong>Class:</strong> Shotgun<br><strong>Range:</strong> Short Barrel Shotgun<br><strong>Pre-installed:</strong> Power Rebuild (effects already included in these stats)<br><strong>Alt. fire:</strong> Autofire (Machine Pistol 4), Shotgun Shell</p>\n<p>Firing without BODY 8+ or a Cyberarm inflicts Torn Muscle; firing Autofire without BODY 10+ or a Cyberarm inflicts Broken Arm (each only if not already suffered).</p>\n<p><strong>Foundry notes:</strong></p><ul><li>CPR 0.92.4 shows a \"weapon doesn't support this mode\" warning when a pistol Autofires; it's only a warning and the roll still works.</li><li>Its range tables come from this module's DV Tables compendium; run the module's \"Use Corgo's 77 DV Tables\" macro once per world (see the module README).</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Weapons &gt; Weapon Catalog).</em></p>"
+  },
+  "dvTable": "DV Short-Barrel Shotgun",
+  "equipped": "owned",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 4,
+   "suppressiveFire": false
+  },
+  "handsReq": 1,
+  "ignoreArmorPercent": 0,
+  "ignoreBelowSP": 0,
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade",
+    "ammo"
+   ],
+   "list": [],
+   "slots": 2,
+   "usedSlots": 0
+  },
+  "isRanged": true,
+  "magazine": {
+   "ammoData": null,
+   "max": 12,
+   "value": 0
+  },
+  "price": {
+   "market": 1500
+  },
+  "quality": "standard",
+  "revealed": true,
+  "rof": 1,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "unarmedAutomaticCalculation": true,
+  "usage": "equipped",
+  "usesType": "magazine",
+  "weaponSkill": "Handgun",
+  "weaponType": "shotgun"
+ },
+ "effects": [],
+ "folder": "wPVCqRSfegzve8mv",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

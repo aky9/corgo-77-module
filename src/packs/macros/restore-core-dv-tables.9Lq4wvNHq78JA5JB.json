@@ -1,0 +1,15 @@
+{
+ "_id": "9Lq4wvNHq78JA5JB",
+ "_key": "!macros!9Lq4wvNHq78JA5JB",
+ "name": "Restore Core DV Tables",
+ "type": "script",
+ "scope": "global",
+ "command": "// Point Cyberpunk RED - Core's DV ruler back at the system's own DV tables. GM only.\nif (!game.user.isGM) return ui.notifications.warn(\"Only a GM can change the DV table compendium.\");\nconst setting = game.settings.settings.get(\"cyberpunk-red-core.dvRollTableCompendium\");\nawait game.settings.set(\"cyberpunk-red-core\", \"dvRollTableCompendium\", setting.default);\nui.notifications.info(\"DV tables restored to the Cyberpunk RED - Core defaults.\");",
+ "img": "icons/svg/dice-target.svg",
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

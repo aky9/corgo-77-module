@@ -1,0 +1,313 @@
+{
+ "_id": "9Qke78iIOqSg1z9C",
+ "_key": "!items!9Qke78iIOqSg1z9C",
+ "name": "AssKick",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "AssKick Primary",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 100eb (Premium) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (4 hours): the first damage you take each Round (after armor) is reduced by 1, or 2 if it came with a Critical Injury; COOL and TECH -2 (minimum 1); you feel fearless and amped. Secondary (DV17): addiction. While addicted and not on AssKick: -2 to Athletics, Concentration, Endurance, Perception, Stealth, and Tactics.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"AssKick Addiction\" effect.</li><li>When an addicted character doses, use \"AssKick Addicted Primary\" instead of the normal primary effect; it cancels the withdrawal penalties for the duration.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 100
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "w5nvxk3hrC6tdx3S",
+   "_key": "!items.effects!9Qke78iIOqSg1z9C.w5nvxk3hrC6tdx3S",
+   "name": "AssKick Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.cool.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "system.stats.tech.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "5chFuJIT5si4cEZI",
+   "_key": "!items.effects!9Qke78iIOqSg1z9C.5chFuJIT5si4cEZI",
+   "name": "AssKick Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "bonuses.athletics",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.concentration",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.endurance",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.perception",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.stealth",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.tactics",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill",
+       "1": "skill",
+       "2": "skill",
+       "3": "skill",
+       "4": "skill",
+       "5": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "3": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "4": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "5": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "DRfD8JSB3ayaxdTv",
+   "_key": "!items.effects!9Qke78iIOqSg1z9C.DRfD8JSB3ayaxdTv",
+   "name": "AssKick Addicted Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.cool.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "system.stats.tech.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.athletics",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.concentration",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.endurance",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.perception",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.stealth",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.tactics",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat",
+       "2": "skill",
+       "3": "skill",
+       "4": "skill",
+       "5": "skill",
+       "6": "skill",
+       "7": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "3": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "4": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "5": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "6": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "7": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

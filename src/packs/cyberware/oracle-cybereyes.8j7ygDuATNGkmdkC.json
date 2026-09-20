@@ -1,0 +1,123 @@
+{
+ "_id": "8j7ygDuATNGkmdkC",
+ "_key": "!items!8j7ygDuATNGkmdkC",
+ "name": "Oracle Cybereyes",
+ "type": "cyberware",
+ "img": "systems/cyberpunk-red-core/icons/compendium/cyberware/cybereye.svg",
+ "system": {
+  "ammoVariety": [],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": true,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "core": false,
+  "critFailEffect": "jammed",
+  "damage": "1d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 1,500eb (Very Expensive)<br><strong>Type:</strong> Cybereye (Foundational)<br><strong>Install:</strong> Clinic<br><strong>Humanity Loss:</strong> 14 (4d6)<br><strong>Option Slots:</strong> uses 0, provides 2</p>\n<p>Paired Cybereyes. They install together and count as one item for Cost and Humanity Loss, but not for Critical Injuries or repair. Each eye has 2 Option Slots for Cybereye Options, and each comes with Color Shift and Image Enhance pre-installed, which cost no Humanity Loss and take no Option Slots. Those two can't be removed without destroying the eyes beyond repair. On a Perception check to visually spot small or hidden objects (mines, traps, turrets, hidden buttons), the user gets another +1.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>One item for the pair, as Corgo prices and installs them together. It carries 2 Option Slots, the count for one eye; add a second copy or raise the slots by hand if your table tracks each eye separately.</li><li>The pre-installed Color Shift and Image Enhance are described here rather than installed as separate items; install them from the core compendium if you want them on the sheet.</li><li>The +1 is situational because it only covers small or hidden objects: tick it in the roll dialog.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Cyberware &gt; Cyberoptics).</em></p>"
+  },
+  "dvTable": "",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 0,
+   "suppressiveFire": false
+  },
+  "humanityLoss": {
+   "static": 14,
+   "roll": "4d6"
+  },
+  "ignoreArmorPercent": 50,
+  "ignoreBelowSP": 0,
+  "installLocation": "clinic",
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 2,
+   "usedSlots": 0
+  },
+  "isElectronic": true,
+  "isFoundational": true,
+  "isRanged": false,
+  "isWeapon": false,
+  "magazine": {
+   "ammoData": null,
+   "max": 0,
+   "value": 0
+  },
+  "price": {
+   "market": 1500
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "rof": 1,
+  "size": 0,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "type": "cyberEye",
+  "unarmedAutomaticCalculation": true,
+  "usage": "installed",
+  "usesType": "magazine",
+  "weaponSkill": "Archery",
+  "weaponType": "assaultRifle"
+ },
+ "effects": [
+  {
+   "_id": "rE8jdN8n6amWb4Xp",
+   "_key": "!items.effects!8j7ygDuATNGkmdkC.rE8jdN8n6amWb4Xp",
+   "name": "Oracle Cybereyes",
+   "img": "systems/cyberpunk-red-core/icons/compendium/cyberware/cybereye.svg",
+   "changes": [
+    {
+     "key": "bonuses.perception",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": true,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "ovBxxTpdm8JNv3f9",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

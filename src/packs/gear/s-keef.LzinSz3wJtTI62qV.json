@@ -1,0 +1,126 @@
+{
+ "_id": "LzinSz3wJtTI62qV",
+ "_key": "!items!LzinSz3wJtTI62qV",
+ "name": "S-KEEF",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "None",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 150eb (Expensive) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (1 hour): take 1d6 Humanity Loss, returned if you avoid the Secondary Effect; you ignore the Seriously Wounded state. Secondary (DV17): the Humanity Loss isn't returned; addiction. While addicted and not on S-KEEF: REF -2. Only works through a MaxDoc Inhaler, not Airhypos, Arrowhypo ammo, Multihypos, or similar, though it can go in Airburst ammo and other aerosol delivery.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"S-KEEF Addiction\" effect.</li><li>When an addicted character doses, use \"S-KEEF Addicted Primary\" instead of the normal primary effect; it cancels the withdrawal penalties for the duration.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 150
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "JGwHwa3LPSodTKeQ",
+   "_key": "!items.effects!LzinSz3wJtTI62qV.JGwHwa3LPSodTKeQ",
+   "name": "S-KEEF Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.ref.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "eHfPMS3sDjKTeMPw",
+   "_key": "!items.effects!LzinSz3wJtTI62qV.eHfPMS3sDjKTeMPw",
+   "name": "S-KEEF Addicted Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.ref.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

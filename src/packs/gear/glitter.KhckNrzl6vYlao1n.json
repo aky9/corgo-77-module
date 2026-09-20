@@ -1,0 +1,170 @@
+{
+ "_id": "KhckNrzl6vYlao1n",
+ "_key": "!items!KhckNrzl6vYlao1n",
+ "name": "Glitter",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "None",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 100eb (Premium) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (10 minutes): take 1d6 Humanity Loss, returned if you avoid the Secondary Effect. Once per Round, spend an Action or Move Action to look through the hallucinations and get a hint from the GM about a character, plot element, or something else in the scene. NPCs can do the same against you. Secondary (DV19): addiction. While addicted and not on Glitter: INT and TECH -2 (minimum 1) and +1 Base Death Save Penalty.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Glitter Addiction\" effect.</li><li>When an addicted character doses, use \"Glitter Addicted Primary\" instead of the normal primary effect; it cancels the withdrawal penalties for the duration.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 100
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "jX9kL7L0ANeloD6C",
+   "_key": "!items.effects!KhckNrzl6vYlao1n.jX9kL7L0ANeloD6C",
+   "name": "Glitter Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "system.stats.tech.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "bonuses.deathSavePenalty",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat",
+       "2": "combat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "WjGWPEQrA1NZALuw",
+   "_key": "!items.effects!KhckNrzl6vYlao1n.WjGWPEQrA1NZALuw",
+   "name": "Glitter Addicted Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "system.stats.tech.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.deathSavePenalty",
+     "mode": 2,
+     "priority": null,
+     "value": "-1"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat",
+       "2": "combat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

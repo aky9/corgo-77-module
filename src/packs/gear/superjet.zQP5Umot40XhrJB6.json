@@ -1,0 +1,82 @@
+{
+ "_id": "zQP5Umot40XhrJB6",
+ "_key": "!items!zQP5Umot40XhrJB6",
+ "name": "Superjet",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "None",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 150eb (Premium) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (1 hour): drugs, poisons, and intoxicants already in your system stop affecting you (new ones work normally); you ignore penalties from lack of sleep, discomfort, and stress; you feel amped and ready to fight and can't fall asleep voluntarily, though you can still be knocked out. Secondary (DV17): take 2 Humanity Loss; addiction. While addicted: INT -2.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Superjet Addiction\" effect.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 150
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "wGFK8ZstfCegTjFK",
+   "_key": "!items.effects!zQP5Umot40XhrJB6.wGFK8ZstfCegTjFK",
+   "name": "Superjet Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

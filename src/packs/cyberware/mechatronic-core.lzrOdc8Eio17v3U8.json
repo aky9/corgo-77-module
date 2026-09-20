@@ -1,0 +1,134 @@
+{
+ "_id": "lzrOdc8Eio17v3U8",
+ "_key": "!items!lzrOdc8Eio17v3U8",
+ "name": "Mechatronic Core",
+ "type": "cyberware",
+ "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Cyberware.svg",
+ "system": {
+  "ammoVariety": [],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": true,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "core": false,
+  "critFailEffect": "jammed",
+  "damage": "1d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 2,000eb (Very Expensive)<br><strong>Type:</strong> Neuralware<br><strong>Install:</strong> Clinic<br><strong>Humanity Loss:</strong> 14 (4d6)<br><strong>Option Slots:</strong> uses 2</p>\n<p>Neuralware. Requires 2 Neuralware Option Slots. TECH goes up by 2, to a maximum of 8. When the user gives a Complementary Bonus to someone else's TECH-based check, that bonus is 1 higher (+2 total).</p>\n<p><strong>Foundry notes:</strong></p><ul><li>The TECH increase and its cap at 8 are automated. The Complementary Bonus increase is applied by hand.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Cyberware &gt; Neuralware).</em></p>"
+  },
+  "dvTable": "",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 0,
+   "suppressiveFire": false
+  },
+  "humanityLoss": {
+   "static": 14,
+   "roll": "4d6"
+  },
+  "ignoreArmorPercent": 50,
+  "ignoreBelowSP": 0,
+  "installLocation": "clinic",
+  "installedItems": {
+   "allowed": false,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isElectronic": true,
+  "isFoundational": false,
+  "isRanged": false,
+  "isWeapon": false,
+  "magazine": {
+   "ammoData": null,
+   "max": 0,
+   "value": 0
+  },
+  "price": {
+   "market": 2000
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "rof": 1,
+  "size": 2,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "type": "neuralWare",
+  "unarmedAutomaticCalculation": true,
+  "usage": "installed",
+  "usesType": "magazine",
+  "weaponSkill": "Archery",
+  "weaponType": "assaultRifle"
+ },
+ "effects": [
+  {
+   "_id": "npEzjhWl08kNCOwi",
+   "_key": "!items.effects!lzrOdc8Eio17v3U8.npEzjhWl08kNCOwi",
+   "name": "Mechatronic Core",
+   "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Cyberware.svg",
+   "changes": [
+    {
+     "key": "system.stats.tech.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "system.stats.tech.value",
+     "mode": 3,
+     "priority": null,
+     "value": "8"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "MHsHii4dN2Kh2vwD",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,148 @@
+{
+ "_id": "OPbEIyrgzDsAkVz2",
+ "_key": "!items!OPbEIyrgzDsAkVz2",
+ "name": "Blue Butter",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "None",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 100eb (Premium) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (24 hours): without a Cyberspine, beat DV17 Resist Torture/Drugs or suffer Spinal Injury's effect (not its Bonus Damage) for the duration; Critical Injuries deal no Bonus Damage; STAT and check penalties from Critical Injuries are halved (other effects remain); Medtechs treating you get +1 to Surgery; you're exhausted and disoriented. Secondary (DV17): you can't remember what happened during the high; if addicted to Berserker or Black Lace, take 1d6 Humanity Loss; addiction. While addicted and not on Blue Butter: INT and COOL -2.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Blue Butter Addiction\" effect.</li><li>When an addicted character doses, use \"Blue Butter Addicted Primary\" instead of the normal primary effect; it cancels the withdrawal penalties for the duration.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 100
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "iaibtNWAwFO1QD5O",
+   "_key": "!items.effects!OPbEIyrgzDsAkVz2.iaibtNWAwFO1QD5O",
+   "name": "Blue Butter Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "system.stats.cool.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "dHiH512BVF3gEHxn",
+   "_key": "!items.effects!OPbEIyrgzDsAkVz2.dHiH512BVF3gEHxn",
+   "name": "Blue Butter Addicted Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "system.stats.cool.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

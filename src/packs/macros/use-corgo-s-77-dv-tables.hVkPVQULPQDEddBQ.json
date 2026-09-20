@@ -1,0 +1,15 @@
+{
+ "_id": "hVkPVQULPQDEddBQ",
+ "_key": "!macros!hVkPVQULPQDEddBQ",
+ "name": "Use Corgo's 77 DV Tables",
+ "type": "script",
+ "scope": "global",
+ "command": "// Point Cyberpunk RED - Core's DV ruler at this module's DV tables\n// (Solo of Fortune 2045 range tables plus the core table names). World setting; GM only.\nif (!game.user.isGM) return ui.notifications.warn(\"Only a GM can change the DV table compendium.\");\nconst pack = \"corgo-77-collection.dv-tables\";\nif (!game.packs.get(pack)) return ui.notifications.error(`Compendium ${pack} not found. Is the module enabled?`);\nawait game.settings.set(\"cyberpunk-red-core\", \"dvRollTableCompendium\", pack);\nui.notifications.info(\"DV tables now come from Corgo's 77 Collection (Solo of Fortune 2045).\");",
+ "img": "icons/svg/dice-target.svg",
+ "folder": null,
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

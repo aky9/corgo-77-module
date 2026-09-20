@@ -1,0 +1,123 @@
+{
+ "_id": "COFHye3O7LiJAuKp",
+ "_key": "!items!COFHye3O7LiJAuKp",
+ "name": "Superchrome Skin",
+ "type": "cyberware",
+ "img": "systems/cyberpunk-red-core/icons/compendium/cyberware/superchrome_covering.svg",
+ "system": {
+  "ammoVariety": [],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": true,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "core": false,
+  "critFailEffect": "jammed",
+  "damage": "1d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 10,000eb (Super Luxury)<br><strong>Type:</strong> Fashionware<br><strong>Install:</strong> Clinic<br><strong>Humanity Loss:</strong> None<br><strong>Option Slots:</strong> uses 1</p>\n<p>Fashionware. Replaces a whole skin layer with techno-organic metal. +3 Wardrobe &amp; Style while not covered by outer clothing or armor; it doesn't stack with any other Superchrome bonus. Incompatible with every form of Subdermal Armor, but compatible with Skinweave.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>Corgo lists no Humanity Loss for this piece (N/A), so it is set to 0.</li><li>The +3 is situational because it only applies while the skin is uncovered: tick it in the roll dialog.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Cyberware &gt; Fashionware).</em></p>"
+  },
+  "dvTable": "",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 0,
+   "suppressiveFire": false
+  },
+  "humanityLoss": {
+   "static": 0,
+   "roll": "0"
+  },
+  "ignoreArmorPercent": 50,
+  "ignoreBelowSP": 0,
+  "installLocation": "clinic",
+  "installedItems": {
+   "allowed": false,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isElectronic": true,
+  "isFoundational": false,
+  "isRanged": false,
+  "isWeapon": false,
+  "magazine": {
+   "ammoData": null,
+   "max": 0,
+   "value": 0
+  },
+  "price": {
+   "market": 10000
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "rof": 1,
+  "size": 1,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "type": "fashionware",
+  "unarmedAutomaticCalculation": true,
+  "usage": "installed",
+  "usesType": "magazine",
+  "weaponSkill": "Archery",
+  "weaponType": "assaultRifle"
+ },
+ "effects": [
+  {
+   "_id": "TrhJyU8TkQsBWRKS",
+   "_key": "!items.effects!COFHye3O7LiJAuKp.TrhJyU8TkQsBWRKS",
+   "name": "Superchrome Skin",
+   "img": "systems/cyberpunk-red-core/icons/compendium/cyberware/superchrome_covering.svg",
+   "changes": [
+    {
+     "key": "bonuses.wardrobeAndStyle",
+     "mode": 2,
+     "priority": null,
+     "value": "3"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": true,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "QFBvvfsN941p9wJZ",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

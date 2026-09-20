@@ -1,0 +1,103 @@
+{
+ "_id": "ygxIfDSpM4pHVA54",
+ "_key": "!items!ygxIfDSpM4pHVA54",
+ "name": "Crime Scene Hologram Projector",
+ "type": "gear",
+ "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Gear.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "description": {
+   "value": "<p><strong>Cost:</strong> 500eb (Expensive)</p>\n<p>Needs a power source and a tripod. Switched on, it scans a 10x10m/yds (5x5 square) area in front of it, pulls from the local crime database, and projects the most likely events there over the last 2 hours. +2 to Deduction and Criminology checks to study or understand that crime scene, or +4 for Enforcers/Lawmen. Toggle the gear on, then tick the bonus in the roll dialog when it applies (add the extra +2 for Lawmen by hand).</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; General Gear).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "installedItems": {
+   "allowed": false,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isElectronic": false,
+  "price": {
+   "market": 500
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "toggled"
+ },
+ "effects": [
+  {
+   "_id": "4T6zewcBJCHnNLXY",
+   "_key": "!items.effects!ygxIfDSpM4pHVA54.4T6zewcBJCHnNLXY",
+   "name": "Crime Scene Hologram",
+   "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Gear.svg",
+   "changes": [
+    {
+     "key": "bonuses.deduction",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    },
+    {
+     "key": "bonuses.criminology",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill",
+       "1": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": true,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": true,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "rtqaPjCCKyi3nPDi",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

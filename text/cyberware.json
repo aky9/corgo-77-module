@@ -1,0 +1,1752 @@
+{
+ "_notes": "Rules text rewritten in our own words; `npm run build:original` swaps in Corgo's wording. Per item: kind ('cyberware' = a cyberware Item, 'enhancement' = an itemUpgrade of type cyberware, 'cyberdeck' = a cyberdeck Item); type = CPR cyberware subtype; foundational/size/slots follow core's convention (size = option slots the piece consumes, slots = option slots it provides); effects = [key, value] or [key, value, mode] (mode 2 = add, 4 = raise to at least, 5 = override), situational effects become toggles in the roll dialog; mods = itemUpgrade modifiers (slots, magazine, attackmod, ...); weapon = isWeapon stats; split = one item per variant.",
+ "items": {
+  "NEUYOU CHEMSKIN": {
+   "kind": "enhancement",
+   "enhances": "Chemskin",
+   "icon": "chemskin",
+   "rules": "Enhances Chemskin: while installed, the user gets +1 to Conversation and Personal Grooming checks."
+  },
+  "LEAD’S GLO-UP-SHOW-OFF HAIR": {
+   "kind": "enhancement",
+   "name": "Lead's Glo-Up-Show-Off Hair",
+   "enhances": "Techhair",
+   "icon": "techhair",
+   "rules": "Enhances Techhair with programmable styles, colors, and light emission. While the Techhair is styled to emit light, the user counts as having three Light Tattoo installations for the +2 Wardrobe & Style bonus only, and takes -2 on Stealth checks to avoid being seen. Switching the light styling on or off takes an Action but no check."
+  },
+  "REALSKINN PLATING": {
+   "kind": "cyberware",
+   "type": "fashionware",
+   "size": 1,
+   "install": "clinic",
+   "hl": [
+    0,
+    "0"
+   ],
+   "usage": "installed",
+   "icon": "realskin_covering",
+   "rules": "Fashionware. Requires Subdermal Armor. Anyone checking whether the user's flesh is cybernetic, or whether they have cyberware-based armor, takes -4. The user's flesh doesn't read as cold on thermal imaging, and no Cyberscanner or cyberware detection system finds it without a DV29 Perception or DV24 Cybertech check.",
+   "notes": [
+    "Corgo lists no Humanity Loss for this piece (N/A), so it is set to 0."
+   ]
+  },
+  "SUPERCHROME SKIN": {
+   "kind": "cyberware",
+   "type": "fashionware",
+   "size": 1,
+   "install": "clinic",
+   "hl": [
+    0,
+    "0"
+   ],
+   "usage": "installed",
+   "icon": "superchrome_covering",
+   "effects": [
+    {
+     "name": "Superchrome Skin",
+     "changes": [
+      [
+       "bonuses.wardrobeAndStyle",
+       3
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Fashionware. Replaces a whole skin layer with techno-organic metal. +3 Wardrobe & Style while not covered by outer clothing or armor; it doesn't stack with any other Superchrome bonus. Incompatible with every form of Subdermal Armor, but compatible with Skinweave.",
+   "notes": [
+    "Corgo lists no Humanity Loss for this piece (N/A), so it is set to 0.",
+    "The +3 is situational because it only applies while the skin is uncovered: tick it in the roll dialog."
+   ]
+  },
+  "ADRENALINE CONVERTOR": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "usage": "toggled",
+   "effects": [
+    {
+     "name": "Adrenaline Convertor",
+     "changes": [
+      [
+       "move",
+       2
+      ],
+      [
+       "move",
+       8,
+       3
+      ]
+     ],
+     "situational": true,
+     "on_by_default": true
+    }
+   ],
+   "rules": "Neuralware. For the first 2 Rounds of combat the user's MOVE goes up by 2, to a maximum of 8. 30 minute cooldown.",
+   "notes": [
+    "The effect adds +2 MOVE and caps the result at 8. Toggle it off once the first 2 Rounds are over; the cooldown is tracked by hand."
+   ]
+  },
+  "ATOMIC SENSORS": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "rules": "Neuralware. When the user's Ambush fails, they may take a single Move Action before initiative is rolled."
+  },
+  "BERSERK": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "toggled",
+   "rules": "Neuralware. Activating it takes an Action and it runs for 60 seconds (20 Rounds). While active, the user ignores the penalties of the Seriously and Mortally Wounded states, but not the automatic Critical Injury effect; Mortally Wounded users still make Death Saves. 1 hour cooldown.",
+   "notes": [
+    "The wound-state penalties the sheet applies can't be switched off per item; ignore them by hand while Berserk is active."
+   ]
+  },
+  "BIOCONDUCTOR": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "usage": "installed",
+   "rules": "Neuralware. The user's Synapse Burnout Quickhacks can now cause Critical Injuries, rolled on the Head location table. Their Overheat Quickhacks deal damage at the start of an enemy's turn instead of the end."
+  },
+  "C-LINK SOCKET": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 2,
+   "install": "hospital",
+   "usage": "installed",
+   "icon": "interface_plugs",
+   "rules": "Neuralware. Borgware. Wants a Neuroport Cyberdeck Port plus 2 Neuralware Option Slots, and no user may have two. Three things follow while it sits installed: Interface Rank reads 1 higher whenever INT exceeds it and the user is Jacked In, Neuroports included; TECH and INT checks about digital data or systems, decryption and reading security among them, gain 2 while Jacked In; and the day's first NET Action after Jacking In to an architecture outside a Neuroport is free.",
+   "notes": [
+    "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
+   ]
+  },
+  "CHIPLOK": {
+   "kind": "enhancement",
+   "enhances": "Chipware Socket",
+   "icon": "chipware_socket",
+   "rules": "Enhances a Chipware Socket. Any Chipware or Shard put in the socket locks in place at once. Removing it needs the right electronic key, set by the shard's owner rather than the socket's, or the right tools (a techtool), a DV21 Cybertech check, and 10 minutes."
+  },
+  "COMBAT SOFTWARE": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "mall",
+   "usage": "installed",
+   "icon": "skill_chip",
+   "split": [
+    [
+     "Combat Software (Vulnerability Analytics)",
+     null,
+     "This copy enables Vulnerability Analytics."
+    ],
+    [
+     "Combat Software (Spatial Mapping)",
+     null,
+     "This copy enables Spatial Mapping."
+    ],
+    [
+     "Combat Software (Limiter Removal)",
+     null,
+     "This copy enables Limiter Removal."
+    ],
+    [
+     "Combat Software (Launch Capacity Override)",
+     null,
+     "This copy enables Launch Capacity Override."
+    ],
+    [
+     "Combat Software (Data Tunnelling)",
+     null,
+     "This copy enables Data Tunnelling."
+    ]
+   ],
+   "rules": "Chipware. One of five Cyberware Enhancements becomes available to the user while this is in: Spatial Mapping, Data Tunnelling, Limiter Removal, Vulnerability Analytics, or Launch Capacity Override. The choice is locked in at purchase. Only one Combat Software chip can be installed at a time, though swapping between chips costs a single Action.",
+   "notes": [
+    "Goes in a Chipware Socket: install the socket first, then install this into it.",
+    "One item per choice, since the choice is fixed at purchase."
+   ]
+  },
+  "FEEDBACK CIRCUIT": {
+   "kind": "enhancement",
+   "enhances": "Neuroport or Personal Link",
+   "icon": "interface_plugs",
+   "electronic": true,
+   "rules": "Enhances a Neuroport/Personal Link. While using the enhanced Personal Link to operate a cyberlinked vehicle or similar machine, the user gets +1 to the skill that requires (Drive Land Vehicle, Pilot Air Vehicle, and so on). The bonus also covers weapons run purely through a Personal Link, such as ones in a Vehicle Heavy Weapon Mount or ACPA. It doesn't stack with a Smartgun Link or Smart Rebuild. When the Personal Link connects to a Cyberdeck for a Netrun, all the user's rezzed non-Black-ICE programs get +1 to ATK or DEF, chosen when they Jack In."
+  },
+  "FIREWALL PORT": {
+   "kind": "enhancement",
+   "enhances": "Self-ICE",
+   "icon": "interface_plugs",
+   "electronic": true,
+   "rules": "Enhances Self-ICE, which then counts as Borgware for Maximum Humanity Loss. The user's Neuroport NET Architecture gains one more floor, which can only hold a Black ICE program (supplied separately)."
+  },
+  "ICE-SILO": {
+   "kind": "enhancement",
+   "enhances": "Neuroport",
+   "icon": "neural_link",
+   "electronic": true,
+   "mods": {
+    "slots": 2
+   },
+   "rules": "Enhances a Neuroport with two more Neuralware Option Slots, which can only hold Self-ICE.",
+   "notes": [
+    "The +2 slots are applied automatically; the sheet won't enforce that they only take Self-ICE."
+   ],
+   "name": "ICE-Silo"
+  },
+  "KAIROS 6-M": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "mall",
+   "usage": "toggled",
+   "icon": "skill_chip",
+   "rules": "Chipware, seated in a Chipware Socket. Taking Extra Time on anything outside Downtime that turns on mental focus, picking a lock or running long-range recon or a Tactics check, can trigger this for free: the wait shortens to twice as long rather than four times, and the payoff rises by 1 for +2 overall. Then 60 seconds (20 Rounds) of cooldown.",
+   "notes": [
+    "Goes in a Chipware Socket: install the socket first, then install this into it."
+   ]
+  },
+  "KERENZIKOV": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "icon": "kerenzikov",
+   "effects": [
+    {
+     "name": "Kerenzikov",
+     "changes": [
+      [
+       "bonuses.perception",
+       2
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Neuralware. Corgo's Kerenzikov replaces the old Reflex Co-Processor. The user can dodge Ranged Attacks if they couldn't already, and gets +2 to checks to notice Ambushes.",
+   "notes": [
+    "Replaces the core system's Kerenzikov; use this one instead of the core item.",
+    "The +2 is on Perception and situational, because it only applies to noticing an Ambush: tick it in the roll dialog."
+   ]
+  },
+  "KERENZIKOV BOOST SYSTEM": {
+   "kind": "enhancement",
+   "enhances": "Kerenzikov",
+   "icon": "kerenzikov",
+   "rules": "Enhances a Kerenzikov, which then also counts as Speedware and gives +2 initiative at all times. Only one piece of Speedware can be installed at a time.",
+   "notes": [
+    "The +2 initiative isn't automated from an upgrade; add it to the Kerenzikov as an Active Effect (bonuses.initiative) or apply it by hand."
+   ]
+  },
+  "DEFENZIKOV": {
+   "kind": "enhancement",
+   "enhances": "Kerenzikov",
+   "icon": "kerenzikov",
+   "rules": "Enhances a Kerenzikov. For the first Round of combat after the user rolls initiative, damage they take is reduced by 2 after armor. If the damage would have broken through their SP but Defenzikov negates it, the armor still ablates as normal."
+  },
+  "MECHATRONIC CORE": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 2,
+   "install": "clinic",
+   "usage": "installed",
+   "effects": [
+    {
+     "name": "Mechatronic Core",
+     "changes": [
+      [
+       "tech",
+       2
+      ],
+      [
+       "tech",
+       8,
+       3
+      ]
+     ]
+    }
+   ],
+   "rules": "Neuralware. Requires 2 Neuralware Option Slots. TECH goes up by 2, to a maximum of 8. When the user gives a Complementary Bonus to someone else's TECH-based check, that bonus is 1 higher (+2 total).",
+   "notes": [
+    "The TECH increase and its cap at 8 are automated. The Complementary Bonus increase is applied by hand."
+   ]
+  },
+  "MEMORY BOOST": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "icon": "memory_chip",
+   "slots": 1,
+   "install_allowed": true,
+   "allowed_types": [
+    "program"
+   ],
+   "rules": "Neuralware. Requires a Neuroport Cyberdeck Port. Each installation has one Program-only Option Slot that takes Booster Programs only. Programs in the user's Memory Boosts count as loaded into any Cyberdeck in their Neuroport Cyberdeck Port.",
+   "notes": [
+    "The one slot accepts Programs; the sheet won't enforce that it only takes Boosters."
+   ]
+  },
+  "MRAM DRIVE": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "icon": "memory_chip",
+   "rules": "Neuralware. When a Skill Chip for an INT or TECH skill is first installed in one of the user's Shard Slots or Chipware Sockets, they may link it to the MRAM Drive. A linked Skill Chip gives +3 to its skill instead of setting the skill to Level 3, to a maximum Skill Total of 6 (level plus bonuses). Only one MRAM Drive can be installed.",
+   "name": "MRAM Drive"
+  },
+  "NEWTON MODULE": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "rules": "Neuralware. Improves one other installed piece of cyberware that has a built-in cooldown or recharge, chosen on install, halving it (minimum 3 seconds / 1 Round). Multiple installations can improve several pieces, or the same piece more than once, up to 3 installations."
+  },
+  "PAINDUCER": {
+   "kind": "enhancement",
+   "enhances": "Pain Editor",
+   "icon": "pain_editor",
+   "rules": "Enhances a Pain Editor, which then counts as Borgware for Maximum Humanity Loss. While Mortally Wounded, the user only takes the Action and STAT penalties of Seriously Wounded, but still makes Death Saves and still takes Critical Injuries from Melee and Ranged Attacks as normal."
+  },
+  "REFLEX TUNER": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "toggled",
+   "effects": [
+    {
+     "name": "Reflex Tuner",
+     "changes": [
+      [
+       "bonuses.initiative",
+       2
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Neuralware, and useless without at least one piece of Speedware installed. Dropping to Seriously Wounded lets the user fire this off for free: current initiative climbs 2 points, lasting through the end of their following Turn. Then an hour of cooldown.",
+   "notes": [
+    "The effect raises initiative by 2 while toggled on; switch it off at the end of the next Turn."
+   ]
+  },
+  "RAM MANAGER": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "rules": "Neuralware. Needs a Neuroport Cyberdeck Port. A missed Interface check for a Quickhack or a Passwall leaves the next one at +1. That carries until an Interface check lands or their next Turn begins, whichever happens sooner. Cooldown is 60 seconds (20 Rounds).",
+   "name": "RAM Manager"
+  },
+  "RAM RECOUP": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "rules": "Neuralware. Action penalties from any Critical Injury or Wound State are halved for Interface checks. Once per Round, if the user would come under a Program or Black ICE effect that lowers INT, REF, or DEX, cuts their Net Actions, or penalizes any Interface check, they may activate this to negate that effect, though not its damage.",
+   "name": "RAM Recoup"
+  },
+  "RAM UPGRADE": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "toggled",
+   "rules": "Neuralware. Requires a Neuroport Cyberdeck Port. Activating it takes no Action and allows one extra Quickhack attempt per target that Turn. It still costs the Net Action to Perform a Quickhack, and can't repeat the same Quickhack on one target in a Turn. 30 second (10 Round) cooldown. Up to three installations, each adding another attempt per target independently.",
+   "name": "RAM Upgrade"
+  },
+  "REMOTE SYNC": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "rules": "Neuralware. While installed, a user with Electronics/Security Tech at Level 6 or higher, or Interface Rank 4 or higher, gets +2 to all non-Interface checks made as part of operating a drone, whether directly connected or netrunning.",
+   "notes": [
+    "Not automated, because it only applies if the user meets the skill or rank requirement."
+   ]
+  },
+  "SANDEVISTAN": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "toggled",
+   "icon": "sandevistan",
+   "effects": [
+    {
+     "name": "Sandevistan",
+     "changes": [
+      [
+       "bonuses.initiative",
+       3
+      ]
+     ],
+     "situational": true,
+     "on_by_default": true
+    }
+   ],
+   "rules": "Speedware. Activating it takes an Action and it runs for 60 seconds (20 Rounds). While active it gives +3 to any initiative roll; if activated while already in an initiative queue, current initiative goes up by 3, which is lost if the cyberware switches off or the duration ends during combat. 1 hour cooldown. Only one piece of Speedware can be installed at a time.",
+   "notes": [
+    "Replaces the core system's Sandevistan; use this one instead of the core item.",
+    "Matches the core item's setup: the +3 shows as a toggle in the initiative roll dialog."
+   ]
+  },
+  "SANDEVISTAN OVERDRIVE SYSTEM (SOS)": {
+   "kind": "enhancement",
+   "name": "Sandevistan Overdrive System (SOS)",
+   "enhances": "Sandevistan",
+   "icon": "sandevistan",
+   "rules": "Enhances a Sandevistan. When a perceived hostile within 6m/yds activates Speedware, or has Speedware active when initiative is rolled, the user may activate their Sandevistan without an Action. Doing so raises its initiative bonus by 2 (+5 total) but the duration is only 9 seconds (3 Rounds), and an SOS-triggered Sandevistan has triple the usual cooldown.",
+   "notes": [
+    "Change the Sandevistan's initiative effect to +5 by hand when it fires through SOS."
+   ]
+  },
+  "STABBER": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 2,
+   "install": "clinic",
+   "usage": "installed",
+   "rules": "Neuralware. Requires 2 Neuralware Option Slots. To use it the user needs Melee Weapon at Level 7 or higher, or Combat Awareness at Rank 2 or higher. If they qualify, they get +1 to Melee Weapon attacks, or +2 on an Aimed Shot. Multiple installations don't stack.",
+   "notes": [
+    "Not automated, because it only applies if the user meets the skill or rank requirement."
+   ]
+  },
+  "SYNAPTIC ACCELERATOR": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "rules": "Neuralware. Activating it takes no Action and re-rolls a Critical Failure (1) on an initiative roll or on an Athletics, Concentration, Perception, or Stealth check. The new result stands even if it's worse. 4 hour cooldown. Only one Synaptic Accelerator can be installed."
+  },
+  "SYNCED REFLEXES": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "hospital",
+   "usage": "installed",
+   "rules": "Neuralware. Needs to be linked to the Neuroport of at least one other user who has this installed before either works. Linking needs both users within 6m/yds for 9 seconds (3 Rounds) and has to be voluntary on both sides. The link lasts 24 hours or until either user cuts it. Up to 6 users can be linked in one network. While linked users are within 20m/yds of each other, line of sight or not, each gets a +1 Complementary Bonus usable once per Round on any skill check, and each benefits from any active cyberware another linked user has that boosts external senses, detects movement, or scans for signals. Those bonuses apply once each and don't stack across users. Cyberware that negates a Critical Injury or similar affliction (Anti-Dazzle, Cyberspine) is not shared."
+  },
+  "VISUAL CORTEX SUPPORT": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "rules": "Neuralware. Attack check bonuses from installed Cybereye Options now stack with Scope attachment bonuses on the user's wielded weapons if they didn't already. With at least one Cybereye, the user also gets a +1 Complementary Bonus to Perception checks involving sight."
+  },
+  "CLAIRVOYANT OPTICS": {
+   "kind": "enhancement",
+   "enhances": "Image Enhance",
+   "icon": "image_enhance",
+   "rules": "Enhances Image Enhance, and covers two separate installations in separate Cybereyes when purchased. Within 12m/yds of what the user is trying to see, they get another +1 to Perception, Lip Reading, or Conceal/Reveal Object checks to do it."
+  },
+  "DANCER OPTICS": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "size": 1,
+   "install": "clinic",
+   "hl": [
+    3,
+    "1d6"
+   ],
+   "usage": "installed",
+   "icon": "braindance_recorder",
+   "rules": "Cybereye Option. Requires two Cybereyes and must be paired. Works as a Braindance Viewer (CP:R, p. 352) built into the user's eyes. Braindances have to be downloaded straight to the user's Neuroport or sit on a shard in one of their Shard Slots to be viewable.",
+   "notes": [
+    "Corgo's Humanity Loss line for this item has a stray typo in the document; it reads 3 (1d6)."
+   ]
+  },
+  "DOOM-SENTRY OPTICS": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "size": 1,
+   "install": "mall",
+   "usage": "installed",
+   "icon": "targeting_scope",
+   "rules": "Cybereye Option. On a Perception or Conceal/Reveal Object check involving sight to spot or locate an explosive, drone, or similar dangerous mechanical thing, the user may use TECH instead of INT."
+  },
+  "KIROSHI PREMIER CYBEREYE": {
+   "kind": "enhancement",
+   "enhances": "Cybereye",
+   "icon": "cybereye",
+   "mods": {
+    "slots": 1
+   },
+   "rules": "Enhances a Cybereye with one more Option Slot. It can pass for a real eye unless the Cybereye it enhances is Borgware.",
+   "notes": [
+    "The extra Option Slot is applied automatically."
+   ]
+  },
+  "OPTI-ZOOM": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "icon": "teleoptics",
+   "effects": [
+    {
+     "name": "Opti-Zoom",
+     "changes": [
+      [
+       "bonuses.singleShot",
+       1
+      ],
+      [
+       "bonuses.aimedShot",
+       1
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Cybereye Option. The user can make out detail up to 100m/yds away. Attacking a target 13-50m/yds away with a Single Shot or Aimed Shot gives +1 to the attack check. Multiple installations don't stack, and it doesn't stack with the Long Scope attachment.",
+   "notes": [
+    "The +1 is situational because it only applies at 13-50m/yds: tick it in the roll dialog."
+   ]
+  },
+  "ORACLE CYBEREYES": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 0,
+   "slots": 2,
+   "install_allowed": true,
+   "install": "clinic",
+   "usage": "installed",
+   "icon": "cybereye",
+   "effects": [
+    {
+     "name": "Oracle Cybereyes",
+     "changes": [
+      [
+       "bonuses.perception",
+       1
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Paired Cybereyes. They install together and count as one item for Cost and Humanity Loss, but not for Critical Injuries or repair. Each eye has 2 Option Slots for Cybereye Options, and each comes with Color Shift and Image Enhance pre-installed, which cost no Humanity Loss and take no Option Slots. Those two can't be removed without destroying the eyes beyond repair. On a Perception check to visually spot small or hidden objects (mines, traps, turrets, hidden buttons), the user gets another +1.",
+   "notes": [
+    "One item for the pair, as Corgo prices and installs them together. It carries 2 Option Slots, the count for one eye; add a second copy or raise the slots by hand if your table tracks each eye separately.",
+    "The pre-installed Color Shift and Image Enhance are described here rather than installed as separate items; install them from the core compendium if you want them on the sheet.",
+    "The +1 is situational because it only covers small or hidden objects: tick it in the roll dialog."
+   ]
+  },
+  "QUICK SWAP SOCKET": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "size": 1,
+   "install": "clinic",
+   "usage": "installed",
+   "icon": "quick_change_mount",
+   "rules": "Cybereye Option. Cybereyes can be installed into an open Quick Swap Socket, or removed from one, with an Action. Installing any new Cybereye always costs Humanity Loss the first time, socket or not; re-attaching one the user has already had through a Quick Swap Socket doesn't."
+  },
+  "STALKER OPTICS": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "size": 1,
+   "install": "mall",
+   "usage": "installed",
+   "icon": "lowlight_ir_uv",
+   "rules": "Cybereye Option. Needs a matched pair in two Cybereyes. Hold a weapon whose Tech Rebuild is charged and rough outlines of targets resolve through a single layer of cover, Thin or Thick, for a user who couldn't manage that already."
+  },
+  "VULNERABILITY ANALYTICS": {
+   "kind": "enhancement",
+   "enhances": "Targeting Scope",
+   "icon": "targeting_scope",
+   "rules": "Enhances a Targeting Scope. While Combat Software (Vulnerability Analytics) is installed, once per combat when the user attacks with a non-explosive weapon they may go for a weak spot at -4. That isn't an Aimed Shot. On a hit it deals 2d6 extra damage, after any multiplier, and ablates 2 extra SP if it would ablate armor at all. If the attack rolls a Critical Injury, roll on the Critical Injury table three times and pick one for the victim."
+  },
+  "XTREMSIGHT": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 0,
+   "slots": 2,
+   "install_allowed": true,
+   "install": "clinic",
+   "hl": [
+    11,
+    "3d6"
+   ],
+   "usage": "installed",
+   "icon": "cybereye",
+   "rules": "A Cybereye with the Kiroshi Premier Cybereye enhancement built in. 2 Option Slots for Cybereye Options. Comes with MicroOptics, Opti-Zoom, and TeleOptics pre-installed, none of which cost extra Humanity Loss or take an Option Slot. None of them can be removed without destroying the eye beyond repair.",
+   "notes": [
+    "The pre-installed MicroOptics, Opti-Zoom, and TeleOptics are described here rather than installed as separate items."
+   ],
+   "name": "XtremSight"
+  },
+  "ADVANCED CYBER-JAW": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "icon": "audiovox",
+   "rules": "Internal Body Cyberware. Replaces the jaw and lower face, Realskinn included. Works as NeuTongue, Nasal Filters, and Audiovox all at once. Extra faceplates cost 100eb (Premium) and come in a range of styles. Incompatible with Cyber-Mask.",
+   "notes": [
+    "The three pieces it stands in for are described here rather than installed as separate items."
+   ]
+  },
+  "BLOOD PUMP": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "icon": "enhanced_antibodies",
+   "rules": "Internal Body Cyberware. Works as a Bodyweight Autoinjector loaded with one dose of Speedheal. After the user spends a 48-hour stretch doing nothing but healing naturally, the Speedheal dose comes back. Anyone can use a Blood Pump. It links to the user's Neuroport to track vitals automatically."
+  },
+  "CLUTCH PADDING": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "rules": "Internal Body Cyberware. For BODY requirements to wield a weapon or use any of its functions, the user's BODY counts as one higher. Up to 3 installations, so three of them give +3 BODY for wielding weapons.",
+   "notes": [
+    "Not automated: the sheet has one BODY value and this only raises it for weapon requirements."
+   ]
+  },
+  "COUNTERSHELL": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 3,
+   "install": "hospital",
+   "hardening": true,
+   "rules": "Internal Body Cyberware, costing 3 Option Slots. Nanogel plating knocks 5 points off the bonus damage of these Critical Injuries when they first land: Collapsed Lung, Broken Ribs, Foreign Object, Torn Muscle, Concussion, Whiplash, Cracked Skull. Damage those injuries deal later on is unaffected. The shell is Hardened, so Microwaver pulses and other EMP or non-Black-ICE program effects can't break or stall it."
+  },
+  "DENSE MARROW": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 2,
+   "install": "hospital",
+   "icon": "grafted_muscle_and_bone_lace",
+   "rules": "Internal Body Cyberware, costing 2 Option Slots. A target hit by the user's Brawling, Martial Arts, or Melee Weapon attack takes -2 on its next Evasion check, if that check falls before the start of its next Turn. The weight costs the user 1 REF, 1 DEX, and 1 MOVE, waived at BODY 13 or above and for Full Body Conversions.",
+   "notes": [
+    "The -1 to REF, DEX, and MOVE isn't automated, because BODY 13+ and Full Body Conversions cancel it."
+   ]
+  },
+  "ENDO-LACE BRACING": {
+   "kind": "enhancement",
+   "enhances": "Grafted Muscle and Bone Lace",
+   "icon": "grafted_muscle_and_bone_lace",
+   "rules": "Enhances Grafted Muscle and Bone Lace, which then counts as Borgware for Maximum Humanity Loss. The user's BODY counts as 1 higher for Brawling/Martial Arts damage and for BODY requirements on weapons and items, such as whether a weapon can be wielded one-handed. It doesn't stack with Ol' Donkey's primary effect. With two installations of Endo-Lace Bracing, BODY also counts as 3 higher for BODY checks to move, lift, or manhandle heavy objects."
+  },
+  "EPIMORPHIC SKELETON": {
+   "kind": "enhancement",
+   "enhances": "Grafted Muscle and Bone Lace",
+   "icon": "grafted_muscle_and_bone_lace",
+   "rules": "Enhances Grafted Muscle and Bone Lace. The user's Max HP goes up by 5. It stacks with one other Epimorphic Skeleton and no more. It can't go in a Full Body Conversion and is incompatible with Titanium Bones. With two of them, the body counts as having one extra installation of Grafted Muscle and Bone Lace for Linear Frame requirements, once only.",
+   "notes": [
+    "Max HP isn't a modifier an upgrade can apply. Add a bonuses.maxHp Active Effect to the Grafted Muscle and Bone Lace it enhances, or adjust Max HP by hand."
+   ]
+  },
+  "FEEN-X": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "rules": "Internal Body Cyberware. Halve any STAT or Action penalty from the Seriously or Mortally Wounded states, rounding up, before an Interface check. A natural 1 on an Interface check also skips the implosion d10 once each Round, though it still counts as a 1."
+  },
+  "MICROROTORS": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "toggled",
+   "size": 2,
+   "install": "clinic",
+   "rules": "Internal Body Cyberware. Requires 2 Option Slots. Activating it takes an Action and it runs for 6 seconds (2 Rounds). While active, ROF 1 Melee Weapons held in two hands or installed in a Cyberlimb or Battleglove work at ROF 2, and ROF 2 Melee Weapons, before any increase, can make Aimed Shots at ROF 2. 30 second (10 Round) cooldown.",
+   "notes": [
+    "The ROF change isn't automated; edit the weapon's ROF while this is active."
+   ]
+  },
+  "SECOND HEART": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "rules": "Internal Body Cyberware. Borgware. In combat, the first time the user fails a Death Save they may choose to succeed instead, or to be stabilized automatically and fall unconscious for a minute (20 Rounds). Either way the Second Heart is damaged: repairing it needs a DV17 surgery, 4 hours of work, and 500eb of materials before it works again.",
+   "notes": [
+    "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
+   ]
+  },
+  "SUPERKIDNEY": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "icon": "toxin_binders",
+   "rules": "Internal Body Cyberware. Requires Toxin Binders. When the user rolls a Critical Failure (1) on a Resist Torture/Drugs check against poison or a drug effect, they don't roll the implosion 1d10, though the roll still counts as a 1.",
+   "name": "SuperKidney"
+  },
+  "SYN-LUNGS": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "independent_air_supply",
+   "effects": [
+    {
+     "name": "Syn-Lungs",
+     "changes": [
+      [
+       "bonuses.endurance",
+       2
+      ]
+     ]
+    }
+   ],
+   "rules": "Internal Body Cyberware. Replaces the lungs with a cybernetic set. +2 to Endurance checks, and the user can hold their breath twice as long. It doesn't change how long the Choke Action takes to knock them out."
+  },
+  "THREATEVAC": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "rules": "Internal Body Cyberware. The user ignores movement penalties while Mortally Wounded, including ones from Critical Injuries. It doesn't help with dismembered limbs, but it does cover Broken Ribs and Foreign Object.",
+   "name": "ThreatEvac"
+  },
+  "TITANIUM BONES": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "grafted_muscle_and_bone_lace",
+   "rules": "Internal Body Cyberware. Once a day the user may shrug off the effect of a Critical Injury drawn from this set, while still taking its bonus damage: Broken Arm, Broken Leg, Broken Ribs, Dismembered Arm, Dismembered Leg, Spinal Injury. Hauling heavy things around also stops slowing them down."
+  },
+  "UNIVERSAL BOOSTER": {
+   "kind": "cyberware",
+   "type": "cyberwareInternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "enhanced_antibodies",
+   "rules": "Internal Body Cyberware. Speedheal used on the user restores 5 more HP. If they have Skinweave or Subdermal Armor installed, a completed day of natural healing repairs 1 more SP through the armor's nanomachines."
+  },
+  "CYBER-MASK": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "icon": "nasal_filters",
+   "rules": "External Body Cyberware. Borgware. Replaces the mouth and nose with a hot-swappable plated facemask. Works as an installation of Nasal Filters, and anyone making a Human Perception check against the user takes -2. Incompatible with the Advanced Cyber-Jaw. Extra faceplates come in nearly any style, from bright pink to gunmetal to an animal snout, at 50eb (Costly) each.",
+   "notes": [
+    "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand.",
+    "The -2 applies to other people's checks, so it can't be automated from this item."
+   ]
+  },
+  "VOCAL MODULATOR": {
+   "kind": "enhancement",
+   "enhances": "Cyber-Mask",
+   "icon": "audiovox",
+   "electronic": true,
+   "rules": "Enhances a Cyber-Mask, which then gives +2 to Acting and Interrogation checks through physical and digital voice distortion. Incompatible with AudioVox.",
+   "notes": [
+    "Skill bonuses aren't automated from an upgrade. Add bonuses.acting and bonuses.interrogation as Active Effects on the Cyber-Mask it enhances, or apply them by hand."
+   ]
+  },
+  "COGITO LATTICE": {
+   "kind": "enhancement",
+   "enhances": "Subdermal Armor",
+   "icon": "subdermal_armor",
+   "electronic": true,
+   "rules": "Enhances Subdermal Armor. Any Cyberdeck in the user's Neuroport Cyberdeck Port gets one more Hardware Option Slot, as though this were a Bodyweight Suit. It doesn't stack with other Bodyweight Suits.",
+   "notes": [
+    "The extra slot belongs to the Cyberdeck, not to this item, so it isn't applied automatically."
+   ]
+  },
+  "KALEIDOSCOPIC ELECTRIC REFLECTION SYSTEM (KERS)": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "toggled",
+   "size": 1,
+   "install": "mall",
+   "name": "Kaleidoscopic Electric Reflection System (KERS)",
+   "electronic": true,
+   "rules": "External Body Cyberware. While active it masks the user's face from anything looking at them, cameras included. Anyone making a Human Perception or Lip Reading check against them takes -2. Set to the right display, it counts as an instance of Gang Colors Jewelry for Scavengers. Switching it on or off takes an Action.",
+   "notes": [
+    "The -2 applies to other people's checks, so it can't be automated from this item."
+   ]
+  },
+  "OPTICAL CAMO": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "toggled",
+   "size": 2,
+   "install": "hospital",
+   "electronic": true,
+   "rules": "External Body Cyberware. Requires 2 Option Slots. Activating it takes an Action, after which the user is invisible for 1 minute (20 Rounds), or until they Attack or Run, or until an attack hits them. While invisible they can make Stealth checks without an Action even in line of sight, and Perception checks against them take -4. Enemies can't target them without beating their Stealth with a Perception check. 10 minute cooldown to recharge."
+  },
+  "MASKING INK": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "mall",
+   "icon": "light_tattoo",
+   "rules": "External Body Cyberware, and it needs three Light Tattoos already in. Attack checks against the user with Smart or Improved Smart Ammunition drop 2. It reads as Gang Colors Jewelry to the Tyger Claws, and only to them.",
+   "notes": [
+    "The -2 applies to other people's checks, so it can't be automated from this item."
+   ]
+  },
+  "NANO-PLATING": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 3,
+   "install": "hospital",
+   "icon": "subdermal_armor",
+   "armor": {
+    "sp": 12,
+    "name": "Nano-Plating (Armor)"
+   },
+   "rules": "External Body Cyberware. Requires 3 Option Slots. Armors the user's body and head at SP 12. Ablation this armor would take is reduced by 1, to a minimum of 0. Compatible with every Subdermal Armor enhancement except Guard. Incompatible with all other Skinweave, Subdermal Armor, and Dragoon Plating. It repairs 1 lost SP at the end of any day in which it loses none.",
+   "notes": [
+    "Cyberware items carry no SP, so the SP 12 comes as a separate armor item, \"Nano-Plating (Armor)\", the way the core system splits Subdermal Armor into a cyberware piece and an armor piece. Equip both.",
+    "The reduced ablation and the daily self-repair are applied by hand."
+   ]
+  },
+  "NEOFIBER": {
+   "kind": "enhancement",
+   "enhances": "Skinweave or Fleshweave",
+   "icon": "skin_weave",
+   "rules": "Enhances Skinweave or Fleshweave. The weave goes up to SP 9, and Martial Arts attacks stop halving it, though Melee Weapons and charged Tech Rebuilds still do. Rules it out alongside Subdermal Armor or Dragoon Plating. Under the Breaking Your Stuff DLC, treat the weave as a 1,500eb item for automatic maintenance.",
+   "notes": [
+    "Change the SP on the armor item for the skinweave by hand; an upgrade installed in cyberware can't do it."
+   ]
+  },
+  "PARA BELLUM": {
+   "kind": "enhancement",
+   "enhances": "Skinweave or Subdermal Armor",
+   "icon": "subdermal_armor",
+   "split": [
+    [
+     "Para Bellum (SP 12 or lower)",
+     1000,
+     "This version fits Subdermal Armor at SP 12 or lower."
+    ],
+    [
+     "Para Bellum (SP 13 or higher)",
+     3000,
+     "This version fits Subdermal Armor at SP 13 or higher."
+    ]
+   ],
+   "rules": "Enhances Skinweave or Subdermal Armor, raising the enhanced armor's SP by 1. It can't raise the SP of Dragoon Plating.",
+   "notes": [
+    "Corgo prices this by the armor's SP, so it comes as two items.",
+    "Change the SP on the armor item by hand; an upgrade installed in cyberware can't do it."
+   ]
+  },
+  "PROXISHIELD": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "rules": "External Body Cyberware. The first attack that hits the user each Round from an attacker within 6m/yds has its damage reduced by 1 before armor. Up to two installations.",
+   "name": "ProxiShield"
+  },
+  "RANGEGUARD": {
+   "kind": "enhancement",
+   "enhances": "Subdermal Armor",
+   "icon": "subdermal_armor",
+   "rules": "Enhances Subdermal Armor. Ablation this armor would take from Ranged Weapons, except Acid, is reduced by 1, to a minimum of 0. It can't go in Skinweave or Dragoon Plating.",
+   "name": "RangeGuard"
+  },
+  "REAR OPTICAL MOUNT": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "slots": 1,
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "icon": "multioptic_mount",
+   "rules": "External Body Cyberware. Allows a Cybereye to be installed in the back of the user's head. The Cybereye is bought and installed separately. Only one Rear Optical Mount per user. It can be hidden under clothing or Techhair.",
+   "notes": [
+    "It has 1 slot for the Cybereye, but the sheet only offers install targets that match the item's own cyberware type, so drag the Cybereye onto this item's sheet or track it by hand."
+   ]
+  },
+  "SCARAB": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "toggled",
+   "size": 1,
+   "install": "hospital",
+   "rules": "External Body Cyberware. Requires Skinweave or Subdermal Armor. Whenever the user gives up their Move Action, for any reason, they may activate this without an Action: until the start of their next Turn their SP counts as 2 higher. That SP can't be ablated, but can be halved by the usual things that halve armor. 1 hour cooldown. Only one Scarab at a time."
+  },
+  "SCAR COALESCER": {
+   "kind": "cyberware",
+   "type": "cyberwareExternal",
+   "usage": "installed",
+   "size": 1,
+   "install": "hospital",
+   "rules": "External Body Cyberware. Once per 24 hours, when the user drops to the Seriously or Mortally Wounded state this fires by itself. Until the end of their next Turn, incoming damage after armor is reduced by 2. Armor still ablates. Only one Scar Coalescer at a time."
+  },
+  "SKINPROTECT": {
+   "kind": "enhancement",
+   "enhances": "Skinweave or Fleshweave",
+   "icon": "skin_weave",
+   "rules": "Enhances Skinweave or Fleshweave. All SP ablation the skinweave would take is reduced by 1, to a minimum of 0.",
+   "name": "SkinProtect"
+  },
+  "THERMASKIN": {
+   "kind": "enhancement",
+   "enhances": "Subdermal Armor",
+   "icon": "subdermal_armor",
+   "rules": "Enhances Subdermal Armor. In armor of SP 11 or lower, damage the user takes while On Fire is halved, rounding up. In armor of SP 12 or higher, the user can't be set On Fire at all, though fire-based weapons like incendiary ammunition and flamethrowers still hurt them. It can't go in a Full Body Conversion.",
+   "name": "ThermaSkin"
+  },
+  "BALLISTIC COPROCESSOR": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "rules": "Cyberarm Option. +1 to Ricochet attacks from Power Rebuilds, but not to Aimed Ricochet Shots. It can be the only piece of cyberware in a meat arm. Multiple installations don't stack.",
+   "notes": [
+    "Not automated: the system has no Ricochet attack bonus, so add the +1 in the roll dialog."
+   ]
+  },
+  "BLAZING FURY CYBERHANDS": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 2,
+   "install": "clinic",
+   "icon": "standard_hand",
+   "rules": "Paired Cyberhands. Requires paired Cyberarms and 2 Cyberarm Option Slots on each arm. They install together and count as one item for Cost and Humanity Loss, but not for Critical Injuries or repair. Before the user's first Brawling or Martial Arts attack in a Round, outside a Grapple, they may make a Blazing Fury attack instead: one Brawling or Martial Arts check at -4 against the target's Evasion. On a hit, roll the usual Brawling or Martial Arts damage, halve it rounding up, then multiply it by how much the check beat the target's Evasion by, up to half the user's level in that skill, rounding up. On a miss, the user must spend an Action on their next turn recovering before doing anything else. A Blazing Fury attack counts as two Brawling or Martial Arts hits for Martial Arts Special Move prerequisites.",
+   "notes": [
+    "One item for the pair, as Corgo prices and installs them together. Its size is the 2 slots it takes in one arm; it needs 2 in each.",
+    "The Blazing Fury damage multiplier is rolled by hand."
+   ]
+  },
+  "DATA TUNNELLING": {
+   "kind": "enhancement",
+   "enhances": "Monowire",
+   "electronic": true,
+   "rules": "Enhances a Monowire and sits outside its enhancement limit. Spend an Action and 4 hours to write a Quickhack of Standard Difficulty (DV8) or easier into the wire, or to trade out whichever one is already there; while it lives in the wire it is unavailable for ordinary netrunning. With Combat Software (Data Tunnelling) installed, the user may trade away their Move Action once per combat to charge this, and the Action after that has to be a ROF 1 attack through it or the charge bleeds off. Landing that attack adds 1d6 damage (3d6), counts as a direct Jack In to the victim's Neuroport, and hands a Netrunner a free Net Action for that Turn alone, restricted to the Quickhack in the wire."
+  },
+  "GORILLA ARM": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 2,
+   "install": "hospital",
+   "icon": "cyberarm",
+   "weapon": {
+    "weaponType": "heavyMelee",
+    "weaponSkill": "Brawling",
+    "damage": "3d6",
+    "rof": 2
+   },
+   "rules": "Cyberarm Option, costing 2 Option Slots. The fist counts as an Excellent Quality Heavy Melee Weapon and rolls Brawling. Weapons needing BODY 11 or under stop penalizing this arm, and Melee Weapons in its hand are used as though the wielder had BODY 11. Buy a second and install both in a paired set of Cyberarms to extend that BODY 11 to prying doors open, shifting Thick Cover, Choking, and Slamming.",
+   "notes": [
+    "Corgo's Humanity Loss is 4d6 halved, rounding up. CPR can only roll a plain dice formula for humanity loss, so the rolled option is 2d6: same 2-12 range and same average of 7, a slightly flatter spread. Pick the static 7 at install if you'd rather not roll.",
+    "Cyberware items have no Quality field, so the Excellent Quality is in the text only."
+   ]
+  },
+  "LIMITER REMOVAL": {
+   "kind": "enhancement",
+   "enhances": "Gorilla Arms",
+   "icon": "cyberarm",
+   "rules": "Enhances Gorilla Arms, and doesn't count toward their enhancement limit. While Combat Software (Limiter Removal) is installed, if the user has landed at least one attack with the Gorilla Arms in the previous 2 Rounds, Limiter Removal is charged. It can then be used at any point in the rest of the combat as a ROF 1 attack with any of the arms' modes. A hit deals 3d6 extra damage: 6d6 total, or 7d6 with Tungsten Reinforcement, or 9d6 with a Hydraulic Ram. Any standing victim must beat a DV19 Athletics check or be knocked Prone."
+  },
+  "MODIFIED PLATING": {
+   "kind": "enhancement",
+   "enhances": "Gorilla Arm or Mantis Blade",
+   "icon": "cyberarm",
+   "split": [
+    [
+     "Modified Plating (Electric)",
+     null,
+     "Electric: if the Gorilla Arm's damage would take a target below 1 HP, the user may leave them unconscious at 1 HP instead."
+    ],
+    [
+     "Modified Plating (Thermal)",
+     null,
+     "Thermal: whenever the Gorilla Arm ablates armor, it ablates 1 extra SP."
+    ],
+    [
+     "Modified Plating (Toxic)",
+     null,
+     "Toxic: the Gorilla Arm can be coated with Poison, Biotoxin, and Neurotoxin as though it were a Light Melee Weapon."
+    ]
+   ],
+   "rules": "Enhances a Gorilla Arm or Mantis Blade. Choose one ability when it is installed.",
+   "notes": [
+    "One item per ability, since the choice is fixed on install."
+   ]
+  },
+  "ANIMAL KNUCKLES": {
+   "kind": "enhancement",
+   "enhances": "Gorilla Arm",
+   "icon": "big_knucks",
+   "rules": "Enhances a Gorilla Arm. Every Gorilla Arm attack also applies the effects of Burrowing and Hyper Expansive Ammunition."
+  },
+  "HANDLE WRAP": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "subdermal_grip",
+   "effects": [
+    {
+     "name": "Handle Wrap",
+     "changes": [
+      [
+       "bonuses.athletics",
+       1
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Cyberhand Option. Adds neural-controlled nanotech grips to the palms. Throwing a Melee Weapon or object gives another +1 to the Athletics check for it. It can be the only piece of cyberware in a meat arm.",
+   "notes": [
+    "The +1 is situational because it only covers throwing: tick it in the roll dialog."
+   ]
+  },
+  "HAUSSTOCK-W ARMS": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "foundational": true,
+   "size": 0,
+   "slots": 1,
+   "install_allowed": true,
+   "install": "hospital",
+   "hl": [
+    21,
+    "6d6"
+   ],
+   "icon": "cyberarm",
+   "rules": "Paired Cyberarms. Borgware. They install together and count as one item for Cost and Humanity Loss, but not for Critical Injuries or repair. Each arm has 1 Option Slot for Cyberarm or Cyberlimb Options, and comes with a Gorilla Arm (with Tungsten Reinforcement) and a Reinforced Cyberlimb Upgrade pre-installed, neither of which costs Humanity Loss or takes an Option Slot. None of the pre-installed items can be removed.",
+   "notes": [
+    "One item for the pair, as Corgo prices and installs them together. It carries 1 Option Slot, the count for one arm; add a second copy or raise the slots by hand if your table tracks each arm separately.",
+    "The pre-installed Gorilla Arm and Reinforced Cyberlimb Upgrade are described here rather than installed as separate items."
+   ]
+  },
+  "LAUNCH CAPACITY OVERRIDE": {
+   "kind": "enhancement",
+   "enhances": "Popup Grenade Launcher (Corgo's Projectile Launch System)",
+   "icon": "popup_grenade_launcher",
+   "mods": {
+    "magazine": 4
+   },
+   "rules": "Enhances a Projectile Launch System, raising its capacity by 4 to 5 grenades or rockets, but reloading it takes one extra Action. While Combat Software (Launch Capacity Override) is installed, the user can spend an Action to charge it; their next Action has to be a ROF 1 attack using it or the charge is lost. Using it spends 5 rounds of loaded ammunition as a single explosive attack over a 14x14m/yds area (7x7 squares), dealing the damage that ammunition normally would but re-rolled for each target. Dodging it is done at -2.",
+   "notes": [
+    "The +4 capacity is applied automatically.",
+    "Cyberpunk RED - Core 0.92.4 ships no Projectile Launch System item; its Popup Grenade Launcher is the same thing under another name, so install this into that."
+   ]
+  },
+  "MANTIS BLADE": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 2,
+   "install": "hospital",
+   "concealable": true,
+   "icon": "wolvers",
+   "weapon": {
+    "weaponType": "heavyMelee",
+    "weaponSkill": "Melee Weapon",
+    "damage": "3d6",
+    "rof": 2
+   },
+   "rules": "Cyberarm or Cyberleg Option, costing 2 Option Slots. An Excellent Quality Heavy Melee Weapon, used one-handed, that conceals with no check and deploys or retracts for free. The hand on a popped-up arm can't carry anything; a leg has no such limit unless a Prehensile Cyberfoot is in play. A second blade in a paired set of Cyberlimbs cancels the climbing movement penalty while both are out.",
+   "notes": [
+    "Cyberware items have no Quality field, so the Excellent Quality is in the text only.",
+    "Corgo allows this in a Cyberleg too; the item is typed as a Cyberarm option, so install it by hand for a leg."
+   ]
+  },
+  "HIGH-FREQUENCY EDGE": {
+   "kind": "enhancement",
+   "enhances": "Mantis Blade",
+   "icon": "wolvers",
+   "rules": "Enhances a Mantis Blade. Its damage ignores armor entirely if that armor is below SP 11 before halving; SP 11 or higher works as normal. Any color of laser can be fitted to refract in the crystal edge at no extra cost.",
+   "notes": [
+    "The armor bypass is not automated on cyberware weapons; apply it by hand."
+   ]
+  },
+  "SPATIAL MAPPING": {
+   "kind": "enhancement",
+   "enhances": "Mantis Blade",
+   "icon": "wolvers",
+   "rules": "Enhances Mantis Blades. It covers two installations on separate arms when purchased and doesn't count toward either blade's enhancement limit. While Combat Software (Spatial Mapping) is installed, if the user has active paired Jump Boosters or Reinforced Tendons and has landed at least one Mantis Blade attack in the previous 2 Rounds, Spatial Mapping is charged. It can then be used at any point in the rest of the combat as a ROF 1 Attack Action: the user leaps up to 8m/yds straight at a target in line of sight, costing none of their MOVE and taking no movement penalty. If that gets them into melee range, their next successful hit on that target with an enhanced Mantis Blade deals 2d6 extra damage (6d6) and ablates 2 extra SP if it would ablate armor."
+  },
+  "SPRING LOADED": {
+   "kind": "enhancement",
+   "enhances": "Mantis Blade",
+   "icon": "wolvers",
+   "rules": "Enhances a Mantis Blade, which then ablates 1 extra SP whenever it ablates at all. Given a second similarly enhanced blade and a paired set of Jump Boosters or Reinforced Tendons, both popped-up blades can be swung together as one Excellent Quality Very Heavy Melee Weapon reaching 4m/yds."
+  },
+  "MEDTOOL CYBERFINGER": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "mall",
+   "icon": "tool_hand",
+   "weapon": {
+    "weaponType": "lightMelee",
+    "weaponSkill": "Melee Weapon",
+    "damage": "1d6",
+    "rof": 2
+   },
+   "effects": [
+    {
+     "name": "Medtool Cyberfinger",
+     "changes": [
+      [
+       "bonuses.surgery",
+       1
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Cyberfinger, and it needs a Modular Finger Cyberhand to sit in. Scalpel and tweezers included, it doubles as an Excellent Quality Light Melee Weapon. Surgery checks by a Medtech wielding a matched pair go up 1, which a MicroWaldo does not add to.",
+   "notes": [
+    "Cyberware items have no Quality field, so the Excellent Quality is in the text only.",
+    "The +1 Surgery is situational because it needs a pair and a Medtech: tick it in the roll dialog."
+   ]
+  },
+  "N-TECH BARRAGE CYBERARM": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "foundational": true,
+   "size": 0,
+   "slots": 1,
+   "install_allowed": true,
+   "install": "hospital",
+   "icon": "cyberarm",
+   "rules": "Cyberarm. Borgware. 1 Option Slot, for Cyberhand Options only. Comes with a Projectile Launch System (PLS) pre-installed that costs no Humanity Loss and takes no Option Slot, fitted with a non-removable Drum Magazine that raises its capacity to 6. If the PLS fired in the previous Round it can't fire this one, because its slow autoloader needs the whole Round. Once the PLS is drawn, stowing it takes an Action. Below BODY 9 the arm costs 1 MOVE and gives -1 to every check involving it or anything installed in it, weapons included. The arm is always recognizable as a Cyberarm, even under Realskinn.",
+   "notes": [
+    "The pre-installed PLS is described here rather than installed as a separate item. 0.92.4 has no Projectile Launch System item; use its Popup Grenade Launcher if you want one on the sheet.",
+    "The sheet won't restrict the Option Slot to Cyberhand Options, and the BODY 9 penalty is applied by hand."
+   ]
+  },
+  "PORCUPINE HANDS": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "standard_hand",
+   "weapon": {
+    "weaponType": "smg",
+    "weaponSkill": "Autofire",
+    "damage": "2d6",
+    "rof": 1,
+    "autofire": 3,
+    "magazine": 20,
+    "ammo": [
+     "medPistol"
+    ],
+    "ranged": true
+   },
+   "rules": "Paired Cyberhands. Requires paired Cyberarms. They install together and count as one item for Cost and Humanity Loss, but not for Critical Injuries or repair. As an Action the user raises their hands and makes an Autofire (Machine Pistol 3) attack against everything within 10m/yds. The attack gets nothing from the user's Role Abilities or items, but installed cyberware still helps. It holds one loaded attack; reloading needs 20 rounds of any SMG ammunition, a DV17 Cybertech or Surgery check, and one hour.",
+   "notes": [
+    "One item for the pair, as Corgo prices and installs them together.",
+    "Corgo gives no damage line, so it uses the SMG's 2d6 with Autofire 3 (Machine Pistol). Adjust if your table reads it differently.",
+    "The area attack against everything within 10m/yds is resolved by hand; the sheet rolls it as one Autofire attack."
+   ]
+  },
+  "POWER SCALING": {
+   "kind": "enhancement",
+   "enhances": "Monowire",
+   "rules": "Enhances a Monowire. The user can start a Grab from up to 6m/yds (3 squares) away by wrapping the wire around the target. While Grappled that way the attacker can attack the defender with the Monowire as though it were an Excellent Quality Very Heavy Melee Weapon, which can't be dodged, but can't use the Choke Action until they close to normal melee range and hold the target with their hands. Switching from a monowire grab to a regular grab takes no Action."
+  },
+  "SCALAR HANDS": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "standard_hand",
+   "rules": "Cyberhand Option. Requires two Cyberhands and must be paired. Cancels the usual movement penalty for climbing, but only on a wall or similar near-vertical surface. With paired Grip Feet as well, using the Run Action while climbing such a surface adds 6m/yds of movement."
+  },
+  "SHOCK ABSORBER": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "effects": [
+    {
+     "name": "Shock Absorber",
+     "changes": [
+      [
+       "bonuses.autofire",
+       1
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Cyberarm Option. +1 Complementary Bonus to Autofire checks with weapons held in or installed in that Cyberarm. Multiple installations don't stack.",
+   "notes": [
+    "The +1 is situational because it only covers weapons in that arm: tick it in the roll dialog."
+   ]
+  },
+  "FORTIFIED ANKLES": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "standard_foot",
+   "rules": "Must be paired. If the user falls more than 30m/yds, falling damage is worked out as though the fall were 20m/yds shorter, so a 40m/yds fall counts as 20m/yds. It can be the only piece of cyberware in a meat leg."
+  },
+  "JENKINS’ TENDONS": {
+   "kind": "enhancement",
+   "name": "Jenkins' Tendons",
+   "enhances": "Skate Foot",
+   "icon": "skate_foot",
+   "rules": "Enhances Skate Feet, covering two installations on separate legs. The Skate Feet stop looking like inline skates and instead boost the user's normal running stride with concealed micro-motors, and the Run Action bonus goes up to 8m/yds."
+  },
+  "LEEROY LIGAMENT SYSTEM": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "size": 2,
+   "install": "clinic",
+   "icon": "cyberleg",
+   "effects": [
+    {
+     "name": "Leeroy Ligament System",
+     "changes": [
+      [
+       "move",
+       2
+      ],
+      [
+       "move",
+       10,
+       3
+      ]
+     ]
+    }
+   ],
+   "rules": "Cyberleg Option. MOVE climbs 2, capped at 10. Wants a matched pair across two Cyberlegs and 2 Option Slots.",
+   "notes": [
+    "The MOVE increase and its cap at 10 are automated."
+   ]
+  },
+  "LYNX PAWS": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "size": 2,
+   "install": "clinic",
+   "icon": "standard_foot",
+   "effects": [
+    {
+     "name": "Lynx Paws",
+     "changes": [
+      [
+       "bonuses.stealth",
+       2
+      ]
+     ],
+     "situational": true
+    }
+   ],
+   "rules": "Cyberleg Option. Requires two Cyberlegs, takes 2 Option Slots, and must be paired. +2 to Stealth checks about moving quietly. If the user has spent no more than half their MOVE, rounding up, and hasn't Run on the Turn of the check, it's +4 instead.",
+   "notes": [
+    "The effect gives +2 and is situational; add the other +2 in the roll dialog when the movement condition is met."
+   ]
+  },
+  "NEEDLE LEG": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "foundational": true,
+   "size": 0,
+   "slots": 4,
+   "install_allowed": true,
+   "install": "hospital",
+   "icon": "cyberleg",
+   "rules": "Cyberleg. Borgware. 4 Option Slots. It needs special training, so it costs the user 1 MOVE unless their Athletics Skill Base is 13 or higher. A second Needle Leg stacks that penalty.",
+   "notes": [
+    "The MOVE penalty isn't automated, because Athletics 13+ cancels it."
+   ]
+  },
+  "POPUP RANGED WEAPON (CYBERLEG)": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "heading": "POPUP RANGED/MELEE WEAPON",
+   "name": "Popup Ranged Weapon (Cyberleg)",
+   "size": 2,
+   "install": "clinic",
+   "icon": "popup_ranged_weapon",
+   "concealable": true,
+   "weapon": {
+    "weaponType": "medPistol",
+    "weaponSkill": "Handgun",
+    "damage": "2d6",
+    "rof": 2,
+    "ranged": true,
+    "magazine": 8,
+    "ammo": [
+     "medPistol"
+    ],
+    "dv_table": "DV Pistol"
+   },
+   "rules": "Identical to the Cyberarm Option Popup Ranged Weapon, but in a Cyberleg. Requires 2 Option Slots.",
+   "notes": [
+    "Corgo covers the ranged and melee versions in one entry; they come as two items, as in the core system.",
+    "Set the stats to match the weapon you install in it, the way the core system's Popup Ranged Weapon does; it ships with Medium Pistol stats."
+   ]
+  },
+  "POPUP MELEE WEAPON (CYBERLEG)": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "heading": "POPUP RANGED/MELEE WEAPON",
+   "name": "Popup Melee Weapon (Cyberleg)",
+   "size": 2,
+   "install": "clinic",
+   "icon": "popup_melee_weapon",
+   "concealable": true,
+   "weapon": {
+    "weaponType": "lightMelee",
+    "weaponSkill": "Melee Weapon",
+    "damage": "1d6",
+    "rof": 2
+   },
+   "rules": "Identical to the Cyberarm Option Popup Melee Weapon, but in a Cyberleg. Requires 2 Option Slots.",
+   "notes": [
+    "Corgo covers the ranged and melee versions in one entry; they come as two items, as in the core system.",
+    "Set the stats to match the weapon you install in it, the way the core system's Popup Melee Weapon does; it ships with Light Melee stats."
+   ]
+  },
+  "KNEE MOUNTING": {
+   "kind": "enhancement",
+   "enhances": "Popup Melee Weapon (Cyberleg)",
+   "icon": "popup_melee_weapon",
+   "rules": "Enhances a Popup Melee Weapon in a Cyberleg. The mount will now hold a One-Handed Very Heavy Melee Weapon, concealable or not before it went in, supplied by the user together with whatever attachments and mods it carries. On top of that, a Critical Injury caused by the enhanced weapon against someone the user is grappling carries 5 more bonus damage, 10 in total."
+  },
+  "REINFORCED TENDONS": {
+   "kind": "cyberware",
+   "type": "cyberLeg",
+   "usage": "installed",
+   "size": 1,
+   "install": "clinic",
+   "icon": "jump_booster",
+   "rules": "Cyberleg Option. Once per Round, when the user jumps at least 4m/yds, they may add 2m/yds to the distance in any direction, up included. Requires two Cyberlegs and must be paired."
+  },
+  "ADVANCED NEURAL LINK": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 0,
+   "slots": 4,
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "install": "hospital",
+   "usage": "installed",
+   "icon": "neural_link",
+   "rules": "Borgware. Internal Body Cyberware. Wants a Neuroport, though it claims no Neuralware Option Slot, and 3 Internal Body Option Slots. In exchange it opens 4 further Neuralware Option Slots. Crushed Windpipe and Whiplash stop working on the user, effect and bonus damage alike. One per body. Anything keyed to a Cyberspine, drug or cyberware, treats this as one.",
+   "notes": [
+    "Typed as Neuralware so its 4 extra Neuralware slots are usable: the sheet only offers install targets whose cyberware type matches the option being installed. Its 3 Internal Body Option Slots are not tracked, and its size is 0 because Corgo says it takes no Neuralware slot.",
+    "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
+   ]
+  },
+  "BIONIC JOINTS": {
+   "kind": "enhancement",
+   "enhances": "Implanted Linear Frame (any)",
+   "icon": "implanted_linearframe_beta",
+   "rules": "Enhances an Implanted Linear Frame of any kind. The user's limbs count as Cyberlimbs for damaging Steel Cover if they didn't already, but not for Falling or for any other Cyberware Option or Enhancement. Whenever the user hits Cover of any material with a Brawling or Martial Arts attack, they deal 1d6 extra damage to the Cover only."
+  },
+  "KINETIC FRAME": {
+   "kind": "enhancement",
+   "enhances": "Implanted Linear Frame (any)",
+   "icon": "implanted_linearframe_beta",
+   "rules": "Enhances an Implanted Linear Frame of any kind. Once per Round, while not Seriously or Mortally Wounded and targeted by a Brawling, Martial Arts, or Melee Weapon attack, the user may activate this without an Action to use BODY instead of DEX for their Evasion check."
+  },
+  "SPRING JOINTS": {
+   "kind": "enhancement",
+   "enhances": "Implanted Linear Frame (any)",
+   "icon": "implanted_linearframe_sigma",
+   "rules": "Enhances an Implanted Linear Frame of any kind. Ablate 1 extra SP on a Brawling or Martial Arts hit that was already going to ablate, once each Round."
+  },
+  "INTEGRATED NETSTATION": {
+   "kind": "cyberware",
+   "type": "neuralWare",
+   "size": 3,
+   "install": "hospital",
+   "usage": "installed",
+   "electronic": true,
+   "icon": "neural_link",
+   "rules": "Borgware. Requires a Neuroport Cyberdeck Port and paired Cyberarms. Takes 3 Neuralware Option Slots and 2 Cyberarm Option Slots on each of the paired arms. The Neuroport Cyberdeck Port's range goes to 80m/yds for Quickhacking and 40m/yds for reaching non-Neuroport NET Architectures. It also works as two installations of Ex-Disk and one of Self-ICE, and lets the user install Bodyweight Coatings as though they were a Full Body Conversion. Any Overheat quickhack on the user is reduced to Mildly on Fire (2 HP a turn) by its mobile cooling. It can't be concealed and is obvious without clothing over it.",
+   "notes": [
+    "Typed as Neuralware, taking its 3 Neuralware slots; the 2 Cyberarm slots it needs in each arm are not tracked by the sheet.",
+    "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
+   ]
+  },
+  "BIODYNE ‘BERSERKER’ OS": {
+   "kind": "enhancement",
+   "enhances": "Berserk",
+   "icon": "pain_editor",
+   "name": "Biodyne 'Berserker' OS",
+   "rules": "Berserk Operating System. Berserk runs 15 seconds (5 Rounds) instead of its usual duration, and a non-FBC user with no Cyberspine shoots at -4 on every Ranged Attack while it burns. While it is up, each of these costs only half of a ROF 2 Action: Grab, Human Shield, Get Up, Equip or Drop Shield, and stowing a weapon, clearing a jam, putting yourself out while On Fire, activating an item or a piece of cyberware. Once each Round, a Brawling, Martial Arts, or Melee Weapon hit that gets 4 or more damage past armor and damage reduction also counts twice toward Martial Arts Special Move requirements."
+  },
+  "MILITECH ‘BALDUR’ OS": {
+   "kind": "enhancement",
+   "enhances": "Berserk",
+   "icon": "pain_editor",
+   "name": "Militech 'Baldur' OS",
+   "rules": "Berserk Operating System. Berserk becomes Borgware for Maximum Humanity Loss, needs no Action to trigger, and runs 12 seconds (4 Rounds). Each activation costs a non-FBC user with no Cyberspine 1d6 Humanity, and they shoot at -4 on Ranged Attacks while it burns. HP damage taken is halved, rounding up, and each of these costs only half of a ROF 2 Action: Grab, Human Shield, Get Up, Equip or Drop Shield, Stabilize on yourself, Use an Object, and stowing a weapon, clearing a jam, putting yourself out while On Fire, activating an item or a piece of cyberware. Brawling and Martial Arts Aimed Shots run at ROF 2 for anyone who couldn't manage that already. When it drops, the user gets 5 HP back, never past their maximum, and the next hour is cooldown unless they pay 3 Humanity per consecutive activation inside it (3, then 6, then 9)."
+  },
+  "MOORE TECH ‘MATTERHORN’ OS": {
+   "kind": "enhancement",
+   "enhances": "Berserk",
+   "icon": "pain_editor",
+   "name": "Moore Tech 'Matterhorn' OS",
+   "rules": "Berserk Operating System. Berserk can be activated as half of a ROF 2 Action and lasts 30 seconds (10 Rounds). Non-FBC users without a Cyberspine take -4 on all Ranged Attacks while it is active. While active, the first damage the user takes each Round is reduced by half their BODY, penalties to STATs and Actions from non-dismemberment Critical Injuries are halved, and the user doesn't re-suffer a Critical Injury's bonus damage for moving more than 4m/yds on foot in a Round."
+  },
+  "ZETATECH ‘BRAWLER’ OS": {
+   "kind": "enhancement",
+   "enhances": "Berserk",
+   "icon": "pain_editor",
+   "name": "Zetatech 'Brawler' OS",
+   "rules": "Berserk Operating System. Berserk can be activated as half of a ROF 2 Action and lasts 15 seconds (5 Rounds). Non-FBC users without a Cyberspine take -4 on all Ranged Attacks while it is active. While active, the user's limbs count as Cyberlimbs for damaging Steel Cover and for Falling if they didn't already, but not for any other Cyberware Option or Enhancement; Berserk cancels the automatic Critical Injury effect of Mortally Wounded; and incoming damage is reduced by 2 before armor. The user also adds +1 damage before armor for each point of BODY above 10 to their first successful Brawling, Martial Arts, or Melee Weapon attack each Round. Once the duration ends it can't be activated again for an hour unless the user takes 3 Humanity Loss per consecutive activation inside that hour."
+  },
+  "ARASAKA ‘SHADOW’ OS": {
+   "kind": "enhancement",
+   "enhances": "Neuroport Cyberdeck Port",
+   "icon": "cyberdeck",
+   "electronic": true,
+   "name": "Arasaka 'Shadow' OS",
+   "deck": "Arasaka Shadow Mk.5",
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take an Arasaka Shadow Cyberdeck, one of which comes with the OS. The Arasaka Shadow Mk.5 has 5 slots for Programs or Hardware. Using it to Jack In to a target's Neuroport gives +1 on the contested check to stay unnoticed there. Against another Netrunner, that Netrunner only notices the user in their Neuroport at the end of their next Turn. Jacking In stealthily to a non-Neuroport architecture (DL:GQ, p. 4) gives +2 on the initial Interface check to stay unnoticed."
+  },
+  "BIOTECH ‘PRIMUS’ OS": {
+   "kind": "enhancement",
+   "enhances": "Neuroport Cyberdeck Port",
+   "icon": "cyberdeck",
+   "electronic": true,
+   "name": "Biotech 'Primus' OS",
+   "deck": "Biotech Mk.4",
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Biotech Mk.4 Cyberdeck, one of which comes with the OS. The Biotech Mk.4 has 5 slots for Programs or Hardware. Once per Round, when a DV10 or higher Quickhack from this deck fails by 2 or less, the user may immediately spend a remaining NET Action to try that Quickhack again at -1 on the Interface check."
+  },
+  "MILITECH ‘PARALINE’ OS": {
+   "kind": "enhancement",
+   "enhances": "Neuroport Cyberdeck Port",
+   "icon": "cyberdeck",
+   "electronic": true,
+   "name": "Militech 'Paraline' OS",
+   "deck": "Militech Paraline",
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Militech Paraline Cyberdeck, one of which comes with the OS. The Militech Paraline has 14 slots for Programs or Hardware, but while using it the user has one fewer NET Action each Turn, to a minimum of 1."
+  },
+  "RAVEN MICROCYBERNETICS ‘VIRAL’ OS": {
+   "kind": "enhancement",
+   "enhances": "Neuroport Cyberdeck Port",
+   "icon": "cyberdeck",
+   "electronic": true,
+   "name": "Raven Microcybernetics 'Viral' OS",
+   "deck": "Mk.3 Viral",
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Raven Microcybernetics Mk.3 Viral Cyberdeck, one of which comes with the OS. The Mk.3 Viral has 6 slots for Programs or Hardware. Once per Round, when a Quickhack from this deck lands on a target, the user may immediately try that Quickhack again, with no Net Action, on another valid target within 12m/yds of the first that they already have access to."
+  },
+  "TETRATRONIC ‘RIPPLER’ OS": {
+   "kind": "enhancement",
+   "enhances": "Neuroport Cyberdeck Port",
+   "icon": "cyberdeck",
+   "electronic": true,
+   "name": "Tetratronic 'Rippler' OS",
+   "deck": "Tetratronic Rippler",
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Tetratronic Rippler Cyberdeck, one of which comes with the OS. The Tetratronic Rippler has 4 slots for Hardware and 8 for Programs. Using it for an Overheat or Synapse Burnout Quickhack lets the user try a single DV8 or lower Quickhack on the same target with no Net Action, rolled separately. If either check fails, both Quickhacks fail."
+  },
+  "DYNALAR ‘PROFESSIONAL’ OS": {
+   "kind": "enhancement",
+   "enhances": "Sandevistan",
+   "icon": "sandevistan",
+   "name": "Dynalar 'Professional' OS",
+   "rules": "Sandevistan Operating System. The Sandevistan can be activated as half of a ROF 2 Action and lasts 9 seconds (3 Rounds). For those 3 Rounds, alongside the usual +3 initiative, the user may take their Move Action, and only that, as though they were first in the initiative queue whatever they rolled, which lets them move ahead of Demons and Vehicles. A Solo may also reassign their Combat Awareness Points without an Action whenever they make an Aimed Shot, use an Alternate Firing Mode, or resolve a Martial Arts Special Move while it is active."
+  },
+  "QIANT ‘WARP DANCER’ OS": {
+   "kind": "enhancement",
+   "enhances": "Sandevistan",
+   "icon": "sandevistan",
+   "name": "QianT 'Warp Dancer' OS",
+   "rules": "Sandevistan Operating System. The Sandevistan triggers on half of a ROF 2 Action and runs 12 seconds (4 Rounds). The usual +3 initiative still applies, and while it is up each of these costs only half of a ROF 2 Action, none of them twice in a Turn: Reload, Get Up, Equip or Drop Shield, Stabilize on yourself, and stowing a weapon, clearing a jam, putting yourself out while On Fire, activating an item or a piece of cyberware. When it drops, the next hour is cooldown unless the user pays 2 Humanity per consecutive activation inside it (2, then 4, then 6)."
+  },
+  "MILITECH ‘FALCON’ OS": {
+   "kind": "enhancement",
+   "enhances": "Sandevistan",
+   "icon": "sandevistan",
+   "name": "Militech 'Falcon' OS",
+   "rules": "Sandevistan Operating System. The Sandevistan counts as Borgware for Maximum Humanity Loss, and a non-FBC user without a Cyberspine takes 1d6 Humanity Loss every time they activate it. It can be activated without an Action, its initiative bonus rises by 1 to +4, and it lasts 9 seconds (3 Rounds). While active the user can dodge Ranged Attacks whatever their REF, if they couldn't already. At the start of each of their Turns while it is active they choose either +2 MOVE until the end of that Turn, or +4 on a single Evasion check made before the start of their next Turn. It can't be activated again for an hour unless the user takes 3 Humanity Loss per consecutive activation inside that hour.",
+   "notes": [
+    "Change the Sandevistan's initiative effect to +4 while this OS is installed."
+   ]
+  },
+  "ZETATECH ‘REFLEX-PLUS’ OS": {
+   "kind": "enhancement",
+   "enhances": "Sandevistan",
+   "icon": "sandevistan",
+   "name": "Zetatech 'Reflex-Plus' OS",
+   "rules": "Sandevistan Operating System. The Sandevistan can be activated as half of a ROF 2 Action but lasts 15 seconds (5 Rounds). While active, alongside the usual +3 initiative, the user gets +1 REF, which can push REF above 8 and doesn't stack with Synthcoke. Once the duration ends it can't be activated again for an hour unless the user takes 2 Humanity Loss per consecutive activation inside that hour."
+  },
+  "ARASAKA SHADOW MK.5": {
+   "kind": "cyberdeck",
+   "price": 0,
+   "heading": "ARASAKA ‘SHADOW’ OS",
+   "name": "Arasaka Shadow Mk.5",
+   "slots": 5,
+   "rules": "Cyberdeck with 5 slots that take Programs or Hardware. Jacking In to a target's Neuroport with it gives +1 on the contested check to stay unnoticed; another Netrunner only notices the user at the end of their next Turn; and Jacking In stealthily to a non-Neuroport architecture gives +2 on the initial Interface check."
+  },
+  "BIOTECH MK.4": {
+   "kind": "cyberdeck",
+   "price": 0,
+   "heading": "BIOTECH ‘PRIMUS’ OS",
+   "name": "Biotech Mk.4",
+   "slots": 5,
+   "rules": "Cyberdeck with 5 slots that take Programs or Hardware. Once per Round, when a DV10 or higher Quickhack from this deck fails by 2 or less, the user may spend a remaining NET Action to retry it at -1."
+  },
+  "MILITECH PARALINE": {
+   "kind": "cyberdeck",
+   "price": 0,
+   "heading": "MILITECH ‘PARALINE’ OS",
+   "name": "Militech Paraline",
+   "slots": 14,
+   "rules": "Cyberdeck with 14 slots that take Programs or Hardware. While using it the user has one fewer NET Action each Turn, to a minimum of 1."
+  },
+  "MK.3 VIRAL": {
+   "kind": "cyberdeck",
+   "price": 0,
+   "heading": "RAVEN MICROCYBERNETICS ‘VIRAL’ OS",
+   "name": "Raven Microcybernetics Mk.3 Viral",
+   "slots": 6,
+   "rules": "Cyberdeck with 6 slots that take Programs or Hardware. Once per Round, when a Quickhack from this deck lands, the user may retry it with no Net Action on another valid target within 12m/yds that they already have access to."
+  },
+  "TETRATRONIC RIPPLER": {
+   "kind": "cyberdeck",
+   "price": 0,
+   "heading": "TETRATRONIC ‘RIPPLER’ OS",
+   "name": "Tetratronic Rippler",
+   "slots": 12,
+   "rules": "Cyberdeck with 4 slots for Hardware and 8 for Programs. Using it for an Overheat or Synapse Burnout Quickhack lets the user try a single DV8 or lower Quickhack on the same target with no Net Action, rolled separately; if either check fails, both fail.",
+   "notes": [
+    "The sheet has one slot count, so this carries all 12; it won't keep Hardware and Programs to their own 4 and 8."
+   ]
+  },
+  "EXOGLOVE": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 5,
+   "icon": "standard_hand",
+   "rules": "A fingerless Smart Glove that counts as a Modular Finger Cyberhand for up to 5 Cyberfingers. They fit over the user's own fingers and add no extra digits. An Exoglove can't take Cyberarm or Cyberlimb Options. While worn, options in its Cyberfingers are usable, and options in the hand underneath aren't. Arm-based cyberware such as Cyberdecks and Popup Weapons still works. Putting it on or taking it off is an Action. A Cyberarm option costs the same to buy and install here as in a Cyberarm. It can't be concealed, but it's common enough among civilians not to draw attention.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss. Install it like cyberware so the sheet tracks the Cyberfingers in it, as the core system does for Smart Glasses and the Battleglove."
+   ]
+  },
+  "EDITOR’S GLOVE": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "name": "Editor's Glove",
+   "slots": 5,
+   "icon": "standard_hand",
+   "rules": "An Exoglove with everything the standard one does, plus a +1 Complementary Bonus to any check for modifying, creating, or otherwise working with a Braindance.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss.",
+    "The +1 is a Complementary Bonus for Braindance work; add it in the roll dialog."
+   ]
+  },
+  "NEO-HWACHA BATTLEGLOVE": {
+   "kind": "cyberware",
+   "type": "cyberArm",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 1,
+   "icon": "battleglove",
+   "rules": "An oversized Battleglove (CP:R, p. 347) covering the forearm and hand. The covered hand can't be used for anything while it's worn. It comes with 2 non-removable Popup Ranged Weapons, with no weapons in them, and 1 more Option Slot for Cyberarm or Cyberlimb Options, but takes no Cyberhands or Cyberhand Options. While worn, options stored in it are usable. Brawling and Martial Arts attacks with that arm take -4. Weapons installed in its Popup Ranged Weapons, supplied by the user, aren't permanent: swapping one needs a DV17 Weaponstech check and 4 hours. Putting it on or taking it off is an Action. A Cyberarm option costs the same to buy and install here as in a Cyberarm. Options in the arm underneath are unusable while it's worn. It can't be concealed.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss.",
+    "The two built-in Popup Ranged Weapons are described here; install the core system's Popup Ranged Weapon items into it if you want them on the sheet."
+   ]
+  },
+  "INFOVISOR": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": false,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 0,
+   "icon": "gear/smart_glasses",
+   "effects": [
+    {
+     "name": "Infovisor",
+     "changes": [
+      [
+       "bonuses.librarySearch",
+       2
+      ]
+     ]
+    }
+   ],
+   "rules": "A Smart Lens (Micro Chrome, p. 1) covering both eyes. While worn it works as a mobile CitiLink connection, giving +2 to Library Search checks. It also counts as an instance of Urban Flash Mirrorshades, and comes in a range of colors.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss."
+   ]
+  },
+  "OCUSET": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 2,
+   "icon": "gear/smart_glasses",
+   "rules": "A Smart Lens (Micro Chrome, p. 1) with 2 Cybereye Option Slots. Compatible with Cybereye Cyberware Enhancements.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss."
+   ]
+  },
+  "TECHGOGS": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 2,
+   "icon": "gear/smart_glasses",
+   "rules": "Smart Glasses with Image Enhance pre-installed, which takes no Option Slot and can't be removed. Unlike regular Smart Glasses they can't be refitted to another frame or style, and they hide the user's eyes from view.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss.",
+    "The pre-installed Image Enhance is described here rather than installed as a separate item."
+   ],
+   "name": "TechGogs"
+  },
+  "TECHNOSIGHT": {
+   "kind": "cyberware",
+   "type": "cyberEye",
+   "foundational": true,
+   "size": 1,
+   "install": "mall",
+   "hl": [
+    0,
+    "0"
+   ],
+   "install_allowed": true,
+   "allowed_types": [
+    "cyberware",
+    "itemUpgrade"
+   ],
+   "usage": "installed",
+   "slots": 1,
+   "icon": "gear/smart_glasses",
+   "rules": "Smart Glasses with only 1 Option Slot. While worn they also work as a Techscanner that needs no hands.",
+   "notes": [
+    "Worn, not surgically installed: no Humanity Loss."
+   ]
+  }
+ },
+ "os_group_rule": "Every Operating System is incompatible with every other Operating System and with the base cyberware it is for: none of them can be installed while another OS, or that OS's own base cyberware, is anywhere in the user's body or in a worn apparatus they're connected to. The sheet doesn't enforce that."
+}

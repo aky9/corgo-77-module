@@ -1,0 +1,72 @@
+{
+ "_id": "9UNieGbjrIR7qLIk",
+ "_key": "!items!9UNieGbjrIR7qLIk",
+ "name": "Lastimosa Arms Kraber-AP",
+ "type": "weapon",
+ "img": "systems/cyberpunk-red-core/icons/compendium/weapons/SniperRifle.svg",
+ "system": {
+  "ammoVariety": [
+   "rifle"
+  ],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": false,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "critFailEffect": "jammed",
+  "damage": "7d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 2,000eb (Very Expensive)<br><strong>Class:</strong> Exotic Sniper Rifle<br><strong>Range:</strong> Anti-Material Rifle<br><strong>Pre-installed:</strong> Bipod, Precision Stock, Sniper Rifle Rechamber, Sniping Scope (effects already included in these stats)</p>\n<p>All attacks take -2 to hit. After each shot, working the bolt takes an Action. Armor ablation increases by 2 SP (3 total). Drawing it always takes an Action. While Prone or bipod-mounted, rolling a 2 on the attack check gives +1, and rolling a 1 gives +2 (Precision Stock). Can't take a Folding Structure. Needs BODY 6+ to wield unless mounted.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>Damage is 7d6, dropping the lowest die. CPR 0.92.4 can't drop dice automatically, so drop them by hand from the damage roll.</li><li>Its range tables come from this module's DV Tables compendium; run the module's \"Use Corgo's 77 DV Tables\" macro once per world (see the module README).</li><li>Exotic weapon.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Weapons &gt; Weapon Catalog).</em></p>"
+  },
+  "dvTable": "DV Anti-materiel Rifle",
+  "equipped": "owned",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 0,
+   "suppressiveFire": false
+  },
+  "handsReq": 2,
+  "ignoreArmorPercent": 0,
+  "ignoreBelowSP": 0,
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade",
+    "ammo"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isRanged": true,
+  "magazine": {
+   "ammoData": null,
+   "max": 4,
+   "value": 0
+  },
+  "price": {
+   "market": 2000
+  },
+  "quality": "standard",
+  "revealed": true,
+  "rof": 1,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "unarmedAutomaticCalculation": true,
+  "usage": "equipped",
+  "usesType": "magazine",
+  "weaponSkill": "Heavy Weapons",
+  "weaponType": "sniperRifle"
+ },
+ "effects": [],
+ "folder": "NOkobxQ6GcQJZJUX",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

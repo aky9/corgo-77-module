@@ -1,0 +1,181 @@
+{
+ "_id": "q6yRSgUTZtzuh1Rl",
+ "_key": "!items!q6yRSgUTZtzuh1Rl",
+ "name": "Jellytricity",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Jellytricity Primary",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 50eb (Costly) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (4 hours): DEX +1, to a maximum of 8 (check the cap by hand). Combined with Synthcoke's Primary, BODY and WILL -2 (minimum 1), without changing HP or Death Save. You're hyperactive and impulsive. Secondary (DV17): addiction. While addicted and not on Jellytricity: DEX -2 (minimum 1), plus sluggishness and an odd craving for anything gelatinous.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Jellytricity Addiction\" effect.</li><li>When an addicted character doses, use \"Jellytricity Addicted Primary\" instead of the normal primary effect; it cancels the withdrawal penalties for the duration.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 50
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "zHqmPh3TgE8kyuf2",
+   "_key": "!items.effects!q6yRSgUTZtzuh1Rl.zHqmPh3TgE8kyuf2",
+   "name": "Jellytricity Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.dex.value",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "19iT0mvcsrALleoC",
+   "_key": "!items.effects!q6yRSgUTZtzuh1Rl.19iT0mvcsrALleoC",
+   "name": "Jellytricity Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.dex.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "a1WcLPZ6jT147hSz",
+   "_key": "!items.effects!q6yRSgUTZtzuh1Rl.a1WcLPZ6jT147hSz",
+   "name": "Jellytricity Addicted Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.dex.value",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    },
+    {
+     "key": "system.stats.dex.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

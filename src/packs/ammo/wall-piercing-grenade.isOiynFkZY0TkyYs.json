@@ -1,0 +1,48 @@
+{
+ "_id": "isOiynFkZY0TkyYs",
+ "_key": "!items!isOiynFkZY0TkyYs",
+ "name": "Wall-Piercing Grenade",
+ "type": "ammo",
+ "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Ammo.svg",
+ "system": {
+  "ablationValue": 1,
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": true,
+   "isConcealed": false
+  },
+  "description": {
+   "value": "<p><strong>Cost:</strong> 250eb (Expensive) for 1<br><strong>Stack:</strong> 1</p>\n<p>Only detonates when it hits Cover. Against a single layer of Thin Cover it drills through and explodes on the far side for 6d6 in a 6x6m/yds (3x3 square) area spreading out from the impact, like a shotgun shell. Thick Cover is treated as Thin Cover of the same material (e.g., 25 HP thick concrete becomes 10 HP thin concrete), and only the Cover takes damage; none carries past it. Can't be combined with the Homing or Sticky Adapter Kits.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Weapons &gt; Ammunition).</em></p>"
+  },
+  "favorite": false,
+  "overrides": {
+   "autofire": {
+    "minimum": 3,
+    "mode": "none",
+    "value": -1
+   },
+   "damage": {
+    "minimum": "1d6",
+    "mode": "none",
+    "value": "3d6"
+   }
+  },
+  "price": {
+   "market": 250
+  },
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "type": "special",
+  "variety": "grenade"
+ },
+ "effects": [],
+ "folder": "6aXlsWxA1uhmrD2F",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

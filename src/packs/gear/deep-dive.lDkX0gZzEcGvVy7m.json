@@ -1,0 +1,93 @@
+{
+ "_id": "lDkX0gZzEcGvVy7m",
+ "_key": "!items!lDkX0gZzEcGvVy7m",
+ "name": "Deep Dive",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "None",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 100eb (Premium) per dose<br><strong>Type:</strong> Street Drug</p>\n<p>Primary (10 minutes): you hallucinate vividly whatever people nearby describe to you, like a Braindance, with effects the GM decides (a retold memory, a fake story, a nightmare). You're nearly comatose and can't take Actions or Move Actions. Secondary (DV15): addiction. While addicted: INT and COOL -1, and the GM occasionally tells you that you crave it.</p>\n<p><strong>Foundry notes:</strong></p><ul><li>While addicted, switch on the \"Deep Dive Addiction\" effect.</li><li>Stat and skill changes are automated; caps, minimums, durations, and everything else are not.</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Gear, Drugs, &amp; Frames &gt; Consumables &gt; Street Drugs).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 100
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "oYCEYKJh72YnnAlF",
+   "_key": "!items.effects!lDkX0gZzEcGvVy7m.oYCEYKJh72YnnAlF",
+   "name": "Deep Dive Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_street_drugs.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-1"
+    },
+    {
+     "key": "system.stats.cool.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-1"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat",
+       "1": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "msenJSkQAxyLNypS",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

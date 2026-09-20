@@ -1,0 +1,107 @@
+{
+ "_id": "WERH47W3lTT4JeEq",
+ "_key": "!items!WERH47W3lTT4JeEq",
+ "name": "Neo-Kabuto",
+ "type": "armor",
+ "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Armor_Head.svg",
+ "system": {
+  "bodyLocation": {
+   "ablation": 0,
+   "sp": 0
+  },
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "description": {
+   "value": "<p><strong>Cost:</strong> 5,000eb (Luxury)<br><strong>Covers:</strong> Head<br><strong>SP:</strong> 12<br><strong>Armor Penalty:</strong> none</p>\n<p>Built in: Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle and Low Light/Infrared/UV. With Melee Weapon 7+ or Combat Awareness Rank 2+, +1 to Melee Weapon attacks (+2 on Aimed Shots). The +1 is automated while equipped; add the extra point on Aimed Shots by hand, and disable the effect if you don't qualify. Repairs 1 lost SP at the end of each day it loses none.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Armor &amp; Fashion &gt; Armor Catalog).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "headLocation": {
+   "ablation": 0,
+   "sp": 12
+  },
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade"
+   ],
+   "list": [],
+   "slots": 3,
+   "usedSlots": 0
+  },
+  "isBodyLocation": false,
+  "isElectronic": true,
+  "isHeadLocation": true,
+  "isShield": false,
+  "penalty": 0,
+  "price": {
+   "market": 5000
+  },
+  "providesHardening": false,
+  "revealed": true,
+  "shieldHitPoints": {
+   "max": 0,
+   "value": 0
+  },
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "equipped"
+ },
+ "effects": [
+  {
+   "_id": "sY9lyBaKZrJGeLEI",
+   "_key": "!items.effects!WERH47W3lTT4JeEq.sY9lyBaKZrJGeLEI",
+   "name": "Neo-Kabuto",
+   "img": "systems/cyberpunk-red-core/icons/compendium/default/Default_Armor_Head.svg",
+   "changes": [
+    {
+     "key": "bonuses.meleeWeapon",
+     "mode": 2,
+     "priority": null,
+     "value": "1"
+    }
+   ],
+   "description": "",
+   "disabled": false,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "mba5lqEfueYdlpWf",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

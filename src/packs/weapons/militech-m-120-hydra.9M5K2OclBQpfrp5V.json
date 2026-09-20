@@ -1,0 +1,73 @@
+{
+ "_id": "9M5K2OclBQpfrp5V",
+ "_key": "!items!9M5K2OclBQpfrp5V",
+ "name": "Militech M-120 Hydra",
+ "type": "weapon",
+ "img": "systems/cyberpunk-red-core/icons/compendium/weapons/Shotgun_excellent.svg",
+ "system": {
+  "ammoVariety": [
+   "shotgunShell",
+   "shotgunSlug"
+  ],
+  "attackmod": 0,
+  "brand": "",
+  "canIgnoreArmor": false,
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "critFailEffect": "jammed",
+  "damage": "5d6",
+  "description": {
+   "value": "<p><strong>Cost:</strong> 5,000eb (Luxury)<br><strong>Class:</strong> EQ Shotgun<br><strong>Range:</strong> Shotgun Long Barrel<br><strong>Pre-installed:</strong> Magrail Kit (w/Auto-Compensator and Vivisector), Power Rebuild, Shotgun Automatic Control Group, Shotgun Choke, Shotgun Rechamber, Sling, Smartgun Link (effects already included in these stats)<br><strong>Alt. fire:</strong> Autofire (Machine Pistol 4), Shotgun Shell (4d6)</p>\n<p>When shells cause a Critical Injury, roll twice on the table and pick one (Vivisector).</p>\n<p><strong>Foundry notes:</strong></p><ul><li>CPR 0.92.4 shows a \"weapon doesn't support this mode\" warning when a pistol Autofires; it's only a warning and the roll still works.</li><li>Its range tables come from this module's DV Tables compendium; run the module's \"Use Corgo's 77 DV Tables\" macro once per world (see the module README).</li></ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Weapons &gt; Weapon Catalog).</em></p>"
+  },
+  "dvTable": "DV Long-Barrel Shotgun",
+  "equipped": "owned",
+  "favorite": false,
+  "fireModes": {
+   "autoFire": 4,
+   "suppressiveFire": false
+  },
+  "handsReq": 2,
+  "ignoreArmorPercent": 0,
+  "ignoreBelowSP": 0,
+  "installedItems": {
+   "allowed": true,
+   "allowedTypes": [
+    "itemUpgrade",
+    "ammo"
+   ],
+   "list": [],
+   "slots": 0,
+   "usedSlots": 0
+  },
+  "isRanged": true,
+  "magazine": {
+   "ammoData": null,
+   "max": 8,
+   "value": 0
+  },
+  "price": {
+   "market": 5000
+  },
+  "quality": "excellent",
+  "revealed": true,
+  "rof": 1,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "unarmedAutomaticCalculation": true,
+  "usage": "equipped",
+  "usesType": "magazine",
+  "weaponSkill": "Shoulder Arms",
+  "weaponType": "shotgun"
+ },
+ "effects": [],
+ "folder": "wPVCqRSfegzve8mv",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}
