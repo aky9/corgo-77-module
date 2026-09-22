@@ -231,6 +231,9 @@ names overlap between the two.
 
 ## Legal
 
+Corgo's rules text appears in these items with Corgopolis's permission.
+Please support him at <https://patreon.com/Corgopolis>.
+
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew
 Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.
 This content references materials that are the property of R. Talsorian Games
