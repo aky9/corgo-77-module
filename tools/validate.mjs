@@ -16,7 +16,11 @@ async function readPack(dir) {
   await db.close();
   return out;
 }
-const docs = await readPack(`${DIST}/packs/weapons`);
+const docs = [...await readPack(`${DIST}/packs/weapons`),
+              // Iconic weapons are weapon documents from the same builder, so the same checks apply. The
+              // pack's Iconic Weapon Mods are itemUpgrades and are checked with the other upgrades.
+              ...(await readPack(`${DIST}/packs/iconic-weapons`))
+                .filter(([k, d]) => !k.startsWith("!items!") || d.type === "weapon")];
 const dvDocs = await readPack(`${DIST}/packs/dv-tables`);
 const macroDocs = await readPack(`${DIST}/packs/macros`);
 
@@ -203,12 +207,40 @@ for (const [key, d] of gearDocs) {
 }
 console.log(`gear checked: ${JSON.stringify(gearCounts)}`);
 
+// Foundry strips tags to build item-list summaries, tooltips and chat previews, and a block-level tag
+// with no whitespace around it welds the words either side of it ("(Very Expensive)Type: Neuralware").
+// Inline tags are exempt: the document's export splits words across bold runs ("**I****nstall:**"), where
+// dropping the tag without a space is the correct reading.
+const BLOCK_TAG = /<\/?(?:br|p|div|ul|ol|li|table|thead|tbody|tr|td|th|h[1-6])\b[^>]*>/gi;
+function weldedText(html) {
+  const out = [];
+  for (const m of html.matchAll(BLOCK_TAG)) {
+    const before = html[m.index - 1] ?? " ";
+    const after = html[m.index + m[0].length] ?? " ";
+    if (!/\s/.test(before) && !/\s/.test(after)) out.push(`${before}${m[0]}${after}`);
+  }
+  return out;
+}
+const packNames = JSON.parse(fs.readFileSync(`${DIST}/module.json`)).packs.filter((p) => p.type === "Item")
+  .map((p) => p.name);
+for (const pack of packNames) {
+  for (const [key, d] of await readPack(`${DIST}/packs/${pack}`)) {
+    if (!key.startsWith("!items!") || !d.system?.description) continue;
+    const welds = weldedText(d.system.description.value);
+    if (welds.length) errors.push(`${pack}/${d.name}: text welds when tags are stripped: ${welds[0]}`);
+  }
+}
+console.log(`descriptions checked for stripped-tag welding across ${packNames.length} packs`);
+
+
 // Cyberware, cyberware enhancements, operating systems and the OS cyberdecks. Cyberware carries the
 // chapter's Active Effects; the enhancements are itemUpgrades of type "cyberware" and carry none, because
 // an itemUpgrade has no "installed" usage and its effects would apply from inventory (see build_cyberware).
 const cwRef = new Set(REF.cyberwareKeys), deckRef = new Set(REF.cyberdeckKeys);
 const cwCounts = {};
-for (const pack of ["cyberware", "cyberware-upgrades", "operating-systems"]) {
+// The Iconic packs hold the same document types (plus drugs), so they go through the same checks.
+for (const pack of ["cyberware", "cyberware-upgrades", "operating-systems",
+                    "iconic-cyberware", "iconic-gear"]) {
   const packDocs = await readPack(`${DIST}/packs/${pack}`);
   const packEffects = new Map(packDocs.filter(([k]) => k.startsWith("!items.effects!")).map(([k, v]) => [k, v]));
   for (const [key, d] of packDocs) {
@@ -216,7 +248,8 @@ for (const pack of ["cyberware", "cyberware-upgrades", "operating-systems"]) {
     cwCounts[d.type] = (cwCounts[d.type] || 0) + 1;
     const s = d.system, e = (m) => errors.push(`${pack}/${d.name}: ${m}`);
     const ref = d.type === "cyberware" ? cwRef : d.type === "cyberdeck" ? deckRef
-      : d.type === "itemUpgrade" ? upRef : d.type === "armor" ? armorRef : null;
+      : d.type === "itemUpgrade" ? upRef : d.type === "armor" ? armorRef
+      : d.type === "drug" ? drugRef : null;
     if (!ref) { e(`unexpected type ${d.type}`); continue; }
     const keys = new Set(flat(s));
     for (const k of ref) if (!keys.has(k)) e(`missing ${k}`);
@@ -228,6 +261,13 @@ for (const pack of ["cyberware", "cyberware-upgrades", "operating-systems"]) {
       if (s.type !== "cyberware") e(`upgrade type ${s.type}`);
       if (s.size !== 0) e(`enhancement size ${s.size} (should take no Option Slot)`);
       if (d.effects.length) e(`enhancements must not carry Active Effects`);
+      continue;
+    }
+    if (d.type === "drug") {
+      // cpr-effects.js getAllowedUsage: a drug takes always/toggled/snorted, plus carried/equipped from
+      // the physical mixin. "snorted" is CPR's generic dosed state, whatever the delivery method.
+      if (!["always", "toggled", "snorted", "carried", "equipped"].includes(s.usage))
+        e(`usage ${s.usage} is not allowed on a drug`);
       continue;
     }
     if (d.type === "cyberdeck" || d.type === "armor") {
@@ -275,6 +315,44 @@ for (const pack of ["cyberware", "cyberware-upgrades", "operating-systems"]) {
   }
 }
 console.log(`cyberware checked: ${JSON.stringify(cwCounts)}`);
+// Every enhancement names the item it enhances, and that fact reaches the player as "Enhances: X". Check
+// X is something they can actually install: a name from 0.92.4, one of our own items, or a target listed
+// in text/enhance_targets.json as absent from the system (with the reason, and the item says so too).
+// This is what a rename breaks silently otherwise - six Iconic enhancements point at our own cyberware.
+const absent = new Set(Object.keys(JSON.parse(
+  fs.readFileSync(new URL("../text/enhance_targets.json", import.meta.url))).absent));
+const allNames = [];
+for (const pack of packNames) {
+  for (const [key, d] of await readPack(`${DIST}/packs/${pack}`)) {
+    if (key.startsWith("!items!")) allNames.push(d.name);
+  }
+}
+const itemNames = new Set([...REF.itemNames, ...allNames].map((n) => n.toLowerCase()));
+function resolves(target) {
+  // The phrasings we use: "A or B", a trailing "(any)" or parenthetical gloss, singular/plural.
+  if (absent.has(target)) return true;
+  const bare = target.replace(/\s*\((?:any|Corgo's[^)]*)\)/gi, "").trim();
+  for (const part of bare.split(/\s+or\s+/).map((x) => x.trim())) {
+    if (absent.has(part)) return true;
+    const forms = [part, part.replace(/s$/, ""), part.replace(/\s*\([^)]*\)/g, "").trim()];
+    if (forms.some((f) => itemNames.has(f.toLowerCase()))) return true;
+  }
+  return false;
+}
+let enhCount = 0;
+for (const pack of ["cyberware-upgrades", "operating-systems", "iconic-cyberware", "iconic-gear"]) {
+  for (const [key, d] of await readPack(`${DIST}/packs/${pack}`)) {
+    if (!key.startsWith("!items!") || d.type !== "itemUpgrade") continue;
+    const m = /<strong>Enhances:<\/strong>\s*([^<]+)/.exec(d.system.description.value);
+    if (!m) { errors.push(`${pack}/${d.name}: no "Enhances" fact on an enhancement`); continue; }
+    const target = m[1].trim();
+    enhCount += 1;
+    if (!resolves(target)) errors.push(`${pack}/${d.name}: enhances "${target}", which is not an item in ` +
+      `0.92.4 or in this module, and is not listed in text/enhance_targets.json`);
+  }
+}
+console.log(`${enhCount} enhancement targets resolved`);
+
 console.log(`attachments/mods/ammo checked: ${JSON.stringify(counts)}`);
 console.log(`${items} items, ${folders} folders read back from LevelDB`);
 console.log(`checked against 0.92.4: ${allowed.weaponType.length} weapon types, ${skills.size} skills; ${tables.size} module DV tables; ${afChecked} Autofire lookups replayed; ${macroDocs.length} macros parsed`);

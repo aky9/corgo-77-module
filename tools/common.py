@@ -69,14 +69,17 @@ def description_html(facts, rules, notes, section, group_rule=None, original=Non
         facts, rules, group_rule = [], None, None
         parts.append(original)
     if facts:
-        parts.append("<p>" + "<br>".join(f"<strong>{html_escape(k)}:</strong> {html_escape(v)}" for k, v in facts) + "</p>")
+        # A newline after each <br>: Foundry strips tags for list summaries and tooltips, and a tag with no
+        # whitespace around it welds the words either side of it ("(Very Expensive)Type: Neuralware").
+        parts.append("<p>" + "<br>\n".join(f"<strong>{html_escape(k)}:</strong> {html_escape(v)}"
+                                           for k, v in facts) + "</p>")
     if group_rule:
         parts.append(f"<p><em>{html_escape(group_rule)}</em></p>")
     if rules:
         parts.append(f"<p>{html_escape(rules)}</p>")
     if notes:
-        parts.append("<p><strong>Foundry notes:</strong></p><ul>" +
-                     "".join(f"<li>{html_escape(n)}</li>" for n in notes) + "</ul>")
+        parts.append("<p><strong>Foundry notes:</strong></p>\n<ul>\n" +
+                     "\n".join(f"<li>{html_escape(n)}</li>" for n in notes) + "\n</ul>")
     parts.append(
         f'<p><em>From <a href="{SOURCE_URL}">{html_escape(SOURCE_BOOK)}</a> by Corgopolis '
         f"({html_escape(section)}).</em></p>")

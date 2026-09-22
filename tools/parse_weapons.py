@@ -28,28 +28,36 @@ def field(block, label, stop=r"(?:•|♦|$)"):
     m = re.search(rf"{label}:\s*(.*?)\s*{stop}", block, re.M)
     return m.group(1).strip() if m else None
 
-LABELS = ["Cost", "Class", "Skill", "Range", "Damage", "Capacity", "ROF", "Hands",
-          "Alt. Firing Modes", "Concealable", "Slots", "Attachments", "Mods", "Special Features"]
-KEYS = ["cost", "class", "skill", "range", "damage", "capacity", "rof", "hands",
-        "alt_modes", "concealable", "slots", "attachments", "mods", "special"]
+STAT_LABELS = ["Class", "Skill", "Range", "Damage", "Capacity", "ROF", "Hands",
+               "Alt. Firing Modes", "Concealable", "Slots", "Attachments", "Mods", "Special Features"]
+STAT_KEYS = ["class", "skill", "range", "damage", "capacity", "rof", "hands",
+             "alt_modes", "concealable", "slots", "attachments", "mods", "special"]
+LABELS = ["Cost"] + STAT_LABELS
+KEYS = ["cost"] + STAT_KEYS
+# The Iconic Weapons chapter uses the same stat block but prices items by Category and Fabrication
+# instead of a Cost, so parse_iconic_weapons.py passes these in (see parse_entry).
+ICONIC_LABELS = ["Category", "Fabrication", "Eligible"] + STAT_LABELS
+ICONIC_KEYS = ["category", "fabrication", "eligible"] + STAT_KEYS
 
-def parse_entry(title, body):
+
+def parse_entry(title, body, labels=None, keys=None, anchor="Cost:"):
+    labels, keys = labels or LABELS, keys or KEYS
     lines = [clean(l) for l in body.splitlines() if clean(l)]
-    # stat text starts at the Cost line; flavor text / art credits come before it
-    start = next((i for i, l in enumerate(lines) if l.startswith("Cost:")), None)
+    # stat text starts at the anchor label; flavor text / art credits come before it
+    start = next((i for i, l in enumerate(lines) if l.startswith(anchor)), None)
     stat_lines = [l for l in lines[start:] if not l.startswith("NOTE:")] if start is not None else []
     stat = " ".join(stat_lines)
     # Docs export sometimes glues the next label onto the previous value ("NoSlots: 2")
     stat = re.sub(r"(?<=[a-z)])(Slots|Attachments|Mods|Special Features|Concealable):", r" \1:", stat)
-    pat = re.compile(r"(?:^|(?<=[\s•♦]))(" + "|".join(re.escape(l) for l in LABELS) + r"):")
+    pat = re.compile(r"(?:^|(?<=[\s•♦]))(" + "|".join(re.escape(l) for l in labels) + r"):")
     hits = list(pat.finditer(stat))
     rec = {"heading": clean(title)}
-    for k in KEYS:
+    for k in keys:
         rec[k] = None
     for i, m in enumerate(hits):
         end = hits[i + 1].start() if i + 1 < len(hits) else len(stat)
         val = stat[m.end():end].strip().strip("•♦").strip()
-        key = KEYS[LABELS.index(m.group(1))]
+        key = keys[labels.index(m.group(1))]
         if rec[key] is None:
             rec[key] = val
     rec["special"] = rec["special"] or ""

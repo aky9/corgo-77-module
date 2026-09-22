@@ -1,0 +1,126 @@
+{
+ "_id": "HlTsRfZGlpUK66HD",
+ "_key": "!items!HlTsRfZGlpUK66HD",
+ "name": "Dendritic Protoplasma Supplier",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Dendritic Protoplasma Supplier Primary",
+  "description": {
+   "value": "<p><strong>Category:</strong> Very Expensive<br>\n<strong>Fabrication:</strong> DV24 - 1,000eb - 2 Weeks<br>\n<strong>Type:</strong> Iconic Drug</p>\n<p>Iconic Drug. PRIMARY EFFECT: lasts 1 month, and a second dose inside that month does nothing and adds no time. While it runs, the user's INT rises by 2 while Jacked In to a NET Architecture, which can push INT past 8; spending at least one point of LUCK on an Interface check adds another +1; they may Slide twice a Turn; and every Black ICE they deploy gets +2 ATK. SECONDARY EFFECT (DV21): the user is now addicted to Dendritic Protoplasma if they weren't. While addicted their INT falls by 4, to a minimum of 2, and their Speed while Jacked In takes -4, both unless the Primary Effect is running. Their memory centres slow, so recall comes late; roleplay accordingly.</p>\n<p><strong>Foundry notes:</strong></p>\n<ul>\n<li>Iconic: it can't be bought or sourced on the street, can't be fabricated without its Blueprint, can't be taken during Character Generation, and once acquired can't be destroyed unless the player agrees to it beforehand.</li>\n<li>The price is the Very Expensive benchmark, for working out repairs and Tech Upgrades. Iconics can't be bought.</li>\n<li>The INT rise only applies while Jacked In, so switch the primary effect on and off with that.</li>\n<li>While addicted, switch on the \"Dendritic Protoplasma Supplier Addiction\" effect; switch it off again while the Primary Effect is running, which cancels it.</li>\n<li>Stat and skill changes are automated; the month-long duration, caps, minimums and everything else are not.</li>\n</ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Becoming Iconic &gt; Iconic Gear).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 1000
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "Gsj3is7zrZ6OHP1Z",
+   "_key": "!items.effects!HlTsRfZGlpUK66HD.Gsj3is7zrZ6OHP1Z",
+   "name": "Dendritic Protoplasma Supplier Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "nBEPtaedYUB2RIqb",
+   "_key": "!items.effects!HlTsRfZGlpUK66HD.nBEPtaedYUB2RIqb",
+   "name": "Dendritic Protoplasma Supplier Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-4"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "ZHpjkqc5yGhZyEbw",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

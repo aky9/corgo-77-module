@@ -2,14 +2,12 @@
 import json, re, shutil
 from pathlib import Path
 import argparse
-import build_weapons, build_upgrades, build_armor, build_gear, build_cyberware, dvtables, original_text
+import build_weapons, build_upgrades, build_armor, build_gear, build_cyberware, build_iconics, \
+    build_iconic_weapons, dvtables, original_text
 from common import doc_id, MODULE_ID
 
 ROOT = Path(__file__).resolve().parent.parent
 PACKS = ROOT / "src/packs"
-# Corgo's document. He gave permission for this conversion and for his text to ship, so when the
-# export is present his wording is what gets built; see DEVELOPING.md.
-DOC = ROOT / "data/corgo-77-v3.md"
 
 
 def write_pack(name, docs):
@@ -51,9 +49,7 @@ def macro_docs():
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--original-text", default=str(DOC) if DOC.exists() else None,
-                    help="export of Corgo's doc; his wording is used in descriptions "
-                         "(default: data/corgo-77-v3.md when present)")
+    ap.add_argument("--original-text", help="export of Corgo's doc; use his wording in descriptions (opt-in)")
     ap.add_argument("--out", default=str(PACKS), help="where to write pack sources (default src/packs)")
     args = ap.parse_args()
     PACKS = Path(args.out).resolve()
@@ -73,11 +69,9 @@ if __name__ == "__main__":
     write_pack("dv-tables", dvtables.build_docs(plan))
     write_pack("macros", macro_docs())
     for name, docs in {**build_upgrades.build_all(), **build_armor.build_all(),
-                       **build_cyberware.build_all()}.items():
+                       **build_cyberware.build_all(), **build_iconics.build_all(),
+                       **build_iconic_weapons.build_all(plan)}.items():
         write_pack(name, docs)
-    if not original_text.enabled():
-        print(f"note: {DOC.relative_to(ROOT)} not present, so descriptions fall back to the "
-              "rewritten text in text/*.json")
     if original_text.enabled():
         print(f"original text used for {len(original_text.FOUND)} items; kept rewritten text for "
               f"{len(original_text.MISSING)} lookups with no matching entry:")

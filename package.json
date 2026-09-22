@@ -5,7 +5,7 @@
   "scripts": {
     "compile": "node tools/compile.mjs",
     "validate": "node tools/validate.mjs dist/corgo-77-collection",
-    "parse": "python3 tools/parse_weapons.py && python3 tools/parse_upgrades.py && python3 tools/parse_cyberware.py",
+    "parse": "python3 tools/parse_weapons.py && python3 tools/parse_upgrades.py && python3 tools/parse_cyberware.py && python3 tools/parse_iconics.py && python3 tools/parse_iconic_weapons.py",
     "build": "python3 tools/build.py && node tools/compile.mjs",
     "build:original": "python3 tools/build.py --original-text data/corgo-77-v3.md --out build/packs && node tools/compile.mjs build/packs",
     "test": "python3 tests/test_original_text.py",

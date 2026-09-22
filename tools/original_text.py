@@ -23,6 +23,9 @@ SECTIONS = {
     "cyberware": ("# **CYBERWARE**", "# **OPERATING SYSTEMS"),
     "operating-systems": ("# **OPERATING SYSTEMS", "# **CYBERWARE ALTERNATIVES"),
     "cyberware-alternatives": ("# **CYBERWARE ALTERNATIVES", "# **2070s FULL BODY CONVERSIONS"),
+    "iconic-cyberware": ("# **ICONIC CYBERWARE", "# **ICONIC GEAR"),
+    "iconic-gear": ("# **ICONIC GEAR", "# **ICONIC WEAPONS"),
+    "iconic-weapons": ("# **ICONIC WEAPONS", "# **ICONIC VEHICLES"),
 }
 HEADING = re.compile(r"^(#{1,6}) (.+)$")
 
@@ -127,15 +130,17 @@ def _to_html(lines):
 
     def flush():
         if bullets:
-            out.append("<ul>" + "".join(f"<li>{b}</li>" for b in bullets) + "</ul>")
+            # newlines between items, so stripping the tags for a plain-text preview leaves separators
+            out.append("<ul>\n" + "\n".join(f"<li>{b}</li>" for b in bullets) + "\n</ul>")
             bullets.clear()
         if table:
             rows = [r for r in table if not re.fullmatch(r"\|?[\s:\-|]+\|?", r)]
             cells = [[_inline(_cell(c)) for c in r.strip().strip("|").split("|")] for r in rows]
             if cells:
-                head = "".join(f"<th>{c}</th>" for c in cells[0])
-                body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in cells[1:])
-                out.append(f"<table><tr>{head}</tr>{body}</table>")
+                head = "\n".join(f"<th>{c}</th>" for c in cells[0])
+                body = "\n".join("<tr>\n" + "\n".join(f"<td>{c}</td>" for c in r) + "\n</tr>"
+                                 for r in cells[1:])
+                out.append(f"<table>\n<tr>\n{head}\n</tr>\n{body}\n</table>")
             table.clear()
 
     for raw in lines:
