@@ -64,13 +64,15 @@ def _has_original(heading):
 
 
 def _has_stat_line(rec):
-    """False when Corgo gives no rollable damage, so the weapon needs stats decided for it.
+    """False only when Corgo's damage is something build_weapons cannot read at all.
 
-    He writes "N/A" where a weapon's damage lives in its rules text (Dezerter, Guts, Wild Dog) and "?d6"
-    for Chaos, whose damage is random by design. build_weapons.parse_damage needs an Nd6, so these four
-    can only be built once an entry supplies one under "rec".
+    "N/A" is fine and common: build() already turns it into the Machine Gun's 2d6 Autofire damage or the
+    Shotgun's 3d6 shell damage, which is how the eight N/A weapons in the main catalog are built. What it
+    cannot parse is a non-numeric formula - Chaos's "?d6", which is random by design - so that one needs
+    an entry supplying a damage under "rec".
     """
-    return bool(re.match(r"\s*\d+d6", str(rec.get("damage") or "")))
+    d = rec.get("damage")
+    return d in (None, "", "N/A") or bool(re.match(r"\s*\d+d6", str(d)))
 
 
 def build_all(plan):
@@ -118,7 +120,8 @@ def build_all(plan):
                                         folder(GROUP_FOLDERS[rec["group"]]), plan,
                                         section_key="iconic-weapons", section_label=SECTION,
                                         facts_head=facts_head(rec), price=price,
-                                        extra_notes=notes_for(rec, price), exotic_note=EXOTIC_NOTE))
+                                        extra_notes=notes_for(rec, price) + list(over.get("notes", [])),
+                                        exotic_note=EXOTIC_NOTE))
 
     for v in parsed["variants"]:
         entry = spec["variants"].get(v["heading"])
@@ -143,8 +146,9 @@ def build_all(plan):
         docs.append(build_weapons.build(rec, entry.get("rules", ""), folder("Variants"), plan,
                                         section_key="iconic-weapons", section_label=SECTION,
                                         facts_head=head, price=price,
-                                        extra_notes=notes_for(rec, price) +
-                                        [spec["series"].get(v["series"], "")],
+                                        extra_notes=notes_for(rec, price) + list(entry.get("notes", []))
+                                        # an unwritten series rule is "", which would render as an empty bullet
+                                        + [r for r in [spec["series"].get(v["series"], "")] if r],
                                         exotic_note=EXOTIC_NOTE))
 
     if skipped:

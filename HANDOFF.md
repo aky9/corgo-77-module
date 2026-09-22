@@ -23,7 +23,7 @@ Fixed constraints, unchanged since the start:
 - Two zips per delivery: the module and the build project. The repo now carries the document, so it and
   the build project differ only by `reference/` (Schism989's module, which has no license file).
 
-## Current state: 749 items across 15 packs
+## Current state: 754 items across 15 packs
 
 | Pack | Items | Status |
 | --- | --- | --- |
@@ -39,24 +39,25 @@ Fixed constraints, unchanged since the start:
 | operating-systems | 18 | done (13 OSes + the 5 cyberdecks they come with) |
 | iconic-cyberware | 20 | done |
 | iconic-gear | 5 | done (2 cyberdecks, 3 drugs) |
-| iconic-weapons | 110 | done bar 5 items needing a stat decided (below) |
+| iconic-weapons | 115 | done (2 items carry guessed stats, see below) |
 | dv-tables | 51 | done |
 | macros | 2 | done |
 
-## Next task: five Iconic Weapons need a stat decided
+## Next task: confirm the guessed stats in Foundry
 
-Not a text job - Corgo gives these no rollable damage, so someone has to choose one. The build names them
-on every run and skips them, so it stays green:
+The Iconic Weapons chapter is complete (115 items). Two of them carry stats that are not Corgo's own
+numbers and want checking in play:
 
-```
-iconic weapons needing a damage stat decided (Corgo gives none):
-  Chaos (Royce's Pistol), Dezerter, Guts (Rebecca's Shotgun), Wild Dog (Kurt's LMG)
-iconic weapons still to write: VARIANTS (need stats) 1
-```
+- **Chaos (Royce's Pistol)** ships at 3d6 / 20 rounds / 1 SP Ablation, which is the default Corgo states
+  himself. It re-rolls all three on every Reload (1d20, 1d8, 1d4), which the sheet cannot do, so those are
+  edited by hand. Its Single Shot also expends 2 rounds and its Critical Injury roll is 1d12, neither
+  automated.
+- **Baseball Bat X-MOD2** uses CPR 0.92.4's generic Two-Handed Very Heavy Melee Weapon line (4d6, ROF 2,
+  two-handed), because Corgo names the category but gives no stats.
 
-He writes Chaos as `?d6` (random by design) and the other three as `N/A`, with the damage living in their
-rules text. The variant is **Baseball Bat X-Mod2**, whose base is "Generic Two-Handed Very Heavy Melee
-Weapon" rather than a named gun. Each needs a `rec` override in `text/iconic_weapons.json`.
+Dezerter, Guts and Wild Dog needed nothing: `build_weapons` already turns a Machine Gun's "N/A" damage
+into the standard 2d6 Autofire and a Shotgun's into 3d6 shells, the way the eight N/A weapons in the main
+catalog are built.
 
 ## After that
 

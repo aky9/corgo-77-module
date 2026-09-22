@@ -37,8 +37,41 @@
   "SIR JOHN PHALLUSTIFF": "On an Aimed Shot, 5s count as 6s for Critical Injuries. Each Critical Injury also cuts the victim's MOVE by 2 for 3 seconds (1 Round) on top of the damage and other effects. Land a Critical Injury, or damage a head with an Aimed Shot, and the victim needs a DV17 Concentration check or takes -2 on all Actions through the end of their next Turn.",
   "STINGER": "It counts as permanently coated with Biotoxin. Against a target that took a Critical Injury last Round, the Resist Torture/Drugs check to avoid the biotoxin damage rises to DV21. Against a target that took damage from any Poison or Biotoxin last Round, the biotoxin can land non-dismemberment Critical Injuries - head ones if this weapon hit a head with an Aimed Shot, body ones otherwise - and a single 6 on its damage is enough to land one.",
   "TINKER BELL": "An Aimed Shot to the head that gets damage past armor forces a DV15 Endurance check or the victim drops unconscious on the spot. Its Critical Injuries carry 5 more bonus damage (10 total) and apply the EMP Ammunition effect, though only disabling one piece of the victim's cyberware. If its damage would drop a target below 1 HP, the user may leave them unconscious at 1 HP instead.",
-  "TSUMETOGI": "Once a Turn, when its damage gets through armor, the target also takes the EMP Ammunition effect. If its damage would drop a target below 1 HP, the user may leave them unconscious at 1 HP instead."
+  "TSUMETOGI": "Once a Turn, when its damage gets through armor, the target also takes the EMP Ammunition effect. If its damage would drop a target below 1 HP, the user may leave them unconscious at 1 HP instead.",
+  "CHAOS (ROYCE’S PISTOL)": {
+   "rec": {
+    "damage": "3d6",
+    "capacity": "20"
+   },
+   "notes": [
+    "Corgo's starting stats: 20 round Capacity, 3d6 damage, 1 SP Ablation. The weapon re-rolls all three on every Reload (1d20 Capacity, 1d8 damage dice, 1d4 SP Ablation), which the sheet cannot do, so edit the item's damage and magazine by hand after each Reload.",
+    "Single Shot expends 2 rounds, and its Critical Injury roll is 1d12 rather than 2d6. Neither is automated."
+   ]
+  }
  },
  "series": {},
- "variants": {}
+ "variants": {
+  "BASEBALL BAT X-MOD2": {
+   "rec": {
+    "class": "Iconic EQ Very Heavy Melee",
+    "skill": "Melee Weapon",
+    "range": "Melee",
+    "damage": "4d6",
+    "rof": "2",
+    "hands": "2",
+    "capacity": "N/A",
+    "concealable": "No",
+    "slots": "N/A",
+    "alt_modes": "None",
+    "attachments": "None",
+    "mods": "None",
+    "cost": "",
+    "special": "",
+    "notes": []
+   },
+   "notes": [
+    "Corgo gives no stat line for this one, only \"Two-Handed Very Heavy Melee Weapon\", so it uses CPR 0.92.4's generic Very Heavy Melee Weapon: 4d6, ROF 2, two-handed."
+   ]
+  }
+ }
 }
