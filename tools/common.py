@@ -65,9 +65,18 @@ def html_escape(s):
 
 def description_html(facts, rules, notes, section, group_rule=None, original=None):
     parts = []
-    if original:  # Corgo's own wording (opt-in, see original_text.py); keep our Foundry notes and the link
-        facts, rules, group_rule = [], None, None
+    original_facts = []
+    if original:  # Corgo's own wording (see original_text.py); keep our Foundry notes and the link
+        # His entry opens with his own stat line, so a fact he already states would render twice. Keep only
+        # the ones this module adds on top of it - "Enhances" above all, which the sheet shows and
+        # validate.mjs resolves against the packs - and drop our rewritten rules, which his text replaces.
+        facts = [(k, v) for k, v in facts if f"<strong>{html_escape(k)}:</strong>" not in original]
+        rules, group_rule = None, None
+        original_facts, facts = facts, []
         parts.append(original)
+    if original_facts:
+        parts.append("<p>" + "<br>\n".join(f"<strong>{html_escape(k)}:</strong> {html_escape(v)}"
+                                           for k, v in original_facts) + "</p>")
     if facts:
         # A newline after each <br>: Foundry strips tags for list summaries and tooltips, and a tag with no
         # whitespace around it welds the words either side of it ("(Very Expensive)Type: Neuralware").

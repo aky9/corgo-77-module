@@ -39,6 +39,15 @@ def enabled():
     return _TEXT is not None
 
 
+# Corgo names some entries in curly quotes ('FOXHOUND', "KAGAMI"). The parsers keep whatever the
+# export had, so normalise both sides of a heading comparison rather than one.
+QUOTES = str.maketrans("", "", "\u2018\u2019\u201c\u201d")
+
+
+def _unquote(s):
+    return s.translate(QUOTES)
+
+
 def _plain(s):
     s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s).replace("\\", "").replace("*", "")
     return re.sub(r"\s+", " ", s).strip().upper()
@@ -57,12 +66,12 @@ def _section(key):
 
 
 def _find(section_key, heading, intro_only=False):
-    lines, want = _section(section_key), heading.upper()
+    lines, want = _section(section_key), _unquote(heading.upper())
     for i, line in enumerate(lines):
         m = HEADING.match(line)
         if not m:
             continue
-        title = _plain(m.group(2))
+        title = _unquote(_plain(m.group(2)))
         if title == want or re.match(re.escape(want) + r"(\s|\[|\{|$)", title):
             level, out = len(m.group(1)), []
             for nxt in lines[i + 1:]:

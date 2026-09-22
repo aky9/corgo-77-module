@@ -24,6 +24,7 @@ ICON = "systems/cyberpunk-red-core/icons/compendium/default/Default_DV_Table.svg
 RANGE_ALIASES = {
     "Gren. Launcher": "Grenade Launcher", "Mis. Launcher": "Missile Launcher",
     "Anti-Material Rifle": "Anti-Materiel Rifle", "Anti-Matieral Rifle": "Anti-Materiel Rifle",
+    "Anti-Mat. Rifle": "Anti-Materiel Rifle",  # how the Iconic Weapons chapter abbreviates it
     "Shotgun Long Barrel": "Long Barrel Shotgun",
     "Carbine / Battle Rifle": "Carbine",  # DA11 Equinox; description explains the swap
     "Grenade Launcher / Missile Launcher": "Grenade Launcher",  # SPECTER EX-76 EarthBreaker

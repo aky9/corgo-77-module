@@ -1,12 +1,13 @@
 node_modules/
 dist/
+build/
+__pycache__/
 *.zip
 
-# Other people's work: not published in this repo.
-# Corgo's full document text and anything extracted verbatim from it (regenerate with `npm run parse`).
-data/
-# Pinned copy of Schism989's module, used only to refresh tools/compat/ (his repo has no license).
+# Corgo gave permission for this conversion and for his document to live in this repo (see DEVELOPING.md),
+# so data/corgo-77-v3.md is tracked. The parsers' output is derived from it: regenerate with `npm run parse`.
+data/*.parsed.json
+
+# Pinned copy of Schism989's module, used only to refresh tools/compat/. His repo has no license file, and
+# Corgo's permission does not extend to someone else's work, so this stays out of the repo.
 reference/
-__pycache__/
-# Output of `npm run build:original` (contains Corgo's own text)
-build/
