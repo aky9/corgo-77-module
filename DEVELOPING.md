@@ -24,6 +24,13 @@ survives both paths and renders as the item's "Foundry notes" bullets. Every bui
 `spec.get("notes", [])` and appends it to the notes it works out itself. 52 sentences were moved out of
 `rules` for this reason.
 
+**`rules` is frozen.** It is a rewrite of Corgo's own rules, written back when his text could not ship, and
+`description_html` discards it whenever his text is present: 356 of the 361 rules strings no longer reach any
+shipped item. It is kept only as an escape hatch - `--original-text ""` still builds a complete module with
+no text of his in it, which is worth having if the permission ever has to be unwound - so do not extend it.
+New content needs stats and `notes`, not a restatement of Corgo. The Iconic Weapons chapter sat unfinished
+for 85 items because they were gated on prose this build throws away.
+
 If the export is missing the build says so and falls back to `text/*.json` for everything. That fallback is
 the only thing those files' `rules` strings are still for; the rest of them (`attack`/`damage`/`slots`/
 `magazine`/`rof_override`/`secondary`/`split`) is automation data with no equivalent in Corgo's prose, and

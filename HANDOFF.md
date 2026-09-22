@@ -64,7 +64,8 @@ Weapon" rather than a named gun. Each needs a `rec` override in `text/iconic_wea
 - **Militech Centaur Exo** cyberchair, and the **14 named Corpochrome options** — also skipped; Corpochrome
   itself is documented as a rule in `module/README.md`.
 - **Vehicles** — VEHICLES (492 lines) plus VEHICLE CATALOG (2,608). The `vehicle` field set is untouched.
-  **Iconic Vehicles** (10 cars) is blocked on this deliberately, so the conventions get settled once.
+  **Iconic Vehicles** (36 entries, 1,219 lines) is blocked on this deliberately, so the conventions get
+  settled once. It is the only Iconic chapter with nothing built.
 - **Drones** — DRONES, DRONE-RELATED GEAR, DRONE CATALOG (981 lines together).
 - **Role Tweaks** (85 lines), **Netrunning** and **Deep Diving 101** (92 lines) — rules rather than items;
   may belong in journal entries rather than compendium items, which is an open question.
