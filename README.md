@@ -1,4 +1,3 @@
-
 # Corgo's 77 Collection for Cyberpunk RED - Core (Foundry VTT)
 
 Unofficial Foundry VTT module that adds compendiums for **Corgo's 77 Collection V3** by Corgopolis to the
@@ -22,6 +21,3 @@ people's work (Corgo's full text; a copy of Schism989's module). See [`DEVELOPIN
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian
 Games and is not approved or endorsed by RTG. This content references materials that are the property of
 R. Talsorian Games and its licensees.
-
-# corgo-77-module
-

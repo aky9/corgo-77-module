@@ -1,0 +1,126 @@
+{
+ "_id": "HlTsRfZGlpUK66HD",
+ "_key": "!items!HlTsRfZGlpUK66HD",
+ "name": "Dendritic Protoplasma Supplier",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Dendritic Protoplasma Supplier Primary",
+  "description": {
+   "value": "<p><strong>Category:</strong> Very Expensive</p>\n<p><strong>Fabrication:</strong> DV24 - 1,000eb - 2 Weeks</p>\n<p><em>Experimental supplement that provides the biological building blocks for neural synapses to rapidly form.</em></p>\n<p><strong>⋙</strong> <strong>PRIMARY EFFECT</strong> <strong>⋘</strong></p>\n<ul>\n<li>Lasts 1 Month. Taking multiple doses within a month has no effect, and does not prolong the duration to further months.</li>\n<li>For the duration of the Primary Effect, while Jacked In to a NET Architecture, the user’s INT is increased by 2. This can raise INT above 8.</li>\n<li>For the duration of the Primary Effect, when making an Interface Check and spending at least one point of LUCK, the user gains an additional +1 bonus to the Check.</li>\n<li>For the duration of the Primary Effect, the user may Slide twice per Turn, and all Black ICE they deploy has its ATK increased by 2.</li>\n</ul>\n<p><strong>⋙</strong> <strong>SECONDARY EFFECT (DV21)</strong> <strong>⋘</strong></p>\n<ul>\n<li>If the user wasn’t addicted to Dendritic Protoplasma before, they are now. While addicted, the user’s INT is reduced by 4 (Minimum 2) unless they are currently experiencing the Primary Effect of Dendritic Protoplasma.</li>\n<li>While addicted, the user takes a -4 penalty to their Speed while Jacked In unless they are currently experiencing the Primary Effect of Dendritic Protoplasma.</li>\n<li>The user’s memory centers are slowed, resulting in a delayed recollection of information. Do your best to roleplay accordingly.</li>\n</ul>\n<p><strong>Type:</strong> Iconic Drug</p>\n<p><strong>Foundry notes:</strong></p>\n<ul>\n<li>Iconic: it can't be bought or sourced on the street, can't be fabricated without its Blueprint, can't be taken during Character Generation, and once acquired can't be destroyed unless the player agrees to it beforehand.</li>\n<li>The price is the Very Expensive benchmark, for working out repairs and Tech Upgrades. Iconics can't be bought.</li>\n<li>The INT rise only applies while Jacked In, so switch the primary effect on and off with that.</li>\n<li>While addicted, switch on the \"Dendritic Protoplasma Supplier Addiction\" effect; switch it off again while the Primary Effect is running, which cancels it.</li>\n<li>Stat and skill changes are automated; the month-long duration, caps, minimums and everything else are not.</li>\n</ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Becoming Iconic &gt; Iconic Gear).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 1000
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "Gsj3is7zrZ6OHP1Z",
+   "_key": "!items.effects!HlTsRfZGlpUK66HD.Gsj3is7zrZ6OHP1Z",
+   "name": "Dendritic Protoplasma Supplier Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "nBEPtaedYUB2RIqb",
+   "_key": "!items.effects!HlTsRfZGlpUK66HD.nBEPtaedYUB2RIqb",
+   "name": "Dendritic Protoplasma Supplier Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "system.stats.int.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-4"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "ZHpjkqc5yGhZyEbw",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

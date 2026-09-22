@@ -1,0 +1,181 @@
+{
+ "_id": "SvNIJCbOw4v9dxyG",
+ "_key": "!items!SvNIJCbOw4v9dxyG",
+ "name": "Military-Grade Lactic Acid Recyclers",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Military-Grade Lactic Acid Recyclers Primary",
+  "description": {
+   "value": "<p><strong>Category:</strong> Very Expensive</p>\n<p><strong>Fabrication:</strong> DV24 - 1,000eb - 2 Weeks</p>\n<p><em>Due to complications with lactic acidosis, this rare treatment for anaerobic energy generation is only authorized for use by the world's national and corporate armed forces.</em></p>\n<p><strong>⋙</strong> <strong>PRIMARY EFFECT</strong> <strong>⋘</strong></p>\n<ul>\n<li>Lasts 1 Month. Taking multiple doses within a month has no effect, and does not prolong the duration to further months.</li>\n<li>For the duration of the Primary Effect, the user gains a +4 bonus to Endurance and Athletics Checks.</li>\n<li>For the duration of the Primary Effect, the user gains a +2 bonus to Resist Torture/Drugs Checks, which does not apply to the Check to resist this drug’s Secondary Effect.</li>\n<li>For the duration of the Primary Effect, all MOVE penalties the user suffers from any source are halved (Round Up).</li>\n<li>For the duration of the Primary Effect, when performing the Run Action, the user’s movement is increased by 2m/yds.</li>\n</ul>\n<p><strong>⋙</strong> <strong>SECONDARY EFFECT (DV21)</strong> <strong>⋘</strong></p>\n<ul>\n<li>If the user wasn’t addicted to Lactic Acid Recyclers, they are now. While addicted, the user suffers a -4 penalty to Endurance and Athletics Checks unless they are currently experiencing the Primary Effect of Lactic Acid Recyclers.</li>\n<li>While addicted, the user’s DEX and MOVE are decreased by 2 (Minimum 2) unless they are currently experiencing the Primary Effect of Lactic Acid Recyclers.</li>\n<li>The user constantly feels as though they are almost out of breath, even when they are not. Do your best to roleplay accordingly.</li>\n</ul>\n<p>(Screenshot by Edonae)</p>\n<p><strong>Type:</strong> Iconic Drug</p>\n<p><strong>Foundry notes:</strong></p>\n<ul>\n<li>Iconic: it can't be bought or sourced on the street, can't be fabricated without its Blueprint, can't be taken during Character Generation, and once acquired can't be destroyed unless the player agrees to it beforehand.</li>\n<li>The price is the Very Expensive benchmark, for working out repairs and Tech Upgrades. Iconics can't be bought.</li>\n<li>The +2 Resist Torture/Drugs does not apply to the check against this drug's own Secondary Effect; the sheet can't tell those apart, so switch it off for that roll.</li>\n<li>While addicted, switch on the \"Military-Grade Lactic Acid Recyclers Addiction\" effect; switch it off again while the Primary Effect is running, which cancels it.</li>\n<li>Stat and skill changes are automated; the month-long duration, caps, minimums and everything else are not.</li>\n</ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Becoming Iconic &gt; Iconic Gear).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 1000
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "Vm9BGAhjgKxaHQzq",
+   "_key": "!items.effects!SvNIJCbOw4v9dxyG.Vm9BGAhjgKxaHQzq",
+   "name": "Military-Grade Lactic Acid Recyclers Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "bonuses.endurance",
+     "mode": 2,
+     "priority": null,
+     "value": "4"
+    },
+    {
+     "key": "bonuses.athletics",
+     "mode": 2,
+     "priority": null,
+     "value": "4"
+    },
+    {
+     "key": "bonuses.resistTortureOrDrugs",
+     "mode": 2,
+     "priority": null,
+     "value": "2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill",
+       "1": "skill",
+       "2": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "mnI7dSYybx3R6PUt",
+   "_key": "!items.effects!SvNIJCbOw4v9dxyG.mnI7dSYybx3R6PUt",
+   "name": "Military-Grade Lactic Acid Recyclers Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "bonuses.endurance",
+     "mode": 2,
+     "priority": null,
+     "value": "-4"
+    },
+    {
+     "key": "bonuses.athletics",
+     "mode": 2,
+     "priority": null,
+     "value": "-4"
+    },
+    {
+     "key": "system.stats.dex.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    },
+    {
+     "key": "system.stats.move.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill",
+       "1": "skill",
+       "2": "stat",
+       "3": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "1": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "2": {
+        "isSituational": false,
+        "onByDefault": false
+       },
+       "3": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "ZHpjkqc5yGhZyEbw",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

@@ -1,0 +1,126 @@
+{
+ "_id": "9Y0wCA50td7v761i",
+ "_key": "!items!9Y0wCA50td7v761i",
+ "name": "Prototype Pseudoembryonic Cell Builder",
+ "type": "drug",
+ "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+ "system": {
+  "amount": 1,
+  "brand": "",
+  "concealable": {
+   "concealable": false,
+   "isConcealed": false
+  },
+  "consumed": "Prototype Pseudoembryonic Cell Builder Primary",
+  "description": {
+   "value": "<p><strong>Category:</strong> Very Expensive</p>\n<p><strong>Fabrication:</strong> DV24 - 1,000eb - 2 Weeks</p>\n<p><em>An experimental supplement that greatly supports human cell health and resilience.</em></p>\n<p><strong>⋙</strong> <strong>PRIMARY EFFECT</strong> <strong>⋘</strong></p>\n<ul>\n<li>Lasts 1 Month. Taking multiple doses within a month has no effect, and does not prolong the duration to further months.</li>\n<li>For the duration of the Primary Effect, when the user is resting to heal naturally, the maximum HP they can heal to is increased by 10, which can exceed the maximum set by their BODY + WILL. This extra health cannot be regained via Speedheal.</li>\n<li>For the duration of the Primary Effect, if the user has Enhanced Antibodies, when healing naturally they heal a number of HP equal to their BODY x 3 for each day spent resting.</li>\n<li>For the duration of the Primary Effect, all doses of Speedheal applied to the user heal 5 additional HP.</li>\n</ul>\n<p><strong>⋙</strong> <strong>SECONDARY EFFECT (DV21)</strong> <strong>⋘</strong></p>\n<ul>\n<li>Any extra HP the user gained from this drug which exceeds their natural maximum is lost.</li>\n<li>If the user wasn’t addicted to Pseudoembryonic Cell Builder, they are now. While addicted, the user’s BODY is decreased by 2 unless they are currently experiencing the Primary Effect of Pseudoembryonic Cell Builder. This decrease in BODY does alter the user’s maximum HP and Death Save.</li>\n</ul>\n<p><strong>Type:</strong> Iconic Drug</p>\n<p><strong>Foundry notes:</strong></p>\n<ul>\n<li>Iconic: it can't be bought or sourced on the street, can't be fabricated without its Blueprint, can't be taken during Character Generation, and once acquired can't be destroyed unless the player agrees to it beforehand.</li>\n<li>The price is the Very Expensive benchmark, for working out repairs and Tech Upgrades. Iconics can't be bought.</li>\n<li>While addicted, switch on the \"Prototype Pseudoembryonic Cell Builder Addiction\" effect; switch it off again while the Primary Effect is running, which cancels it.</li>\n<li>Stat and skill changes are automated; the month-long duration, caps, minimums and everything else are not.</li>\n</ul>\n<p><em>From <a href=\"https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit\">Corgo's 77 Collection V3</a> by Corgopolis (Becoming Iconic &gt; Iconic Gear).</em></p>"
+  },
+  "equipped": "owned",
+  "favorite": false,
+  "price": {
+   "market": 1000
+  },
+  "revealed": true,
+  "source": {
+   "book": "Corgo's 77 Collection V3",
+   "page": 0
+  },
+  "usage": "snorted"
+ },
+ "effects": [
+  {
+   "_id": "bvi9CWLAJzaTOkpF",
+   "_key": "!items.effects!9Y0wCA50td7v761i.bvi9CWLAJzaTOkpF",
+   "name": "Prototype Pseudoembryonic Cell Builder Primary",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "bonuses.maxHp",
+     "mode": 2,
+     "priority": null,
+     "value": "10"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "skill"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  },
+  {
+   "_id": "noqxc9Yvc6Uo1ylD",
+   "_key": "!items.effects!9Y0wCA50td7v761i.noqxc9Yvc6Uo1ylD",
+   "name": "Prototype Pseudoembryonic Cell Builder Addiction",
+   "img": "systems/cyberpunk-red-core/icons/compendium/gear/generic_pharmaceuticals.svg",
+   "changes": [
+    {
+     "key": "system.stats.body.value",
+     "mode": 2,
+     "priority": null,
+     "value": "-2"
+    }
+   ],
+   "description": "",
+   "disabled": true,
+   "duration": {
+    "combat": null,
+    "rounds": null,
+    "seconds": null,
+    "startRound": null,
+    "startTime": null,
+    "startTurn": null,
+    "turns": null
+   },
+   "flags": {
+    "cyberpunk-red-core": {
+     "changes": {
+      "cats": {
+       "0": "stat"
+      },
+      "situational": {
+       "0": {
+        "isSituational": false,
+        "onByDefault": false
+       }
+      }
+     }
+    }
+   },
+   "statuses": [],
+   "system": {},
+   "transfer": true,
+   "type": "base"
+  }
+ ],
+ "folder": "ZHpjkqc5yGhZyEbw",
+ "sort": 0,
+ "ownership": {
+  "default": 0
+ },
+ "flags": {}
+}

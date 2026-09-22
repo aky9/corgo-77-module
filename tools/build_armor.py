@@ -63,7 +63,7 @@ def armor_item(spec, loc, name, folder, section, section_key="armor"):
         s["isHeadLocation"], s["headLocation"]["sp"] = True, spec["sp"]
     p = spec["penalty"]
     s["penalty"] = max(p)
-    notes = []
+    notes = list(spec.get("notes", []))
     if len(set(p)) > 1:
         notes.append(f"Corgo's penalty is {penalty_text(p)}. The sheet applies one penalty to all three stats, so it "
                      f"uses -{max(p)}; add the difference back by hand for the lighter stat(s).")
@@ -126,7 +126,7 @@ def build_upgrade_pack(spec):
                 rules = " ".join(x for x in (e["rules"], sub_rule) if x)
                 d = build_upgrades.upgrade(f"armor:{e['key']}:{sub_name}", sub_name, {"mods": e.get("mods", {})},
                                            price, 0, facts, rules, section, folders[label],
-                                           notes=[group_rule], heading=e["key"],
+                                           notes=[group_rule] + list(e.get("notes", [])), heading=e["key"],
                                            section_key="shields" if "Shield" in label else "armor")
                 d["system"]["type"] = e.get("type", "armor")
                 d["img"] = ICONS + ("armor/bullet_proof_shield.svg" if "Shield" in label else "default/Default_Armor.svg")

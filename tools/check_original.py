@@ -70,6 +70,27 @@ def entries():
         for n in names:
             out[n] = {"id": ("cw", heading), "kin": kin}
 
+    icon = json.load(open(ROOT / "text/iconics.json", encoding="utf-8"))["items"]
+    irecs = json.load(open(ROOT / "data/iconics.parsed.json", encoding="utf-8"))["entries"]
+    iby = {r["heading"]: r for r in irecs}
+    for r in irecs:
+        raw[("ic", r["heading"])] = r["lines"]
+    for key, spec in icon.items():
+        heading = spec.get("heading", key)
+        rec = iby[heading]
+        kin = {("ic", rec["parent"])} if rec["parent"] else set()
+        out[spec.get("name") or title_case(key)] = {"id": ("ic", heading), "kin": kin}
+
+    iw = json.load(open(ROOT / "data/iconic_weapons.parsed.json", encoding="utf-8"))
+    iwspec = json.load(open(ROOT / "text/iconic_weapons.json", encoding="utf-8"))
+    for group in ("mods", "weapons"):
+        for r in iw[group]:
+            raw[("iw", r["heading"])] = r.get("lines") or [r.get("special", "")]
+    for heading in list(iwspec["mods"]) + list(iwspec["weapons"]):
+        entry = iwspec["weapons"].get(heading)
+        name = (entry or {}).get("rec", {}).get("name") if isinstance(entry, dict) else None
+        out[name or title_case(heading)] = {"id": ("iw", heading), "kin": set()}
+
     up = json.load(open(ROOT / "data/upgrades.parsed.json", encoding="utf-8"))
     for group, records in up.items():
         for r in records:

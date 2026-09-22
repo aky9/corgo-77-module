@@ -45,7 +45,8 @@ MELEE_ICON_BY_NAME = {  # nicer icons for specific melee weapons
 QUALITY_PREFIX = [("Excellent Quality ", "excellent"), ("EQ ", "excellent"),
                   ("Poor Quality ", "poor"), ("PQ ", "poor")]
 
-SKILL_MAP = {"Melee Weapons": "Melee Weapon", "N/A": "Heavy Weapons"}  # N/A = Autofire-only machine guns
+SKILL_MAP = {"Melee Weapons": "Melee Weapon", "Melee": "Melee Weapon",
+             "N/A": "Heavy Weapons"}  # N/A = Autofire-only machine guns
 
 GROUP_FOLDERS = {
     "PISTOLS": "Pistols", "SUBMACHINE GUNS (SMGs)": "SMGs", "SHOTGUNS": "Shotguns",
@@ -63,9 +64,17 @@ AMMO_OVERRIDE = {"ARASAKA HOICHI AIRGUN": ["arrow"]}
 
 
 def split_class(cls):
-    """'Exotic PQ Very Heavy Pistol' -> ('poor', True, 'Very Heavy Pistol')"""
-    exotic = cls.startswith("Exotic ")
-    rest = cls[len("Exotic "):] if exotic else cls
+    """'Exotic PQ Very Heavy Pistol' -> ('poor', True, 'Very Heavy Pistol')
+
+    "Iconic" counts as Exotic: the Iconic Weapons chapter says Iconics use the Exotic base rules, so they
+    load no Non-Basic Ammunition and have no Attachment Slots unless an entry says otherwise.
+    """
+    exotic = False
+    rest = cls
+    for prefix in ("Exotic ", "Iconic "):
+        if rest.startswith(prefix):
+            exotic = True
+            rest = rest[len(prefix):]
     quality = "standard"
     for prefix, q in QUALITY_PREFIX:
         if rest.startswith(prefix):
@@ -90,7 +99,8 @@ def parse_damage(raw, notes):
     return base
 
 
-def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", section_label=None):
+def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", section_label=None,
+          facts_head=None, price=None, extra_notes=(), exotic_note="Exotic weapon."):
     notes = []
     name = rec.get("name") or title_case(rec["heading"])
     quality, exotic, kind = split_class(rec["class"])
@@ -153,11 +163,12 @@ def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", sect
     skill = SKILL_MAP.get(rec["skill"], rec["skill"] or "Handgun")
     slots_raw = rec["slots"] or "0"
     slots = int(slots_raw) if slots_raw.isdigit() else 0
-    price, category = parse_cost(rec["cost"])
+    price = price if price is not None else parse_cost(rec["cost"])[0]
     concealable = (rec["concealable"] or "No").startswith("Yes")
 
-    if exotic:
-        notes.append("Exotic weapon.")
+    if exotic and exotic_note:
+        notes.append(exotic_note)
+    notes.extend(extra_notes)
     img_stem = MELEE_ICON_BY_NAME.get(rec["heading"], icon)
     suffix = {"excellent": "_excellent", "poor": "_poor"}.get(quality, "")
     if img_stem == "Bow" and suffix == "_excellent":
@@ -204,7 +215,8 @@ def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", sect
     }
     system.update(SPECIAL_SYSTEM.get(rec["heading"], {}))
 
-    facts = [("Cost", rec["cost"]), ("Class", rec["class"]), ("Range", rng)]
+    facts = list(facts_head) if facts_head else [("Cost", rec["cost"])]
+    facts += [("Class", rec["class"]), ("Range", rng)]
     if rec.get("attachments") and rec["attachments"] != "None":
         facts.append(("Pre-installed", rec["attachments"] + " (effects already included in these stats)"))
     if rec.get("mods") and rec["mods"] != "None":

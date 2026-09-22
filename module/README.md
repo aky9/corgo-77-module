@@ -57,6 +57,9 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
 - **Operating Systems** (18): the Berserk, Cyberdeck Port, and Sandevistan
   Operating Systems, plus the five Cyberdecks the Cyberdeck Port ones come
   with.
+- **Iconic Cyberware** (20): the Iconic Neuralware, Cyberoptics, Internal and
+  External Body Cyberware, Cyberlimbs, and both Relic Biochips.
+- **Iconic Gear** (5): the two Iconic Cyberdecks and three Iconic Drugs.
 - **Ammunition** (27): Corgo's ammo, one item per caliber it comes in, plus
   the Combo Casings and the Homing and Sticky adapter kits.
 - **DV Tables** (49): the *Solo of Fortune 2045* single-shot and Autofire
@@ -193,6 +196,35 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
 - **Not included from this chapter:** the 2070s Full Body Conversions and the
   Militech Centaur Exo cyberchair.
 
+## Iconics
+
+Iconics are Corgo's optional item class: found through play rather than bought,
+and not destroyed unless you agree to it. Nothing in Cyberpunk RED - Core marks
+an item as Iconic, so they live in their own compendiums and each one carries
+those rules in its notes.
+
+- **They have no purchase price.** Corgo lists a **Category** (the price tier,
+  which is what repairs and Tech Upgrades are worked out from) and a
+  **Fabrication** cost in DV, materials, and time. The price on the item is
+  that tier's benchmark - Very Expensive 1,000eb, Luxury 5,000eb, Super Luxury
+  10,000eb - so repair and upgrade maths work. It is not a shop price.
+- **Iconic Cyberware Options take no Option Slot**, per the chapter's own rule,
+  except where an entry says otherwise: Quantum Tuner, Isometric Stabilizer,
+  the Behavioral Imprint-Synced Faceplate, Chitin, and the Higurashi blades.
+- **Several are enhancements to ordinary chrome from the Cyberware chapter.**
+  Adreno-Trigger wants an Adrenaline Convertor, Revulsor a Reflex Tuner, RAM
+  Reallocator a RAM Manager, Isometric Stabilizer Clutch Padding, Peripheral
+  Inverse a Proxishield, Immovable Force a Shock Absorber. Where an Iconic
+  raises a bonus the parent item automates, the Iconic's notes say which effect
+  to edit.
+- **Relic Biochip 2.0** replaces EMP with Stability (STAB) and runs a weekly
+  decay with its own thirteen-step chart. Stability isn't a Cyberpunk RED stat,
+  so none of it is automated - track STAB by hand. The chart itself is in the
+  item text.
+- **The Iconic Drugs** last a month. Their Primary and Addiction effects are
+  built as toggles, like the Street Drugs; switch the addiction off while the
+  Primary Effect is running, since that cancels it.
+
 ## Using this with Schism's "Solo of Fortune 2045" module
 
 [Cyberpunk RED - Solo of Fortune 2045](https://github.com/Schism989/cpred-solo-of-fortune-2045)
@@ -230,6 +262,9 @@ names overlap between the two.
   version to replace other sources' versions, so pick one for your game.
 
 ## Legal
+
+Corgo's rules text appears in these items with Corgopolis's permission.
+Please support him at <https://patreon.com/Corgopolis>.
 
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew
 Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.

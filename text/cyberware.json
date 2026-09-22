@@ -173,21 +173,27 @@
   },
   "FEEDBACK CIRCUIT": {
    "kind": "enhancement",
-   "enhances": "Neuroport or Personal Link",
+   "enhances": "Neural Link or Interface Plugs",
    "icon": "interface_plugs",
    "electronic": true,
-   "rules": "Enhances a Neuroport/Personal Link. While using the enhanced Personal Link to operate a cyberlinked vehicle or similar machine, the user gets +1 to the skill that requires (Drive Land Vehicle, Pilot Air Vehicle, and so on). The bonus also covers weapons run purely through a Personal Link, such as ones in a Vehicle Heavy Weapon Mount or ACPA. It doesn't stack with a Smartgun Link or Smart Rebuild. When the Personal Link connects to a Cyberdeck for a Netrun, all the user's rezzed non-Black-ICE programs get +1 to ATK or DEF, chosen when they Jack In."
+   "rules": "Enhances a Neuroport/Personal Link. While using the enhanced Personal Link to operate a cyberlinked vehicle or similar machine, the user gets +1 to the skill that requires (Drive Land Vehicle, Pilot Air Vehicle, and so on). The bonus also covers weapons run purely through a Personal Link, such as ones in a Vehicle Heavy Weapon Mount or ACPA. It doesn't stack with a Smartgun Link or Smart Rebuild. When the Personal Link connects to a Cyberdeck for a Netrun, all the user's rezzed non-Black-ICE programs get +1 to ATK or DEF, chosen when they Jack In.",
+   "notes": [
+    "Corgo calls these a Neuroport and a Personal Link; the core system ships them as the Neural Link and Interface Plugs."
+   ]
   },
   "FIREWALL PORT": {
    "kind": "enhancement",
    "enhances": "Self-ICE",
    "icon": "interface_plugs",
    "electronic": true,
-   "rules": "Enhances Self-ICE, which then counts as Borgware for Maximum Humanity Loss. The user's Neuroport NET Architecture gains one more floor, which can only hold a Black ICE program (supplied separately)."
+   "rules": "Enhances Self-ICE, which then counts as Borgware for Maximum Humanity Loss. The user's Neuroport NET Architecture gains one more floor, which can only hold a Black ICE program (supplied separately).",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "ICE-SILO": {
    "kind": "enhancement",
-   "enhances": "Neuroport",
+   "enhances": "Neural Link",
    "icon": "neural_link",
    "electronic": true,
    "mods": {
@@ -195,6 +201,7 @@
    },
    "rules": "Enhances a Neuroport with two more Neuralware Option Slots, which can only hold Self-ICE.",
    "notes": [
+    "Corgo calls this a Neuroport; the core system's equivalent is the Neural Link.",
     "The +2 slots are applied automatically; the sheet won't enforce that they only take Self-ICE."
    ],
    "name": "ICE-Silo"
@@ -957,7 +964,10 @@
    "kind": "enhancement",
    "enhances": "Monowire",
    "electronic": true,
-   "rules": "Enhances a Monowire and sits outside its enhancement limit. Spend an Action and 4 hours to write a Quickhack of Standard Difficulty (DV8) or easier into the wire, or to trade out whichever one is already there; while it lives in the wire it is unavailable for ordinary netrunning. With Combat Software (Data Tunnelling) installed, the user may trade away their Move Action once per combat to charge this, and the Action after that has to be a ROF 1 attack through it or the charge bleeds off. Landing that attack adds 1d6 damage (3d6), counts as a direct Jack In to the victim's Neuroport, and hands a Netrunner a free Net Action for that Turn alone, restricted to the Quickhack in the wire."
+   "rules": "Enhances a Monowire and sits outside its enhancement limit. Spend an Action and 4 hours to write a Quickhack of Standard Difficulty (DV8) or easier into the wire, or to trade out whichever one is already there; while it lives in the wire it is unavailable for ordinary netrunning. With Combat Software (Data Tunnelling) installed, the user may trade away their Move Action once per combat to charge this, and the Action after that has to be a ROF 1 attack through it or the charge bleeds off. Landing that attack adds 1d6 damage (3d6), counts as a direct Jack In to the victim's Neuroport, and hands a Netrunner a free Net Action for that Turn alone, restricted to the Quickhack in the wire.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "GORILLA ARM": {
    "kind": "cyberware",
@@ -1190,7 +1200,10 @@
   "POWER SCALING": {
    "kind": "enhancement",
    "enhances": "Monowire",
-   "rules": "Enhances a Monowire. The user can start a Grab from up to 6m/yds (3 squares) away by wrapping the wire around the target. While Grappled that way the attacker can attack the defender with the Monowire as though it were an Excellent Quality Very Heavy Melee Weapon, which can't be dodged, but can't use the Choke Action until they close to normal melee range and hold the target with their hands. Switching from a monowire grab to a regular grab takes no Action."
+   "rules": "Enhances a Monowire. The user can start a Grab from up to 6m/yds (3 squares) away by wrapping the wire around the target. While Grappled that way the attacker can attack the defender with the Monowire as though it were an Excellent Quality Very Heavy Melee Weapon, which can't be dodged, but can't use the Choke Action until they close to normal melee range and hold the target with their hands. Switching from a monowire grab to a regular grab takes no Action.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "SCALAR HANDS": {
    "kind": "cyberware",
@@ -1393,21 +1406,30 @@
   },
   "BIONIC JOINTS": {
    "kind": "enhancement",
-   "enhances": "Implanted Linear Frame (any)",
+   "enhances": "Implanted Linear Frame β (Beta) or ∑ (Sigma)",
    "icon": "implanted_linearframe_beta",
-   "rules": "Enhances an Implanted Linear Frame of any kind. The user's limbs count as Cyberlimbs for damaging Steel Cover if they didn't already, but not for Falling or for any other Cyberware Option or Enhancement. Whenever the user hits Cover of any material with a Brawling or Martial Arts attack, they deal 1d6 extra damage to the Cover only."
+   "rules": "Enhances an Implanted Linear Frame of any kind. The user's limbs count as Cyberlimbs for damaging Steel Cover if they didn't already, but not for Falling or for any other Cyberware Option or Enhancement. Whenever the user hits Cover of any material with a Brawling or Martial Arts attack, they deal 1d6 extra damage to the Cover only.",
+   "notes": [
+    "Fits any implanted Linear Frame, including the named ones (Fūma Kotarō, LF-001 SWAT, Vermilion), not only the Beta and Sigma."
+   ]
   },
   "KINETIC FRAME": {
    "kind": "enhancement",
-   "enhances": "Implanted Linear Frame (any)",
+   "enhances": "Implanted Linear Frame β (Beta) or ∑ (Sigma)",
    "icon": "implanted_linearframe_beta",
-   "rules": "Enhances an Implanted Linear Frame of any kind. Once per Round, while not Seriously or Mortally Wounded and targeted by a Brawling, Martial Arts, or Melee Weapon attack, the user may activate this without an Action to use BODY instead of DEX for their Evasion check."
+   "rules": "Enhances an Implanted Linear Frame of any kind. Once per Round, while not Seriously or Mortally Wounded and targeted by a Brawling, Martial Arts, or Melee Weapon attack, the user may activate this without an Action to use BODY instead of DEX for their Evasion check.",
+   "notes": [
+    "Fits any implanted Linear Frame, including the named ones (Fūma Kotarō, LF-001 SWAT, Vermilion), not only the Beta and Sigma."
+   ]
   },
   "SPRING JOINTS": {
    "kind": "enhancement",
-   "enhances": "Implanted Linear Frame (any)",
+   "enhances": "Implanted Linear Frame β (Beta) or ∑ (Sigma)",
    "icon": "implanted_linearframe_sigma",
-   "rules": "Enhances an Implanted Linear Frame of any kind. Ablate 1 extra SP on a Brawling or Martial Arts hit that was already going to ablate, once each Round."
+   "rules": "Enhances an Implanted Linear Frame of any kind. Ablate 1 extra SP on a Brawling or Martial Arts hit that was already going to ablate, once each Round.",
+   "notes": [
+    "Fits any implanted Linear Frame, including the named ones (Fūma Kotarō, LF-001 SWAT, Vermilion), not only the Beta and Sigma."
+   ]
   },
   "INTEGRATED NETSTATION": {
    "kind": "cyberware",
@@ -1458,7 +1480,10 @@
    "electronic": true,
    "name": "Arasaka 'Shadow' OS",
    "deck": "Arasaka Shadow Mk.5",
-   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take an Arasaka Shadow Cyberdeck, one of which comes with the OS. The Arasaka Shadow Mk.5 has 5 slots for Programs or Hardware. Using it to Jack In to a target's Neuroport gives +1 on the contested check to stay unnoticed there. Against another Netrunner, that Netrunner only notices the user in their Neuroport at the end of their next Turn. Jacking In stealthily to a non-Neuroport architecture (DL:GQ, p. 4) gives +2 on the initial Interface check to stay unnoticed."
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take an Arasaka Shadow Cyberdeck, one of which comes with the OS. The Arasaka Shadow Mk.5 has 5 slots for Programs or Hardware. Using it to Jack In to a target's Neuroport gives +1 on the contested check to stay unnoticed there. Against another Netrunner, that Netrunner only notices the user in their Neuroport at the end of their next Turn. Jacking In stealthily to a non-Neuroport architecture (DL:GQ, p. 4) gives +2 on the initial Interface check to stay unnoticed.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "BIOTECH ‘PRIMUS’ OS": {
    "kind": "enhancement",
@@ -1467,7 +1492,10 @@
    "electronic": true,
    "name": "Biotech 'Primus' OS",
    "deck": "Biotech Mk.4",
-   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Biotech Mk.4 Cyberdeck, one of which comes with the OS. The Biotech Mk.4 has 5 slots for Programs or Hardware. Once per Round, when a DV10 or higher Quickhack from this deck fails by 2 or less, the user may immediately spend a remaining NET Action to try that Quickhack again at -1 on the Interface check."
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Biotech Mk.4 Cyberdeck, one of which comes with the OS. The Biotech Mk.4 has 5 slots for Programs or Hardware. Once per Round, when a DV10 or higher Quickhack from this deck fails by 2 or less, the user may immediately spend a remaining NET Action to try that Quickhack again at -1 on the Interface check.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "MILITECH ‘PARALINE’ OS": {
    "kind": "enhancement",
@@ -1476,7 +1504,10 @@
    "electronic": true,
    "name": "Militech 'Paraline' OS",
    "deck": "Militech Paraline",
-   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Militech Paraline Cyberdeck, one of which comes with the OS. The Militech Paraline has 14 slots for Programs or Hardware, but while using it the user has one fewer NET Action each Turn, to a minimum of 1."
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Militech Paraline Cyberdeck, one of which comes with the OS. The Militech Paraline has 14 slots for Programs or Hardware, but while using it the user has one fewer NET Action each Turn, to a minimum of 1.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "RAVEN MICROCYBERNETICS ‘VIRAL’ OS": {
    "kind": "enhancement",
@@ -1485,7 +1516,10 @@
    "electronic": true,
    "name": "Raven Microcybernetics 'Viral' OS",
    "deck": "Mk.3 Viral",
-   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Raven Microcybernetics Mk.3 Viral Cyberdeck, one of which comes with the OS. The Mk.3 Viral has 6 slots for Programs or Hardware. Once per Round, when a Quickhack from this deck lands on a target, the user may immediately try that Quickhack again, with no Net Action, on another valid target within 12m/yds of the first that they already have access to."
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Raven Microcybernetics Mk.3 Viral Cyberdeck, one of which comes with the OS. The Mk.3 Viral has 6 slots for Programs or Hardware. Once per Round, when a Quickhack from this deck lands on a target, the user may immediately try that Quickhack again, with no Net Action, on another valid target within 12m/yds of the first that they already have access to.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "TETRATRONIC ‘RIPPLER’ OS": {
    "kind": "enhancement",
@@ -1494,7 +1528,10 @@
    "electronic": true,
    "name": "Tetratronic 'Rippler' OS",
    "deck": "Tetratronic Rippler",
-   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Tetratronic Rippler Cyberdeck, one of which comes with the OS. The Tetratronic Rippler has 4 slots for Hardware and 8 for Programs. Using it for an Overheat or Synapse Burnout Quickhack lets the user try a single DV8 or lower Quickhack on the same target with no Net Action, rolled separately. If either check fails, both Quickhacks fail."
+   "rules": "Neuroport Cyberdeck Port Operating System. The port can now only take a Tetratronic Rippler Cyberdeck, one of which comes with the OS. The Tetratronic Rippler has 4 slots for Hardware and 8 for Programs. Using it for an Overheat or Synapse Burnout Quickhack lets the user try a single DV8 or lower Quickhack on the same target with no Net Action, rolled separately. If either check fails, both Quickhacks fail.",
+   "notes": [
+    "Corgo's required content includes the Edgerunners Mission Kit and Interface RED, and this parent piece comes from there rather than from Cyberpunk RED - Core, which ships no item for it. Make the parent yourself before installing this into it."
+   ]
   },
   "DYNALAR ‘PROFESSIONAL’ OS": {
    "kind": "enhancement",
