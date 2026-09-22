@@ -13,15 +13,17 @@ Fixed constraints, unchanged since the start:
 - The 0.92.4 source comes from the GitHub mirror `davidkan1996/fvtt-cyberpunk-red-core`, tag `v0.92.4`
   (GitLab is blocked in the sandbox). `tools/cpr-0.92.4-reference.json` is a snapshot of its facts so the
   build and validator need no checkout.
-- The default build uses **rewritten** rules text. Corgo gave permission to use his wording, built locally
-  with `npm run build:original`, so every builder passes the item heading to `original_text.lookup`.
+- The build uses **Corgo's own wording**. He gave permission for this conversion and for his text to ship,
+  so `data/corgo-77-v3.md` is tracked and `npm run build` reads it. Every builder passes the item heading to
+  `original_text.lookup`. The rewritten text in `text/*.json` is now only the fallback for a build with no
+  document, and for the handful of items his doc has no single entry for.
 - Keep compatibility with Schism989's Solo of Fortune module (`tools/compat/`).
 - Built on Windows: all file I/O is explicit UTF-8, and stdout too (see the encoding note in
   `DEVELOPING.md`).
-- Three zips per delivery: the module, the repo (no Corgo text, no `data/` or `reference/`), and the build
-  project.
+- Two zips per delivery: the module and the build project. The repo now carries the document, so it and
+  the build project differ only by `reference/` (Schism989's module, which has no license file).
 
-## Current state: 616 items across 13 packs
+## Current state: 749 items across 15 packs
 
 | Pack | Items | Status |
 | --- | --- | --- |
@@ -37,34 +39,24 @@ Fixed constraints, unchanged since the start:
 | operating-systems | 18 | done (13 OSes + the 5 cyberdecks they come with) |
 | iconic-cyberware | 20 | done |
 | iconic-gear | 5 | done (2 cyberdecks, 3 drugs) |
-| iconic-weapons | 30 | **in progress** — 4 mods + 26 melee written, 85 items left |
+| iconic-weapons | 110 | done bar 5 items needing a stat decided (below) |
+| dv-tables | 51 | done |
+| macros | 2 | done |
 
-## Next task: finish Iconic Weapons
+## Next task: five Iconic Weapons need a stat decided
 
-Parsing and builder plumbing are **done and verified**; what remains is authoring rewritten rules text in
-`text/iconic_weapons.json`. The build prints what is outstanding on every run and skips unwritten items, so
-it stays green while the chapter is written a group at a time:
-
-```
-iconic weapons still to write: ASSAULT RIFLES 7, MACHINE GUNS 2, PISTOLS 32,
-  SHOTGUNS 8, SNIPER RIFLES 6, SUBMACHINE GUNS (SMGs) 8, VARIANTS 22
-```
-
-That is **63 weapons + 22 variants = 85 items**. Suggested order: pistols (32, the big one), then the
-long-arm groups (31), then the variants.
-
-The variants are cheaper than the count suggests. Each is one heading carrying its own name, category,
-fabrication and base weapon:
+Not a text job - Corgo gives these no rollable damage, so someone has to choose one. The build names them
+on every run and skips them, so it stays green:
 
 ```
-##### **'FOXHOUND'** [Super Luxury | DV29 - 10,000eb - 1 Month] {Nekomata}
+iconic weapons needing a damage stat decided (Corgo gives none):
+  Chaos (Royce's Pistol), Dezerter, Guts (Rebecca's Shotgun), Wild Dog (Kurt's LMG)
+iconic weapons still to write: VARIANTS (need stats) 1
 ```
 
-**21 of the 22 base weapons are already items in our weapons pack**, so a variant needs only the series'
-shared rule plus its own overrides — the same shape as `text/weapon_variants.json` (Ironfake, Darkhound).
-The exception is **Baseball Bat X-Mod2**, whose base is "Generic Two-Handed Very Heavy Melee Weapon" rather
-than a named gun, so it needs its own stats under a `rec` key; `build_iconic_weapons` raises a clear error
-if that is forgotten. The three series rules (Barghest P.U.Ps, Svarog, X-Mod2) are also unwritten.
+He writes Chaos as `?d6` (random by design) and the other three as `N/A`, with the damage living in their
+rules text. The variant is **Baseball Bat X-Mod2**, whose base is "Generic Two-Handed Very Heavy Melee
+Weapon" rather than a named gun. Each needs a `rec` override in `text/iconic_weapons.json`.
 
 ## After that
 
@@ -88,12 +80,12 @@ npm run build            # default build -> src/packs, then dist/corgo-77-collec
 npm run validate         # schema and rules checks against 0.92.4
 npm test                 # 24 original-text regression checks (uses a placeholder fixture)
 npm run check:original   # builds with Corgo's wording, checks each item carries its own entry's text
-npm run build:original   # Corgo's wording, for local play
+npm run build:original   # explicit path to an export somewhere other than data/corgo-77-v3.md
 ```
 
-`build:original` and `check:original` need `data/corgo-77-v3.md`, so they only run in the build project, not
-the repo. Both leave `build/packs` holding Corgo's text — **re-run `npm run build` before packaging** so
-`dist/` holds the shipped version.
+`npm run build` already uses Corgo's wording, so `build:original` is only for pointing at a different
+export. It and `check:original` write to `build/packs`, so **re-run `npm run build` before packaging** to
+put `dist/` back.
 
 ## Conventions settled so far
 

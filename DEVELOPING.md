@@ -8,18 +8,29 @@ Requirements: Python 3, Node 18+.
     npm run build        # regenerates src/packs/* and compiles dist/corgo-77-collection (Python 3 + PyYAML not needed)
     node tools/validate.mjs dist/corgo-77-collection
 
-With Corgo's own wording (he gave permission for this module):
+## Corgo's text
 
-    npm run build:original   # reads data/corgo-77-v3.md; writes build/packs and dist/corgo-77-collection
+Corgo gave permission for this conversion and for his wording to ship, so `data/corgo-77-v3.md` is tracked
+here and **his text is what `npm run build` uses**. An item with an entry in his doc gets his full text
+(flavor, stats, and rules) plus our Foundry notes and the source link; `description_html` keeps only the
+facts he does not state himself, since his entry opens with his own stat line but "Enhances" is ours and
+both the sheet and `validate.mjs` need it. The Capacity Chart magazines and Gun Shields have no single
+entry, so they keep the rewritten text.
 
-Items with an entry in Corgo's doc get his full text (flavor, stats, and rules) plus our Foundry notes and the
-source link. The Capacity Chart magazines and Gun Shields have no single entry, so they keep the rewritten
-text. `build/` is git-ignored, and `src/packs/` is left untouched, so the repo never contains his text.
-`npm test` checks this path using placeholder text in `tests/fixtures/`.
+If the export is missing the build says so and falls back to `text/*.json` for everything. That fallback is
+the only thing those files' `rules` strings are still for; the rest of them (`attack`/`damage`/`slots`/
+`magazine`/`rof_override`/`secondary`/`split`) is automation data with no equivalent in Corgo's prose, and
+is needed either way. `npm run build:original` now only means "use an export somewhere other than the
+default path". `npm test` exercises the same code path with placeholder text in `tests/fixtures/`.
+
+**What his permission does not cover:** R. Talsorian's material (this module ships under RTG's Homebrew
+Content Policy regardless) and Schism989's module, whose repo has no license file, so `reference/` stays
+git-ignored.
 
 Layout:
 
-- `data/corgo-77-v3.md` - text export of Corgo's doc (your copy, snapshot of Sept 12, 2026). Not shipped.
+- `data/corgo-77-v3.md` - text export of Corgo's doc (snapshot of Sept 12, 2026), tracked here with his
+  permission and read by the parsers and by `original_text.py`. Not copied into `dist/`.
 - `tools/parse_weapons.py` - reads the weapon catalog stat blocks into `data/weapons.parsed.json`.
 - `text/weapons_rules.json`, `text/weapon_variants.json` - rules text rewritten for the item descriptions.
 - `tools/build_weapons.py` - maps Corgo's stats onto the CPR 0.92.4 weapon schema. The
