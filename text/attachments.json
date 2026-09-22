@@ -1,89 +1,514 @@
 {
-"AUTOLOADER": {"icon": "mag", "rules": "When the magazine is empty, spend your Move Action to reload without an Action. The Autoloader is then spent until you use an Action to reset it; normal Reload Actions still work meanwhile. Can't go in a Magrail Kit slot despite needing only 1 slot."},
-"BACKPACK MAGAZINE": {"magazine_family": "Backpack", "rules": "Adds the Backpack column of the Capacity Chart to capacity; only one Capacity attachment at a time. The weapon only works while connected (an Action) to a worn Ammo Backpack, included. Reloading takes 2 extra Actions, the weapon can't be concealed, and it can't go in Cyberlimbs or Vehicle Heavy Weapon Mounts (ACPAs and Battlegloves are fine). Without BODY 13+, wearing the backpack gives -1 DEX and MOVE. Putting the backpack on or off is an Action, and the feed line can't be concealed."},
-"BELT BOX": {"magazine_family": "Belt Box", "rules": "Adds the Belt Box column of the Capacity Chart to capacity; only one Capacity attachment at a time. The weapon can't be concealed or used as a Popup Weapon, and reloading takes 1 extra Action."},
-"EXPANDED BATTERY": {"icon": "mag", "rules": "For weapons that use batteries (Microwavers, Shriekers, etc.): the battery gains extra charges equal to the weapon's Extended column on the Capacity Chart. Spare batteries cost 100eb more and still recharge in 1 hour."},
-"FLARED MAGWELL": {"icon": "mag", "slots": 1, "rules": "Needs a DV21 Weaponstech check to attach; one per weapon; only on weapons with no Capacity attachment. Adds 1 Attachment Slot that only Capacity attachments can use, and it can combine with other open slots (1 open slot + Flared Magwell fits a 2-slot Belt Box). The extra slot is automated, but the sheet doesn't enforce the Capacity-only restriction."},
-"MAG COUPLER": {"icon": "mag", "rules": "When the magazine is empty and you hold the weapon two-handed, give up your Move Action to reload without an Action. The Coupler is then spent until reset with an Action; normal Reload Actions still work. The weapon can't be concealed or used as a Popup Weapon."},
-"QUICK RELEASE": {"rules": "When wielding two Quick Release weapons that use the same Skill, one Reload Action reloads both. Weapons that need extra Reload Actions still need them."},
-"AUTO-COMPENSATOR": {"attack": [1, true], "rules": "+1 to Autofire checks (toggle the situational modifier in the roll dialog). -1 to checks to conceal the weapon under clothing. Can't be combined with another muzzle attachment."},
-"BREACHING MUZZLE": {"rules": "Shots at Cover (only Cover) within 2m/yds hit automatically and deal double damage to that Cover. A shotgun shell fired this way also carries damage through destroyed Cover like an Explosive. Can't be combined with another muzzle attachment."},
-"GATLING BARREL": {"rules": "One per weapon. The weapon becomes Two-Handed and Autofire/Suppressive Fire use double ammo. An Autofire attack that beats the DV by only 1 still gets x2; if the weapon already had that, its minimum multiplier rises by 1 (maximum x3). Targets resisting its Suppressive Fire take -2. Can't be combined with a Telescopic Barrel."},
-"HEAVY BARREL": {"rules": "One per weapon. On an Autofire attack you can take -2 and spend double ammo to replace one damage d6 with a d10 that doesn't explode, implode, or count toward Critical Injuries. Can't be combined with a Telescopic Barrel."},
-"IMPROVED SILENCER": {"rules": "Works as a Silencer (Tools of the Trade DLC) and also gives listeners -2 to Perception to hear the shot; stacks with Subsonic ammo for -4. Can't be combined with another muzzle attachment."},
-"MULTI-PURPOSE MUZZLE DEVICE": {"attack": [1, true], "rules": "Works as a Silencer and gives +1 to Autofire checks and Ricochet attacks (not Aimed Ricochets); toggle the situational modifier when it applies. Can't be combined with another muzzle attachment."},
-"RICOCHET COMPENSATOR": {"attack": [1, true], "rules": "+1 to Ricochet attacks with a Power Rebuild (not Aimed Ricochets); toggle the situational modifier when it applies. -1 to checks to conceal the weapon under clothing. Can't be combined with another muzzle attachment."},
-"TELESCOPIC BARREL / HANDLE": {"name": "Telescopic Barrel / Handle", "rules": "One per weapon. Lets the weapon hold two Range Table Modifications (Interface RED Vol. 5) or two Melee Range Modifications it already qualifies for, with one active at a time. Swapping takes 1 minute and no check; change the item's DV table to match. Can't be combined with a Gatling or Heavy Barrel."},
-"AIRBURST LINK": {"rules": "Needs a Smartgun Link, or a Smart Scope with a Targeting Scope. When firing a damaging explosive, you may take -4 to the attack; if it hits and causes a Critical Injury, victims roll it on the Head table instead of the Body table."},
-"ANGLED FOREGRIP": {"attack": [1, true], "rules": "Needs Skill 7+ in the weapon's Skill or Combat Awareness 2+, and a two-handed grip. Reduces your total attack penalty from Armor Penalties, Critical Injuries, and Wound States by 1, or by 2 on Aimed Shots. The situational +1 is for when you have such a penalty (use +2 by hand on Aimed Shots). No Underbarrel attachments; can't be combined with a Foregrip."},
-"BIOMETRIC LOCK": {"icon": "lock", "rules": "Needs a DV17 Electronics/Security Tech check to attach; one per weapon. Unauthorized users can't use the weapon or its features (firearms also can't be unloaded; melee weapons still work as weapons but their special features don't). Bypassing takes 1 minute and a DV17 Electronics/Security Tech check. On a weapon that already has biometrics, the bypass rises to DV24 and anyone without a valid key who tries to use it is hit as if by a Stun Baton to the body."},
-"CHAINSAW GRIP": {"attack": [1, true], "rules": "+1 to attacks within 12m/yds using Autofire or a shotgun shell (situational). The weapon can't make Aimed Shots, needs two hands, and can't be a Popup Weapon or go in a Vehicle Heavy Weapon Mount. Can't be combined with a Cheek Rest or any scope or stock attachment."},
-"COCKING LEVER": {"rules": "As an Action, cock the lever; the next attack deals +1d6 and ablates 1 extra SP, then the lever must be cocked again. The extra damage counts as Single Shot damage for the Upsized Power mod."},
-"FLEXIBLE GRIP": {"rules": "Collapse or extend the weapon as an Action. Collapsed, it's concealable under clothing but can't be used as a weapon."},
-"FOREGRIP": {"attack": [1, true], "rules": "A One-Handed weapon counts as Excellent Quality while held in two hands. If it's already Excellent Quality, or it's Two-Handed with a Laser Sight, a two-handed grip instead gives a +1 Complementary Bonus to Aimed Shots and alternate fire modes such as Autofire. The situational +1 covers both. Poor Quality weapons still jam on a 1. The weapon can't be concealed, used as a Popup Weapon, or take Underbarrel attachments. Can't be combined with an Angled Foregrip."},
-"MELEE RANGE MODIFICATION": {"rules": "One per weapon. Changes the weapon's melee reach and throwing range table; damage is unchanged. Long and Very Long Handles make the weapon unconcealable and unusable as Popup Melee cyberware; a Very Long Handle also drops it to ROF 1 and needs BODY 14+ to wield one-handed. Light/Medium weapons: Throwing Handle (no melee reach, thrown on the Shortbow table), Short Handle (default), Long Handle (4m/yds), Very Long Handle (6m/yds, thrown on the Bow table), Chain Handle (10m/yds, can't be thrown). Heavy/Very Heavy weapons: Short Handle (default), Long Handle (4m/yds), Very Long Handle (6m/yds, thrown on the Bow table)."},
-"RUBBER GRIP": {"attack": [1, true], "rules": "One per weapon. Against targets within 50m/yds, your total attack penalty is reduced by 1; toggle the situational +1 when you have a penalty to reduce. Doesn't work while the weapon is installed in cyberware, Battlegloves or similar gear, or a Vehicle Heavy Weapon Mount."},
-"BLADED LIMBS": {"rules": "Needs a DV17 Weaponstech check; one per bow. As an Action, mount or remove any Melee Weapon on the bow; the pair is only concealable if both already were. Switch between bow and blade at the start of your Turn, before attacking, without an Action. Each keeps its own attachments and mods, but BODY requirements apply to both."},
-"BURST MOD INTERNALS": {"split": [
-   ["Burst Mod Internals (Fixed)", 100, "Fixed: the weapon can only fire in Burst Fire; no Autofire or Suppressive Fire."],
-   ["Burst Mod Internals (Bimodal)", 250, "Bimodal: Single Shot and Burst Fire only; no Autofire or Suppressive Fire."],
-   ["Burst Mod Internals (Selective)", 500, "Selective: keeps Single Shot, Autofire, and Suppressive Fire, and adds Burst Fire."]],
-  "rules": "In Single Shot you may fire 2 extra rounds of the same ammo as Burst Fire, and all of them count as Armor-Piercing. If there aren't enough rounds, it empties the magazine as a normal Single Shot. Works with shotgun shells. On weapons that already fire several rounds per Single Shot, Burst Fire adds 2 to that count. Corgo's optional nerf: Burst Fire uses the weapon's Autofire DV table."},
-"COLLAPSIBLE FRAME": {"rules": "Fold or unfold without an Action; folded, the bow is concealable but can't fire. No Aimed Shots on a Turn you unfold it."},
-"CONSTANT RECOIL SYSTEM": {"rules": "Needs a DV17 Weaponstech check; one per weapon. Autofire (Assault Rifle) becomes Autofire (Machine Gun 3), or Machine Gun 4 on an Excellent Quality weapon. Edit the weapon's Autofire value and DV table by hand (use the tagged [MG] table if its range table has one)."},
-"EFFICIENT AUTOSEAR": {"rules": "Autofire uses 6 rounds instead of 10."},
-"ELECTROTHERMAL ENHANCEMENT (ETE)": {"name": "Electrothermal Enhancement (ETE)", "price_note": "Costs twice the base weapon's cost (minimum 1,000eb); the listed price is the minimum.", "price": 1000, "rules": "Needs a DV24 Weaponstech check and can't be removed. The weapon loses Autofire, Suppressive Fire, and Burst Fire; all its BODY requirements rise by 3; and it must work its bolt (an Action) after each shot, though ROF is unchanged. Its ammo costs double, is one Price Category higher, and only fits it. In exchange: +2d6 damage in Single Shot and with shells, and beyond 25m/yds it gets +1 on attacks against DV21+ (+2 against DV24+)."},
-"FOLDING STRUCTURE": {"rules": "Fold or unfold as an Action. Folded, the weapon is concealable despite other attachments (except Drum Magazine and Belt Box) but attacks at -2. Can't be a Popup Weapon or go in a Magrail Kit slot."},
-"HEADHOPPER": {"rules": "Needs a Smart Rebuild. Aimed Shots with Improved Smart ammo deal +1d6. Tech Upgrades can't raise this further."},
-"HEADTOLL": {"rules": "Aimed Shots deal +1d6. Tech Upgrades can't raise this further."},
-"SHOTGUN RECHAMBER": {"rules": "Needs a DV17 Weaponstech check; one per weapon; can't be removed. Single Shot and shotgun shell damage rise by 1d6, to a maximum of 5d6 (a higher base damage stays as it is). Unless installed in cyberware, the weapon must be fired two-handed. Change the weapon's damage by hand."},
-"SUPERCHARGER": {"rules": "Charging the Tech Rebuild costs only half your MOVE (rounded down), paid before you move that Turn."},
-"VIVISECTOR": {"rules": "When shells cause a Critical Injury, roll twice on the table and pick one."},
-"ZENITH": {"attack": [1, true], "rules": "+1 to the first Single Shot attack check with this weapon in each combat (situational)."},
-"GUN SHIELD MOUNT": {"rules": "One per weapon; can't be a Popup Weapon. Holds a Gun Shield, which works as a Bulletproof Shield (mods and Tech Upgrades included) only while you hold the weapon two-handed and haven't moved more than 4m/yds on foot this Round. Deploy or retract it as an Action, or while stowing the weapon or setting up a Bipod. Deployed, the weapon can't be concealed. A destroyed Gun Shield is gone for good; fitting a new one takes 1 minute. Shields: Light 50eb (Costly), 5 HP; Medium 100eb (Premium), 10 HP, no Underbarrel attachments except grips; Heavy 250eb (Expensive), 15 HP, no Underbarrel attachments, not on Pistols or SMGs, counts as Thick Cover for Tech Rebuilds."},
-"MAGRAIL KIT": {"slots": 2, "rules": "Needs a DV17 Weaponstech check; one per weapon. Adds 2 Attachment Slots that only take attachments needing fewer than 2 slots and not affecting Capacity. The extra slots are automated, but the sheet doesn't enforce the restriction."},
-"VARIABLE SCOPE MOUNT": {"icon": "scope", "slots": 3, "rules": "Needs a DV17 Weaponstech check; one per weapon. Adds 3 Attachment Slots for scopes only; the sheet doesn't enforce that. Can't be combined with a Compatibility Rail."},
-"GAKI SNIPING SCOPE": {"icon": "scope", "attack": [1, true], "rules": "Needs a Smartgun Link. Works as a Sniping Scope and shows detail out to 1,000m/yds. Aimed Shots, or non-Aimed attacks with Take Extra Time, get an extra +1 beyond 101m/yds or +2 beyond 201m/yds. The situational +1 is the extra bonus; add the Sniping Scope's own bonus, and the second point beyond 201m/yds, by hand."},
-"LASER SIGHT": {"icon": "scope", "attack": [1, true], "rules": "Toggle on or off as an Action. While on, the weapon counts as Excellent Quality (situational +1), but you take -2 to Stealth (-4 against infrared/nightvision or LL/IR/UV cyberware). Poor Quality weapons still jam on a 1. On an already Excellent Quality weapon you can instead paint a target (an Action, or part of a Ranged Attack Action): until your next Turn, anyone who can see the laser gets a +1 Complementary Bonus to hit that target. Not on weapons with a Smartgun Link or Smart Rebuild. Can't be combined with an IR/UV Laser Sight."},
-"IR/UV LASER SIGHT": {"icon": "scope", "attack": [1, true], "rules": "Works like a Laser Sight, but only for users who see in infrared or nightvision, and its Stealth penalty is 2 lower (none for most observers, -2 against infrared/nightvision). Can't be combined with a Laser Sight."},
-"LONG SCOPE": {"icon": "scope", "attack": [1, true], "rules": "Shows detail out to 100m/yds. +1 to Single Shot attacks at 13-50m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed. Doesn't stack with Opti-Zoom cyberware."},
-"JUE LONG SCOPE": {"icon": "scope", "attack": [1, true], "rules": "A Long Scope with a built-in Targeting Scope that works without being connected."},
-"SAIKA LONG SCOPE": {"icon": "scope", "attack": [1, true], "rules": "Needs a Smartgun Link. A Long Scope that gives an extra +1 (+2 total) to Held Action attacks at 13-50m/yds against targets that move or leave cover in your line of sight; add the extra point by hand."},
-"RANGEFINDER SCOPE": {"icon": "scope", "rules": "Needs a Sniping Scope, or a Smart Scope with TeleOptics. For Single Shot or Aimed Shot attacks at 51m/yds or more, the bonus from Taking Extra Time or a successful Complementary check (yours or one you give) rises by 1 (+2 total)."},
-"REFLEX SIGHT": {"icon": "scope", "rules": "If drawn or wielded in the first Round of combat, your current Initiative rises by 1 for as long as you keep actively using the weapon; it drops again if the weapon is stowed or knocked away. Unless it's on a Variable Scope Mount, it can't be combined with other scopes."},
-"SHORT SCOPE": {"icon": "scope", "attack": [1, true], "rules": "+1 to Single Shot attacks at 0-12m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed. Doesn't stack with the Glow Sights mod."},
-"KANETSUGU SHORT SCOPE": {"icon": "scope", "attack": [1, true], "rules": "Needs a Smartgun Link. A Short Scope that gives an extra +1 (+2 total) to Held Action attacks at 0-12m/yds against targets that move or leave cover in your line of sight; add the extra point by hand. Doesn't stack with Glow Sights."},
-"SMART SCOPE": {"icon": "smart", "rules": "Has 2 Option Slots for Cybereye Options, which work while you wield the weapon, count as paired, and cost the same to install as in a Cybereye."},
-"SONAR SENSOR": {"icon": "scope", "rules": "A folding side screen (open or close without an Action; the weapon can't be concealed while it's open). Open, it scans 25m/yds around you, underwater too, and beeps with a rough direction whenever something new starts moving. It can't scan through Cover, except Bulletproof Shields."},
-"BIPOD": {"attack": [1, true], "rules": "Deploy on mostly flat Cover or the ground (going Prone) as an Action; folding it is free. Deployed, the weapon counts as Mounted and gets +1 to all attacks (situational), but you can't take Move Actions or dodge Ranged Attacks. You can still duck behind the Cover, but the weapon stays visible. Can't be concealed. Not an Underbarrel attachment."},
-"BUFFER STOCK": {"rules": "Held two-handed, Autofire damage rolls 1 extra d6 and drops the lowest before the multiplier. Can't go in a Magrail Kit slot. Can't be combined with a Precision Stock."},
-"CHEEK REST": {"rules": "Needs a DV17 Weaponstech check; one per weapon. Taking Extra Time with this weapon takes half as long (2 Actions instead of 4)."},
-"PARALLAX": {"rules": "Aimed Shots may use a longer range table: Snubnose Pistol to Long Barrel Pistol, Pistol to Subcompact SMG, Long Barrel Pistol to Carbine."},
-"PRECISION STOCK": {"rules": "Needs a DV17 Weaponstech check; one per weapon. Drawing the weapon always takes an Action. While Prone or on a Bipod, a Single Shot attack roll of 2 gets +1, and a roll of 1 gets +2. Can't be combined with a Buffer Stock, Constant Recoil System, or Folding Structure."},
-"STOCK POCKET": {"rules": "Needs a DV17 Weaponstech check; one per weapon. A sealed 5x10cm (2x4in) compartment in the stock; its contents are concealed without a check."},
-"BINARY TRIGGER": {"attack": [-2, true], "damage": [2, true], "rules": "Needs a DV21 Weaponstech check; one per weapon. The weapon loses Autofire and Suppressive Fire. In Single Shot (including Burst Fire) you may fire double ammo at -2 to hit; on a hit, add +2 damage before armor. Both halves are situational modifiers: toggle them on the attack roll and the damage roll. Can't be combined with a Match Trigger or Solenoid Mechanism."},
-"MATCH TRIGGER": {"rules": "Needs a DV21 Weaponstech check; one per weapon. Targets take -1 to dodge its Aimed Shots and Held Action attacks. Can't be combined with a Binary Trigger or Solenoid Mechanism."},
-"CHAINKNIFE BAYONET": {"icon": "bayonet", "secondary": {"damage": "4d6", "rof": 1, "weaponType": "vHeavyMelee", "weaponSkill": "Melee Weapon", "isRanged": false},
-  "rules": "Held two-handed, the weapon also works as an IMI Chainknife (12 Days of Gunmas DLC). Once revved, the chainknife stays revved while the gun is wielded and must be revved down (an Action) before you can safely stow it. The weapon can't be concealed."},
-"CROSSBOW UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "4d6", "rof": 1, "weaponType": "bow", "weaponSkill": "Archery", "isRanged": true, "dvTable": "DV Bows & Crossbows", "magazine": 1, "ammo": ["arrow"]},
-  "rules": "Held two-handed, the weapon also works as a Crossbow that can load Non-Basic ammo despite counting as Exotic. The weapon can't be concealed."},
-"FLAMETHROWER UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "5d6", "rof": 1, "weaponType": "shotgun", "weaponSkill": "Heavy Weapons", "isRanged": true, "dvTable": "DV Shotgun (Slug)", "magazine": 2, "ammo": ["shotgunShell"]},
-  "rules": "Held two-handed, the weapon also works as a Flamethrower fired with Heavy Weapons, with only 2 shots in its tank. The weapon can't be concealed."},
-"MICROWAVER UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "0", "rof": 1, "weaponType": "vHeavyPistol", "weaponSkill": "Handgun", "isRanged": true, "dvTable": "DV Pistol", "magazine": 4, "ammo": ["battery"]},
-  "rules": "Held two-handed, the weapon also works as a Microwaver using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."},
-"MICROMISSILE UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "5d6", "rof": 1, "weaponType": "rocketLauncher", "weaponSkill": "Heavy Weapons", "isRanged": true, "dvTable": "DV Missile Launcher", "magazine": 3, "ammo": ["rocket"]},
-  "rules": "Held two-handed, the weapon also works as a 3-rocket Missile Launcher (Interface RED Vol. 5) fired with Heavy Weapons. Its rockets also count as Improved Smart ammo, deal 5d6, and burst in only a 6x6m/yds (3x3 square) area. The weapon can't be concealed."},
-"NET LAUNCHER UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "0", "rof": 1, "weaponType": "shotgun", "weaponSkill": "Shoulder Arms", "isRanged": true, "dvTable": "DV Shotgun (Slug)", "magazine": 2, "ammo": ["shotgunSlug"]},
-  "rules": "Held two-handed, the weapon also works as a Net Launcher: capacity 2, loads only Net Slugs (50eb (Costly) each) that deal no damage, don't ablate, and can't cause Critical Injuries. Hits work like the Popup Net Launcher's nets (Black Chrome). Maximum range 25m/yds; it can't be modified for other ammo. The weapon can't be concealed."},
-"SHRIEKER UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "0", "rof": 1, "weaponType": "vHeavyPistol", "weaponSkill": "Handgun", "isRanged": true, "dvTable": "DV Pistol", "magazine": 4, "ammo": ["battery"]},
-  "rules": "Held two-handed, the weapon also works as a Shrieker using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."},
-"STUN GUN UNDERBARREL": {"icon": "underbarrel", "secondary": {"damage": "3d6", "rof": 2, "weaponType": "heavyPistol", "weaponSkill": "Handgun", "isRanged": true, "dvTable": "DV Pistol", "magazine": 4, "ammo": ["battery"]},
-  "rules": "Held two-handed, the weapon also works as a Stun Gun using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."},
-"MONOBLADE REBUILD": {"split": [
-   ["Monoblade Rebuild (Basic)", 1000, "Basic: ignores armor below SP 7."],
-   ["Monoblade Rebuild (Tuned)", 3000, "Tuned: ignores armor below SP 11."],
-   ["Monoblade Rebuild (Perfected)", 7500, "Perfected: ignores armor below SP 13."]],
-  "rules": "Not for Poor Quality weapons; one per weapon. The blade's damage ignores armor entirely below the listed SP; higher SP works normally. Set the weapon's 'ignore armor below SP' field on its sheet to match."},
-"SLING": {"rules": "Dropping the weapon on purpose stows it for free. If it's knocked from your hands, it hangs at your side and takes an Action to ready. Anyone trying to Grab it from you takes -2. The weapon can't be concealed."},
-"TACTICAL LIGHT": {"rules": "A hands-free weapon light that runs 2 hours per rechargeable battery (1 hour to recharge; spares 20eb, Everyday) and turns off when the weapon isn't wielded. Removes the darkness penalty against targets it lights up, for anyone who can see the beam, but not penalties from smoke, fog, and similar obscurement."}
+ "AUTOLOADER": {
+  "icon": "mag",
+  "rules": "When the magazine is empty, spend your Move Action to reload without an Action. The Autoloader is then spent until you use an Action to reset it; normal Reload Actions still work meanwhile. Can't go in a Magrail Kit slot despite needing only 1 slot."
+ },
+ "BACKPACK MAGAZINE": {
+  "magazine_family": "Backpack",
+  "rules": "Adds the Backpack column of the Capacity Chart to capacity; only one Capacity attachment at a time. The weapon only works while connected (an Action) to a worn Ammo Backpack, included. Reloading takes 2 extra Actions, the weapon can't be concealed, and it can't go in Cyberlimbs or Vehicle Heavy Weapon Mounts (ACPAs and Battlegloves are fine). Without BODY 13+, wearing the backpack gives -1 DEX and MOVE. Putting the backpack on or off is an Action, and the feed line can't be concealed."
+ },
+ "BELT BOX": {
+  "magazine_family": "Belt Box",
+  "rules": "Adds the Belt Box column of the Capacity Chart to capacity; only one Capacity attachment at a time. The weapon can't be concealed or used as a Popup Weapon, and reloading takes 1 extra Action."
+ },
+ "EXPANDED BATTERY": {
+  "icon": "mag",
+  "rules": "For weapons that use batteries (Microwavers, Shriekers, etc.): the battery gains extra charges equal to the weapon's Extended column on the Capacity Chart. Spare batteries cost 100eb more and still recharge in 1 hour."
+ },
+ "FLARED MAGWELL": {
+  "icon": "mag",
+  "slots": 1,
+  "rules": "Needs a DV21 Weaponstech check to attach; one per weapon; only on weapons with no Capacity attachment. Adds 1 Attachment Slot that only Capacity attachments can use, and it can combine with other open slots (1 open slot + Flared Magwell fits a 2-slot Belt Box).",
+  "notes": [
+   "The extra slot is automated, but the sheet doesn't enforce the Capacity-only restriction."
+  ]
+ },
+ "MAG COUPLER": {
+  "icon": "mag",
+  "rules": "When the magazine is empty and you hold the weapon two-handed, give up your Move Action to reload without an Action. The Coupler is then spent until reset with an Action; normal Reload Actions still work. The weapon can't be concealed or used as a Popup Weapon."
+ },
+ "QUICK RELEASE": {
+  "rules": "When wielding two Quick Release weapons that use the same Skill, one Reload Action reloads both. Weapons that need extra Reload Actions still need them."
+ },
+ "AUTO-COMPENSATOR": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "-1 to checks to conceal the weapon under clothing. Can't be combined with another muzzle attachment.",
+  "notes": [
+   "+1 to Autofire checks (toggle the situational modifier in the roll dialog)."
+  ]
+ },
+ "BREACHING MUZZLE": {
+  "rules": "Shots at Cover (only Cover) within 2m/yds hit automatically and deal double damage to that Cover. A shotgun shell fired this way also carries damage through destroyed Cover like an Explosive. Can't be combined with another muzzle attachment."
+ },
+ "GATLING BARREL": {
+  "rules": "One per weapon. The weapon becomes Two-Handed and Autofire/Suppressive Fire use double ammo. An Autofire attack that beats the DV by only 1 still gets x2; if the weapon already had that, its minimum multiplier rises by 1 (maximum x3). Targets resisting its Suppressive Fire take -2. Can't be combined with a Telescopic Barrel."
+ },
+ "HEAVY BARREL": {
+  "rules": "One per weapon. On an Autofire attack you can take -2 and spend double ammo to replace one damage d6 with a d10 that doesn't explode, implode, or count toward Critical Injuries. Can't be combined with a Telescopic Barrel."
+ },
+ "IMPROVED SILENCER": {
+  "rules": "Works as a Silencer (Tools of the Trade DLC) and also gives listeners -2 to Perception to hear the shot; stacks with Subsonic ammo for -4. Can't be combined with another muzzle attachment."
+ },
+ "MULTI-PURPOSE MUZZLE DEVICE": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Can't be combined with another muzzle attachment.",
+  "notes": [
+   "Works as a Silencer and gives +1 to Autofire checks and Ricochet attacks (not Aimed Ricochets); toggle the situational modifier when it applies."
+  ]
+ },
+ "RICOCHET COMPENSATOR": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "-1 to checks to conceal the weapon under clothing. Can't be combined with another muzzle attachment.",
+  "notes": [
+   "+1 to Ricochet attacks with a Power Rebuild (not Aimed Ricochets); toggle the situational modifier when it applies."
+  ]
+ },
+ "TELESCOPIC BARREL / HANDLE": {
+  "name": "Telescopic Barrel / Handle",
+  "rules": "One per weapon. Lets the weapon hold two Range Table Modifications (Interface RED Vol. 5) or two Melee Range Modifications it already qualifies for, with one active at a time. Swapping takes 1 minute and no check; change the item's DV table to match. Can't be combined with a Gatling or Heavy Barrel."
+ },
+ "AIRBURST LINK": {
+  "rules": "Needs a Smartgun Link, or a Smart Scope with a Targeting Scope. When firing a damaging explosive, you may take -4 to the attack; if it hits and causes a Critical Injury, victims roll it on the Head table instead of the Body table."
+ },
+ "ANGLED FOREGRIP": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Needs Skill 7+ in the weapon's Skill or Combat Awareness 2+, and a two-handed grip. Reduces your total attack penalty from Armor Penalties, Critical Injuries, and Wound States by 1, or by 2 on Aimed Shots. No Underbarrel attachments; can't be combined with a Foregrip.",
+  "notes": [
+   "The situational +1 is for when you have such a penalty (use +2 by hand on Aimed Shots)."
+  ]
+ },
+ "BIOMETRIC LOCK": {
+  "icon": "lock",
+  "rules": "Needs a DV17 Electronics/Security Tech check to attach; one per weapon. Unauthorized users can't use the weapon or its features (firearms also can't be unloaded; melee weapons still work as weapons but their special features don't). Bypassing takes 1 minute and a DV17 Electronics/Security Tech check. On a weapon that already has biometrics, the bypass rises to DV24 and anyone without a valid key who tries to use it is hit as if by a Stun Baton to the body."
+ },
+ "CHAINSAW GRIP": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "The weapon can't make Aimed Shots, needs two hands, and can't be a Popup Weapon or go in a Vehicle Heavy Weapon Mount. Can't be combined with a Cheek Rest or any scope or stock attachment.",
+  "notes": [
+   "+1 to attacks within 12m/yds using Autofire or a shotgun shell (situational)."
+  ]
+ },
+ "COCKING LEVER": {
+  "rules": "As an Action, cock the lever; the next attack deals +1d6 and ablates 1 extra SP, then the lever must be cocked again. The extra damage counts as Single Shot damage for the Upsized Power mod."
+ },
+ "FLEXIBLE GRIP": {
+  "rules": "Collapse or extend the weapon as an Action. Collapsed, it's concealable under clothing but can't be used as a weapon."
+ },
+ "FOREGRIP": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "A One-Handed weapon counts as Excellent Quality while held in two hands. If it's already Excellent Quality, or it's Two-Handed with a Laser Sight, a two-handed grip instead gives a +1 Complementary Bonus to Aimed Shots and alternate fire modes such as Autofire. Poor Quality weapons still jam on a 1. The weapon can't be concealed, used as a Popup Weapon, or take Underbarrel attachments. Can't be combined with an Angled Foregrip.",
+  "notes": [
+   "The situational +1 covers both."
+  ]
+ },
+ "MELEE RANGE MODIFICATION": {
+  "rules": "One per weapon. Changes the weapon's melee reach and throwing range table; damage is unchanged. Long and Very Long Handles make the weapon unconcealable and unusable as Popup Melee cyberware; a Very Long Handle also drops it to ROF 1 and needs BODY 14+ to wield one-handed. Light/Medium weapons: Throwing Handle (no melee reach, thrown on the Shortbow table), Short Handle (default), Long Handle (4m/yds), Very Long Handle (6m/yds, thrown on the Bow table), Chain Handle (10m/yds, can't be thrown). Heavy/Very Heavy weapons: Short Handle (default), Long Handle (4m/yds), Very Long Handle (6m/yds, thrown on the Bow table)."
+ },
+ "RUBBER GRIP": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "One per weapon. Doesn't work while the weapon is installed in cyberware, Battlegloves or similar gear, or a Vehicle Heavy Weapon Mount.",
+  "notes": [
+   "Against targets within 50m/yds, your total attack penalty is reduced by 1; toggle the situational +1 when you have a penalty to reduce."
+  ]
+ },
+ "BLADED LIMBS": {
+  "rules": "Needs a DV17 Weaponstech check; one per bow. As an Action, mount or remove any Melee Weapon on the bow; the pair is only concealable if both already were. Switch between bow and blade at the start of your Turn, before attacking, without an Action. Each keeps its own attachments and mods, but BODY requirements apply to both."
+ },
+ "BURST MOD INTERNALS": {
+  "split": [
+   [
+    "Burst Mod Internals (Fixed)",
+    100,
+    "Fixed: the weapon can only fire in Burst Fire; no Autofire or Suppressive Fire."
+   ],
+   [
+    "Burst Mod Internals (Bimodal)",
+    250,
+    "Bimodal: Single Shot and Burst Fire only; no Autofire or Suppressive Fire."
+   ],
+   [
+    "Burst Mod Internals (Selective)",
+    500,
+    "Selective: keeps Single Shot, Autofire, and Suppressive Fire, and adds Burst Fire."
+   ]
+  ],
+  "rules": "In Single Shot you may fire 2 extra rounds of the same ammo as Burst Fire, and all of them count as Armor-Piercing. If there aren't enough rounds, it empties the magazine as a normal Single Shot. Works with shotgun shells. On weapons that already fire several rounds per Single Shot, Burst Fire adds 2 to that count. Corgo's optional nerf: Burst Fire uses the weapon's Autofire DV table."
+ },
+ "COLLAPSIBLE FRAME": {
+  "rules": "Fold or unfold without an Action; folded, the bow is concealable but can't fire. No Aimed Shots on a Turn you unfold it."
+ },
+ "CONSTANT RECOIL SYSTEM": {
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. Autofire (Assault Rifle) becomes Autofire (Machine Gun 3), or Machine Gun 4 on an Excellent Quality weapon.",
+  "notes": [
+   "Edit the weapon's Autofire value and DV table by hand (use the tagged [MG] table if its range table has one)."
+  ]
+ },
+ "EFFICIENT AUTOSEAR": {
+  "rules": "Autofire uses 6 rounds instead of 10."
+ },
+ "ELECTROTHERMAL ENHANCEMENT (ETE)": {
+  "name": "Electrothermal Enhancement (ETE)",
+  "price_note": "Costs twice the base weapon's cost (minimum 1,000eb); the listed price is the minimum.",
+  "price": 1000,
+  "rules": "Needs a DV24 Weaponstech check and can't be removed. The weapon loses Autofire, Suppressive Fire, and Burst Fire; all its BODY requirements rise by 3; and it must work its bolt (an Action) after each shot, though ROF is unchanged. Its ammo costs double, is one Price Category higher, and only fits it. In exchange: +2d6 damage in Single Shot and with shells, and beyond 25m/yds it gets +1 on attacks against DV21+ (+2 against DV24+)."
+ },
+ "FOLDING STRUCTURE": {
+  "rules": "Fold or unfold as an Action. Folded, the weapon is concealable despite other attachments (except Drum Magazine and Belt Box) but attacks at -2. Can't be a Popup Weapon or go in a Magrail Kit slot."
+ },
+ "HEADHOPPER": {
+  "rules": "Needs a Smart Rebuild. Aimed Shots with Improved Smart ammo deal +1d6. Tech Upgrades can't raise this further."
+ },
+ "HEADTOLL": {
+  "rules": "Aimed Shots deal +1d6. Tech Upgrades can't raise this further."
+ },
+ "SHOTGUN RECHAMBER": {
+  "rules": "Needs a DV17 Weaponstech check; one per weapon; can't be removed. Single Shot and shotgun shell damage rise by 1d6, to a maximum of 5d6 (a higher base damage stays as it is). Unless installed in cyberware, the weapon must be fired two-handed.",
+  "notes": [
+   "Change the weapon's damage by hand."
+  ]
+ },
+ "SUPERCHARGER": {
+  "rules": "Charging the Tech Rebuild costs only half your MOVE (rounded down), paid before you move that Turn."
+ },
+ "VIVISECTOR": {
+  "rules": "When shells cause a Critical Injury, roll twice on the table and pick one."
+ },
+ "ZENITH": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "",
+  "notes": [
+   "+1 to the first Single Shot attack check with this weapon in each combat (situational)."
+  ]
+ },
+ "GUN SHIELD MOUNT": {
+  "rules": "One per weapon; can't be a Popup Weapon. Holds a Gun Shield, which works as a Bulletproof Shield (mods and Tech Upgrades included) only while you hold the weapon two-handed and haven't moved more than 4m/yds on foot this Round. Deploy or retract it as an Action, or while stowing the weapon or setting up a Bipod. Deployed, the weapon can't be concealed. A destroyed Gun Shield is gone for good; fitting a new one takes 1 minute. Shields: Light 50eb (Costly), 5 HP; Medium 100eb (Premium), 10 HP, no Underbarrel attachments except grips; Heavy 250eb (Expensive), 15 HP, no Underbarrel attachments, not on Pistols or SMGs, counts as Thick Cover for Tech Rebuilds."
+ },
+ "MAGRAIL KIT": {
+  "slots": 2,
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. Adds 2 Attachment Slots that only take attachments needing fewer than 2 slots and not affecting Capacity.",
+  "notes": [
+   "The extra slots are automated, but the sheet doesn't enforce the restriction."
+  ]
+ },
+ "VARIABLE SCOPE MOUNT": {
+  "icon": "scope",
+  "slots": 3,
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. Can't be combined with a Compatibility Rail.",
+  "notes": [
+   "Adds 3 Attachment Slots for scopes only; the sheet doesn't enforce that."
+  ]
+ },
+ "GAKI SNIPING SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Needs a Smartgun Link. Works as a Sniping Scope and shows detail out to 1,000m/yds. Aimed Shots, or non-Aimed attacks with Take Extra Time, get an extra +1 beyond 101m/yds or +2 beyond 201m/yds.",
+  "notes": [
+   "The situational +1 is the extra bonus; add the Sniping Scope's own bonus, and the second point beyond 201m/yds, by hand."
+  ]
+ },
+ "LASER SIGHT": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Toggle on or off as an Action. Poor Quality weapons still jam on a 1. On an already Excellent Quality weapon you can instead paint a target (an Action, or part of a Ranged Attack Action): until your next Turn, anyone who can see the laser gets a +1 Complementary Bonus to hit that target. Not on weapons with a Smartgun Link or Smart Rebuild. Can't be combined with an IR/UV Laser Sight.",
+  "notes": [
+   "While on, the weapon counts as Excellent Quality (situational +1), but you take -2 to Stealth (-4 against infrared/nightvision or LL/IR/UV cyberware)."
+  ]
+ },
+ "IR/UV LASER SIGHT": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Works like a Laser Sight, but only for users who see in infrared or nightvision, and its Stealth penalty is 2 lower (none for most observers, -2 against infrared/nightvision). Can't be combined with a Laser Sight."
+ },
+ "LONG SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Shows detail out to 100m/yds. Doesn't stack with Opti-Zoom cyberware.",
+  "notes": [
+   "+1 to Single Shot attacks at 13-50m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed."
+  ]
+ },
+ "JUE LONG SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "A Long Scope with a built-in Targeting Scope that works without being connected."
+ },
+ "SAIKA LONG SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Needs a Smartgun Link.",
+  "notes": [
+   "A Long Scope that gives an extra +1 (+2 total) to Held Action attacks at 13-50m/yds against targets that move or leave cover in your line of sight; add the extra point by hand."
+  ]
+ },
+ "RANGEFINDER SCOPE": {
+  "icon": "scope",
+  "rules": "Needs a Sniping Scope, or a Smart Scope with TeleOptics. For Single Shot or Aimed Shot attacks at 51m/yds or more, the bonus from Taking Extra Time or a successful Complementary check (yours or one you give) rises by 1 (+2 total)."
+ },
+ "REFLEX SIGHT": {
+  "icon": "scope",
+  "rules": "If drawn or wielded in the first Round of combat, your current Initiative rises by 1 for as long as you keep actively using the weapon; it drops again if the weapon is stowed or knocked away. Unless it's on a Variable Scope Mount, it can't be combined with other scopes."
+ },
+ "SHORT SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Doesn't stack with the Glow Sights mod.",
+  "notes": [
+   "+1 to Single Shot attacks at 0-12m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed."
+  ]
+ },
+ "KANETSUGU SHORT SCOPE": {
+  "icon": "scope",
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Needs a Smartgun Link. Doesn't stack with Glow Sights.",
+  "notes": [
+   "A Short Scope that gives an extra +1 (+2 total) to Held Action attacks at 0-12m/yds against targets that move or leave cover in your line of sight; add the extra point by hand."
+  ]
+ },
+ "SMART SCOPE": {
+  "icon": "smart",
+  "rules": "Has 2 Option Slots for Cybereye Options, which work while you wield the weapon, count as paired, and cost the same to install as in a Cybereye."
+ },
+ "SONAR SENSOR": {
+  "icon": "scope",
+  "rules": "A folding side screen (open or close without an Action; the weapon can't be concealed while it's open). Open, it scans 25m/yds around you, underwater too, and beeps with a rough direction whenever something new starts moving. It can't scan through Cover, except Bulletproof Shields."
+ },
+ "BIPOD": {
+  "attack": [
+   1,
+   true
+  ],
+  "rules": "Deploy on mostly flat Cover or the ground (going Prone) as an Action; folding it is free. You can still duck behind the Cover, but the weapon stays visible. Can't be concealed. Not an Underbarrel attachment.",
+  "notes": [
+   "Deployed, the weapon counts as Mounted and gets +1 to all attacks (situational), but you can't take Move Actions or dodge Ranged Attacks."
+  ]
+ },
+ "BUFFER STOCK": {
+  "rules": "Held two-handed, Autofire damage rolls 1 extra d6 and drops the lowest before the multiplier. Can't go in a Magrail Kit slot. Can't be combined with a Precision Stock."
+ },
+ "CHEEK REST": {
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. Taking Extra Time with this weapon takes half as long (2 Actions instead of 4)."
+ },
+ "PARALLAX": {
+  "rules": "Aimed Shots may use a longer range table: Snubnose Pistol to Long Barrel Pistol, Pistol to Subcompact SMG, Long Barrel Pistol to Carbine."
+ },
+ "PRECISION STOCK": {
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. Drawing the weapon always takes an Action. While Prone or on a Bipod, a Single Shot attack roll of 2 gets +1, and a roll of 1 gets +2. Can't be combined with a Buffer Stock, Constant Recoil System, or Folding Structure."
+ },
+ "STOCK POCKET": {
+  "rules": "Needs a DV17 Weaponstech check; one per weapon. A sealed 5x10cm (2x4in) compartment in the stock; its contents are concealed without a check."
+ },
+ "BINARY TRIGGER": {
+  "attack": [
+   -2,
+   true
+  ],
+  "damage": [
+   2,
+   true
+  ],
+  "rules": "Needs a DV21 Weaponstech check; one per weapon. The weapon loses Autofire and Suppressive Fire. In Single Shot (including Burst Fire) you may fire double ammo at -2 to hit; on a hit, add +2 damage before armor. Can't be combined with a Match Trigger or Solenoid Mechanism.",
+  "notes": [
+   "Both halves are situational modifiers: toggle them on the attack roll and the damage roll."
+  ]
+ },
+ "MATCH TRIGGER": {
+  "rules": "Needs a DV21 Weaponstech check; one per weapon. Targets take -1 to dodge its Aimed Shots and Held Action attacks. Can't be combined with a Binary Trigger or Solenoid Mechanism."
+ },
+ "CHAINKNIFE BAYONET": {
+  "icon": "bayonet",
+  "secondary": {
+   "damage": "4d6",
+   "rof": 1,
+   "weaponType": "vHeavyMelee",
+   "weaponSkill": "Melee Weapon",
+   "isRanged": false
+  },
+  "rules": "Held two-handed, the weapon also works as an IMI Chainknife (12 Days of Gunmas DLC). Once revved, the chainknife stays revved while the gun is wielded and must be revved down (an Action) before you can safely stow it. The weapon can't be concealed."
+ },
+ "CROSSBOW UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "4d6",
+   "rof": 1,
+   "weaponType": "bow",
+   "weaponSkill": "Archery",
+   "isRanged": true,
+   "dvTable": "DV Bows & Crossbows",
+   "magazine": 1,
+   "ammo": [
+    "arrow"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Crossbow that can load Non-Basic ammo despite counting as Exotic. The weapon can't be concealed."
+ },
+ "FLAMETHROWER UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "5d6",
+   "rof": 1,
+   "weaponType": "shotgun",
+   "weaponSkill": "Heavy Weapons",
+   "isRanged": true,
+   "dvTable": "DV Shotgun (Slug)",
+   "magazine": 2,
+   "ammo": [
+    "shotgunShell"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Flamethrower fired with Heavy Weapons, with only 2 shots in its tank. The weapon can't be concealed."
+ },
+ "MICROWAVER UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "0",
+   "rof": 1,
+   "weaponType": "vHeavyPistol",
+   "weaponSkill": "Handgun",
+   "isRanged": true,
+   "dvTable": "DV Pistol",
+   "magazine": 4,
+   "ammo": [
+    "battery"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Microwaver using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."
+ },
+ "MICROMISSILE UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "5d6",
+   "rof": 1,
+   "weaponType": "rocketLauncher",
+   "weaponSkill": "Heavy Weapons",
+   "isRanged": true,
+   "dvTable": "DV Missile Launcher",
+   "magazine": 3,
+   "ammo": [
+    "rocket"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a 3-rocket Missile Launcher (Interface RED Vol. 5) fired with Heavy Weapons. Its rockets also count as Improved Smart ammo, deal 5d6, and burst in only a 6x6m/yds (3x3 square) area. The weapon can't be concealed."
+ },
+ "NET LAUNCHER UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "0",
+   "rof": 1,
+   "weaponType": "shotgun",
+   "weaponSkill": "Shoulder Arms",
+   "isRanged": true,
+   "dvTable": "DV Shotgun (Slug)",
+   "magazine": 2,
+   "ammo": [
+    "shotgunSlug"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Net Launcher: capacity 2, loads only Net Slugs (50eb (Costly) each) that deal no damage, don't ablate, and can't cause Critical Injuries. Hits work like the Popup Net Launcher's nets (Black Chrome). Maximum range 25m/yds; it can't be modified for other ammo. The weapon can't be concealed."
+ },
+ "SHRIEKER UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "0",
+   "rof": 1,
+   "weaponType": "vHeavyPistol",
+   "weaponSkill": "Handgun",
+   "isRanged": true,
+   "dvTable": "DV Pistol",
+   "magazine": 4,
+   "ammo": [
+    "battery"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Shrieker using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."
+ },
+ "STUN GUN UNDERBARREL": {
+  "icon": "underbarrel",
+  "secondary": {
+   "damage": "3d6",
+   "rof": 2,
+   "weaponType": "heavyPistol",
+   "weaponSkill": "Handgun",
+   "isRanged": true,
+   "dvTable": "DV Pistol",
+   "magazine": 4,
+   "ammo": [
+    "battery"
+   ]
+  },
+  "rules": "Held two-handed, the weapon also works as a Stun Gun using the main weapon's Skill (set the underbarrel's skill to match). Comes with a 4-shot battery that recharges in 1 hour; spares cost 50eb (Costly). The weapon can't be concealed."
+ },
+ "MONOBLADE REBUILD": {
+  "split": [
+   [
+    "Monoblade Rebuild (Basic)",
+    1000,
+    "Basic: ignores armor below SP 7."
+   ],
+   [
+    "Monoblade Rebuild (Tuned)",
+    3000,
+    "Tuned: ignores armor below SP 11."
+   ],
+   [
+    "Monoblade Rebuild (Perfected)",
+    7500,
+    "Perfected: ignores armor below SP 13."
+   ]
+  ],
+  "rules": "Not for Poor Quality weapons; one per weapon. The blade's damage ignores armor entirely below the listed SP; higher SP works normally. Set the weapon's 'ignore armor below SP' field on its sheet to match."
+ },
+ "SLING": {
+  "rules": "Dropping the weapon on purpose stows it for free. If it's knocked from your hands, it hangs at your side and takes an Action to ready. Anyone trying to Grab it from you takes -2. The weapon can't be concealed."
+ },
+ "TACTICAL LIGHT": {
+  "rules": "A hands-free weapon light that runs 2 hours per rechargeable battery (1 hour to recharge; spares 20eb, Everyday) and turns off when the weapon isn't wielded. Removes the darkness penalty against targets it lights up, for anyone who can see the beam, but not penalties from smoke, fog, and similar obscurement."
+ }
 }

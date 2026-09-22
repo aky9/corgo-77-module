@@ -141,7 +141,7 @@ def build_attachments(parsed, spec):
         facts = [("Cost", rec["stats"].get("Cost", "")), ("Attachment slots", str(size)),
                  ("Fits", rec["stats"].get("Fits", ""))]
         name = sp.get("name") or NAME_FIX.get(rec["heading"]) or title_case(rec["heading"])
-        notes = [sp["price_note"]] if sp.get("price_note") else []
+        notes = ([sp["price_note"]] if sp.get("price_note") else []) + list(sp.get("notes", []))
         section = f"Weapons > Attachment Catalog > {group}"
         if "split" in sp:
             for sub_name, sub_price, sub_rule in sp["split"]:
@@ -186,7 +186,7 @@ def build_mods(parsed, spec):
             docs.append(f)
         section = f"Weapons > Mod Catalog > {group}"
         name = sp.get("name") or title_case(rec["heading"])
-        notes = [sp["price_note"]] if sp.get("price_note") else []
+        notes = ([sp["price_note"]] if sp.get("price_note") else []) + list(sp.get("notes", []))
         if "invented" in sp:
             dv, material = sp["invented"]
             facts = [("Invented Tech Upgrade", f"Upgrade {dv}; total material cost: {material}")]
@@ -238,7 +238,7 @@ def build_ammo(parsed, spec):
             s.update(variety=variety, type=atype, ablationValue=ablation, amount=amount)
             s["price"]["market"] = price
             facts = [("Cost", rec["stats"].get("Cost", "")), ("Stack", f"{amount}")]
-            notes = []
+            notes = list(sp.get("notes", []))
             if variety == "custom":
                 notes.append("Not loadable ammo: an adapter you apply to other rounds or grenades.")
             s["description"]["value"] = description_html(facts=facts, rules=rules, notes=notes, section=section,

@@ -63,7 +63,7 @@ def gear_item(g, folder, sub, group_heading=None, extra_notes=()):
     s["price"]["market"] = g.get("price", parse_cost(g["cost"])[0])
     name = g.get("name") or title_case(g["key"])
     img = ICONS + g.get("icon", "default/Default_Gear.svg")
-    notes = list(extra_notes)
+    notes = list(extra_notes) + list(g.get("notes", []))
     if g.get("price") is not None and "eb" not in g["cost"].split("(")[0]:
         notes.append("Corgo lists no exact price; see Cost.")
     s["description"]["value"] = description_html(
@@ -81,7 +81,7 @@ def drug_item(d, folder, sub, kind="Street Drug"):
     street = kind == "Street Drug"
     img = ICONS + ("gear/generic_street_drugs.svg" if street else "gear/generic_pharmaceuticals.svg")
     primary, addiction, withdrawal = d.get("primary", []), d.get("addiction", []), d.get("withdrawal", [])
-    effects, notes = [], []
+    effects, notes = [], list(d.get("notes", []))
     if primary:
         effects.append(lambda iid: effect(iid, f"{name} Primary", img, primary, disabled=True))
         s["consumed"] = f"{name} Primary"
@@ -115,7 +115,8 @@ def build_all(plan):
     for w in spec["frame_weapons"]:
         rec = {**w, "special": "", "notes": [], "group": "External Linear Frames"}
         doc = build_weapons.build(rec, w["rules"], folders["External Linear Frames"], plan,
-                                  section_key="gear", section_label=f"{SECTION} > External Linear Frames")
+                                  section_key="gear", section_label=f"{SECTION} > External Linear Frames",
+                                  extra_notes=w.get("notes", ()))
         doc["system"]["price"]["market"] = w.get("price", 0)
         docs.append(doc)
     for p in spec["poisons"]:

@@ -21,7 +21,10 @@
      "situational": true
     }
    ],
-   "rules": "Needs a power source and a tripod. Switched on, it scans a 10x10m/yds (5x5 square) area in front of it, pulls from the local crime database, and projects the most likely events there over the last 2 hours. +2 to Deduction and Criminology checks to study or understand that crime scene, or +4 for Enforcers/Lawmen. Toggle the gear on, then tick the bonus in the roll dialog when it applies (add the extra +2 for Lawmen by hand)."
+   "rules": "Needs a power source and a tripod. Switched on, it scans a 10x10m/yds (5x5 square) area in front of it, pulls from the local crime database, and projects the most likely events there over the last 2 hours. +2 to Deduction and Criminology checks to study or understand that crime scene, or +4 for Enforcers/Lawmen.",
+   "notes": [
+    "Toggle the gear on, then tick the bonus in the roll dialog when it applies (add the extra +2 for Lawmen by hand)."
+   ]
   },
   {
    "key": "MAGNETIC BACK HOLSTER",
@@ -44,7 +47,10 @@
    "cost": "2,500eb (Very Expensive)",
    "usage": "equipped",
    "icon": "gear/linearframe_beta.svg",
-   "rules": "External Frame only; connecting to it needs two Interface Plug installations. While connected, your total REF and MOVE penalty from worn armor and wielded weapons drops by 2, or by 1 for any Metalgear (minimum 0); apply by hand. It doesn't raise BODY, HP, or your Death Save."
+   "rules": "External Frame only; connecting to it needs two Interface Plug installations. It doesn't raise BODY, HP, or your Death Save.",
+   "notes": [
+    "While connected, your total REF and MOVE penalty from worn armor and wielded weapons drops by 2, or by 1 for any Metalgear (minimum 0); apply by hand."
+   ]
   },
   {
    "key": "MILITECH SPECTER",
@@ -70,8 +76,12 @@
      ]
     }
    ],
-   "rules": "External Frame only. Connecting needs three Interface Plug installations, and putting it on or taking it off takes 3 Actions. While connected: BODY becomes 14 and MOVE becomes 6 unless yours is higher (both automated while equipped); REF, DEX, and MOVE penalties from worn armor and wielded weapons are halved (rounded up); and it works as Jump Boosters, Reinforced Cyberlimb Upgrades (Legs), and Skate Feet. The BODY increase doesn't change HP or your Death Save; the sheet may recalculate them, so check and correct by hand. With both hands on its controls, you run two back-mounted robotic arms that act as Vehicle Heavy Weapon Mounts, each aimed independently at anything you can see. Weapons in them are always One-Handed, count as connected for Smart Rebuilds and Smartgun Links, and can't be knocked away by Aimed Shots. It's Hardened (immune to EMP, Microwavers, and Black-ICE-style effects) and can't be Quickhacked or disabled by netrunning; a coded manual release on the chest extracts an injured pilot. Either arm can instead hold a custom Advanced Optical Shield (a 25 HP Bulletproof Shield that counts as two active FBC Chameleon Coatings when seen from the front beyond 25m/yds), or the EX-75 IronWind or EX-76 EarthBreaker, which only work in this frame. Priced at the Super Luxury minimum.",
-   "name": "Militech SPECTER"
+   "rules": "External Frame only. Connecting needs three Interface Plug installations, and putting it on or taking it off takes 3 Actions. With both hands on its controls, you run two back-mounted robotic arms that act as Vehicle Heavy Weapon Mounts, each aimed independently at anything you can see. Weapons in them are always One-Handed, count as connected for Smart Rebuilds and Smartgun Links, and can't be knocked away by Aimed Shots. It's Hardened (immune to EMP, Microwavers, and Black-ICE-style effects) and can't be Quickhacked or disabled by netrunning; a coded manual release on the chest extracts an injured pilot. Either arm can instead hold a custom Advanced Optical Shield (a 25 HP Bulletproof Shield that counts as two active FBC Chameleon Coatings when seen from the front beyond 25m/yds), or the EX-75 IronWind or EX-76 EarthBreaker, which only work in this frame. Priced at the Super Luxury minimum.",
+   "name": "Militech SPECTER",
+   "notes": [
+    "While connected: BODY becomes 14 and MOVE becomes 6 unless yours is higher (both automated while equipped); REF, DEX, and MOVE penalties from worn armor and wielded weapons are halved (rounded up); and it works as Jump Boosters, Reinforced Cyberlimb Upgrades (Legs), and Skate Feet.",
+    "The BODY increase doesn't change HP or your Death Save; the sheet may recalculate them, so check and correct by hand."
+   ]
   }
  ],
  "frame_weapons": [
@@ -110,8 +120,11 @@
    "slots": "N/A",
    "attachments": "Smart Rebuild, Telescopic Barrel with Short Tube and Long Tube (Tech Upgraded to swap barrels as half of a ROF 2 Action)",
    "mods": "None",
-   "rules": "Only works mounted in the Militech SPECTER. The magazine can hold any number of ammo types at once; choose which to fire each attack. Its Telescopic Barrel switches between the Grenade Launcher and Missile Launcher range tables; the sheet uses DV Grenade Launcher, so change the DV table when it's on the Long Tube.",
-   "name": "Militech EX-76 EarthBreaker"
+   "rules": "Only works mounted in the Militech SPECTER. The magazine can hold any number of ammo types at once; choose which to fire each attack.",
+   "name": "Militech EX-76 EarthBreaker",
+   "notes": [
+    "Its Telescopic Barrel switches between the Grenade Launcher and Missile Launcher range tables; the sheet uses DV Grenade Launcher, so change the DV table when it's on the Long Tube."
+   ]
   }
  ],
  "poisons": [
@@ -245,7 +258,10 @@
      -2
     ]
    ],
-   "rules": "Primary (4 hours): DEX +1, to a maximum of 8 (check the cap by hand). Combined with Synthcoke's Primary, BODY and WILL -2 (minimum 1), without changing HP or Death Save. You're hyperactive and impulsive. Secondary (DV17): addiction. While addicted and not on Jellytricity: DEX -2 (minimum 1), plus sluggishness and an odd craving for anything gelatinous."
+   "rules": "Combined with Synthcoke's Primary, BODY and WILL -2 (minimum 1), without changing HP or Death Save. You're hyperactive and impulsive. Secondary (DV17): addiction. While addicted and not on Jellytricity: DEX -2 (minimum 1), plus sluggishness and an odd craving for anything gelatinous.",
+   "notes": [
+    "Primary (4 hours): DEX +1, to a maximum of 8 (check the cap by hand)."
+   ]
   },
   {
    "key": "JUICE",
@@ -302,7 +318,10 @@
      -3
     ]
    ],
-   "rules": "Primary (4 hours): MOVE and REF -1 (minimum 1); BODY +3 to a maximum of 11, without raising HP or Death Save (check the cap and HP by hand). With BODY 12+, +3 to BODY-based checks instead. No -2 penalty to Brawling, Martial Arts, and Melee Weapon checks while in a Grapple. You're overconfident and loud. Secondary (DV17): addiction. While addicted and not on Ol' Donkey: BODY -3 (minimum 1), without lowering HP or Death Save."
+   "rules": "With BODY 12+, +3 to BODY-based checks instead. No -2 penalty to Brawling, Martial Arts, and Melee Weapon checks while in a Grapple. You're overconfident and loud. Secondary (DV17): addiction. While addicted and not on Ol' Donkey: BODY -3 (minimum 1), without lowering HP or Death Save.",
+   "notes": [
+    "Primary (4 hours): MOVE and REF -1 (minimum 1); BODY +3 to a maximum of 11, without raising HP or Death Save (check the cap and HP by hand)."
+   ]
   },
   {
    "key": "PHANT",
@@ -391,7 +410,10 @@
    "key": "SPIKED",
    "cost": "Invented Tech Upgrade (Upgrade DV17; material cost: the most expensive component drug + 100eb)",
    "price": 0,
-   "rules": "Combines one dose each of two Street Drugs into a single dose. The DV to resist each drug's Secondary Effect rises by 2; otherwise the two drugs' effects and durations work separately. In Foundry, dose both component drugs."
+   "rules": "Combines one dose each of two Street Drugs into a single dose. The DV to resist each drug's Secondary Effect rises by 2; otherwise the two drugs' effects and durations work separately.",
+   "notes": [
+    "In Foundry, dose both component drugs."
+   ]
   },
   {
    "key": "SUPERJET",

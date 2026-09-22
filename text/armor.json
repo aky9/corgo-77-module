@@ -141,7 +141,10 @@
      2
     ]
    ],
-   "rules": "Built in: Anti-Smog Breathing Mask, Flashlight, Radio Communicator, and Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle, Image Enhance, and TeleOptics. Raising or lowering the visor takes no Action. Lowered, your face is completely hidden and you get the Smart Glasses' cybereye options. With the visor down and Pilot Air Vehicle 7+ or Moto Rank 2+, +2 to Pilot Air Vehicle checks. That bonus is automated while the helmet is equipped; disable its effect if you don't qualify or the visor is up."
+   "rules": "Built in: Anti-Smog Breathing Mask, Flashlight, Radio Communicator, and Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle, Image Enhance, and TeleOptics. Raising or lowering the visor takes no Action. Lowered, your face is completely hidden and you get the Smart Glasses' cybereye options. With the visor down and Pilot Air Vehicle 7+ or Moto Rank 2+, +2 to Pilot Air Vehicle checks.",
+   "notes": [
+    "That bonus is automated while the helmet is equipped; disable its effect if you don't qualify or the visor is up."
+   ]
   },
   {
    "key": "M-71 COMBAT HELMET",
@@ -188,7 +191,10 @@
      1
     ]
    ],
-   "rules": "Built in: Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle and Low Light/Infrared/UV. With Melee Weapon 7+ or Combat Awareness Rank 2+, +1 to Melee Weapon attacks (+2 on Aimed Shots). The +1 is automated while equipped; add the extra point on Aimed Shots by hand, and disable the effect if you don't qualify. Repairs 1 lost SP at the end of each day it loses none."
+   "rules": "Built in: Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle and Low Light/Infrared/UV. With Melee Weapon 7+ or Combat Awareness Rank 2+, +1 to Melee Weapon attacks (+2 on Aimed Shots). Repairs 1 lost SP at the end of each day it loses none.",
+   "notes": [
+    "The +1 is automated while equipped; add the extra point on Aimed Shots by hand, and disable the effect if you don't qualify."
+   ]
   }
  ],
  "iconic": [
@@ -215,7 +221,10 @@
      1
     ]
    ],
-   "rules": "Iconic. Ablation it suffers is reduced by 1 (minimum 0). Built in: Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle, Image Enhance, and Targeting Scope. With Melee Weapon 7+ and Evasion 7+, or Combat Awareness Rank 6+, +1 to Melee Weapon (+2 on Aimed Shots) and Evasion checks. The +1s are automated while equipped; add the extra point on Aimed Shots by hand, and disable the effect if you don't qualify. Attacks against the wearer with Smart or Improved Smart ammo take -2. After 10 minutes without losing SP it fully repairs to SP 13. Priced at the Super Luxury minimum; Corgo lists no exact cost."
+   "rules": "Iconic. Ablation it suffers is reduced by 1 (minimum 0). Built in: Smart Glasses upgraded to +1 option slot, holding Anti-Dazzle, Image Enhance, and Targeting Scope. With Melee Weapon 7+ and Evasion 7+, or Combat Awareness Rank 6+, +1 to Melee Weapon (+2 on Aimed Shots) and Evasion checks. Attacks against the wearer with Smart or Improved Smart ammo take -2. After 10 minutes without losing SP it fully repairs to SP 13. Priced at the Super Luxury minimum; Corgo lists no exact cost.",
+   "notes": [
+    "The +1s are automated while equipped; add the extra point on Aimed Shots by hand, and disable the effect if you don't qualify."
+   ]
   }
  ],
  "gun_shields": [
@@ -255,7 +264,10 @@
    "kind": "Kit (Fashion Jacket)",
    "cost": "1,000eb (Very Expensive)",
    "type": "clothing",
-   "rules": "Permanently turns one Fashion Jacket into the body piece of a Bodyweight Suit that looks like that fashion. The result works like a Bodyweight Suit but covers only the body, not the head. In Foundry, replace the jacket with a body-only Bodyweight Suit armor item."
+   "rules": "Permanently turns one Fashion Jacket into the body piece of a Bodyweight Suit that looks like that fashion. The result works like a Bodyweight Suit but covers only the body, not the head.",
+   "notes": [
+    "In Foundry, replace the jacket with a body-only Bodyweight Suit armor item."
+   ]
   },
   {
    "key": "CARBON PLATED",
@@ -265,13 +277,19 @@
     "bodySp": 1,
     "headSp": 1
    },
-   "rules": "+1 SP (automated for the location the armor covers). Can't be combined with Reactive Armor Panels or Superheavy Plates, and the armor can't then be kitted or upgraded to look like a Fashion it doesn't already resemble."
+   "rules": "Can't be combined with Reactive Armor Panels or Superheavy Plates, and the armor can't then be kitted or upgraded to look like a Fashion it doesn't already resemble.",
+   "notes": [
+    "+1 SP (automated for the location the armor covers)."
+   ]
   },
   {
    "key": "COMBAT WEAVE",
    "kind": "Armor Enhancement (Body/Head)",
    "cost": "500eb (Expensive)",
-   "rules": "When installed, pick one stat; its Armor Penalty drops by 2 (minimum 0). Tech Upgrades can't reduce penalties further. The sheet uses one penalty for all three stats, so apply this by hand."
+   "rules": "When installed, pick one stat; its Armor Penalty drops by 2 (minimum 0). Tech Upgrades can't reduce penalties further.",
+   "notes": [
+    "The sheet uses one penalty for all three stats, so apply this by hand."
+   ]
   },
   {
    "key": "DRAGON SKIN",
@@ -315,7 +333,10 @@
    "mods": {
     "bodySp": 1
    },
-   "rules": "Needs a DV17 Basic Tech check to install and can't be removed; one per armor. +1 SP (automated) until the armor is next ablated. Then the panels are Destroyed Beyond Repair and the SP returns to normal, so uninstall this item. Tech Upgrades can't add more SP."
+   "rules": "Needs a DV17 Basic Tech check to install and can't be removed; one per armor. Then the panels are Destroyed Beyond Repair and the SP returns to normal, so uninstall this item. Tech Upgrades can't add more SP.",
+   "notes": [
+    "+1 SP (automated) until the armor is next ablated."
+   ]
   },
   {
    "key": "SUPERHEAVY PLATES",
@@ -325,13 +346,20 @@
     "bodySp": 3,
     "headSp": 3
    },
-   "rules": "Needs a DV17 Basic Tech check to install and can't be removed. +3 SP (automated) and +1 to the Armor Penalty. A second set adds another +3 SP, +1 to the REF penalty, and +2 to the DEX and MOVE penalties; more sets do nothing. Example: Heavy Armorjack (SP 13, -2) becomes SP 16 at -3, then SP 19 at -4 REF and -5 DEX/MOVE. Raise the armor's penalty by hand."
+   "rules": "Needs a DV17 Basic Tech check to install and can't be removed. A second set adds another +3 SP, +1 to the REF penalty, and +2 to the DEX and MOVE penalties; more sets do nothing. Example: Heavy Armorjack (SP 13, -2) becomes SP 16 at -3, then SP 19 at -4 REF and -5 DEX/MOVE.",
+   "notes": [
+    "+3 SP (automated) and +1 to the Armor Penalty.",
+    "Raise the armor's penalty by hand."
+   ]
   },
   {
    "key": "ULTRALIGHT REBUILD",
    "kind": "Armor Enhancement (Body/Head, SP 16 or lower, not Metalgear)",
    "cost": "500eb (Expensive)",
-   "rules": "All of the armor's Armor Penalties drop by 1 (minimum 0); lower its penalty by hand. The armor can't then be kitted or upgraded to look like a Fashion it doesn't already resemble, and Tech Upgrades can't reduce penalties further."
+   "rules": "The armor can't then be kitted or upgraded to look like a Fashion it doesn't already resemble, and Tech Upgrades can't reduce penalties further.",
+   "notes": [
+    "All of the armor's Armor Penalties drop by 1 (minimum 0); lower its penalty by hand."
+   ]
   }
  ],
  "shield_rules": "Shield Attachments and Enhancements follow the Armor Attachment and Enhancement rules, but for Bulletproof Shields, including cyberware ones; not for vehicle Bulletproof Glass. Corgo's optional rule: a Bulletproof Shield with HP left puts its wielder in Cover and counts as a 2x2m/yds piece of Cover against Suppressive Fire, which they may share with one adjacent character.",
@@ -362,7 +390,10 @@
    "mods": {
     "shieldHp": 5
    },
-   "rules": "+5 shield HP (automated), but the shield counts as Expensive for repairs and maintenance (Breaking Your Stuff DLC)."
+   "rules": "",
+   "notes": [
+    "+5 shield HP (automated), but the shield counts as Expensive for repairs and maintenance (Breaking Your Stuff DLC)."
+   ]
   },
   {
    "key": "BRAWLER STYLE",
@@ -371,7 +402,10 @@
    "mods": {
     "shieldHp": -2
    },
-   "rules": "-2 shield HP (automated). While using the shield and it has HP left, you count as having one more free hand for Grabs, Grapples, and Martial Arts Special Moves (not an extra arm)."
+   "rules": "While using the shield and it has HP left, you count as having one more free hand for Grabs, Grapples, and Martial Arts Special Moves (not an extra arm).",
+   "notes": [
+    "-2 shield HP (automated)."
+   ]
   },
   {
    "key": "FREEDOM STYLE",
@@ -392,7 +426,10 @@
    "mods": {
     "shieldHp": 3
    },
-   "rules": "Needs a DV17 Basic Tech check to install and can't be removed; one per shield. +3 shield HP (automated), but the shield counts as Expensive for repairs, maintenance, and Upgrade Expertise."
+   "rules": "Needs a DV17 Basic Tech check to install and can't be removed; one per shield.",
+   "notes": [
+    "+3 shield HP (automated), but the shield counts as Expensive for repairs, maintenance, and Upgrade Expertise."
+   ]
   },
   {
    "key": "TAC-MOUNTS",
@@ -410,7 +447,10 @@
    "key": "TOWER STYLE",
    "kind": "Shield Enhancement",
    "cost": "500eb (Expensive)",
-   "rules": "Not for Popup Shields, and the shield can't go in one afterward. The first damage it takes each Round is reduced by 2 (4 from Explosives), and it counts as Thick Cover against charged Tech Rebuilds. While wielding it you take -1 REF, DEX, and MOVE (apply by hand), and it can never be concealed."
+   "rules": "Not for Popup Shields, and the shield can't go in one afterward. The first damage it takes each Round is reduced by 2 (4 from Explosives), and it counts as Thick Cover against charged Tech Rebuilds.",
+   "notes": [
+    "While wielding it you take -1 REF, DEX, and MOVE (apply by hand), and it can never be concealed."
+   ]
   }
  ]
 }

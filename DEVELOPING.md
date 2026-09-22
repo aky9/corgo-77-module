@@ -17,6 +17,13 @@ facts he does not state himself, since his entry opens with his own stat line bu
 both the sheet and `validate.mjs` need it. The Capacity Chart magazines and Gun Shields have no single
 entry, so they keep the rewritten text.
 
+Foundry guidance - what the sheet automates for an item and what you apply by hand - belongs in an
+entry's `notes` list, never inside its `rules` string. `rules` is a rewrite of Corgo's own rules and is
+dropped whenever his text is present, so guidance buried in it disappears from the shipped item; `notes`
+survives both paths and renders as the item's "Foundry notes" bullets. Every builder reads
+`spec.get("notes", [])` and appends it to the notes it works out itself. 52 sentences were moved out of
+`rules` for this reason.
+
 If the export is missing the build says so and falls back to `text/*.json` for everything. That fallback is
 the only thing those files' `rules` strings are still for; the rest of them (`attack`/`damage`/`slots`/
 `magazine`/`rof_override`/`secondary`/`split`) is automation data with no equivalent in Corgo's prose, and

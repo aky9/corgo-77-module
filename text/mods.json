@@ -97,7 +97,10 @@
    1,
    true
   ],
-  "rules": "For melee weapons, bows, and crossbows: with active Speedware, spending at least 1 LUCK on a non-thrown attack gives an extra +1 on top of the LUCK (situational)."
+  "rules": "",
+  "notes": [
+   "For melee weapons, bows, and crossbows: with active Speedware, spending at least 1 LUCK on a non-thrown attack gives an extra +1 on top of the LUCK (situational)."
+  ]
  },
  "EQUALIZER": {
   "rules": "For Non-Explosive Ranged Weapons: if an attack's damage doesn't beat the target's SP, roll 1d6 and add it before armor; if that now beats the SP, the attack damages and ablates normally. The extra d6 doesn't count toward Critical Injuries."
@@ -110,7 +113,10 @@
    1,
    true
   ],
-  "rules": "For bows, crossbows, pistols, SMGs, and shotguns without a Smart Rebuild: +1 to Single Shot attacks at 0-12m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed. Doesn't stack with a Short Scope."
+  "rules": "Doesn't stack with a Short Scope.",
+  "notes": [
+   "For bows, crossbows, pistols, SMGs, and shotguns without a Smart Rebuild: +1 to Single Shot attacks at 0-12m/yds while held two-handed (situational); One-Handed weapons don't become Two-Handed."
+  ]
  },
  "HAEMOCIDE": {
   "rules": "For melee weapons: every attack has Explosive Ammunition's effect, including its -2 to hit and no Aimed Shots."
@@ -140,7 +146,10 @@
  },
  "MODULAR RAILS": {
   "slots": 2,
-  "rules": "For ranged weapons: adds 2 Attachment Slots (automated). The weapon can no longer go in cyberware or cyberware-like gear such as Battlegloves, but can still be vehicle-mounted. Tech Upgrades can't add more slots through this mod."
+  "rules": "The weapon can no longer go in cyberware or cyberware-like gear such as Battlegloves, but can still be vehicle-mounted. Tech Upgrades can't add more slots through this mod.",
+  "notes": [
+   "For ranged weapons: adds 2 Attachment Slots (automated)."
+  ]
  },
  "OPPRESSOR": {
   "rules": "For weapons with Suppressive Fire: everyone resisting its Suppressive Fire takes -2 on the Concentration check. The weapon can never be silenced or suppressed."
@@ -157,14 +166,21 @@
    false
   ],
   "rof_override": 2,
-  "rules": "For Non-Explosive weapons: ROF becomes 2 (automated as an override). A weapon that was already ROF 2 can now make Aimed Shots and use alternate fire modes at ROF 2. All attacks take -2 (automated), and every BODY requirement rises by 3."
+  "rules": "A weapon that was already ROF 2 can now make Aimed Shots and use alternate fire modes at ROF 2.",
+  "notes": [
+   "For Non-Explosive weapons: ROF becomes 2 (automated as an override).",
+   "All attacks take -2 (automated), and every BODY requirement rises by 3."
+  ]
  },
  "RECOIL PADDING": {
   "attack": [
    1,
    true
   ],
-  "rules": "For assault rifles and sniper rifles without Autofire: if you fired it last Round, you can give up your Move Action at the start of your Turn for +1 to all attacks with it until your next Turn (situational)."
+  "rules": "",
+  "notes": [
+   "For assault rifles and sniper rifles without Autofire: if you fired it last Round, you can give up your Move Action at the start of your Turn for +1 to all attacks with it until your next Turn (situational)."
+  ]
  },
  "RELIABLE": {
   "rules": "For weapons that can jam: using a jammed weapon has a 50% chance to work normally, which also clears the jam. If you lose the coin flip, the Action is wasted but the jam still clears."
@@ -191,7 +207,10 @@
  "UPSIZED POWER": {
   "price": 1000,
   "price_note": "Costs the base weapon's cost (minimum 1,000eb); the listed price is the minimum.",
-  "rules": "For Non-Explosive weapons that deal damage: +1d6 damage and +1 Autofire rating, including alternate modes such as shotgun shells (edit the weapon's damage and Autofire by hand). The weapon can't be concealed, silenced, or suppressed, and Tech Upgrades can't remove these drawbacks. Existing BODY requirements rise by half (rounded up) the number of damage dice it now rolls on a non-Aimed Single Shot. A weapon with no BODY minimum to wield gains one: that dice count x2, +2 if One-Handed or a bow, +1 if ROF 2+, +2 if Autofire-only or already Autofire 5+. Being mounted also satisfies it. A One-Handed weapon may be made Two-Handed when this is installed. Example: a 3d6, ROF 2, one-handed Heavy Pistol becomes 4d6 and needs BODY 11 (4x2 + 2 + 1), or BODY 9 if made Two-Handed. Autofire-only weapons use their base type's dice for this (Assault Rifle for machine guns) but still can't fire Single Shot."
+  "rules": "The weapon can't be concealed, silenced, or suppressed, and Tech Upgrades can't remove these drawbacks. Existing BODY requirements rise by half (rounded up) the number of damage dice it now rolls on a non-Aimed Single Shot. A weapon with no BODY minimum to wield gains one: that dice count x2, +2 if One-Handed or a bow, +1 if ROF 2+, +2 if Autofire-only or already Autofire 5+. Being mounted also satisfies it. A One-Handed weapon may be made Two-Handed when this is installed. Example: a 3d6, ROF 2, one-handed Heavy Pistol becomes 4d6 and needs BODY 11 (4x2 + 2 + 1), or BODY 9 if made Two-Handed. Autofire-only weapons use their base type's dice for this (Assault Rifle for machine guns) but still can't fire Single Shot.",
+  "notes": [
+   "For Non-Explosive weapons that deal damage: +1d6 damage and +1 Autofire rating, including alternate modes such as shotgun shells (edit the weapon's damage and Autofire by hand)."
+  ]
  },
  "WEAPON CONVERSION KITS": {
   "split": [
@@ -253,7 +272,10 @@
    "DV24",
    "the item's cost + 1,000eb"
   ],
-  "rules": "Invented Tech Upgrade for a Rebuild attachment: it needs 1 fewer slot (1 for Tech or Smart, 0 for Power) but can never be removed from its weapon. Adjust the Rebuild's slot size by hand."
+  "rules": "Invented Tech Upgrade for a Rebuild attachment: it needs 1 fewer slot (1 for Tech or Smart, 0 for Power) but can never be removed from its weapon.",
+  "notes": [
+   "Adjust the Rebuild's slot size by hand."
+  ]
  },
  "SAWN OFF": {
   "invented": [
@@ -274,6 +296,9 @@
    "DV24",
    "the item's cost + 1,000eb"
   ],
-  "rules": "Invented Tech Upgrade for a damaging Ranged Weapon; can't be removed. When installing, pick A or B for each: Accuracy (A: -3 damage, or B: -1 to hit); Ergonomics (A: +1 Attachment Slot, or B: +1 to hit); Power (A: +3 damage, or B: +1 SP ablation); Weight (A: +1 Action to reload, or B: -1 REF, DEX, and MOVE while wielded). Apply the chosen values to the weapon or this item by hand."
+  "rules": "Invented Tech Upgrade for a damaging Ranged Weapon; can't be removed. When installing, pick A or B for each: Accuracy (A: -3 damage, or B: -1 to hit); Ergonomics (A: +1 Attachment Slot, or B: +1 to hit); Power (A: +3 damage, or B: +1 SP ablation); Weight (A: +1 Action to reload, or B: -1 REF, DEX, and MOVE while wielded).",
+  "notes": [
+   "Apply the chosen values to the weapon or this item by hand."
+  ]
  }
 }
