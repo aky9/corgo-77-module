@@ -6,9 +6,15 @@ Cyberpunk RED - Core system (v0.92.4, Foundry 12), without modifying the system.
 
 ## Building
 
+On a fresh clone, `./setup.sh` does all of the below: it checks for Node 18+ and Python 3, installs the
+dependencies, regenerates the git-ignored parser output, builds the module, and runs the validator and tests.
+By hand:
+
     npm ci
-    npm run compile     # src/packs/*.json -> dist/corgo-77-collection (the installable module)
+    npm run parse       # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so needed once per clone)
+    npm run build       # src/packs/*.json -> dist/corgo-77-collection (the installable module)
     npm run validate    # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
+    npm test            # original-text regression checks
 
 `npm run build:original` builds the module with Corgo's own item text instead of the rewritten rules; it needs
 your export of his doc at `data/corgo-77-v3.md` (see [`DEVELOPING.md`](DEVELOPING.md)).
