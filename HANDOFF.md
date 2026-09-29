@@ -20,8 +20,10 @@ Fixed constraints, unchanged since the start:
 - Keep compatibility with Schism989's Solo of Fortune module (`tools/compat/`).
 - Built on Windows: all file I/O is explicit UTF-8, and stdout too (see the encoding note in
   `DEVELOPING.md`).
-- Two zips per delivery: the module and the build project. The repo now carries the document, so it and
-  the build project differ only by `reference/` (Schism989's module, which has no license file).
+- Delivery is a GitHub Release: push a `v*` tag matching `module/module.json`'s version and
+  `.github/workflows/release.yml` builds and attaches `module.zip` and `module.json`. Users install from the
+  manifest URL in `README.md`. The repo carries the document, so it is the build project; only `reference/`
+  (Schism989's module, which has no license file) stays outside it.
 
 ## Current state: 754 items across 15 packs
 

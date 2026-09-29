@@ -15,10 +15,16 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
 
 ## Installing
 
-1. Unzip so the folder `corgo-77-collection` sits inside your Foundry
-   `Data/modules/` folder (it should contain `module.json`).
-2. Restart Foundry (or return to Setup), launch your world, and enable
-   **Corgo's 77 Collection V3** under **Manage Modules**.
+1. In Foundry's Setup screen open **Add-on Modules**, click **Install Module**,
+   paste this into **Manifest URL**, and click **Install**:
+
+       https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
+
+   Foundry will offer updates from the same place. If you were handed a
+   `module.zip` instead, unzip it so the folder `corgo-77-collection` sits
+   inside your Foundry `Data/modules/` folder (it should contain `module.json`).
+2. Launch your world and enable **Corgo's 77 Collection V3** under
+   **Manage Modules**.
 3. The compendiums appear in the Compendium tab, in the
    **Corgo's 77 Collection** folder.
 4. **One-time setup per world (GM):** open **Corgo's 77: Setup Macros** and

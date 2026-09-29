@@ -24,6 +24,23 @@ Corgo's document instead, put a text export of the doc at `data/corgo-77-v3.md` 
 `npm run parse && npm run build`. `data/` and `reference/` are git-ignored because they hold other
 people's work (Corgo's full text; a copy of Schism989's module). See [`DEVELOPING.md`](DEVELOPING.md).
 
+## Releasing
+
+Users install the module from a manifest URL, which points at the latest GitHub Release:
+
+    https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
+
+Releases are built by [`.github/workflows/release.yml`](.github/workflows/release.yml), so nothing built is
+committed. To publish a version, bump `"version"` in `module/module.json`, commit, then tag and push:
+
+    git tag v0.8.1
+    git push origin v0.8.1
+
+The workflow refuses a tag that does not match the manifest's version. It runs `./setup.sh` (install, parse,
+build, validate, test), pins the manifest's `download` field to that tag's zip, and attaches `module.zip` and
+`module.json` to a release named after the tag. The zip has `module.json` at its root, which is what Foundry
+expects. `main` is for development; a release is only ever a tag.
+
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian
 Games and is not approved or endorsed by RTG. This content references materials that are the property of
 R. Talsorian Games and its licensees.
