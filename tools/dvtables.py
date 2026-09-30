@@ -11,13 +11,12 @@ When weapons sharing a single-shot table use different Autofire types, the minor
 e.g. "DV Carbine [SMG]" + "DV Carbine [SMG] (Autofire)". "(" sorts before "[", so the untagged
 "DV Carbine (Autofire)" is still the first match for plain "DV Carbine" weapons.
 """
-import json
 from pathlib import Path
-from common import doc_id
+from common import doc_id, load_json
 
 ROOT = Path(__file__).resolve().parent.parent
-SOF = json.load(open(ROOT / "text/dv_tables_sof45.json", encoding="utf-8"))
-CORE_DV = json.load(open(ROOT / "text/dv_tables_core.json", encoding="utf-8"))  # copied from CPR v0.92.4
+SOF = load_json(ROOT / "text/dv_tables_sof45.json")
+CORE_DV = load_json(ROOT / "text/dv_tables_core.json")  # copied from CPR v0.92.4
 ICON = "systems/cyberpunk-red-core/icons/compendium/default/Default_DV_Table.svg"
 
 # Corgo's range label -> Solo of Fortune 2045 table row

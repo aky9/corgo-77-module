@@ -94,7 +94,8 @@ def parse(text):
 
 if __name__ == "__main__":
     data = parse(SRC.read_text(encoding="utf-8"))
-    json.dump(data, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=1, ensure_ascii=False)
     print(f"{len(data['mods'])} mods, {len(data['weapons'])} weapons, "
           f"{len(data['series'])} variant series with {len(data['variants'])} members")
     groups = {}

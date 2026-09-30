@@ -68,7 +68,8 @@ def main():
             recs.append({"group": e["group"], "level": e["level"], "heading": e["heading"], "stats": stats,
                          "body": rules})
         out[kind] = recs
-    json.dump(out, open(ROOT / "data/upgrades.parsed.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    with open(ROOT / "data/upgrades.parsed.json", "w", encoding="utf-8") as f:
+        json.dump(out, f, indent=1, ensure_ascii=False)
     for k, v in out.items():
         print(k, len(v), "entries;", sum(1 for r in v if "Cost" not in r["stats"]), "without a Cost line")
 

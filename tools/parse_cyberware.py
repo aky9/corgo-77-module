@@ -3,14 +3,14 @@
 Writes data/cyberware.parsed.json. Each record is {chapter, group, level, heading, parent, stats, lines}:
 
 - `chapter` is "cyberware", "operating-systems" or "cyberware-alternatives" (matches
-  original_text.SECTIONS, so the builder can hand the heading straight to original_text.lookup).
+  entry_text.SECTIONS, so the builder can hand the heading straight to entry_text.lookup).
 - `group` is the "## " subsection (FASHIONWARE, NEURALWARE, CYBERARMS, ...) and becomes the pack folder.
 - `parent` is the "### " entry a nested "#### " enhancement hangs off (Gorilla Arm -> Limiter Removal),
   which is how we know a nested entry enhances the entry above it rather than standing alone.
 - `stats` holds the Cost / Install / Humanity Loss / Availability line values as written.
 
-Only stats are parsed; the rules text itself lives in text/cyberware.json, rewritten in our own words
-(`npm run build:original` substitutes Corgo's wording at build time instead). Full Body Conversions,
+Only stats are parsed; each item's text is read from its entry at build time (entry_text.lookup), and its
+automation data comes from text/cyberware.json. Full Body Conversions,
 the Militech Centaur Exo, and the Corpochrome variants are deliberately not parsed: see SKIP_GROUPS
 and SKIP_HEADINGS below.
 """
@@ -30,7 +30,7 @@ SRC = ROOT / "data/corgo-77-v3.md"
 OUT = ROOT / "data/cyberware.parsed.json"
 
 # chapter key -> (start marker, end marker). The doc repeats some chapters in a "Copy of" tab, so we
-# take the first occurrence of each, like original_text._section does.
+# take the first occurrence of each, like entry_text._section does.
 CHAPTERS = {
     "cyberware": ("# **CYBERWARE**", "# **OPERATING SYSTEMS"),
     "operating-systems": ("# **OPERATING SYSTEMS", "# **CYBERWARE ALTERNATIVES"),
@@ -105,7 +105,8 @@ def parse(text):
 
 if __name__ == "__main__":
     recs = parse(SRC.read_text(encoding="utf-8"))
-    json.dump(recs, open(OUT, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump(recs, f, indent=1, ensure_ascii=False)
     by_chapter = {}
     for r in recs:
         by_chapter.setdefault(r["chapter"], []).append(r)

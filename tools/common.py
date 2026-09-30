@@ -1,5 +1,5 @@
 """Shared helpers for building Corgo's 77 Collection item documents."""
-import hashlib, html, re, sys
+import hashlib, html, json, re, sys
 
 # Item names carry characters a legacy Windows console can't encode ("Ć", curly quotes, "♦"), and Python
 # raises UnicodeEncodeError rather than mangling them, which killed the build mid-print. Ask for UTF-8 and
@@ -63,27 +63,35 @@ def html_escape(s):
     return html.escape(s, quote=False)
 
 
-def description_html(facts, rules, notes, section, group_rule=None, original=None):
+def load_json(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def dump_json(path, data, ensure_ascii=False):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=1, ensure_ascii=ensure_ascii)
+
+
+def description_html(facts, notes, section, entry=None, rules=None):
+    """The item description: its entry from Corgo's document, the facts this module adds, the Foundry notes,
+    and the source line.
+
+    `entry` is the HTML entry_text.lookup returns. The few items with no entry (listed in entry_text.py) pass
+    the module's own text as `rules` instead.
+    """
     parts = []
-    original_facts = []
-    if original:  # Corgo's own wording (see original_text.py); keep our Foundry notes and the link
-        # His entry opens with his own stat line, so a fact he already states would render twice. Keep only
+    if entry:
+        # The entry opens with its own stat line, so a fact it already states would render twice. Keep only
         # the ones this module adds on top of it - "Enhances" above all, which the sheet shows and
-        # validate.mjs resolves against the packs - and drop our rewritten rules, which his text replaces.
-        facts = [(k, v) for k, v in facts if f"<strong>{html_escape(k)}:</strong>" not in original]
-        rules, group_rule = None, None
-        original_facts, facts = facts, []
-        parts.append(original)
-    if original_facts:
-        parts.append("<p>" + "<br>\n".join(f"<strong>{html_escape(k)}:</strong> {html_escape(v)}"
-                                           for k, v in original_facts) + "</p>")
+        # validate.mjs resolves against the packs.
+        facts = [(k, v) for k, v in facts if f"<strong>{html_escape(k)}:</strong>" not in entry]
+        parts.append(entry)
     if facts:
         # A newline after each <br>: Foundry strips tags for list summaries and tooltips, and a tag with no
         # whitespace around it welds the words either side of it ("(Very Expensive)Type: Neuralware").
         parts.append("<p>" + "<br>\n".join(f"<strong>{html_escape(k)}:</strong> {html_escape(v)}"
                                            for k, v in facts) + "</p>")
-    if group_rule:
-        parts.append(f"<p><em>{html_escape(group_rule)}</em></p>")
     if rules:
         parts.append(f"<p>{html_escape(rules)}</p>")
     if notes:

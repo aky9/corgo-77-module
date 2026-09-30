@@ -1,7 +1,7 @@
 """Parse Corgo's Becoming Iconic, Iconic Cyberware and Iconic Gear chapters into records.
 
 Writes data/iconics.parsed.json: {chapter, group, level, heading, parent, stats, lines} per entry, the same
-shape parse_cyberware.py produces, so build_iconics.py can hand a heading straight to original_text.lookup
+shape parse_cyberware.py produces, so build_iconics.py can hand a heading straight to entry_text.lookup
 and knows which nested entry hangs off which parent (Relic Biochip 2.0 under 1.0).
 
 Iconics list no Cost. Instead they carry `Category` (the price tier, which drives repairs and Tech Upgrades)
@@ -106,8 +106,8 @@ def parse_rules(text):
 if __name__ == "__main__":
     text = SRC.read_text(encoding="utf-8")
     recs = parse(text)
-    json.dump({"rules": parse_rules(text), "entries": recs}, open(OUT, "w", encoding="utf-8"),
-              indent=1, ensure_ascii=False)
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump({"rules": parse_rules(text), "entries": recs}, f, indent=1, ensure_ascii=False)
     groups = {}
     for r in recs:
         groups.setdefault((r["chapter"], r["group"]), []).append(r["heading"])

@@ -21,10 +21,10 @@ Not built here: Iconic Armor, which is one item and already in text/armor.json's
 Weapons, which is its own chapter and its own pass; and Iconic Vehicles, which waits for the vehicle
 chapters, since the `vehicle` field set is untouched.
 """
-import copy, json
+import copy
 from pathlib import Path
-from common import doc_id, title_case, description_html, folder_doc
-import build_cyberware, build_gear, build_upgrades, original_text
+from common import doc_id, title_case, description_html, folder_doc, load_json
+import build_cyberware, build_gear, build_upgrades, entry_text
 
 ROOT = Path(__file__).resolve().parent.parent
 # CP:R price tiers. Iconics can't be bought; this is the benchmark the tier implies, which is what repair
@@ -67,11 +67,11 @@ def notes_for(spec, price, stats):
 
 
 def build_all():
-    spec = json.load(open(ROOT / "text/iconics.json", encoding="utf-8"))["items"]
-    data = json.load(open(ROOT / "data/iconics.parsed.json", encoding="utf-8"))
+    spec = load_json(ROOT / "text/iconics.json")["items"]
+    data = load_json(ROOT / "data/iconics.parsed.json")
     parsed = {r["heading"]: r for r in data["entries"]}
     # An entry with nested "#### " entries under it (Relic Biochip 1.0 -> 2.0) must stop at the first
-    # sub-heading when we pull Corgo's wording, or the parent swallows its child's text.
+    # sub-heading when its text is read, or the parent swallows its child's text.
     has_children = {r["parent"] for r in data["entries"] if r["parent"]}
 
     packs = {"iconic-cyberware": [], "iconic-gear": []}
@@ -94,13 +94,13 @@ def build_all():
         name = sp.get("name") or title_case(key)
         intro_only = rec["heading"] in has_children
         heading = sp.get("heading", key)
-        original = original_text.lookup(rec["chapter"], heading, intro_only=intro_only)
+        entry = entry_text.lookup(rec["chapter"], heading, intro_only=intro_only)
 
         if sp["kind"] == "enhancement":
             f = facts_for(stats, [("Enhances", sp["enhances"]), ("Option Slots", "0 (Cyberware Enhancement)")])
-            d = build_upgrades.upgrade(f"iconic:{key}", name, {"mods": sp.get("mods", {})}, price, 0, f,
-                                       sp["rules"], section, folder(pack, label), notes=notes,
-                                       heading=heading, section_key=rec["chapter"], intro_only=intro_only)
+            d = build_upgrades.upgrade(f"iconic:{key}", name, {"mods": sp.get("mods", {})}, price, 0, f, section,
+                                       folder(pack, label), notes=notes, heading=heading,
+                                       section_key=rec["chapter"], intro_only=intro_only)
             d["system"]["type"] = "cyberware"
             d["system"]["isElectronic"] = sp.get("electronic", False)
             d["img"] = build_cyberware.icon_path(sp.get("icon"))
@@ -122,8 +122,7 @@ def build_all():
                          ("Option Slots", f"uses {s['size']}"
                           + (f", provides {sp['slots']}" if sp.get("slots") else ""))]
                 s["description"]["value"] = description_html(
-                    facts=facts_for(stats, extra), rules=sp["rules"], notes=notes, section=section,
-                    original=original)
+                    facts=facts_for(stats, extra), notes=notes, section=section, entry=entry)
             packs[pack] += docs
             continue
 
@@ -132,8 +131,7 @@ def build_all():
             s["price"]["market"] = price
             s["installedItems"]["slots"] = sp["slots"]
             s["description"]["value"] = description_html(
-                facts=facts_for(stats, [("Slots", str(sp["slots"]))]), rules=sp["rules"], notes=notes,
-                section=section, original=original)
+                facts=facts_for(stats, [("Slots", str(sp["slots"]))]), notes=notes, section=section, entry=entry)
             img = build_cyberware.ICONS + "default/Default_Cyberdeck.svg"
             packs[pack].append(build_cyberware._doc("cyberdeck", f"iconic:{key}", name, "cyberdeck", img, s,
                                                     folder(pack, label)))
@@ -159,8 +157,7 @@ def build_all():
                 dnotes.append("Stat and skill changes are automated; the month-long duration, caps, minimums "
                               "and everything else are not.")
             s["description"]["value"] = description_html(
-                facts=facts_for(stats, [("Type", "Iconic Drug")]), rules=sp["rules"], notes=dnotes,
-                section=section, original=original)
+                facts=facts_for(stats, [("Type", "Iconic Drug")]), notes=dnotes, section=section, entry=entry)
             packs[pack].append(build_cyberware._doc("drug", f"iconic:{key}", name, "drug", img, s,
                                                     folder(pack, label), effects))
             continue

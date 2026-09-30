@@ -1,0 +1,28 @@
+# Runs the full setup on every push and pull request: install, parse, build, validate, check, test.
+# A build that changes src/packs means the committed packs are stale, so that fails too.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install, parse, build, validate, check, test
+        run: ./setup.sh
+
+      - name: Check the committed packs match the build
+        run: git diff --exit-code --stat src/packs tools/compat

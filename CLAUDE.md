@@ -4,6 +4,10 @@ This guide explains how the module is built from Corgo's document, where each pa
 follow when adding or changing content, and the conventions taken from the Cyberpunk RED - Core 0.92.4
 source. Read it before changing anything under `tools/`, `text/`, or `src/packs/`.
 
+The module is a Foundry conversion of Corgo's 77 Collection V3 by Corgopolis. His document, exported to
+`data/corgo-77-v3.md`, is the source: the parsers read every stat block from it, and every item's
+description is its entry from it. This repository adds the automation data and the Foundry notes.
+
 ## Requirements and commands
 
 You need Python 3 (standard library only) and Node 18 or newer. On a fresh clone, `./setup.sh` runs
@@ -13,12 +17,13 @@ everything below and stops at the first failure. By hand:
     npm run parse            # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so run once per clone)
     npm run build            # src/packs/*.json -> dist/corgo-77-collection (the installable module)
     npm run validate         # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
-    npm test                 # original-text regression checks against tests/fixtures/
-    npm run check:original   # per-item check that each description carries its own entry's text
-    npm run build:original   # build from an export of Corgo's doc at a path other than data/corgo-77-v3.md
+    npm run check:entries    # per-item check that each description carries its own entry's text
+    npm test                 # entry lookup checks against the placeholder document in tests/fixtures/
 
-`check:original` and `build:original` write to `build/packs`, not `src/packs`. Run `npm run build` again
-afterwards so `dist/` reflects the committed sources before packaging.
+To build from a newer export of the document, replace `data/corgo-77-v3.md` and run `npm run parse` and
+`npm run build` again. `tools/build.py --doc <path> --out <dir>` reads the entry text from another export
+without touching `src/packs`, which is how the tests build from their placeholder document; the stat
+blocks still come from the parsed data.
 
 Run every command from the repository root. All file I/O is explicit UTF-8, so the build behaves the same
 on Windows, macOS, and Linux. Item names include characters a legacy Windows console cannot show ("Ć",
@@ -35,7 +40,8 @@ The build is a pipeline of four steps, each reading the previous step's output:
    git-ignored because they are derived; regenerate them whenever the document changes.
 2. **Build.** `tools/build.py` runs every pack builder in `tools/build_*.py`. A builder joins the parsed
    stats with the automation data in `text/*.json`, looks up the item's entry in Corgo's document through
-   `tools/original_text.py`, and writes one JSON document per item or folder to `src/packs/<pack>/`.
+   `tools/entry_text.py`, and writes one JSON document per item or folder to `src/packs/<pack>/`. The
+   build fails if the document is missing or if any item's entry cannot be found.
 3. **Compile.** `tools/compile.mjs` compiles each `src/packs/<pack>/` into a LevelDB pack under
    `dist/corgo-77-collection/packs/` with the Foundry CLI, and copies `module/` in beside them.
 4. **Validate.** `tools/validate.mjs` reads the compiled packs back and checks them against a snapshot of
@@ -45,13 +51,10 @@ The build is a pipeline of four steps, each reading the previous step's output:
 derives each document's ID from its name and pack, so rebuilding never changes an ID and never breaks a
 world that already holds the item.
 
-If `data/corgo-77-v3.md` is missing, the build says so and falls back to the rewritten text in `text/*.json`
-for every item. Do not commit the result of such a build.
-
 ## Layout
 
-- `data/corgo-77-v3.md`: text export of Corgo's document (snapshot of Sept 12, 2026), tracked with his
-  permission. The parsers and `original_text.py` read it; nothing copies it into `dist/`.
+- `data/corgo-77-v3.md`: text export of Corgo's document (snapshot of Sept 12, 2026). The parsers and
+  `entry_text.py` read it; nothing copies it into `dist/`.
 - `module/`: `module.json` and the end-user README. Copied into `dist/` as-is, so the manifest version and
   the README's pack list are edited here.
 - `src/packs/<pack>/`: one JSON file per document, as the compiler expects.
@@ -74,9 +77,9 @@ for every item. Do not commit the result of such a build.
   rather than repeating their conventions.
 - `tools/dvtables.py`: builds the DV Tables pack and decides each weapon's DV table. Its docstring explains
   how 0.92.4 matches Autofire tables by name.
-- `tools/original_text.py`: finds an item's entry in the document by heading, within the right section, and
-  converts it to HTML.
-- `tools/check_original.py`: the `check:original` command.
+- `tools/entry_text.py`: finds an item's entry in the document by heading, within the right section, and
+  converts it to HTML. Its docstring lists the items that have no entry.
+- `tools/check_entries.py`: the `check:entries` command.
 - `tools/cpr-0.92.4-reference.json`: a snapshot of 0.92.4's allowed values, field sets, and item names, so
   building and validating need no system checkout. The cyberware field sets and enums come from the
   0.92.4 `CyberwareDataModel` and its mixins, checked against all 186 cyberware items the system ships.
@@ -84,47 +87,44 @@ for every item. Do not commit the result of such a build.
   Fortune 2045 module (v1.1.0). Refresh it if that module updates.
 - `tools/compat/schism-dv-recommendations.json`: generated by the build; the DV table each of Schism989's
   weapons should use.
-- `text/*.json`: per-pack automation data and the rewritten rules text (see the next section).
+- `text/*.json`: per-pack automation data and Foundry notes (see the next section).
 - `text/dv_tables_sof45.json`, `text/dv_tables_core.json`: the Solo of Fortune 2045 DV tables, transcribed
   from Interface RED Vol. 5, and the two core tables that are copied.
 - `text/enhance_targets.json`: the enhancement parents 0.92.4 has no item for, each with the reason.
-- `tests/`: the `npm test` checks and a placeholder document fixture.
+- `tests/`: the `npm test` checks and the placeholder document they build from.
+- `.github/workflows/`: `ci.yml` runs `./setup.sh` on every push and pull request; `release.yml` publishes a
+  tagged release.
 - `reference/` (git-ignored): a pinned copy of Schism989's module, used only to refresh `tools/compat/`.
 
-## Corgo's text and what to put where
+## Item text and what to put where
 
-Corgo gave permission for this conversion and for his wording to ship, so **his text is what every item
-carries**. An item with an entry in his document gets that entry in full (flavor, stats, and rules), then
-the module's Foundry notes, then a link to the source. `description_html` adds only the facts he does not
-state himself, such as "Enhances", which the sheet and the validator both need.
+**Every item carries its entry from Corgo's document**, in full (flavor, stats, and rules), then the
+module's Foundry notes, then a link to the source. `description_html` adds only the facts the entry does
+not state itself, such as "Enhances", which the sheet and the validator both need.
 
 Follow these rules when adding or changing content:
 
-- **Foundry guidance goes in `notes`, never in `rules`.** A spec's `notes` list renders as the item's
-  "Foundry notes" bullets on every build path. Every builder reads `spec.get("notes", [])` and appends it to
-  the notes it works out itself.
-- **Do not extend `rules`.** Each `rules` string in `text/*.json` is a rewrite of Corgo's own rules, and the
-  build discards it whenever his text is present. It exists only so that `--original-text ""` still
-  produces a complete module with none of his wording, which matters if the permission ever has to be
-  unwound. New content needs stats and `notes`, not a restatement of Corgo.
-- **The rest of a spec is automation data** with no equivalent in his prose: `attack` and `damage` as
-  `[value, situational]`, `slots`, `magazine`, `rof_override`, `secondary`, `split`, and so on. It is needed
-  on every build path.
-- **Items with no single entry in the document** keep the rewritten text. Today that is the Capacity
-  Chart magazines and the Gun Shields.
+- **Foundry guidance goes in `notes`.** A spec's `notes` list renders as the item's "Foundry notes"
+  bullets. Every builder reads `spec.get("notes", [])` and appends it to the notes it works out itself.
+  Do not restate the entry: the item already carries it.
+- **The rest of a spec is automation data** with no equivalent in the document: `attack` and `damage` as
+  `[value, situational]`, `slots`, `magazine`, `rof_override`, `secondary`, `split`, and so on.
+- **Items with no entry in the document** are never looked up and carry the module's own text through the
+  `rules` argument of `description_html`. `entry_text.py` lists them: the Capacity Chart magazines, the Gun
+  Shields, and the armor half of Nano-Plating. Any other item whose lookup finds no entry fails the build.
 - **Entries with nested `####` sub-entries** need `intro_only=True` in the lookup, or the parent's text runs
   on into its children's. `build_cyberware` passes it for Gorilla Arm, Mantis Blade, the Popup leg weapon,
   and Exoglove; `build_upgrades.nested_parents()` supplies it for Long Scope, Short Scope, and Laser Sight.
-  `check:original` catches any new case.
+  `check:entries` catches any new case.
 
-The permission does not cover R. Talsorian's material, which this module ships under RTG's Homebrew
-Content Policy regardless, or Schism989's module, whose repository has no license file. Never copy his
-items into this module; `reference/` stays git-ignored and users install his module alongside.
+R. Talsorian's material ships under RTG's Homebrew Content Policy. Schism989's module has no license file:
+never copy his items into this module; `reference/` stays git-ignored and users install his module
+alongside.
 
 ### Export quirks the converter handles
 
-`original_text._to_html` corrects these artifacts of the Google Docs export. When you add a handler, run
-`npm run check:original` over all items and then scan the generated HTML for leftovers.
+`entry_text._to_html` corrects these artifacts of the Google Docs export. When you add a handler, run
+`npm run check:entries` over all items and then scan the generated HTML for leftovers.
 
 - A link broken across two lines ("[text" on one, "](url)" on the next). The emphasis markers either side of
   the break are dropped at the seam.
@@ -207,7 +207,7 @@ look if a system update changes the behaviour.
 
 - Every block-level tag needs whitespace on one side of it. Foundry strips tags to build item-list
   summaries, tooltips, and chat previews, and without the whitespace the words either side weld together
-  ("Cost: 2,000eb (Very Expensive)Type: Neuralware"). `description_html` and `original_text._to_html` put a
+  ("Cost: 2,000eb (Very Expensive)Type: Neuralware"). `description_html` and `entry_text._to_html` put a
   newline after each boundary tag, and the validator enforces it. Inline tags (strong, em, a) are exempt:
   the export splits words across bold runs, so dropping an inline tag with no space is the correct reading.
 
@@ -228,12 +228,13 @@ any fails.
   replays every weapon's Autofire lookup, resolves every enhancement target, checks description whitespace,
   parses the macros, and confirms the DV compendium still covers Schism989's table names with no item-name
   collisions.
-- `npm run check:original` fingerprints each item's entry with its longest unique line, taken from the
-  parsers' records rather than from `original_text.py`, so a heading-matching bug cannot hide itself. It
+- `npm run check:entries` fingerprints each item's entry with its longest unique line, taken from the
+  parsers' records rather than from `entry_text.py`, so a heading-matching bug cannot hide itself. It
   fails if an item carries another entry's text, which is how a parent running on into its nested
-  sub-entries is caught. It needs `data/`, so it only runs where the document is present.
-- `npm test` runs the original-text checks against the placeholder document in `tests/fixtures/`, so it
-  works with or without Corgo's document.
+  sub-entries is caught. It reads `src/packs`, so run it after `npm run build`.
+- `npm test` builds from the placeholder document in `tests/fixtures/` and checks the entry lookup and
+  its HTML conversion. The placeholder covers only a few dozen headings, so that build passes
+  `--allow-missing-entries`; the real build never does.
 
 ## Known gaps
 

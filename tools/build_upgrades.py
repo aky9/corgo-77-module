@@ -3,12 +3,12 @@
 Attachments and mods are `itemUpgrade` items (type "weapon"). Corgo's Required Slots become the upgrade's
 `size`; Weapon Mods and Invented Tech Upgrades take no slots (size 0). Only bonuses the core can apply are
 automated: flat attack bonuses (situational ones show as toggles in the roll dialog), flat damage, extra
-Attachment Slots, magazine size, ROF, and underbarrel secondary weapons. Everything else is rules text.
+Attachment Slots, magazine size, ROF, and underbarrel secondary weapons. Everything else is in the entry text.
 """
-import copy, json, re
+import copy, re
 from pathlib import Path
-import original_text
-from common import doc_id, title_case, parse_cost, description_html, folder_doc, SOURCE_BOOK
+import entry_text
+from common import doc_id, title_case, parse_cost, description_html, folder_doc, load_json, SOURCE_BOOK
 
 ROOT = Path(__file__).resolve().parent.parent
 ICONS = "systems/cyberpunk-red-core/icons/compendium/"
@@ -77,8 +77,10 @@ def item(kind, key, name, itype, img, system, folder):
             "effects": [], "folder": folder, "sort": 0, "ownership": {"default": 0}, "flags": {}}
 
 
-def upgrade(key, name, spec, price, size, facts, rules, section, folder, notes=(), heading=None,
-            section_key=None, intro_only=False):
+def upgrade(key, name, spec, price, size, facts, section, folder, notes=(), heading=None, section_key=None,
+            intro_only=False, rules=None):
+    """An itemUpgrade. `heading` and `section_key` locate its entry in the document; the generated Capacity Chart
+    magazines pass `rules` instead (see entry_text.py)."""
     s = copy.deepcopy(UPGRADE_TEMPLATE)
     s["price"]["market"] = price
     s["size"] = size
@@ -104,17 +106,17 @@ def upgrade(key, name, spec, price, size, facts, rules, section, folder, notes=(
         s["magazine"]["max"] = w.get("magazine", 0)
         if w.get("ammo"):
             s["installedItems"].update(allowed=True, allowedTypes=["ammo"])
-    s["description"]["value"] = description_html(facts=facts, rules=rules, notes=list(notes), section=section,
-                                                 original=(original_text.lookup(section_key, heading, intro_only=intro_only)
-                                                           if section_key else None))
+    s["description"]["value"] = description_html(
+        facts=facts, notes=list(notes), section=section, rules=rules,
+        entry=entry_text.lookup(section_key, heading, intro_only=intro_only) if section_key else None)
     return item("upgrade", key, name, "itemUpgrade", ICON[spec.get("icon")], s, folder)
 
 
 def nested_parents(parsed):
     """Headings that have deeper "#### " entries under them (Long Scope -> Jue Long Scope, and so on).
 
-    Their original-text lookup has to stop at the first sub-heading, or the parent's description runs on
-    into its variants' text - which is how the plain Long Scope ended up carrying the Jue and Saika rules.
+    Their entry lookup has to stop at the first sub-heading, or the parent's description runs on into its
+    variants' text - which is how the plain Long Scope ended up carrying the Jue and Saika rules.
     """
     return {r["heading"] for i, r in enumerate(parsed)
             if i + 1 < len(parsed) and parsed[i + 1]["level"] > r["level"]}
@@ -144,20 +146,19 @@ def build_attachments(parsed, spec):
         notes = ([sp["price_note"]] if sp.get("price_note") else []) + list(sp.get("notes", []))
         section = f"Weapons > Attachment Catalog > {group}"
         if "split" in sp:
-            for sub_name, sub_price, sub_rule in sp["split"]:
+            for sub_name, sub_price in sp["split"]:
                 f = [("Cost", f"{sub_price:,}eb"), *facts[1:]]
-                docs.append(upgrade(f"{rec['heading']}:{sub_name}", sub_name, sp, sub_price, size, f,
-                                    f"{sp['rules']} {sub_rule}", section, folder(group), notes,
-                                    heading=rec["heading"], section_key="attachments",
+                docs.append(upgrade(f"{rec['heading']}:{sub_name}", sub_name, sp, sub_price, size, f, section,
+                                    folder(group), notes, heading=rec["heading"], section_key="attachments",
                                     intro_only=rec["heading"] in parents))
             continue
-        docs.append(upgrade(rec["heading"], name, sp, sp.get("price", price), size, facts, sp["rules"], section,
-                            folder(group), notes, heading=rec["heading"], section_key="attachments",
+        docs.append(upgrade(rec["heading"], name, sp, sp.get("price", price), size, facts, section, folder(group),
+                            notes, heading=rec["heading"], section_key="attachments",
                             intro_only=rec["heading"] in parents))
 
+    # The chart's magazines have no entry of their own: one item per weapon row, with the module's own text.
     for fam, col, price, cat, size, icon in MAG_FAMILIES:
-        base_rules = spec.get(fam.upper(), {}).get("rules", "")
-        extra = base_rules.split("only one Capacity attachment at a time.", 1)[-1].strip() if base_rules else ""
+        extra = spec.get(fam.upper(), {}).get("magazine_rules", "")
         for row, values in CAPACITY.items():
             n = values[col]
             rules = MAG_RULE.format(n=n, row=row) + (" " + extra if extra else "")
@@ -168,8 +169,9 @@ def build_attachments(parsed, spec):
                           "adding to it; don't install both.")
             sp = {"magazine": n, "icon": icon}
             facts = [("Cost", f"{price:,}eb ({cat})"), ("Attachment slots", str(size)), ("Fits", f"{row} weapons")]
-            docs.append(upgrade(f"mag:{fam}:{row}", f"{fam} ({row})", sp, price, size, facts, rules,
-                                "Weapons > Weapons in the 2070s > Capacity Chart", folder("Magazines (Capacity Chart)")))
+            docs.append(upgrade(f"mag:{fam}:{row}", f"{fam} ({row})", sp, price, size, facts,
+                                "Weapons > Weapons in the 2070s > Capacity Chart", folder("Magazines (Capacity Chart)"),
+                                rules=rules))
     return docs
 
 
@@ -191,23 +193,21 @@ def build_mods(parsed, spec):
             dv, material = sp["invented"]
             facts = [("Invented Tech Upgrade", f"Upgrade {dv}; total material cost: {material}")]
             notes.append("Price is 0 because a Tech builds this; the material cost depends on the item upgraded.")
-            docs.append(upgrade(rec["heading"], name, sp, 0, 0, facts, sp["rules"], section, folders[group], notes,
-                                heading=rec["heading"], section_key="mods",
-                                intro_only=rec["heading"] in parents))
+            docs.append(upgrade(rec["heading"], name, sp, 0, 0, facts, section, folders[group], notes,
+                                heading=rec["heading"], section_key="mods", intro_only=rec["heading"] in parents))
             continue
         price, cat = cost_of(rec["stats"].get("Cost"))
         facts = [("Cost", rec["stats"].get("Cost", "")), ("Attachment slots", "0 (Weapon Mod)"),
                  ("Mods", rec["stats"].get("Mods", ""))]
         if "split" in sp:
-            for sub_name, sub_price, sub_rule in sp["split"]:
+            for sub_name, sub_price in sp["split"]:
                 f = [("Cost", f"{sub_price:,}eb"), *facts[1:]]
-                docs.append(upgrade(f"{rec['heading']}:{sub_name}", sub_name, sp, sub_price, 0, f,
-                                    f"{sp['rules']} {sub_rule}", section, folders[group], notes,
-                                    heading=rec["heading"], section_key="mods",
-                                intro_only=rec["heading"] in parents))
+                docs.append(upgrade(f"{rec['heading']}:{sub_name}", sub_name, sp, sub_price, 0, f, section,
+                                    folders[group], notes, heading=rec["heading"], section_key="mods",
+                                    intro_only=rec["heading"] in parents))
             continue
-        docs.append(upgrade(rec["heading"], name, sp, sp.get("price", price), 0, facts, sp["rules"], section,
-                            folders[group], notes, heading=rec["heading"], section_key="mods",
+        docs.append(upgrade(rec["heading"], name, sp, sp.get("price", price), 0, facts, section, folders[group],
+                            notes, heading=rec["heading"], section_key="mods",
                             intro_only=rec["heading"] in parents))
     return docs
 
@@ -224,16 +224,15 @@ def build_ammo(parsed, spec):
         section = "Weapons > Ammunition"
         variants = []
         if sp.get("kind") == "kit":
-            for sub_name, sub_price, sub_rule in (sp.get("split") or [[base, sp["price"], ""]]):
+            for sub_name, sub_price in (sp.get("split") or [[base, sp["price"]]]):
                 variants.append((sub_name, "custom", "special", 1, sub_price, 10 if "Casings" in sub_name else 1,
-                                 (sp["rules"] + " " + sub_rule).strip(), "Adapter Kits & Casings"))
+                                 "Adapter Kits & Casings"))
         else:
             multi = len(sp["variety"]) > 1
             for v in sp["variety"]:
                 n = f"{base} ({VARIETY_LABEL[v]})" if multi else base
-                variants.append((n, v, sp["type"], sp.get("ablation", 1), sp["price"], sp["amount"], sp["rules"],
-                                 "Ammunition"))
-        for name, variety, atype, ablation, price, amount, rules, fold in variants:
+                variants.append((n, v, sp["type"], sp.get("ablation", 1), sp["price"], sp["amount"], "Ammunition"))
+        for name, variety, atype, ablation, price, amount, fold in variants:
             s = copy.deepcopy(AMMO_TEMPLATE)
             s.update(variety=variety, type=atype, ablationValue=ablation, amount=amount)
             s["price"]["market"] = price
@@ -241,15 +240,15 @@ def build_ammo(parsed, spec):
             notes = list(sp.get("notes", []))
             if variety == "custom":
                 notes.append("Not loadable ammo: an adapter you apply to other rounds or grenades.")
-            s["description"]["value"] = description_html(facts=facts, rules=rules, notes=notes, section=section,
-                                                         original=original_text.lookup("ammo", rec["heading"]))
+            s["description"]["value"] = description_html(facts=facts, notes=notes, section=section,
+                                                         entry=entry_text.lookup("ammo", rec["heading"]))
             docs.append(item("ammo", f"{rec['heading']}:{name}", name, "ammo", ICON["ammo"], s, folders[fold]))
     return docs
 
 
 def build_all():
-    parsed = json.load(open(ROOT / "data/upgrades.parsed.json", encoding="utf-8"))
-    att = build_attachments(parsed["attachments"], json.load(open(ROOT / "text/attachments.json", encoding="utf-8")))
-    mods = build_mods(parsed["mods"], json.load(open(ROOT / "text/mods.json", encoding="utf-8")))
-    ammo = build_ammo(parsed["ammo"], json.load(open(ROOT / "text/ammo.json", encoding="utf-8")))
+    parsed = load_json(ROOT / "data/upgrades.parsed.json")
+    att = build_attachments(parsed["attachments"], load_json(ROOT / "text/attachments.json"))
+    mods = build_mods(parsed["mods"], load_json(ROOT / "text/mods.json"))
+    ammo = build_ammo(parsed["ammo"], load_json(ROOT / "text/ammo.json"))
     return {"weapon-attachments": att, "weapon-mods": mods, "ammo": ammo}

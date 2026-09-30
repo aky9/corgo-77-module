@@ -13,8 +13,8 @@ Three document types come out of this chapter, matching how the core system mode
   Operating Systems, which he says work identically to enhancements. `size` is 0: enhancements take no
   Option Slot. These carry no Active Effects, only `modifiers`: `usage: "installed"` is not a legal
   usage for an itemUpgrade, so an effect on one would apply from inside the user's inventory, whether or
-  not it was installed. Bonuses a modifier can't express (extra slots and magazine capacity can) stay in
-  the rules text, with a note pointing at the parent item.
+  not it was installed. Bonuses a modifier can't express (extra slots and magazine capacity can) are
+  described in the entry text, with a note naming the parent item to put the effect on.
 - `cyberdeck` items for the five decks the Cyberdeck Port Operating Systems come with, since the OS is
   no use without the deck it restricts the port to.
 
@@ -26,10 +26,10 @@ plain effect, so it applies exactly while installed (core's Kerenzikov, Pain Edi
 Deliberately not built: the 2070s Full Body Conversions, the Militech Centaur Exo, and the Corpochrome
 variants. Corpochrome is written up as a rule in module/README.md instead.
 """
-import copy, json, re
+import copy, re
 from pathlib import Path
-from common import doc_id, title_case, parse_cost, description_html, folder_doc, SOURCE_BOOK
-import build_upgrades, original_text
+from common import doc_id, title_case, parse_cost, description_html, folder_doc, load_json, SOURCE_BOOK
+import build_upgrades, entry_text
 
 ROOT = Path(__file__).resolve().parent.parent
 ICONS = "systems/cyberpunk-red-core/icons/compendium/"
@@ -208,27 +208,26 @@ def cyberware_item(key, spec, rec, folder, section, intro_only=False):
                for e in spec.get("effects", [])]
 
     docs = []
-    variants = spec.get("split") or [[name, price, ""]]
-    for sub_name, sub_price, sub_rule in variants:
+    variants = spec.get("split") or [[name, price]]
+    for sub_name, sub_price in variants:
         sub_price = price if sub_price is None else sub_price
         sub = copy.deepcopy(s)
         sub["price"]["market"] = sub_price
         f = [("Cost", f"{sub_price:,}eb" if spec.get("split") else stats.get("Cost", "")), *facts[1:]]
         sub["description"]["value"] = description_html(
-            facts=f, rules=" ".join(x for x in (spec["rules"], sub_rule) if x), notes=notes, section=section,
-            original=original_text.lookup(rec["chapter"], spec.get("heading", key), intro_only=intro_only))
+            facts=f, notes=notes, section=section,
+            entry=entry_text.lookup(rec["chapter"], spec.get("heading", key), intro_only=intro_only))
         docs.append(_doc("cyberware", f"{key}:{sub_name}", sub_name, "cyberware", img, sub, folder, effects))
 
     armor = spec.get("armor")
-    if armor:  # the SP half of a piece of cyberware that armors the wearer
+    if armor:  # the SP half of a piece of cyberware that armors the wearer: no entry of its own (see entry_text.py)
         a = copy.deepcopy(ARMOR_TEMPLATE)
         a["bodyLocation"]["sp"] = a["headLocation"]["sp"] = armor["sp"]
         a["description"]["value"] = description_html(
             facts=[("Covers", "Body and Head"), ("SP", str(armor["sp"])), ("Armor Penalty", "none")],
-            rules=f"The armor provided by {name}. Equip this alongside the cyberware item.",
             notes=["Ablation this armor takes is reduced by 1 (minimum 0), and it repairs 1 lost SP at the end of "
                    "any day it loses none. Both are applied by hand."],
-            section=section)
+            section=section, rules=f"The armor provided by {name}. Equip this alongside the cyberware item.")
         docs.append(_doc("armor", f"{key}:armor", armor["name"], "armor", img, a, folder))
     return docs
 
@@ -242,15 +241,14 @@ def enhancement_item(key, spec, rec, folder, section, group_rule=None, intro_onl
     if group_rule:
         notes.append(group_rule)
     docs = []
-    variants = spec.get("split") or [[name, price, ""]]
-    for sub_name, sub_price, sub_rule in variants:
+    variants = spec.get("split") or [[name, price]]
+    for sub_name, sub_price in variants:
         sub_price = price if sub_price is None else sub_price
         facts = [("Cost", f"{sub_price:,}eb" if spec.get("split") else stats.get("Cost", "")),
                  ("Enhances", spec["enhances"]), ("Option Slots", "0 (Cyberware Enhancement)")]
-        d = build_upgrades.upgrade(f"cyberware:{key}:{sub_name}", sub_name,
-                                   {"mods": spec.get("mods", {})}, sub_price, 0, facts,
-                                   " ".join(x for x in (spec["rules"], sub_rule) if x), section, folder,
-                                   notes=notes, heading=spec.get("heading", key), section_key=rec["chapter"],
+        d = build_upgrades.upgrade(f"cyberware:{key}:{sub_name}", sub_name, {"mods": spec.get("mods", {})},
+                                   sub_price, 0, facts, section, folder, notes=notes,
+                                   heading=spec.get("heading", key), section_key=rec["chapter"],
                                    intro_only=intro_only)
         d["system"]["type"] = "cyberware"
         d["system"]["isElectronic"] = spec.get("electronic", False)
@@ -268,17 +266,16 @@ def cyberdeck_item(key, spec, rec, folder, section):
     notes.append("Comes with the Operating System that requires it, so its price is 0 here.")
     s["description"]["value"] = description_html(
         facts=[("Cost", "Provided with the Operating System"), ("Slots", str(spec["slots"]))],
-        rules=spec["rules"], notes=notes, section=section,
-        original=original_text.lookup(rec["chapter"], spec.get("heading", key)))
+        notes=notes, section=section, entry=entry_text.lookup(rec["chapter"], spec.get("heading", key)))
     return [_doc("cyberdeck", key, name, "cyberdeck", ICONS + "default/Default_Cyberdeck.svg", s, folder)]
 
 
 def build_all():
-    spec = json.load(open(ROOT / "text/cyberware.json", encoding="utf-8"))
-    records = json.load(open(ROOT / "data/cyberware.parsed.json", encoding="utf-8"))
+    spec = load_json(ROOT / "text/cyberware.json")
+    records = load_json(ROOT / "data/cyberware.parsed.json")
     parsed = {r["heading"]: r for r in records}
     # An entry with nested "#### " entries under it (Gorilla Arm -> Limiter Removal, and so on) must stop at
-    # the first sub-heading when we pull Corgo's wording, or the parent would swallow its children's text.
+    # the first sub-heading when its text is read, or the parent would swallow its children's text.
     has_children = {r["parent"] for r in records if r["parent"]}
     packs = {"cyberware": [], "cyberware-upgrades": [], "operating-systems": []}
     folders = {}

@@ -5,10 +5,10 @@ Corgo sometimes gives different penalties per stat (e.g. -1 REF, -2 DEX/MOVE). T
 the worst of the three and the description gives the exact split. Per-stat Active Effects were rejected:
 they would stack across worn pieces (e.g. Max-Helm + Max-Vest), which CPR's penalty rule doesn't.
 """
-import copy, json
+import copy
 from pathlib import Path
-from common import doc_id, title_case, parse_cost, description_html, folder_doc, SOURCE_BOOK
-import build_upgrades, original_text
+from common import doc_id, title_case, parse_cost, description_html, folder_doc, load_json, SOURCE_BOOK
+import build_upgrades, entry_text
 
 ROOT = Path(__file__).resolve().parent.parent
 ICONS = "systems/cyberpunk-red-core/icons/compendium/"
@@ -70,8 +70,8 @@ def armor_item(spec, loc, name, folder, section, section_key="armor"):
     where = {"body": "Body", "head": "Head", "both": "Body and Head (one piece)"}[loc]
     facts = [("Cost", spec["cost"]), ("Covers", where), ("SP", str(spec["sp"])), ("Armor Penalty", penalty_text(p))]
     img = icon(spec, "head" if loc == "head" else "body")
-    s["description"]["value"] = description_html(facts=facts, rules=spec["rules"], notes=notes, section=section,
-                                                 original=original_text.lookup(section_key, spec["key"]))
+    s["description"]["value"] = description_html(facts=facts, notes=notes, section=section,
+                                                 entry=entry_text.lookup(section_key, spec["key"]))
     _id = doc_id("armor", f"{spec['key']}:{loc}")
     effects = [effect(_id, name, img, k, v, i) for i, (k, v) in enumerate(spec.get("effects", []))]
     return {"_id": _id, "_key": f"!items!{_id}", "name": name, "type": "armor", "img": img, "system": s,
@@ -94,12 +94,13 @@ def build_armor_pack(spec):
             docs.append(armor_item(a, a["loc"], base, folders["Armor"], section))
     for a in spec["iconic"]:
         docs.append(armor_item(a, a["loc"], a["name"], folders["Iconic Armor"], "Iconics > Iconic Armor", "iconic-armor"))
-    for g in spec["gun_shields"]:
+    for g in spec["gun_shields"]:  # no entry of their own in the document: the module's own text (see entry_text.py)
         s = copy.deepcopy(ARMOR_TEMPLATE)
         s.update(isShield=True, price={"market": g["price"]}, shieldHitPoints={"max": g["hp"], "value": g["hp"]})
         s["description"]["value"] = description_html(
-            facts=[("Cost", g["cost"]), ("Shield HP", str(g["hp"]))], rules=spec["gun_shield_rules"] + g["extra"],
-            notes=[], section="Weapons > Attachment Catalog > Rails & Mounts > Gun Shield Mount")
+            facts=[("Cost", g["cost"]), ("Shield HP", str(g["hp"]))], notes=[],
+            section="Weapons > Attachment Catalog > Rails & Mounts > Gun Shield Mount",
+            rules=spec["gun_shield_rules"] + g["extra"])
         _id = doc_id("armor", g["name"])
         docs.append({"_id": _id, "_key": f"!items!{_id}", "name": g["name"], "type": "armor",
                      "img": ICONS + "armor/bullet_proof_shield.svg", "system": s, "effects": [],
@@ -119,13 +120,12 @@ def build_upgrade_pack(spec):
         docs.append(f)
         for e in entries:
             name = title_case(e["key"])
-            variants = e.get("split") or [[name, e.get("price", parse_cost(e["cost"])[0]), ""]]
-            for sub_name, price, sub_rule in variants:
+            variants = e.get("split") or [[name, e.get("price", parse_cost(e["cost"])[0])]]
+            for sub_name, price in variants:
                 facts = [("Cost", e["cost"] if not e.get("split") else f"{price:,}eb"), ("Type", e["kind"]),
                          ("Attachment slots", "0")]
-                rules = " ".join(x for x in (e["rules"], sub_rule) if x)
                 d = build_upgrades.upgrade(f"armor:{e['key']}:{sub_name}", sub_name, {"mods": e.get("mods", {})},
-                                           price, 0, facts, rules, section, folders[label],
+                                           price, 0, facts, section, folders[label],
                                            notes=[group_rule] + list(e.get("notes", [])), heading=e["key"],
                                            section_key="shields" if "Shield" in label else "armor")
                 d["system"]["type"] = e.get("type", "armor")
@@ -135,5 +135,5 @@ def build_upgrade_pack(spec):
 
 
 def build_all():
-    spec = json.load(open(ROOT / "text/armor.json", encoding="utf-8"))
+    spec = load_json(ROOT / "text/armor.json")
     return {"armor": build_armor_pack(spec), "armor-upgrades": build_upgrade_pack(spec)}

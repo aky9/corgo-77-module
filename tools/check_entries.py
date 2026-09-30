@@ -1,9 +1,9 @@
-"""Check that `npm run build:original` put each item's own entry text on that item, and nothing else's.
+"""Check that the build put each item's own entry text on that item, and nothing else's.
 
-`build.py` already reports lookups that found no entry at all. This checks the harder question: that the
-text an item *did* get is the right text. It works off the parsers' records rather than
-original_text.py, so a heading-matching bug in the lookup can't hide itself - the two code paths would
-have to be wrong in the same way.
+`build.py` already fails on a lookup that finds no entry at all. This checks the harder question: that the
+text an item *did* get is the right text. It works off the parsers' records rather than entry_text.py, so
+a heading-matching bug in the lookup can't hide itself - the two code paths would have to be wrong in the
+same way.
 
 Two checks per item:
 
@@ -13,18 +13,18 @@ Two checks per item:
   the item-by-item "did it find anything" report cannot see. Text shared on purpose - a group intro
   that siblings inherit, or one entry that several split items are built from - is not contamination.
 
-Run after `npm run build:original`:  python3 tools/check_original.py [build/packs]
-Exits non-zero if anything is wrong. Needs data/ (so it only runs where Corgo's document is present).
+Run after `npm run build` (npm run check:entries):  python3 tools/check_entries.py [src/packs]
+Exits non-zero if anything is wrong. Needs the parsers' output in data/ (npm run parse).
 """
-import html, json, re, sys
+import html, re, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import title_case
+from common import load_json, title_case
 from build_upgrades import MAG_FAMILIES
 
 ROOT = Path(__file__).resolve().parent.parent
-PACKS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "build/packs"
+PACKS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "src/packs"
 MIN_WORDS = 8  # a line shorter than this is usually boilerplate shared across entries
 # The capacity-chart magazine families are built one item per weapon row with generated, row-specific rules
 # (see build_upgrades.MAG_FAMILIES), so they carry no entry text by design.
@@ -57,8 +57,8 @@ def entries():
     """
     out, raw = {}, {}
 
-    cyber = json.load(open(ROOT / "text/cyberware.json", encoding="utf-8"))["items"]
-    recs = json.load(open(ROOT / "data/cyberware.parsed.json", encoding="utf-8"))
+    cyber = load_json(ROOT / "text/cyberware.json")["items"]
+    recs = load_json(ROOT / "data/cyberware.parsed.json")
     by_heading = {r["heading"]: r for r in recs}
     for r in recs:
         raw[("cw", r["heading"])] = r["lines"]
@@ -70,8 +70,8 @@ def entries():
         for n in names:
             out[n] = {"id": ("cw", heading), "kin": kin}
 
-    icon = json.load(open(ROOT / "text/iconics.json", encoding="utf-8"))["items"]
-    irecs = json.load(open(ROOT / "data/iconics.parsed.json", encoding="utf-8"))["entries"]
+    icon = load_json(ROOT / "text/iconics.json")["items"]
+    irecs = load_json(ROOT / "data/iconics.parsed.json")["entries"]
     iby = {r["heading"]: r for r in irecs}
     for r in irecs:
         raw[("ic", r["heading"])] = r["lines"]
@@ -81,23 +81,21 @@ def entries():
         kin = {("ic", rec["parent"])} if rec["parent"] else set()
         out[spec.get("name") or title_case(key)] = {"id": ("ic", heading), "kin": kin}
 
-    iw = json.load(open(ROOT / "data/iconic_weapons.parsed.json", encoding="utf-8"))
-    iwspec = json.load(open(ROOT / "text/iconic_weapons.json", encoding="utf-8"))
+    iw = load_json(ROOT / "data/iconic_weapons.parsed.json")
+    iwspec = load_json(ROOT / "text/iconic_weapons.json")
     for group in ("mods", "weapons"):
         for r in iw[group]:
             raw[("iw", r["heading"])] = r.get("lines") or [r.get("special", "")]
-    for heading in list(iwspec["mods"]) + list(iwspec["weapons"]):
-        entry = iwspec["weapons"].get(heading)
-        name = (entry or {}).get("rec", {}).get("name") if isinstance(entry, dict) else None
-        out[name or title_case(heading)] = {"id": ("iw", heading), "kin": set()}
+            name = iwspec["weapons"].get(r["heading"], {}).get("rec", {}).get("name")
+            out[name or title_case(r["heading"])] = {"id": ("iw", r["heading"]), "kin": set()}
 
-    up = json.load(open(ROOT / "data/upgrades.parsed.json", encoding="utf-8"))
+    up = load_json(ROOT / "data/upgrades.parsed.json")
     for group, records in up.items():
         for r in records:
             raw[("up", r["heading"])] = r.get("body", [])
     for f, group in (("text/attachments.json", "attachments"), ("text/mods.json", "mods"),
                      ("text/ammo.json", "ammo")):
-        spec = json.load(open(ROOT / f, encoding="utf-8"))
+        spec = load_json(ROOT / f)
         headings = {r["heading"] for r in up[group]}
         for key, s in spec.items():
             if key not in headings or title_case(key) in GENERATED:
@@ -117,17 +115,17 @@ def entries():
 
 
 def main():
-    if not (ROOT / "data/corgo-77-v3.md").exists():
-        print("data/corgo-77-v3.md not present: nothing to check")
-        return 0
+    if not (ROOT / "data/upgrades.parsed.json").exists():
+        print("data/*.parsed.json not found. Run `npm run parse` first.")
+        return 1
     if not PACKS.exists():
-        print(f"{PACKS} not found. Run `npm run build:original` first.")
+        print(f"{PACKS} not found. Run `npm run build` first.")
         return 1
 
     known, by_id = entries()
     built = {}
     for f in PACKS.glob("*/*.json"):
-        d = json.load(open(f, encoding="utf-8"))
+        d = load_json(f)
         if d["_key"].startswith("!folders!") or "description" not in d.get("system", {}):
             continue
         built[norm(d["name"])] = (f.parent.name, norm(d["system"]["description"]["value"]))

@@ -1,16 +1,15 @@
-"""Build every pack source under src/packs/. Run `node tools/compile.mjs` afterwards (npm run build does both)."""
-import json, re, shutil
+"""Build every pack source under src/packs/ from Corgo's document and the automation data in text/.
+Run `node tools/compile.mjs` afterwards (npm run build does both)."""
+import re, shutil, sys
 from pathlib import Path
 import argparse
 import build_weapons, build_upgrades, build_armor, build_gear, build_cyberware, build_iconics, \
-    build_iconic_weapons, dvtables, original_text
-from common import doc_id, MODULE_ID
+    build_iconic_weapons, dvtables, entry_text
+from common import doc_id, dump_json, load_json, MODULE_ID
 
 ROOT = Path(__file__).resolve().parent.parent
 PACKS = ROOT / "src/packs"
-# Corgo's document. He gave permission for this conversion and for his text to ship, so when the
-# export is present his wording is what gets built.
-DOC = ROOT / "data/corgo-77-v3.md"
+DOC = ROOT / "data/corgo-77-v3.md"  # Corgo's document: the source every item is built from
 
 
 def write_pack(name, docs):
@@ -20,7 +19,7 @@ def write_pack(name, docs):
     out.mkdir(parents=True)
     for d in docs:
         slug = re.sub(r"[^a-z0-9]+", "-", d["name"].lower()).strip("-")
-        json.dump(d, open(out / f"{slug}.{d['_id']}.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        dump_json(out / f"{slug}.{d['_id']}.json", d)
     print(f"{name}: {len(docs)} documents")
 
 
@@ -52,22 +51,25 @@ def macro_docs():
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--original-text", default=str(DOC) if DOC.exists() else None,
-                    help="export of Corgo's doc; his wording is used in descriptions "
-                         "(default: data/corgo-77-v3.md when present)")
+    ap.add_argument("--doc", default=str(DOC), help="text export of Corgo's document (default: data/corgo-77-v3.md)")
     ap.add_argument("--out", default=str(PACKS), help="where to write pack sources (default src/packs)")
+    ap.add_argument("--allow-missing-entries", action="store_true",
+                    help="build an item whose entry is not in the document with no entry text, instead of "
+                         "failing; for the placeholder document the tests build from")
     args = ap.parse_args()
     PACKS = Path(args.out).resolve()
-    if args.original_text:
-        original_text.enable(args.original_text)
+    doc = Path(args.doc)
+    if not doc.is_file():
+        sys.exit(f"{args.doc} is missing; the build reads Corgo's document from there")
+    entry_text.load(doc)
     plan = dvtables.DvPlan()
     write_pack("weapons", build_weapons.build_pack(plan))
     for name, docs in build_gear.build_all(plan).items():  # before the DV tables: its weapons use the plan
         write_pack(name, docs)
-    compat = json.load(open(ROOT / "tools/compat/schism-sof45.json", encoding="utf-8"))
+    compat = load_json(ROOT / "tools/compat/schism-sof45.json")
     recs = dvtables.register_compat(plan, compat)
-    json.dump({k: {"recommended": v[0], "current": v[1]} for k, v in recs.items()},
-              open(ROOT / "tools/compat/schism-dv-recommendations.json", "w", encoding="utf-8"), indent=1)
+    dump_json(ROOT / "tools/compat/schism-dv-recommendations.json",
+              {k: {"recommended": v[0], "current": v[1]} for k, v in recs.items()}, ensure_ascii=True)
     for k, (rec, cur) in sorted(recs.items()):
         if rec != cur:
             print(f"  Schism weapon needs DV table change: {k}: {cur or '(none)'} -> {rec}")
@@ -81,11 +83,10 @@ if __name__ == "__main__":
     write_pack("dv-tables", dvtables.build_docs(plan))
     for name, docs in packs.items():
         write_pack(name, docs)
-    if not original_text.enabled():
-        print(f"note: {DOC.relative_to(ROOT)} not present, so descriptions fall back to the "
-              "rewritten text in text/*.json")
-    if original_text.enabled():
-        print(f"original text used for {len(original_text.FOUND)} items; kept rewritten text for "
-              f"{len(original_text.MISSING)} lookups with no matching entry:")
-        for m in original_text.MISSING:
+    print(f"entries found for {len(entry_text.FOUND)} items")
+    if entry_text.MISSING:
+        print(f"no entry in {args.doc} for {len(entry_text.MISSING)} lookups:")
+        for m in entry_text.MISSING:
             print("   ", m)
+        if not args.allow_missing_entries:
+            sys.exit("every item needs its entry: fix the heading or the section markers in entry_text.SECTIONS")
