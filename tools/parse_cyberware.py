@@ -36,8 +36,8 @@ CHAPTERS = {
     "operating-systems": ("# **OPERATING SYSTEMS", "# **CYBERWARE ALTERNATIVES"),
     "cyberware-alternatives": ("# **CYBERWARE ALTERNATIVES", "# **2070s FULL BODY CONVERSIONS"),
 }
-# Subsections and entries we don't build (Kane's call). 2070s Full Body Conversions is excluded by the
-# chapter ranges above; these two are inside chapters we do build.
+# Subsections and entries deliberately not built. 2070s Full Body Conversions is excluded by the
+# chapter ranges above; these two sit inside chapters that are built.
 SKIP_GROUPS = {"VARIANTS",     # Corpochrome: documented as a rule in module/README.md, not built as items
                "CYBERCHAIRS"}  # Militech Centaur Exo: skipped
 SKIP_HEADINGS = {"CYBERWARE UPDATES"}  # chapter preamble, not an item

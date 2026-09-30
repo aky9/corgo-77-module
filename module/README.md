@@ -33,7 +33,7 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
    macro changes the system itself; they only change which compendium the
    system's DV table setting uses.
 
-## What's included so far
+## What's included
 
 - **Weapons** (151): the full Weapon Catalog plus the Ironfake and Darkhound
   variants, sorted into folders by weapon type.

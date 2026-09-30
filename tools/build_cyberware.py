@@ -23,8 +23,8 @@ plain effect, so it applies exactly while installed (core's Kerenzikov, Pain Edi
 `usage: "toggled"` with the change flagged situational, so it shows as a toggle in the roll dialog
 (core's Sandevistan).
 
-Not built, at Kane's direction: 2070s Full Body Conversions, the Militech Centaur Exo, and the
-Corpochrome variants - Corpochrome is written up as a rule in module/README.md instead.
+Deliberately not built: the 2070s Full Body Conversions, the Militech Centaur Exo, and the Corpochrome
+variants. Corpochrome is written up as a rule in module/README.md instead.
 """
 import copy, json, re
 from pathlib import Path

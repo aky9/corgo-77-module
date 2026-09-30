@@ -1,9 +1,10 @@
-"""Optional: use Corgo's original wording in item descriptions instead of the rewritten rules.
+"""Read each item's entry from Corgo's document and convert it to HTML for the item description.
 
-Off by default. Enable with `python3 tools/build.py --original-text <export of Corgo's doc> --out build/packs`
-(npm run build:original). Corgo gave Kane permission to use his text in this module. The text is read from
-your own export at build time; it is never stored in this repo (data/ and build/ are git-ignored).
-Items with no single entry in Corgo's doc (Capacity Chart magazines, Gun Shields) keep the rewritten text.
+`npm run build` reads data/corgo-77-v3.md, which Corgo gave permission to ship in this module and to track
+in this repo. `python3 tools/build.py --original-text <path>` (npm run build:original) reads an export at
+another path instead, and `--original-text ""` builds with no text of his at all, falling back to the
+rewritten rules in text/*.json. Items with no single entry in the document (the Capacity Chart magazines,
+the Gun Shields) keep the rewritten text on every path.
 """
 import html, re
 from pathlib import Path

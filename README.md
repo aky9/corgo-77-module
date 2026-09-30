@@ -56,8 +56,7 @@ Upgrade maths work.
 
 ## Not converted
 
-- **Vehicles**, the **Vehicle Catalog**, and **Iconic Vehicles**, which wait on the vehicle conventions
-  being settled once.
+- **Vehicles**, the **Vehicle Catalog**, and **Iconic Vehicles**.
 - **Drones** and the **Drone Catalog**.
 - The **2070s Full Body Conversions**, the **Militech Centaur Exo**, and the 14 named **Corpochrome**
   options. Corpochrome itself is written up as a rule in the user guide.
