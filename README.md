@@ -68,8 +68,7 @@ Upgrade maths work.
 `src/packs/` holds every item as JSON and is the source of truth. The parsers regenerate it from Corgo's
 document, and the compiler turns it into the LevelDB packs Foundry reads. On a fresh clone, `./setup.sh`
 installs the toolchain, parses, builds, validates, and runs the tests. [`DEVELOPING.md`](DEVELOPING.md)
-covers the commands, the layout, and the conventions settled against the 0.92.4 source; [`HANDOFF.md`](HANDOFF.md)
-records where the project stands and what is next.
+covers the commands, the layout, and the conventions settled against the 0.92.4 source.
 
 ## Releasing
 

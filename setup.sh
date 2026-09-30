@@ -47,4 +47,4 @@ fi
 
 step "done"
 echo "The installable module is in dist/corgo-77-collection."
-echo "See HANDOFF.md for where the project stands and DEVELOPING.md for the tooling."
+echo "See DEVELOPING.md for the tooling."

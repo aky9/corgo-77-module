@@ -1,6 +1,7 @@
 # Building the Corgo's 77 Collection module
 
-See `HANDOFF.md` for where the project stands, what's next, and the commands to run.
+`src/packs/` is the source of truth for the module; the sections below cover the commands, the layout, and the
+conventions settled against the CPR 0.92.4 source.
 
 Requirements: Python 3 (standard library only), Node 18+. On a fresh clone, `./setup.sh` does all of the
 below. By hand:
