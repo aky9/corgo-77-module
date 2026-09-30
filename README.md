@@ -1,46 +1,86 @@
 # Corgo's 77 Collection for Cyberpunk RED - Core (Foundry VTT)
 
-Unofficial Foundry VTT module that adds compendiums for **Corgo's 77 Collection V3** by Corgopolis to the
-Cyberpunk RED - Core system (v0.92.4, Foundry 12), without modifying the system. See
-[`module/README.md`](module/README.md) for what's in it and how to install and use it.
+An unofficial Foundry VTT module that brings **Corgo's 77 Collection V3** by Corgopolis, a 2070s-era
+homebrew supplement for Cyberpunk RED, into the Cyberpunk RED - Core system as compendiums. It adds
+754 items across 15 packs and changes nothing in the system itself.
 
-## Building
+- Corgo's document: <https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit>
+- Support Corgopolis: <https://patreon.com/Corgopolis>
+- Requires Foundry VTT v12 and Cyberpunk RED - Core v0.92.4
 
-On a fresh clone, `./setup.sh` does all of the below: it checks for Node 18+ and Python 3, installs the
-dependencies, regenerates the git-ignored parser output, builds the module, and runs the validator and tests.
-By hand:
+## Installing
 
-    npm ci
-    npm run parse       # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so needed once per clone)
-    npm run build       # src/packs/*.json -> dist/corgo-77-collection (the installable module)
-    npm run validate    # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
-    npm test            # original-text regression checks
-
-`npm run build:original` builds the module with Corgo's own item text instead of the rewritten rules; it needs
-your export of his doc at `data/corgo-77-v3.md` (see [`DEVELOPING.md`](DEVELOPING.md)).
-
-`src/packs/` holds every item as JSON and is the source of truth for the module. To regenerate it from
-Corgo's document instead, put a text export of the doc at `data/corgo-77-v3.md` and run
-`npm run parse && npm run build`. `data/` and `reference/` are git-ignored because they hold other
-people's work (Corgo's full text; a copy of Schism989's module). See [`DEVELOPING.md`](DEVELOPING.md).
-
-## Releasing
-
-Users install the module from a manifest URL, which points at the latest GitHub Release:
+In Foundry's Setup screen, open **Add-on Modules**, click **Install Module**, and paste this manifest URL:
 
     https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
 
-Releases are built by [`.github/workflows/release.yml`](.github/workflows/release.yml), so nothing built is
-committed. To publish a version, bump `"version"` in `module/module.json`, commit, then tag and push:
+Foundry offers updates from the same URL. Once the module is enabled, run the **Use Corgo's 77 DV Tables**
+macro once per world. [`module/README.md`](module/README.md) is the full user guide: what each pack
+automates, what is left to apply by hand, and how to run it alongside Schism989's Solo of Fortune 2045
+module.
 
-    git tag v0.8.1
-    git push origin v0.8.1
+## What's in it
 
-The workflow refuses a tag that does not match the manifest's version. It runs `./setup.sh` (install, parse,
-build, validate, test), pins the manifest's `download` field to that tag's zip, and attaches `module.zip` and
-`module.json` to a release named after the tag. The zip has `module.json` at its root, which is what Foundry
-expects. `main` is for development; a release is only ever a tag.
+Every item carries Corgo's own text, with his permission, plus notes on what the character sheet
+automates for it and a link back to his document.
 
-Corgo's 77 Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian
-Games and is not approved or endorsed by RTG. This content references materials that are the property of
-R. Talsorian Games and its licensees.
+| Pack | Items | What it holds |
+| --- | ---: | --- |
+| Weapons | 151 | The Weapon Catalog and the Ironfake and Darkhound variants, in folders by weapon type |
+| Iconic Weapons | 115 | The Iconic Weapons chapter, including its nested variants and the four Iconic mods |
+| Weapon Attachments | 109 | The Attachment Catalog, plus Extended, Drum, Belt Box, and Backpack magazines for every row of the Capacity Chart |
+| Weapon Mods | 66 | Attachment Mods, Weapon Mods, and Invented Weapon Upgrades, with multi-version items split one per version |
+| Cyberware | 85 | Fashionware, Neuralware, Cyberoptics, Internal and External Body, Cyberarms, Cyberlegs, Borgware, and the Cyberware Alternatives |
+| Cyberware Enhancements | 39 | Corgo's "X Cyberware Enhancement" entries, as upgrades installed into the piece they enhance |
+| Ammunition | 27 | One item per caliber each ammo comes in, the Combo Casings, and the Homing and Sticky adapter kits |
+| Armor & Shield Upgrades | 23 | Armor Enhancements and Kits, Shield Attachments and Enhancements |
+| Gear, Frames & Drugs | 23 | General Gear, the Wolfpack and SPECTER External Linear Frames, Neurotoxin, the Pharmaceuticals, and 13 Street Drugs |
+| Armor & Shields | 20 | The Armor Catalog as Body and Head pieces, the Iconic "Kagami" Neo-Kabuto, and the three Gun Shields |
+| Iconic Cyberware | 20 | Iconic Neuralware, Cyberoptics, Body Cyberware, Cyberlimbs, and both Relic Biochips |
+| Operating Systems | 18 | The Berserk, Cyberdeck Port, and Sandevistan Operating Systems and the five Cyberdecks they come with |
+| Iconic Gear | 5 | The two Iconic Cyberdecks and three Iconic Drugs |
+| DV Tables | 51 | The Solo of Fortune 2045 single-shot and Autofire range tables, covering every table name the core system uses |
+| Setup Macros | 2 | Switch the DV ruler to these tables, and back |
+
+**How the items behave.** Stats are Corgo's finished stat lines. What the system can automate is
+automated: flat attack and damage bonuses, attachment slots, magazine sizes, armor SP and penalties,
+cyberware stat and skill effects, Humanity Loss, and drug effects as toggles. What it cannot, such as
+conditional bonuses, drop-lowest damage, or effects that land on other people's rolls, is called out in
+the item's description so nothing has to be looked up mid-session. Weapons use the Solo of Fortune 2045
+range tables, and the DV compendium also carries every core table name so the core weapons keep working
+after the switch.
+
+**Iconics** are Corgo's optional item class, found rather than bought. They live in their own packs, carry
+the shared Iconic rules in their notes, and are priced at their Category's benchmark so repair and Tech
+Upgrade maths work.
+
+## Not converted
+
+- **Vehicles**, the **Vehicle Catalog**, and **Iconic Vehicles**, which wait on the vehicle conventions
+  being settled once.
+- **Drones** and the **Drone Catalog**.
+- The **2070s Full Body Conversions**, the **Militech Centaur Exo**, and the 14 named **Corpochrome**
+  options. Corpochrome itself is written up as a rule in the user guide.
+- **Role Tweaks**, **Netrunning**, and **Deep Diving 101**, which are rules rather than items.
+
+## Building from source
+
+`src/packs/` holds every item as JSON and is the source of truth. The parsers regenerate it from Corgo's
+document, and the compiler turns it into the LevelDB packs Foundry reads. On a fresh clone, `./setup.sh`
+installs the toolchain, parses, builds, validates, and runs the tests. [`DEVELOPING.md`](DEVELOPING.md)
+covers the commands, the layout, and the conventions settled against the 0.92.4 source; [`HANDOFF.md`](HANDOFF.md)
+records where the project stands and what is next.
+
+## Releasing
+
+A release is a git tag. Bump `"version"` in `module/module.json`, commit, tag the commit `vX.Y.Z`, and
+push the tag; [`.github/workflows/release.yml`](.github/workflows/release.yml) builds the module and
+attaches `module.zip` and `module.json` to a GitHub Release, which is where the manifest URL above
+points. The workflow refuses a tag that does not match the manifest's version.
+
+## Legal
+
+Corgo's text appears in this module and in this repository with Corgopolis's permission. Corgo's 77
+Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian Games and
+is not approved or endorsed by RTG. This content references materials that are the property of R.
+Talsorian Games and its licensees.

@@ -2,11 +2,18 @@
 
 See `HANDOFF.md` for where the project stands, what's next, and the commands to run.
 
-Requirements: Python 3, Node 18+.
+Requirements: Python 3 (standard library only), Node 18+. On a fresh clone, `./setup.sh` does all of the
+below. By hand:
 
-    npm install
-    npm run build        # regenerates src/packs/* and compiles dist/corgo-77-collection (Python 3 + PyYAML not needed)
-    node tools/validate.mjs dist/corgo-77-collection
+    npm ci
+    npm run parse       # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so needed once per clone)
+    npm run build       # src/packs/*.json -> dist/corgo-77-collection (the installable module)
+    npm run validate    # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
+    npm test            # original-text regression checks
+
+`npm run build:original` builds with an export of Corgo's doc at a path other than the default; see below.
+`data/` and `reference/` hold other people's work: Corgo's document is tracked with his permission, and
+Schism989's module (no license file) stays git-ignored.
 
 ## Corgo's text
 

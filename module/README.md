@@ -66,9 +66,11 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
 - **Iconic Cyberware** (20): the Iconic Neuralware, Cyberoptics, Internal and
   External Body Cyberware, Cyberlimbs, and both Relic Biochips.
 - **Iconic Gear** (5): the two Iconic Cyberdecks and three Iconic Drugs.
+- **Iconic Weapons** (115): the Iconic Weapons chapter, including its nested
+  variants and the four Iconic weapon mods.
 - **Ammunition** (27): Corgo's ammo, one item per caliber it comes in, plus
   the Combo Casings and the Homing and Sticky adapter kits.
-- **DV Tables** (49): the *Solo of Fortune 2045* single-shot and Autofire
+- **DV Tables** (51): the *Solo of Fortune 2045* single-shot and Autofire
   range tables, plus every table name the core system uses, so core weapons
   keep working after the switch.
 - **Setup Macros** (2): switch the DV ruler to these tables and back.
