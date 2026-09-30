@@ -1,10 +1,16 @@
 """Read each item's entry from Corgo's document and convert it to HTML for the item description.
 
-`npm run build` reads data/corgo-77-v3.md, which Corgo gave permission to ship in this module and to track
-in this repo. `python3 tools/build.py --original-text <path>` (npm run build:original) reads an export at
-another path instead, and `--original-text ""` builds with no text of his at all, falling back to the
-rewritten rules in text/*.json. Items with no single entry in the document (the Capacity Chart magazines,
-the Gun Shields) keep the rewritten text on every path.
+`build.py` loads the document (data/corgo-77-v3.md, or the path given with --doc) with `load()`, and every
+builder calls `lookup()` with the item's heading and the section it sits in. An entry that cannot be found is
+recorded in MISSING and fails the build, so a renamed heading or a moved section marker is caught at once.
+
+Three kinds of item have no single entry in the document and are never looked up. They carry the module's
+own text through the `rules` argument of common.description_html:
+
+- the Capacity Chart magazines, one item per weapon row of the chart (build_upgrades.MAG_FAMILIES, with the
+  per-family text in text/attachments.json "magazine_rules");
+- the three Gun Shields (text/armor.json "gun_shields" and "gun_shield_rules");
+- the armor half of Nano-Plating (build_cyberware.cyberware_item).
 """
 import html, re
 from pathlib import Path
@@ -31,13 +37,9 @@ SECTIONS = {
 HEADING = re.compile(r"^(#{1,6}) (.+)$")
 
 
-def enable(path):
+def load(path):
     global _TEXT
     _TEXT = Path(path).read_text(encoding="utf-8")
-
-
-def enabled():
-    return _TEXT is not None
 
 
 # Corgo names some entries in curly quotes ('FOXHOUND', "KAGAMI"). The parsers keep whatever the
@@ -183,9 +185,9 @@ def _to_html(lines):
 
 
 def lookup(section_key, heading, group_heading=None, intro_only=False):
-    """HTML of Corgo's original entry, or None (disabled, or no entry with that heading)."""
-    if _TEXT is None or not heading:
-        return None
+    """HTML of the item's entry in the document, or None when no entry has that heading."""
+    if _TEXT is None:
+        raise RuntimeError("entry_text.load() has not been called")
     block = _find(section_key, heading, intro_only=intro_only)
     if block is None:
         MISSING.append(f"{section_key}: {heading}")

@@ -6,10 +6,10 @@ when a character uses the drug, and "X Addiction" is switched on by hand while a
 the addiction penalty while the drug is active; for those, "X Addicted Primary" is the primary effect plus a
 cancellation of that penalty, to use instead of "X Primary" when an addicted character doses.
 """
-import copy, json
+import copy
 from pathlib import Path
-from common import doc_id, title_case, parse_cost, description_html, folder_doc, SOURCE_BOOK
-import build_weapons, original_text
+from common import doc_id, title_case, parse_cost, description_html, folder_doc, load_json, SOURCE_BOOK
+import build_weapons, entry_text
 
 ROOT = Path(__file__).resolve().parent.parent
 ICONS = "systems/cyberpunk-red-core/icons/compendium/"
@@ -67,8 +67,8 @@ def gear_item(g, folder, sub, group_heading=None, extra_notes=()):
     if g.get("price") is not None and "eb" not in g["cost"].split("(")[0]:
         notes.append("Corgo lists no exact price; see Cost.")
     s["description"]["value"] = description_html(
-        facts=[("Cost", g["cost"])], rules=g["rules"], notes=notes, section=f"{SECTION} > {sub}",
-        original=original_text.lookup("gear", g["key"], group_heading, intro_only=g.get("intro_only", False)))
+        facts=[("Cost", g["cost"])], notes=notes, section=f"{SECTION} > {sub}",
+        entry=entry_text.lookup("gear", g["key"], group_heading, intro_only=g.get("intro_only", False)))
     effects = [lambda iid, e=e: effect(iid, e["name"], img, e["changes"], situational=e.get("situational", False))
                for e in g.get("effects", [])]
     return _doc("gear", g["key"], name, "gear", img, s, folder, effects)
@@ -96,13 +96,13 @@ def drug_item(d, folder, sub, kind="Street Drug"):
     if primary or addiction or withdrawal:
         notes.append("Stat and skill changes are automated; caps, minimums, durations, and everything else are not.")
     s["description"]["value"] = description_html(
-        facts=[("Cost", d["cost"]), ("Type", kind)], rules=d["rules"], notes=notes, section=f"{SECTION} > {sub}",
-        original=original_text.lookup("gear", d["key"]))
+        facts=[("Cost", d["cost"]), ("Type", kind)], notes=notes, section=f"{SECTION} > {sub}",
+        entry=entry_text.lookup("gear", d["key"]))
     return _doc("drug", d["key"], name, "drug", img, s, folder, effects)
 
 
 def build_all(plan):
-    spec = json.load(open(ROOT / "text/gear.json", encoding="utf-8"))
+    spec = load_json(ROOT / "text/gear.json")
     docs, folders = [], {}
     for label in ("General Gear", "External Linear Frames", "Poisons", "Pharmaceuticals", "Street Drugs"):
         f = folder_doc("gear", label, len(folders))
@@ -114,7 +114,7 @@ def build_all(plan):
         docs.append(gear_item(g, folders["External Linear Frames"], "External Linear Frames"))
     for w in spec["frame_weapons"]:
         rec = {**w, "special": "", "notes": [], "group": "External Linear Frames"}
-        doc = build_weapons.build(rec, w["rules"], folders["External Linear Frames"], plan,
+        doc = build_weapons.build(rec, folders["External Linear Frames"], plan,
                                   section_key="gear", section_label=f"{SECTION} > External Linear Frames",
                                   extra_notes=w.get("notes", ()))
         doc["system"]["price"]["market"] = w.get("price", 0)

@@ -1,13 +1,12 @@
 {
- "_notes": "Rules text rewritten in our own words; `npm run build:original` swaps in Corgo's wording. Iconics list no Cost: `Category` is the price tier and drives repairs and Tech Upgrades, so the builder maps it to that tier's eurodollar benchmark and every item says it can't be bought. Iconic Cyberware Options take no Option Slot unless the entry says otherwise, hence size 0 by default. Other keys work as in text/cyberware.json.",
+ "_notes": "Automation data per item; every item's text is its entry in Corgo's document. Iconics list no Cost: `Category` is the price tier and drives repairs and Tech Upgrades, so the builder maps it to that tier's eurodollar benchmark and every item says it can't be bought. Iconic Cyberware Options take no Option Slot unless the entry says otherwise, hence size 0 by default. Other keys work as in text/cyberware.json.",
  "items": {
   "ADRENO-TRIGGER": {
    "kind": "cyberware",
    "type": "neuralWare",
    "usage": "installed",
    "size": 0,
-   "icon": "sandevistan",
-   "rules": "Iconic Neuralware, and it needs an Adrenaline Convertor to work on. That convertor now runs twice as long, 4 Rounds, and while it burns the user takes their Move Action, and nothing else, as though they sat first in the initiative queue whatever they rolled - which puts them ahead of Demons and Vehicles."
+   "icon": "sandevistan"
   },
   "AXOLOTL": {
    "kind": "cyberware",
@@ -15,7 +14,6 @@
    "usage": "installed",
    "size": 0,
    "icon": "neural_link",
-   "rules": "Neuralware. Borgware. Pick one other installed piece of cyberware with a limited duration when this goes in: that duration doubles for good. A Sandevistan chosen this way runs 2 minutes.",
    "notes": [
     "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
    ]
@@ -26,7 +24,6 @@
    "usage": "installed",
    "size": 0,
    "icon": "neural_link",
-   "rules": "Iconic Neuralware. Every other installed piece of cyberware costs 1 less Maximum Humanity, or 2 less if it is Borgware. Only one Chrome Compressor per body.",
    "notes": [
     "Maximum Humanity isn't tracked per piece by the sheet, so work the reduction out by hand."
    ]
@@ -36,23 +33,20 @@
    "type": "neuralWare",
    "usage": "installed",
    "size": 0,
-   "name": "COX-2 Cybersomatic Optimizer",
-   "rules": "Iconic Neuralware. Needs a Neuroport Cyberdeck Port and a Bioconductor. Rolling damage for Synapse Burnout, 4s and 5s count as 6s when working out whether a Critical Injury lands."
+   "name": "COX-2 Cybersomatic Optimizer"
   },
   "DEEP-FIELD VISUAL INTERFACE": {
    "kind": "cyberware",
    "type": "neuralWare",
    "usage": "installed",
    "size": 0,
-   "icon": "targeting_scope",
-   "rules": "Iconic Neuralware. Needs Visual Cortex Support. With an active Targeting Scope and an Aimed Shot at a target 51m/yds or further out, any damage die that comes up 1 is re-rolled until it doesn't."
+   "icon": "targeting_scope"
   },
   "MILITECH ‘APOGEE’ OS": {
    "kind": "enhancement",
    "name": "Militech 'Apogee' OS",
    "enhances": "Sandevistan",
    "icon": "sandevistan",
-   "rules": "Iconic Sandevistan Operating System. The Sandevistan now wants one more Neuralware Option Slot, counts as an installation of Borgware for Maximum Humanity Loss, and costs a non-FBC user with no Cyberspine 1d6 Humanity every time they trigger it. In exchange it needs no Action to trigger, its initiative bonus climbs by 3 to +6, and it runs 9 seconds (3 Rounds). While it burns the user can dodge Ranged Attacks whatever their REF if they couldn't already, ignores every penalty to MOVE and to Evasion checks, and gets +2 on Aimed Shots. A Solo may also reassign their Combat Awareness Points without an Action whenever they take an Aimed Shot, use an Alternate Firing Mode, or resolve a Martial Arts Special Move. Once it drops, 60 seconds (20 Rounds) of cooldown, unless the user pays 3 Humanity per consecutive activation inside the minute (3, then 6, then 9).",
    "notes": [
     "Change the Sandevistan's initiative effect to +6 while this OS is installed.",
     "The extra Option Slot it consumes, and the Borgware it counts as, are applied by hand."
@@ -64,7 +58,6 @@
    "usage": "installed",
    "size": 1,
    "icon": "neural_link",
-   "rules": "Iconic Neuralware. Borgware. Needs a Newton Module and takes 1 Neuralware Option Slot. Every other installed piece of cyberware with a built-in cooldown or recharge has it halved, to a minimum of 3 seconds (1 Round). This stacks with the Newton Module's own reduction on whichever single piece that module improves.",
    "notes": [
     "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand.",
     "Unlike most Iconic cyberware, this one consumes an Option Slot, as Corgo states."
@@ -75,7 +68,6 @@
    "type": "neuralWare",
    "usage": "installed",
    "size": 0,
-   "rules": "Iconic Neuralware. Needs a RAM Manager, which now hands out its bonus after any kind of failed Interface check rather than only the two it covered, and that bonus rises by 1 to +2.",
    "name": "RAM Reallocator"
   },
   "REVULSOR": {
@@ -83,7 +75,6 @@
    "type": "neuralWare",
    "usage": "installed",
    "size": 0,
-   "rules": "Iconic Neuralware. Needs a Reflex Tuner. The initiative jump it gives climbs by 1 to +3, and it now lasts 6 seconds (2 Rounds) from activation.",
    "notes": [
     "Change the Reflex Tuner's initiative effect to +3 while this is installed."
    ]
@@ -101,7 +92,6 @@
    ],
    "usage": "installed",
    "icon": "cybereye",
-   "rules": "Iconic Paired Cybereyes. They install together and count as one item for Cost and Humanity Loss, though not for Critical Injuries or repair. Each eye carries 2 Option Slots for Cybereye Options and arrives with Color Shift, Image Enhance and Low Light/Infrared/UV already in, none of which can come out without wrecking the eyes. Once each Round, when the user lands a random Critical Injury on a target - not a Leg Aimed Shot or anything else that names its injury - they pick which Critical Injury it is rather than rolling for it.",
    "notes": [
     "One item for the pair, as Corgo prices and installs them together. It carries 2 Option Slots, the count for one eye; add a second copy or raise the slots by hand if your table tracks each eye.",
     "The three pre-installed options are described here rather than installed as separate items."
@@ -112,22 +102,19 @@
    "type": "cyberwareInternal",
    "usage": "installed",
    "size": 1,
-   "icon": "nasal_filters",
-   "rules": "Iconic Internal Body Cyberware, taking 1 Internal Body Option Slot. A nanotech synthskin faceplate replaces the user's face and reshapes its structure, tone and texture, bending their neural impulses so their outward manner matches a stored behavioral scan. In play that means any Acting or comparable check to pass as the loaded personality succeeds automatically. Scans are taken with paired Cybereyes or Smart Glasses, watching a target talk and emote for at least 5 minutes; longer and closer study gives a better copy. The user's own imprint is stored on install. With Audiovox, ChemSkin, Techhair and paired Cybereyes also installed, the imprint covers their whole body, though never their size. Premade imprints ride on Memory Chips and load with an Action, staying on the faceplate afterwards; switching between stored imprints takes an Action and then a 30 minute cooldown."
+   "icon": "nasal_filters"
   },
   "ELECTROMAG RECYCLER": {
    "kind": "cyberware",
    "type": "cyberwareInternal",
    "usage": "installed",
-   "size": 0,
-   "rules": "Iconic Internal Body Cyberware. Needs an Interface Plug or Personal Link carrying the Feedback Circuit enhancement. Properly plugged into a weapon with a Tech Rebuild, a hit with that rebuild charged lets the user recharge it at the start of their next Turn for only their MOVE. If the weapon already charges on half MOVE, it now charges without giving up a Move Action at all."
+   "size": 0
   },
   "ISOMETRIC STABILIZER": {
    "kind": "cyberware",
    "type": "cyberwareInternal",
    "usage": "installed",
-   "size": 1,
-   "rules": "Iconic Internal Body Cyberware. Needs Clutch Padding and 1 Internal Body Option Slot. The BODY increase Clutch Padding gives for BODY requirements now covers every weapon type rather than one, and rises by 2 to +3."
+   "size": 1
   },
   "CHITIN": {
    "kind": "cyberware",
@@ -135,7 +122,6 @@
    "usage": "installed",
    "size": 2,
    "icon": "subdermal_armor",
-   "rules": "Iconic External Body Cyberware. Borgware. Takes 2 External Body Option Slots and needs Skinweave, Subdermal Armor or Dragoon Plating under it. All damage that gets through the user's armor is cut by 2, or by 4 when the attack also landed a Critical Injury. Whenever their cyberware-based armor restores SP on a timer, it restores 1 more (2 SP in total).",
    "notes": [
     "Counts as Borgware for Maximum Humanity Loss; the sheet doesn't track that, so apply it by hand."
    ]
@@ -144,14 +130,12 @@
    "kind": "cyberware",
    "type": "cyberwareExternal",
    "usage": "installed",
-   "size": 0,
-   "rules": "Iconic External Body Cyberware. Needs a Proxishield. Its damage reduction now fires on any attack in a Round from within 6m/yds rather than only the first, and cuts 2 damage before armor instead of 1."
+   "size": 0
   },
   "RARA AVIS": {
    "kind": "enhancement",
    "enhances": "Skinweave or Subdermal Armor",
    "icon": "subdermal_armor",
-   "rules": "Iconic Skinweave or Subdermal Armor Cyberware Enhancement. The enhanced armor's SP goes up by 4. The trade: while that armor sits at full SP, the first ablation it takes costs 1 extra SP. It can't raise Dragoon Plating's SP.",
    "notes": [
     "Change the SP on the armor item for the skinweave or subdermal armor by hand; an upgrade installed in cyberware can't do it."
    ]
@@ -169,7 +153,6 @@
     "damage": "3d6",
     "rof": 2
    },
-   "rules": "Iconic Paired Cyberarm Options. Needs paired Cyberarms and 2 Cyberarm Option Slots in each, and counts as two installations of Borgware. Each arm gains a One-Handed Excellent Quality Heavy Melee Weapon that hides with no check and deploys or stows for free; the hand on a popped-up arm can't hold anything. With both blades out the user may swing them together as a single Excellent Quality ROF 2 Very Heavy Melee Weapon reaching 4m/yds, and the usual climbing movement penalty goes away. Whenever either blade lands a Critical Injury, roll three times on the table and pick the one the victim suffers. With Speedware active and a total initiative bonus of +4 or better, any damage die from these blades that comes up 1 is re-rolled until it doesn't.",
    "notes": [
     "One item for the pair, as Corgo installs them together. Its size is the 2 slots it takes in one arm; it needs 2 in each.",
     "Counts as two installations of Borgware for Maximum Humanity Loss, applied by hand.",
@@ -181,7 +164,6 @@
    "type": "cyberArm",
    "usage": "installed",
    "size": 1,
-   "rules": "Iconic Cyberarm Option. Needs a Shock Absorber and 1 Cyberarm Option Slot. The absorber's Autofire bonus rises by 1 to +2, and a Critical Failure (1) on an Autofire check no longer rolls the implosion d10, though everything else about the Critical Failure still happens.",
    "notes": [
     "Change the Shock Absorber's effect to +2 while this is installed."
    ]
@@ -196,8 +178,7 @@
     "0"
    ],
    "usage": "installed",
-   "icon": "skill_chip",
-   "rules": "Iconic Chipware. It holds one person's full personality and memories, streamed into a digital copy by an Arasaka program - a procedure so far out of reach it wants Reputation Rank 9, a million eurodollars, and Arasaka's goodwill. Slotted into a shard slot, that copy can be talked to as a digital avatar only the user sees, whether that's a dead character or whoever else the GM decides lives on the chip. The 1.0 does nothing else."
+   "icon": "skill_chip"
   },
   "RELIC BIOCHIP (2.0)": {
    "kind": "cyberware",
@@ -211,7 +192,6 @@
    "usage": "installed",
    "icon": "skill_chip",
    "price": 0,
-   "rules": "Iconic Chipware. It can write a personality into a dead host, provided the organs could still sustain life and the brain isn't gone. In a compatible corpse's shard slot, the body wakes inside the hour as the implanted personality, remembering only what predates the copy: same STATs, cyberware and afflictions as the body's previous owner, but free to move Skills and Role to equivalent Levels or Ranks elsewhere, and to trade LUCK against INT or COOL, or against any non-BODY stat. In a living host it works differently. Once in, it cannot come out without killing them, and at first it does nothing. The next time the user is Mortally Wounded and either fails a Death Save or goes unconscious after being stabilized, they don't die: 6 hours later they wake at 5 HP, Seriously Wounded. From then the chip projects its engram into their sight, the two sets of memories and mannerisms blending, and the user can talk to it and draw on what it knows. In that state their EMP becomes Stability (STAB), set to 10, while Empathy-based checks use the maximum EMP they started play with - and no source of Humanity Loss touches them, cyberpsychosis included. Every week costs 2d6 STAB, or 4d6 a week once STAB drops below 5. Stability never comes back, though a GM may cut a week's loss by 1d6 for time spent on things that don't tax the mind - loved ones, meditation, rest. Each threshold it crosses brings its own effect, from extra STAT points at 10 down to losing 5 maximum HP an hour and gaining Death Save penalties at 0.",
    "notes": [
     "Corgo's Stability Chart lays out what happens at each STAB threshold; the full chart is in the item text above. Stability is not a CPR stat, so nothing here is automated: track STAB by hand, on the EMP line or on a note.",
     "Cannot be fabricated or Tech Upgraded, so it has no price; it has to be gifted or stolen."
@@ -220,14 +200,12 @@
   "NETWATCH NETDRIVER MK.1": {
    "kind": "cyberdeck",
    "name": "NetWatch Netdriver Mk.1",
-   "slots": 14,
-   "rules": "Iconic Cyberdeck with 14 slots for Programs or Hardware, usable only while installed in a Neuroport Cyberdeck Port. After Jacking In with it, the user fires one non-Black-ICE Program or one Interface Ability for no NET Action. While using it they get one more NET Action each turn. Damaging Quickhacks and Programs run through it roll an extra 1d6 and drop the lowest die before damage lands, and anything it runs that has a duration lasts twice as long."
+   "slots": 14
   },
   "MILITECH CANTO MK. 6": {
    "kind": "cyberdeck",
    "name": "Militech Canto Mk.6",
    "slots": 10,
-   "rules": "Iconic Cyberdeck with 8 slots for Programs and 2 for Hardware, usable only while installed in a Neuroport Cyberdeck Port. Once in, it stays in: taking it out inside a month costs 5,000eb and a week in a hospital. While using it the user gets one more NET Action each turn, and may take as many further NET Actions as they like beyond their limit, at 2 Humanity Loss each. Installed, it opens the Blackwall Gateway Quickhack. Users also hear things from past the Blackwall now and then; roleplay accordingly. BLACKWALL GATEWAY (DV varies): on activation, choose whether it spreads to up to 2 more targets within 20m/yds of the first. It lands on the original, then the second the following Round, then the third the Round after. DV starts at 10 and rises 2 per extra target, to a maximum of 14, and one roll covers all three. Unlike every other Quickhack it can be attempted however many Passwalls the Netrunner has breached. Every attempt, hit or miss, costs the user 1d6 Humanity and 1d6 HP. On a hit the target's mind fills with horrors that tear at their nervous system: 6d6 straight to HP with no ablation, 1d6 Humanity Loss, MOVE down by 1d6 for 9 seconds (3 Rounds), and the Short Circuit Quickhack's effect; double 6s on the damage also inflict the Brain Injury Critical Injury, though not its bonus damage. A Seriously Wounded target takes 2d6 more (8d6), loses another 1d6 MOVE (2d6 total) and falls Prone. A Mortally Wounded one rolls a Death Save at once as though their Death Save Penalty were 10 higher.",
    "notes": [
     "The sheet keeps one slot count, so this carries all 10; it won't hold Programs and Hardware to their own 8 and 2.",
     "Blackwall Gateway is described here rather than built as a separate program item."
@@ -247,8 +225,7 @@
      "body",
      -2
     ]
-   ],
-   "rules": "Iconic Drug. PRIMARY EFFECT: lasts 1 month, and a second dose inside that month does nothing and adds no time. While it runs, natural healing can carry the user 10 HP past the maximum their BODY and WILL set, though Speedheal can't reach that extra health; with Enhanced Antibodies installed they heal BODY x 3 HP for each day of rest; and every dose of Speedheal heals 5 more HP. SECONDARY EFFECT (DV21): any HP above their natural maximum is lost, and the user is now addicted to Pseudoembryonic Cell Builder if they weren't. While addicted their BODY drops by 2 unless the Primary Effect is running, and that drop does move their maximum HP and Death Save."
+   ]
   },
   "DENDRITIC PROTOPLASMA SUPPLIER": {
    "kind": "drug",
@@ -265,7 +242,6 @@
      -4
     ]
    ],
-   "rules": "Iconic Drug. PRIMARY EFFECT: lasts 1 month, and a second dose inside that month does nothing and adds no time. While it runs, the user's INT rises by 2 while Jacked In to a NET Architecture, which can push INT past 8; spending at least one point of LUCK on an Interface check adds another +1; they may Slide twice a Turn; and every Black ICE they deploy gets +2 ATK. SECONDARY EFFECT (DV21): the user is now addicted to Dendritic Protoplasma if they weren't. While addicted their INT falls by 4, to a minimum of 2, and their Speed while Jacked In takes -4, both unless the Primary Effect is running. Their memory centres slow, so recall comes late; roleplay accordingly.",
    "notes": [
     "The INT rise only applies while Jacked In, so switch the primary effect on and off with that."
    ]
@@ -305,7 +281,6 @@
      -2
     ]
    ],
-   "rules": "Iconic Drug. PRIMARY EFFECT: lasts 1 month, and a second dose inside that month does nothing and adds no time. While it runs, the user gets +4 to Endurance and Athletics checks, +2 to Resist Torture/Drugs checks (not the check against this drug's own Secondary Effect), halves every MOVE penalty they take from any source rounding up, and adds 2m/yds to the Run Action. SECONDARY EFFECT (DV21): the user is now addicted to Lactic Acid Recyclers if they weren't. While addicted they take -4 to Endurance and Athletics checks, and their DEX and MOVE drop by 2 to a minimum of 2, both unless the Primary Effect is running. They always feel a breath short of winded; roleplay accordingly.",
    "notes": [
     "The +2 Resist Torture/Drugs does not apply to the check against this drug's own Secondary Effect; the sheet can't tell those apart, so switch it off for that roll."
    ]

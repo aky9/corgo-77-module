@@ -81,8 +81,9 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
   listed in each description and their effects are already in the stats.
   Corgo's rule: pre-installed attachments can only be swapped for an
   equivalent one, and pre-installed mods can't be removed.
-- Rules the system can't automate are summarized in each item's description.
-  Each description links to Corgo's document for the exact wording.
+- Each item carries its full entry from Corgo's document, then Foundry notes
+  on what the sheet automates and what to apply by hand, and a link back to
+  the document.
 - **Range tables:** weapons use the *Solo of Fortune 2045* range tables
   (Interface RED Vol. 5). In this system, DV tables drive the DV ruler, not
   hit rolls. After running the setup macro, the core table names also use the
@@ -271,8 +272,8 @@ names overlap between the two.
 
 ## Legal
 
-Corgo's rules text appears in these items with Corgopolis's permission.
-Please support him at <https://patreon.com/Corgopolis>.
+Corgo's 77 Collection V3 is by Corgopolis. Please support him at
+<https://patreon.com/Corgopolis>.
 
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew
 Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.

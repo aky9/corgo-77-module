@@ -1,18 +1,17 @@
 """Generate Foundry Item documents (CPR Core 0.92.4 schema) for Corgo's 77 Collection weapons.
 
 Inputs:  data/weapons.parsed.json      (from parse_weapons.py)
-         text/weapons_rules.json       (rules text, rewritten in our own words)
+         data/corgo-77-v3.md           (each weapon's entry, through entry_text.lookup)
          text/weapon_variants.json     (Ironfake / Darkhound variants)
 Output:  src/packs/weapons/*.json      (one file per document, compiled by tools/compile.mjs)
 """
-import json, re, shutil
+import re
 from pathlib import Path
-from common import doc_id, title_case, parse_cost, html_escape, description_html, folder_doc, SOURCE_BOOK
+from common import doc_id, title_case, parse_cost, description_html, folder_doc, load_json, SOURCE_BOOK
 from dvtables import DvPlan, CORE_TABLE_NAMES
-import original_text
+import entry_text
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "src/packs/weapons"
 ICON_DIR = "systems/cyberpunk-red-core/icons/compendium/weapons/"
 
 # ---- mapping tables ----------------------------------------------------------
@@ -99,7 +98,7 @@ def parse_damage(raw, notes):
     return base
 
 
-def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", section_label=None,
+def build(rec, folder_id, plan, variant=None, section_key="weapons", section_label=None,
           facts_head=None, price=None, extra_notes=(), exotic_note="Exotic weapon."):
     notes = []
     name = rec.get("name") or title_case(rec["heading"])
@@ -226,10 +225,8 @@ def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", sect
     if variant:
         facts.insert(0, ("Variant of", title_case(variant["base"])))
     system["description"]["value"] = description_html(
-        original=original_text.lookup(section_key, rec["heading"], variant and (variant["group"].upper() + "S")),
+        entry=entry_text.lookup(section_key, rec["heading"], variant and (variant["group"].upper() + "S")),
         facts=facts,
-        group_rule=variant and variant["group_rule"],
-        rules=rules,
         notes=notes,
         section=section_label or ("Weapons > Weapon Catalog" + (" > Variants" if variant else "")),
     )
@@ -243,9 +240,8 @@ def build(rec, rules, folder_id, plan, variant=None, section_key="weapons", sect
 
 
 def build_pack(plan):
-    parsed = json.load(open(ROOT / "data/weapons.parsed.json", encoding="utf-8"))
-    rules = json.load(open(ROOT / "text/weapons_rules.json", encoding="utf-8"))
-    variants = json.load(open(ROOT / "text/weapon_variants.json", encoding="utf-8"))
+    parsed = load_json(ROOT / "data/weapons.parsed.json")
+    variants = load_json(ROOT / "text/weapon_variants.json")
     by_heading = {r["heading"]: r for r in parsed}
 
     folders, folder_docs = {}, []
@@ -254,15 +250,14 @@ def build_pack(plan):
         folders[key] = f["_id"]
         folder_docs.append(f)
 
-    docs = [build(r, rules[r["heading"]], folders[r["group"]], plan) for r in parsed]
+    docs = [build(r, folders[r["group"]], plan) for r in parsed]
 
     for v in variants["variants"]:
         base = dict(by_heading[v["base"]])
         rec = {**base, **{k: v[k] for k in ("heading", "cost", "class", "capacity", "alt_modes",
                                               "skill", "concealable", "attachments", "range") if k in v}}
         rec["mods"] = "None"
-        v = {**v, "group_rule": variants["_groups"][v["group"]]}
-        docs.append(build(rec, v["rules"], folders[v["group"]], plan, variant=v))
+        docs.append(build(rec, folders[v["group"]], plan, variant=v))
 
     ids = [d["_id"] for d in docs]
     assert len(ids) == len(set(ids)), "duplicate ids"

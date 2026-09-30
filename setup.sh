@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-shot setup for a fresh clone: checks the toolchain, installs dependencies, regenerates the
-# git-ignored parser output, builds the module, and runs the validator and tests.
+# git-ignored parser output, builds the module, and runs the validator, the entry check, and the tests.
 #
 #   ./setup.sh            # full setup
 #   ./setup.sh --no-check # skip validate and test (just install, parse, build)
@@ -41,7 +41,10 @@ if [ "$run_checks" -eq 1 ]; then
   step "validating the built packs against CPR 0.92.4"
   npm run validate
 
-  step "running the original-text tests"
+  step "checking each item carries its own entry"
+  npm run check:entries
+
+  step "running the tests"
   npm test
 fi
 

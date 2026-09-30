@@ -1,24 +1,27 @@
-"""Regression test for the opt-in original-text build, using placeholder text (no content from Corgo's doc).
-Run: python3 tests/test_original_text.py"""
+"""Regression test for the entry lookup and its HTML conversion, built from the placeholder document in
+tests/fixtures/ (no content from Corgo's document), so it runs anywhere.
+Run: python3 tests/test_entry_text.py"""
 import glob, json, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = Path(tempfile.gettempdir()) / "c77-original-test"
-build = subprocess.run([sys.executable, str(ROOT / "tools/build.py"), "--original-text",
-                        str(ROOT / "tests/fixtures/original-sample.md"), "--out", str(OUT)],
+OUT = Path(tempfile.gettempdir()) / "c77-entry-test"
+# The fixture covers a few dozen headings, so the build has to be told that the rest have no entry.
+build = subprocess.run([sys.executable, str(ROOT / "tools/build.py"), "--doc",
+                        str(ROOT / "tests/fixtures/sample-doc.md"), "--out", str(OUT), "--allow-missing-entries"],
                        capture_output=True, text=True, errors="replace")
 if build.returncode:
     # Show what the build actually said. A bare CalledProcessError here hides the real failure, which is
     # the one thing you need to see.
-    print("the original-text build failed:\n")
+    print("the fixture build failed:\n")
     print(build.stdout or "", build.stderr or "", sep="\n")
     sys.exit(1)
 
 
 def desc(pack, name):
     for f in glob.glob(str(OUT / pack / "*.json")):
-        d = json.load(open(f, encoding="utf-8"))
+        with open(f, encoding="utf-8") as fh:
+            d = json.load(fh)
         if d.get("name") == name:
             return d["system"]["description"]["value"]
     return ""
@@ -44,9 +47,8 @@ CHECKS = [
     ("cyberware", "Popup Ranged Weapon (Cyberleg)", ["Placeholder popup leg weapon text."]),
     ("operating-systems", "Militech 'Falcon' OS", ["Placeholder falcon OS text."]),
     ("cyberware", "Ocuset", ["Placeholder ocuset text."]),                            # cyberware-alternatives
-    ("weapons", "Arasaka Tamayura", ["Proprietary Armor-Piercing ammo costs 20eb"]),        # not in fixture: rewritten
-    ("weapon-attachments", "Extended Magazine (Pistol)", ["Adds +6 to capacity"]),          # no Corgo entry: rewritten
-    ("cyberware", "Exoglove", ["A fingerless Smart Glove"]),                                # not in fixture: rewritten
+    ("weapon-attachments", "Extended Magazine (Pistol)", ["Adds +6 to capacity"]),    # no entry: the module's own text
+    ("armor", "Gun Shield (Light)", ["Fits a weapon's Gun Shield Mount"]),           # no entry: the module's own text
 ]
 failed = [(p, n, [x for x in need if x not in desc(p, n)]) for p, n, need in CHECKS]
 failed = [f for f in failed if f[2]]
@@ -61,5 +63,5 @@ y = desc("weapons", "Arasaka HJKE-11 Yukimura")
 if "(Art" in y or "**" in y or "13EnSAoiLDsC7zmL" not in y:
     failed.append(("weapons", "Yukimura", ["art credit removed, no markdown left, source link kept"]))
 shutil.rmtree(OUT, ignore_errors=True)
-print("FAILED:", failed) if failed else print(f"original-text build: all {len(CHECKS) + 2} checks passed")
+print("FAILED:", failed) if failed else print(f"fixture build: all {len(CHECKS) + 3} checks passed")
 sys.exit(1 if failed else 0)

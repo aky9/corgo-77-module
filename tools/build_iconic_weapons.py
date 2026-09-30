@@ -13,19 +13,15 @@ Three kinds of document:
   fit, since Corgo defines them by eligibility rather than by a named parent;
 - the 89 Iconic weapons, one `weapon` each, foldered by class group;
 - the 22 variant series members, each a `weapon` built from the parsed stats of the base weapon it names
-  (a weapon this module already ships) plus the series' shared rule, the way build_weapons handles the
-  Ironfake and Darkhound variants.
+  (a weapon this module already ships), the way build_weapons handles the Ironfake and Darkhound variants.
 
-An entry builds when Corgo's own text is available for its heading, or when text/iconic_weapons.json
-carries a rewrite. His wording is what the description uses when both exist (see common.description_html),
-so a rewrite is only needed for the fallback build and for entries that also supply data - stat overrides
-under "rec", or a series rule. Anything that has neither is skipped with a count, so the build stays green.
+Every parsed record builds. text/iconic_weapons.json only carries the entries that need more than their
+stat line and text: stat overrides under "rec" and extra Foundry notes.
 """
-import json
 import re
 from pathlib import Path
-from common import folder_doc, title_case
-import build_iconics, build_upgrades, build_weapons, original_text
+from common import folder_doc, load_json, title_case
+import build_iconics, build_upgrades, build_weapons
 
 ROOT = Path(__file__).resolve().parent.parent
 SECTION = "Becoming Iconic > Iconic Weapons"
@@ -57,12 +53,6 @@ def notes_for(rec, price):
     return notes
 
 
-def _has_original(heading):
-    """True when Corgo's document carries an entry for this heading, so the item can be built
-    from it even with no rewrite in text/iconic_weapons.json."""
-    return bool(original_text.enabled() and original_text.lookup("iconic-weapons", heading))
-
-
 def _has_stat_line(rec):
     """False only when Corgo's damage is something build_weapons cannot read at all.
 
@@ -76,11 +66,10 @@ def _has_stat_line(rec):
 
 
 def build_all(plan):
-    parsed = json.load(open(ROOT / "data/iconic_weapons.parsed.json", encoding="utf-8"))
-    spec = json.load(open(ROOT / "text/iconic_weapons.json", encoding="utf-8"))
-    base_records = {r["heading"]: r for r in
-                    json.load(open(ROOT / "data/weapons.parsed.json", encoding="utf-8"))}
-    docs, folders, skipped, needs_stats = [], {}, {}, []
+    parsed = load_json(ROOT / "data/iconic_weapons.parsed.json")
+    spec = load_json(ROOT / "text/iconic_weapons.json")
+    base_records = {r["heading"]: r for r in load_json(ROOT / "data/weapons.parsed.json")}
+    docs, folders, needs_stats = [], {}, []
 
     def folder(label):
         if label not in folders:
@@ -90,52 +79,31 @@ def build_all(plan):
         return folders[label]
 
     for mod in parsed["mods"]:
-        rules = spec["mods"].get(mod["heading"])
-        if not rules and not _has_original(mod["heading"]):
-            skipped["ICONIC WEAPON MODS"] = skipped.get("ICONIC WEAPON MODS", 0) + 1
-            continue
-        rules = rules or ""
         price = build_iconics.CATEGORY_PRICE.get((mod.get("category") or "").strip(), 0)
         d = build_upgrades.upgrade(f"iconic-mod:{mod['heading']}", title_case(mod["heading"]), {}, price, 0,
-                                   facts_head(mod), rules, SECTION, folder("Weapon Mods"),
+                                   facts_head(mod), SECTION, folder("Weapon Mods"),
                                    notes=notes_for(mod, price), heading=mod["heading"],
                                    section_key="iconic-weapons")
         d["system"]["type"] = "weapon"
         docs.append(d)
 
     for rec in parsed["weapons"]:
-        entry = spec["weapons"].get(rec["heading"])
-        if entry is None:
-            if not _has_original(rec["heading"]):
-                skipped[rec["group"]] = skipped.get(rec["group"], 0) + 1
-                continue
-            entry = {}
-        if not _has_stat_line({**rec, **(entry.get("rec", {}) if isinstance(entry, dict) else {})}):
+        entry = spec["weapons"].get(rec["heading"], {})
+        if not _has_stat_line({**rec, **entry.get("rec", {})}):
             needs_stats.append(title_case(rec["heading"]))
             continue
-        rules = entry if isinstance(entry, str) else entry.get("rules", "")
-        over = {} if isinstance(entry, str) else entry
         price = build_iconics.CATEGORY_PRICE.get((rec.get("category") or "").strip(), 0)
-        docs.append(build_weapons.build({**rec, **over.get("rec", {})}, rules,
-                                        folder(GROUP_FOLDERS[rec["group"]]), plan,
+        docs.append(build_weapons.build({**rec, **entry.get("rec", {})}, folder(GROUP_FOLDERS[rec["group"]]), plan,
                                         section_key="iconic-weapons", section_label=SECTION,
                                         facts_head=facts_head(rec), price=price,
-                                        extra_notes=notes_for(rec, price) + list(over.get("notes", [])),
+                                        extra_notes=notes_for(rec, price) + list(entry.get("notes", [])),
                                         exotic_note=EXOTIC_NOTE))
 
     for v in parsed["variants"]:
-        entry = spec["variants"].get(v["heading"])
-        if entry is None:
-            if not _has_original(v["heading"]):
-                skipped["VARIANTS"] = skipped.get("VARIANTS", 0) + 1
-                continue
-            entry = {}
+        entry = spec["variants"].get(v["heading"], {})
         base = base_records.get(v["base"]) or next(
             (r for h, r in base_records.items() if v["base"] in h), None)
         if base is None and "rec" not in entry:
-            if not entry:  # nothing written yet: Corgo's text alone can't supply the stat line
-                skipped["VARIANTS (need stats)"] = skipped.get("VARIANTS (need stats)", 0) + 1
-                continue
             raise ValueError(f"{v['heading']}: base weapon {v['base']!r} is not in the weapon catalog, so "
                              f"it needs its own stats under \"rec\" in text/iconic_weapons.json")
         rec = {**(base or {}), **entry.get("rec", {}), "heading": v["heading"],
@@ -143,17 +111,12 @@ def build_all(plan):
         price = build_iconics.CATEGORY_PRICE.get(v["category"].replace("V. ", "Very ").strip(), 0)
         head = facts_head(rec)
         head.insert(0, ("Variant of", title_case(v["base"])))
-        docs.append(build_weapons.build(rec, entry.get("rules", ""), folder("Variants"), plan,
+        docs.append(build_weapons.build(rec, folder("Variants"), plan,
                                         section_key="iconic-weapons", section_label=SECTION,
                                         facts_head=head, price=price,
-                                        extra_notes=notes_for(rec, price) + list(entry.get("notes", []))
-                                        # an unwritten series rule is "", which would render as an empty bullet
-                                        + [r for r in [spec["series"].get(v["series"], "")] if r],
+                                        extra_notes=notes_for(rec, price) + list(entry.get("notes", [])),
                                         exotic_note=EXOTIC_NOTE))
 
-    if skipped:
-        print("  iconic weapons still to write: " +
-              ", ".join(f"{g} {n}" for g, n in sorted(skipped.items())))
     if needs_stats:
         print("  iconic weapons needing a damage stat decided (Corgo gives none): " +
               ", ".join(sorted(needs_stats)))

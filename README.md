@@ -21,8 +21,8 @@ module.
 
 ## What's in it
 
-Every item carries Corgo's own text, with his permission, plus notes on what the character sheet
-automates for it and a link back to his document.
+Every item carries its entry from Corgo's document, plus notes on what the character sheet automates
+for it and a link back to the document.
 
 | Pack | Items | What it holds |
 | --- | ---: | --- |
@@ -64,10 +64,12 @@ Upgrade maths work.
 
 ## Building from source
 
-`src/packs/` holds every item as JSON and is the source of truth. The parsers regenerate it from Corgo's
-document, and the compiler turns it into the LevelDB packs Foundry reads. On a fresh clone, `./setup.sh`
-installs the toolchain, parses, builds, validates, and runs the tests. [`CLAUDE.md`](CLAUDE.md)
-covers the commands, the layout, and the conventions settled against the 0.92.4 source.
+Corgo's document, exported to `data/corgo-77-v3.md`, is the source. The parsers read the stat blocks from
+it, the builders join them with the automation data in `text/` and each item's entry, and the compiler
+turns the result into the LevelDB packs Foundry reads. `src/packs/` holds every built item as JSON and is
+what ships. On a fresh clone, `./setup.sh` installs the toolchain, parses, builds, validates, and runs the
+tests, and the CI workflow runs the same on every push. [`CLAUDE.md`](CLAUDE.md) covers the commands, the
+layout, and the conventions settled against the 0.92.4 source.
 
 ## Releasing
 
@@ -78,7 +80,6 @@ points. The workflow refuses a tag that does not match the manifest's version.
 
 ## Legal
 
-Corgo's text appears in this module and in this repository with Corgopolis's permission. Corgo's 77
-Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian Games and
-is not approved or endorsed by RTG. This content references materials that are the property of R.
-Talsorian Games and its licensees.
+Corgo's 77 Collection V3 is by Corgopolis (<https://patreon.com/Corgopolis>). It is unofficial content
+provided under the Homebrew Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.
+This content references materials that are the property of R. Talsorian Games and its licensees.

@@ -65,7 +65,8 @@ def parse_entry(title, body, labels=None, keys=None, anchor="Cost:"):
     return rec
 
 def main():
-    text = open(SRC, encoding="utf-8").read()
+    with open(SRC, encoding="utf-8") as f:
+        text = f.read()
     # first WEAPONS tab only (the "Copy of WEAPONS" tab is a duplicate)
     cat = section(text, "# **WEAPON CATALOG**", "# **AMMUNITION**")
     main_part, variants_part = cat.split("## **VARIANTS**", 1)
@@ -81,7 +82,8 @@ def main():
         r = parse_entry(title, body)
         r["group"] = group
         records.append(r)
-    json.dump(records, open(OUT, "w", encoding="utf-8"), indent=1)
+    with open(OUT, "w", encoding="utf-8") as f:
+        json.dump(records, f, indent=1)
     print(len(records), "weapons parsed")
     bad = [r["heading"] for r in records if not (r["cost"] and r["class"] and r["damage"])]
     print("incomplete:", bad)

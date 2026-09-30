@@ -21,7 +21,6 @@
      "situational": true
     }
    ],
-   "rules": "Needs a power source and a tripod. Switched on, it scans a 10x10m/yds (5x5 square) area in front of it, pulls from the local crime database, and projects the most likely events there over the last 2 hours. +2 to Deduction and Criminology checks to study or understand that crime scene, or +4 for Enforcers/Lawmen.",
    "notes": [
     "Toggle the gear on, then tick the bonus in the roll dialog when it applies (add the extra +2 for Lawmen by hand)."
    ]
@@ -29,15 +28,13 @@
   {
    "key": "MAGNETIC BACK HOLSTER",
    "cost": "1,000eb (Very Expensive)",
-   "usage": "equipped",
-   "rules": "Worn over your clothing and armor. Swap between two Two-Handed Weapons with a single Action; the other one hangs on your back and can't be concealed. Big impacts (Throws, heavy Melee hits, crashes) can knock the stored weapon loose at the GM's call. A stored weapon still counts as wielded for its BODY requirements and penalties."
+   "usage": "equipped"
   },
   {
    "key": "MAXDOC INHALER",
    "cost": "500eb (Expensive)",
    "usage": "carried",
    "icon": "gear/air_hypo.svg",
-   "rules": "Holds one dose of any Pharmaceutical or Street Drug. With a free hand, you can dose yourself as an Action even if you aren't a Medtech. It only works on a willing user who inhales it, so it can't be used on someone unwilling or unconscious.",
    "name": "MaxDoc Inhaler"
   }
  ],
@@ -47,7 +44,6 @@
    "cost": "2,500eb (Very Expensive)",
    "usage": "equipped",
    "icon": "gear/linearframe_beta.svg",
-   "rules": "External Frame only; connecting to it needs two Interface Plug installations. It doesn't raise BODY, HP, or your Death Save.",
    "notes": [
     "While connected, your total REF and MOVE penalty from worn armor and wielded weapons drops by 2, or by 1 for any Metalgear (minimum 0); apply by hand."
    ]
@@ -76,7 +72,6 @@
      ]
     }
    ],
-   "rules": "External Frame only. Connecting needs three Interface Plug installations, and putting it on or taking it off takes 3 Actions. With both hands on its controls, you run two back-mounted robotic arms that act as Vehicle Heavy Weapon Mounts, each aimed independently at anything you can see. Weapons in them are always One-Handed, count as connected for Smart Rebuilds and Smartgun Links, and can't be knocked away by Aimed Shots. It's Hardened (immune to EMP, Microwavers, and Black-ICE-style effects) and can't be Quickhacked or disabled by netrunning; a coded manual release on the chest extracts an injured pilot. Either arm can instead hold a custom Advanced Optical Shield (a 25 HP Bulletproof Shield that counts as two active FBC Chameleon Coatings when seen from the front beyond 25m/yds), or the EX-75 IronWind or EX-76 EarthBreaker, which only work in this frame. Priced at the Super Luxury minimum.",
    "name": "Militech SPECTER",
    "notes": [
     "While connected: BODY becomes 14 and MOVE becomes 6 unless yours is higher (both automated while equipped); REF, DEX, and MOVE penalties from worn armor and wielded weapons are halved (rounded up); and it works as Jump Boosters, Reinforced Cyberlimb Upgrades (Legs), and Skate Feet.",
@@ -101,7 +96,6 @@
    "slots": "N/A",
    "attachments": "Auto-Compensator, Power Rebuild, Smartgun Link",
    "mods": "None",
-   "rules": "Only works mounted in the Militech SPECTER. Two modes, switched freely whenever you attack. Automatic: Autofire only, at ROF 2, and either half can be Autofire or Suppressive Fire; each Autofire uses 20 rounds. Hyper-Burst: Single Shot only, at ROF 1, using 180 rounds per attack; it ignores half the target's SP (rounded up), carries damage through Cover like an Explosive, and ablates 4 extra SP (5 normally, 6 with Armor-Piercing).",
    "name": "Militech EX-75 IronWind"
   },
   {
@@ -120,7 +114,6 @@
    "slots": "N/A",
    "attachments": "Smart Rebuild, Telescopic Barrel with Short Tube and Long Tube (Tech Upgraded to swap barrels as half of a ROF 2 Action)",
    "mods": "None",
-   "rules": "Only works mounted in the Militech SPECTER. The magazine can hold any number of ammo types at once; choose which to fire each attack.",
    "name": "Militech EX-76 EarthBreaker",
    "notes": [
     "Its Telescopic Barrel switches between the Grenade Launcher and Missile Launcher range tables; the sheet uses DV Grenade Launcher, so change the DV table when it's on the Long Tube."
@@ -132,7 +125,6 @@
    "key": "VIAL OF NEUROTOXIN",
    "cost": "1,000eb (Very Expensive) per dose",
    "usage": "carried",
-   "rules": "Poison. Smear a whole vial on a Light Melee Weapon as an Action; it lasts 1 minute (20 Rounds). While coated, the weapon deals no normal damage; instead, a flesh-and-blood target it hits must beat DV17 Resist Torture/Drugs or take 3d6 straight to HP, ignoring and not ablating SP. On that damage, 5s count as 6s toward Critical Injuries, which it can cause (Dismemberments deal their Bonus Damage without the dismemberment). They can be Head Critical Injuries if the attack was a Head Aimed Shot. Corgo's optional rule: a victim who resists a poison takes half damage (roll, then halve) instead of none.",
    "name": "Vial of Neurotoxin"
   }
  ],
@@ -141,14 +133,12 @@
    "key": "IMMUNOSUPPRESANT",
    "name": "Immunosuppressant",
    "cost": "Medtech-made: DV15 Medical Tech and 500eb of materials per dose",
-   "price": 500,
-   "rules": "Pharmaceutical; needs Medtech Rank 6+ to access. A dose restores 1d6 Humanity, but not above the maximum therapy allows. It lasts two weeks, or less if the GM rules that stress or trauma wears it off; one dose per two weeks. It doesn't combine with Immunoblockers (Edgerunners Mission Kit) in either order. A Medtech giving therapy to a dosed patient gets +2 to the Medical Tech check; if that check fails, the bonus is used up until the next dose. Priced at its material cost."
+   "price": 500
   },
   {
    "key": "BOUNCE-BACK",
    "cost": "Medtech-made Pharmaceutical (no market price listed)",
-   "price": 0,
-   "rules": "Pharmaceutical. Heals 5 HP immediately. For the next 3 Rounds (9 seconds), existing Critical Injuries deal no further damage (their effects and penalties remain); new Critical Injuries still deal their Bonus Damage. While it's active, anyone Stabilizing or Quick Fixing the recipient gets +2, and a Quick Fix takes only one Action. Two doses per day at most, and not while a dose is still active."
+   "price": 0
   }
  ],
  "street_drugs": [
@@ -191,8 +181,7 @@
      "bonuses.tactics",
      -2
     ]
-   ],
-   "rules": "Primary (4 hours): the first damage you take each Round (after armor) is reduced by 1, or 2 if it came with a Critical Injury; COOL and TECH -2 (minimum 1); you feel fearless and amped. Secondary (DV17): addiction. While addicted and not on AssKick: -2 to Athletics, Concentration, Endurance, Perception, Stealth, and Tactics."
+   ]
   },
   {
    "key": "BLUE BUTTER",
@@ -206,8 +195,7 @@
      "system.stats.cool.value",
      -2
     ]
-   ],
-   "rules": "Primary (24 hours): without a Cyberspine, beat DV17 Resist Torture/Drugs or suffer Spinal Injury's effect (not its Bonus Damage) for the duration; Critical Injuries deal no Bonus Damage; STAT and check penalties from Critical Injuries are halved (other effects remain); Medtechs treating you get +1 to Surgery; you're exhausted and disoriented. Secondary (DV17): you can't remember what happened during the high; if addicted to Berserker or Black Lace, take 1d6 Humanity Loss; addiction. While addicted and not on Blue Butter: INT and COOL -2."
+   ]
   },
   {
    "key": "DEEP DIVE",
@@ -221,8 +209,7 @@
      "system.stats.cool.value",
      -1
     ]
-   ],
-   "rules": "Primary (10 minutes): you hallucinate vividly whatever people nearby describe to you, like a Braindance, with effects the GM decides (a retold memory, a fake story, a nightmare). You're nearly comatose and can't take Actions or Move Actions. Secondary (DV15): addiction. While addicted: INT and COOL -1, and the GM occasionally tells you that you crave it."
+   ]
   },
   {
    "key": "GLITTER",
@@ -240,8 +227,7 @@
      "bonuses.deathSavePenalty",
      1
     ]
-   ],
-   "rules": "Primary (10 minutes): take 1d6 Humanity Loss, returned if you avoid the Secondary Effect. Once per Round, spend an Action or Move Action to look through the hallucinations and get a hint from the GM about a character, plot element, or something else in the scene. NPCs can do the same against you. Secondary (DV19): addiction. While addicted and not on Glitter: INT and TECH -2 (minimum 1) and +1 Base Death Save Penalty."
+   ]
   },
   {
    "key": "JELLYTRICITY",
@@ -258,7 +244,6 @@
      -2
     ]
    ],
-   "rules": "Combined with Synthcoke's Primary, BODY and WILL -2 (minimum 1), without changing HP or Death Save. You're hyperactive and impulsive. Secondary (DV17): addiction. While addicted and not on Jellytricity: DEX -2 (minimum 1), plus sluggishness and an odd craving for anything gelatinous.",
    "notes": [
     "Primary (4 hours): DEX +1, to a maximum of 8 (check the cap by hand)."
    ]
@@ -291,8 +276,7 @@
      "system.stats.move.value",
      -2
     ]
-   ],
-   "rules": "Primary (1 month): take 1d6 Humanity Loss; it takes a full 24 hours of doing nothing else to administer, and never in combat. BODY +3, which does raise HP and Death Save and stacks with cyberware. A second dose in the same month is an overdose: immediate hospitalization and Addiction Therapy. No effect on FBCs or users with Internal Linear Frames. You get outbursts of rage. Secondary (DV29): addiction. While addicted: COOL -2 and REF -1 (minimum 1); when not on Juice, you crave it and BODY and MOVE -2 (minimum 1). Rapidetox ends the Primary Effect only; the addiction needs Addiction Therapy."
+   ]
   },
   {
    "key": "OL’ DONKEY",
@@ -318,7 +302,6 @@
      -3
     ]
    ],
-   "rules": "With BODY 12+, +3 to BODY-based checks instead. No -2 penalty to Brawling, Martial Arts, and Melee Weapon checks while in a Grapple. You're overconfident and loud. Secondary (DV17): addiction. While addicted and not on Ol' Donkey: BODY -3 (minimum 1), without lowering HP or Death Save.",
    "notes": [
     "Primary (4 hours): MOVE and REF -1 (minimum 1); BODY +3 to a maximum of 11, without raising HP or Death Save (check the cap and HP by hand)."
    ]
@@ -357,8 +340,7 @@
      "bonuses.persuasion",
      -2
     ]
-   ],
-   "rules": "Primary (1 hour): +1 Base Death Save Penalty, returned if you avoid the Secondary Effect. Your sense of reality warps and your memory of it blurs. Anyone who beats you in an opposed Persuasion check can roll or choose your Personality and How You Feel About Most People from the Lifepath tables; you act that way, believing you always have, for the rest of the high. Secondary (DV19): take 1d6 Humanity Loss; addiction. While addicted: -2 to Acting, Concentration, Conversation, Deduction, Human Perception, and Persuasion."
+   ]
   },
   {
    "key": "RAM NUGS",
@@ -379,8 +361,7 @@
      "system.stats.tech.value",
      -2
     ]
-   ],
-   "rules": "Primary (4 hours): DEX and MOVE -2 (minimum 1). Net brain damage you take while Jacked In is reduced by 2. Once per Turn, take 2 Humanity Loss to attempt one more Quickhack (a different one, still costing a Net Action) on a target you already Quickhacked this Turn. Secondary (DV17): addiction. While addicted and not on RAM Nugs: TECH -2 (minimum 1)."
+   ]
   },
   {
    "key": "RPM",
@@ -391,7 +372,6 @@
      -2
     ]
    ],
-   "rules": "Primary (5 minutes): intense hallucinations distort reality and lower inhibitions; the GM may say you're spinning out and lose your Action. Your EMP counts as 2 higher (maximum 8) for Humanity and its effects only (not skill checks), which can hold off cyberpsychosis while it lasts. Secondary (DV19): take 3 Humanity Loss; addiction. While addicted: REF -2.",
    "name": "RPM"
   },
   {
@@ -403,14 +383,12 @@
      -2
     ]
    ],
-   "rules": "Primary (1 hour): take 1d6 Humanity Loss, returned if you avoid the Secondary Effect; you ignore the Seriously Wounded state. Secondary (DV17): the Humanity Loss isn't returned; addiction. While addicted and not on S-KEEF: REF -2. Only works through a MaxDoc Inhaler, not Airhypos, Arrowhypo ammo, Multihypos, or similar, though it can go in Airburst ammo and other aerosol delivery.",
    "name": "S-KEEF"
   },
   {
    "key": "SPIKED",
    "cost": "Invented Tech Upgrade (Upgrade DV17; material cost: the most expensive component drug + 100eb)",
    "price": 0,
-   "rules": "Combines one dose each of two Street Drugs into a single dose. The DV to resist each drug's Secondary Effect rises by 2; otherwise the two drugs' effects and durations work separately.",
    "notes": [
     "In Foundry, dose both component drugs."
    ]
@@ -423,8 +401,7 @@
      "system.stats.int.value",
      -2
     ]
-   ],
-   "rules": "Primary (1 hour): drugs, poisons, and intoxicants already in your system stop affecting you (new ones work normally); you ignore penalties from lack of sleep, discomfort, and stress; you feel amped and ready to fight and can't fall asleep voluntarily, though you can still be knocked out. Secondary (DV17): take 2 Humanity Loss; addiction. While addicted: INT -2."
+   ]
   }
  ]
 }
