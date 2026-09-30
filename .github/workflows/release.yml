@@ -43,7 +43,7 @@ jobs:
             exit 1
           fi
 
-      - name: Install, parse, build, validate, test
+      - name: Install, parse, build, validate, check, test
         run: ./setup.sh
 
       - name: Pin the manifest's download URL to this release
