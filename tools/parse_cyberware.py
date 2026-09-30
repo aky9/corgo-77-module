@@ -11,8 +11,8 @@ Writes data/cyberware.parsed.json. Each record is {chapter, group, level, headin
 
 Only stats are parsed; the rules text itself lives in text/cyberware.json, rewritten in our own words
 (`npm run build:original` substitutes Corgo's wording at build time instead). Full Body Conversions,
-the Militech Centaur Exo, and the Corpochrome variants are deliberately not parsed: see SKIP and
-DEVELOPING.md.
+the Militech Centaur Exo, and the Corpochrome variants are deliberately not parsed: see SKIP_GROUPS
+and SKIP_HEADINGS below.
 """
 import json, re, sys
 from pathlib import Path

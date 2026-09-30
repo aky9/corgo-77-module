@@ -9,7 +9,7 @@ from common import doc_id, MODULE_ID
 ROOT = Path(__file__).resolve().parent.parent
 PACKS = ROOT / "src/packs"
 # Corgo's document. He gave permission for this conversion and for his text to ship, so when the
-# export is present his wording is what gets built; see DEVELOPING.md.
+# export is present his wording is what gets built.
 DOC = ROOT / "data/corgo-77-v3.md"
 
 
