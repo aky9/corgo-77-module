@@ -15,15 +15,16 @@ everything below and stops at the first failure. By hand:
 
     npm ci
     npm run parse            # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so run once per clone)
-    npm run build            # src/packs/*.json -> dist/corgo-77-collection (the installable module)
+    npm run build            # parsed data + text/*.json + the document -> src/packs -> dist/corgo-77-collection
     npm run validate         # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
     npm run check:entries    # per-item check that each description carries its own entry's text
     npm test                 # entry lookup checks against the placeholder document in tests/fixtures/
 
 To build from a newer export of the document, replace `data/corgo-77-v3.md` and run `npm run parse` and
 `npm run build` again. `tools/build.py --doc <path> --out <dir>` reads the entry text from another export
-without touching `src/packs`, which is how the tests build from their placeholder document; the stat
-blocks still come from the parsed data.
+and writes the packs elsewhere, which is how the tests build from their placeholder document; the stat
+blocks still come from the parsed data, and `tools/compat/schism-dv-recommendations.json` is refreshed
+either way.
 
 Run every command from the repository root. All file I/O is explicit UTF-8, so the build behaves the same
 on Windows, macOS, and Linux. Item names include characters a legacy Windows console cannot show ("Ć",

@@ -23,7 +23,7 @@ chapters, since the `vehicle` field set is untouched.
 """
 import copy
 from pathlib import Path
-from common import doc_id, title_case, description_html, folder_doc, load_json
+from common import title_case, description_html, folder_doc, load_json
 import build_cyberware, build_gear, build_upgrades, entry_text
 
 ROOT = Path(__file__).resolve().parent.parent

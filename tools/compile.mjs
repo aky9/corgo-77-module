@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(root, "module/module.json"), "utf8"));
 const dist = path.join(root, "dist", manifest.id);
-const packSrc = path.resolve(process.argv[2] || path.join(root, "src/packs"));  // e.g. build/packs
+const packSrc = path.resolve(process.argv[2] || path.join(root, "src/packs"));  // or a --out dir from tools/build.py
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });

@@ -13,8 +13,8 @@ Writes data/iconic_weapons.parsed.json with three lists:
 
       #### **'FOXHOUND'** \\[Super Luxury | DV29 - 10,000eb - 1 Month\\] {Nekomata}
 
-  so the base weapon is a weapon we have already built, and the series text holds the shared rule. That
-  mirrors how text/weapon_variants.json handles the Ironfake and Darkhound variants.
+  so the base weapon is a weapon we have already built. Each member records the series heading it sits
+  under. That mirrors how text/weapon_variants.json handles the Ironfake and Darkhound variants.
 """
 import json, re, sys
 from pathlib import Path
@@ -38,7 +38,7 @@ VARIANT = re.compile(r"^[‘'\"]?(?P<name>[^’'\"\[]+?)[’'\"]?\s*\[(?P<catego
 
 def parse(text):
     chapter = section(text, "# **ICONIC WEAPONS**", "# **ICONIC VEHICLES**")
-    mods, weapons, variants, series = [], [], [], []
+    mods, weapons, variants = [], [], []
     group, in_variants, cur_series = None, False, None
 
     parts = re.split(r"^(#{2,5}) (.+)$", chapter, flags=re.M)
@@ -52,10 +52,8 @@ def parse(text):
             continue
 
         if in_variants:
-            if level == "###":  # a series: its body is the shared rule
-                cur_series = {"heading": title,
-                              "lines": [clean(l) for l in body.splitlines() if clean(l)]}
-                series.append(cur_series)
+            if level == "###":  # a series heading; its members follow
+                cur_series = title
             else:  # a member of the series
                 if title.upper().startswith("KNOWN"):  # the list's own sub-heading
                     continue
@@ -64,7 +62,7 @@ def parse(text):
                     print(f"  unparsed variant heading: {title}")
                     continue
                 variants.append({"heading": m.group("name").strip().upper(),
-                                 "series": cur_series["heading"] if cur_series else None,
+                                 "series": cur_series,
                                  "category": m.group("category").strip(),
                                  "fabrication": (m.group("fab") or "").strip(),
                                  "base": clean(m.group("base")).upper(),
@@ -89,15 +87,14 @@ def parse(text):
         rec = parse_entry(title, body, ICONIC_LABELS, ICONIC_KEYS, anchor="Category:")
         rec["group"] = group
         weapons.append(rec)
-    return {"mods": mods, "weapons": weapons, "series": series, "variants": variants}
+    return {"mods": mods, "weapons": weapons, "variants": variants}
 
 
 if __name__ == "__main__":
     data = parse(SRC.read_text(encoding="utf-8"))
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=1, ensure_ascii=False)
-    print(f"{len(data['mods'])} mods, {len(data['weapons'])} weapons, "
-          f"{len(data['series'])} variant series with {len(data['variants'])} members")
+    print(f"{len(data['mods'])} mods, {len(data['weapons'])} weapons, {len(data['variants'])} variant members")
     groups = {}
     for w in data["weapons"]:
         groups[w["group"]] = groups.get(w["group"], 0) + 1

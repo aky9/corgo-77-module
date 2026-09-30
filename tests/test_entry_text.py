@@ -55,7 +55,7 @@ failed = [f for f in failed if f[2]]
 if "Placeholder ironwind text" in desc("gear", "Militech SPECTER"):
     failed.append(("gear", "Militech SPECTER", ["frame description should stop before its weapons"]))
 # An entry with nested "#### " entries must not swallow their text: Gorilla Arm owns neither Modified
-# Plating's wording nor a literal markdown heading.
+# Plating's text nor a literal markdown heading.
 ga = desc("cyberware", "Gorilla Arm")
 if "Placeholder modified plating text" in ga or "####" in ga:
     failed.append(("cyberware", "Gorilla Arm", ["must stop before its nested enhancements"]))
