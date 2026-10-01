@@ -78,8 +78,19 @@ push the tag; [`.github/workflows/release.yml`](.github/workflows/release.yml) b
 attaches `module.zip` and `module.json` to a GitHub Release, which is where the manifest URL above
 points. The workflow refuses a tag that does not match the manifest's version.
 
+## Credits
+
+Corgo's 77 Collection V3 is by Corgopolis (<https://patreon.com/Corgopolis>); every item is his text and
+his stats. The DV tables are transcribed from Interface RED Vol. 5 (Solo of Fortune 2045). This module is
+built to run alongside Schism989's [Cyberpunk RED - Solo of Fortune 2045](https://github.com/Schism989/cpred-solo-of-fortune-2045)
+module, which supplies the Solo of Fortune attachments and ammo Corgo's items refer to. To make the two
+fit together, `tools/compat/` records the names of his DV tables and items (nothing else from his module):
+this module's DV compendium uses the same table names so his weapons keep working after the DV ruler is
+switched to it, and the build refuses any item name that would collide with one of his. None of his
+content is copied into this module.
+
 ## Legal
 
-Corgo's 77 Collection V3 is by Corgopolis (<https://patreon.com/Corgopolis>). It is unofficial content
-provided under the Homebrew Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.
-This content references materials that are the property of R. Talsorian Games and its licensees.
+Corgo's 77 Collection V3 is unofficial content provided under the Homebrew Content Policy of R. Talsorian
+Games and is not approved or endorsed by RTG. This content references materials that are the property of
+R. Talsorian Games and its licensees.

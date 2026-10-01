@@ -270,10 +270,20 @@ names overlap between the two.
   MA70 HB* look like the same gun in different eras. Corgo intends his
   version to replace other sources' versions, so pick one for your game.
 
-## Legal
+## Credits
 
 Corgo's 77 Collection V3 is by Corgopolis. Please support him at
-<https://patreon.com/Corgopolis>.
+<https://patreon.com/Corgopolis>. Every item is his text and his stats.
+
+The DV tables are transcribed from Interface RED Vol. 5 (Solo of Fortune
+2045). This module is built to run alongside Schism989's Cyberpunk RED -
+Solo of Fortune 2045 module (see above), which supplies the attachments and
+ammo Corgo's items refer to. Its DV table names are matched here so his
+weapons keep working once the DV ruler points at this compendium, and the
+build checks that no item name collides with one of his. Nothing from his
+module is copied into this one.
+
+## Legal
 
 Corgo's 77 Collection V3 is unofficial content provided under the Homebrew
 Content Policy of R. Talsorian Games and is not approved or endorsed by RTG.
