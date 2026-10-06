@@ -3,7 +3,7 @@
 An unofficial Foundry VTT module that brings **Corgo's 77 Collection V3** by Corgopolis, a 2070s-era
 homebrew supplement for Cyberpunk RED, into the Cyberpunk RED - Core system as compendiums. It adds
 754 items across 15 packs and changes nothing in the system itself. Corgo's NPC stat blocks ship as a
-separate module, **Corgo's 77 Collection: NPCs** (114 mook actors), built from the same repository.
+separate module, **Corgo's 77 Collection: NPCs** (128 mook actors), built from the same repository.
 
 - Corgo's document: <https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit>
 - Corgo's NPC stat blocks: <https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit>
@@ -56,12 +56,11 @@ after the switch.
 the shared Iconic rules in their notes, and are priced at their Category's benchmark so repair and Tech
 Upgrade maths work.
 
-**The NPC module** holds Corgo's NPC stat blocks, included with his permission, as 114 mook actors that
+**The NPC module** holds Corgo's NPC stat blocks, included with his permission, as 128 mook actors that
 carry real copies of their gear and cyberware, so it works without the items module. Most use his quick
 format (COM#, INIT, COOL, MOVE, and skill bases), built so every listed skill rolls exactly the printed
 number; [`npcs-module/README.md`](npcs-module/README.md) explains how. Install it from
-`https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json`. Trauma Team and the
-Scavengers are not converted yet.
+`https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json`.
 
 ## Not converted
 

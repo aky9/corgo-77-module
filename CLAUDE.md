@@ -92,8 +92,7 @@ world that already holds the item.
 - `tools/entry_text.py`: finds an item's entry in the document by heading, within the right section, and
   converts it to HTML. Its docstring lists the items that have no entry.
 - `tools/check_entries.py`: the `check:entries` command.
-- `data/npcs/*.md`: Corgo's NPC stat blocks, one Google Docs export per faction. Trauma Team and the
-  Scavengers are not here yet (see "Deliberately not built").
+- `data/npcs/*.md`: Corgo's NPC stat blocks, one Google Docs export per faction.
 - `tools/parse_npcs.py`: both stat-block layouts (COM# and the full boss layout) into
   `data/npcs.parsed.json`. Gear lines become item trees ("Neuroport (w/ Pain Editor [w/ Painducer])").
 - `tools/build_npcs.py`: the NPC pack. Its docstring states every conversion rule.
@@ -169,8 +168,6 @@ These are left out on purpose. Do not build them without deciding the convention
 - **Vehicles**, the **Vehicle Catalog**, and **Iconic Vehicles**. The 0.92.4 `vehicle` field set is
   untouched; settle it once, for both chapters, before building either.
 - **Drones**, **Drone-related Gear**, and the **Drone Catalog**.
-- **Trauma Team** and the **Scavengers** NPCs. Their exports are plain text in a different layout from the
-  rest; add them to `data/npcs/` as Markdown exports when they are wanted.
 - **Role Tweaks**, **Netrunning**, and **Deep Diving 101**. These are rules rather than items. Journal
   entries are the likely home if they are ever added.
 

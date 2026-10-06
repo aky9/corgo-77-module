@@ -219,8 +219,16 @@ def build_skills(a, stats):
     order = [n for n in srcs if n != "Local Expert (Your Home)"] + [n for n in bases if n not in srcs]
     if not any(n.startswith("Local Expert") for n in bases):
         order.append("Local Expert (Your Home)")
+    # A Medtech's Surgery and Medical Tech are rolled through the role's "<name> Skill" ability, not a skill item.
+    role_skills = {ab["name"].removesuffix(" Skill"): d["name"] for r in rec["roles"]
+                   for d in core["items"] if d["type"] == "role" and d["name"] == r["role"]
+                   for ab in d["system"]["abilities"] if ab["name"].endswith(" Skill")}
     for name in order:
         src = srcs.get(name) or extra.get(name) or template.get(name.split(" (")[0])
+        if src is None and name in role_skills:
+            a.note("Role abilities", f"{name} {bases[name]}: the {role_skills[name]} role's {name} Skill "
+                                     "ability, not a skill item; roll the printed base")
+            continue
         if src is None:
             a.cat.unresolved.setdefault(f"skill {name}", a.where)
             continue
@@ -273,7 +281,7 @@ def weapon_line(w):
 
 def build_weapon(a, w):
     name = w["name"]
-    if name.startswith(("GM’s Choice", "GM's Choice")):
+    if re.match(r"GM[’']s Choice", name, re.I):
         a.note("Weapons", f"{name}: {weapon_line(w)}")
         return
     if name.startswith("Martial Arts ("):       # full layout: the style's attack row, damage from BODY
@@ -320,7 +328,7 @@ def build_weapon(a, w):
     if rof and item["system"].get("rof") != int(rof.group(0)):
         fields["rof"] = int(rof.group(0))
     weapon = a.embed(item, rename=rename, **fields)
-    extra = "; ".join(filter(None, [", ".join(tags), ", ".join(node["gloss"]), alias_note, w.get("notes")]))
+    extra = "; ".join(filter(None, [", ".join(tags), ", ".join(own_gloss(node, item)), alias_note, w.get("notes")]))
     if rename or extra or "&" in (w["damage"] or "") or w["damage"].count("d6") > 1:
         a.note("Weapons", f"{weapon['name']}: {weapon_line(w)}" + (f". {extra}" if extra else "")
                           + (f" (built on the core {item['name']})" if rename else ""))
@@ -328,6 +336,11 @@ def build_weapon(a, w):
         a.note("Weapons", f"{weapon['name']} ammunition: {w['ammo']}")
     for child in node["children"]:
         build_child(a, weapon, child)
+
+
+def own_gloss(node, item):
+    """The gloss worth a note: not the part that matched the item's name ("Kaleidoscopic ... (KERS)")."""
+    return [g for g in node["gloss"] if f"({norm(g)})" not in norm(item["name"])]
 
 
 def build_child(a, parent, node, printed_parent=None):
@@ -357,7 +370,7 @@ def build_child(a, parent, node, printed_parent=None):
             a.cyberware.append(child)
         for grandchild in node["children"]:
             build_child(a, child, grandchild, base)
-    detail = tags + node["gloss"] + ([alias_note] if alias_note else [])
+    detail = tags + own_gloss(node, item) + ([alias_note] if alias_note else [])
     if detail:
         a.note("Gear details", f"{item['name']}: {'; '.join(detail)}")
 
@@ -431,7 +444,7 @@ def build_gear(a, node):
         for child in node["children"]:
             build_child(a, worn, child, base)
         return
-    detail = tags + node["gloss"] + ([alias_note] if alias_note else [])
+    detail = tags + own_gloss(node, item) + ([alias_note] if alias_note else [])
     if detail:
         a.note("Gear details", f"{item['name']}: {'; '.join(detail)}")
     stack = "amount" in item["system"]
