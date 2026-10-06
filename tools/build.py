@@ -4,12 +4,13 @@ import re, shutil, sys
 from pathlib import Path
 import argparse
 import build_weapons, build_upgrades, build_armor, build_gear, build_cyberware, build_iconics, \
-    build_iconic_weapons, dvtables, entry_text
+    build_iconic_weapons, build_npcs, dvtables, entry_text
 from common import doc_id, dump_json, load_json, MODULE_ID
 
 ROOT = Path(__file__).resolve().parent.parent
 PACKS = ROOT / "src/packs"
 DOC = ROOT / "data/corgo-77-v3.md"  # Corgo's document: the source every item is built from
+BUILT = {}  # pack name -> documents, for the NPC builder, which embeds copies of the items
 
 
 def write_pack(name, docs):
@@ -20,6 +21,7 @@ def write_pack(name, docs):
     for d in docs:
         slug = re.sub(r"[^a-z0-9]+", "-", d["name"].lower()).strip("-")
         dump_json(out / f"{slug}.{d['_id']}.json", d)
+    BUILT[name] = docs
     print(f"{name}: {len(docs)} documents")
 
 
@@ -82,6 +84,8 @@ if __name__ == "__main__":
              **build_iconic_weapons.build_all(plan)}
     write_pack("dv-tables", dvtables.build_docs(plan))
     for name, docs in packs.items():
+        write_pack(name, docs)
+    for name, docs in build_npcs.build_all(BUILT).items():  # last: NPCs carry copies of every pack's items
         write_pack(name, docs)
     print(f"entries found for {len(entry_text.FOUND)} items")
     if entry_text.MISSING:

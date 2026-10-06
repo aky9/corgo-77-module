@@ -8,13 +8,17 @@ The module is a Foundry conversion of Corgo's 77 Collection V3 by Corgopolis. Hi
 `data/corgo-77-v3.md`, is the source: the parsers read every stat block from it, and every item's
 description is its entry from it. This repository adds the automation data and the Foundry notes.
 
+The NPCs come from a second document, Corgo's NPC stat blocks (used with his permission), exported one file
+per faction to `data/npcs/`. They are built as `mook` actors that carry copies of the module's and the
+system's items; see "NPCs" below.
+
 ## Requirements and commands
 
 You need Python 3 (standard library only) and Node 18 or newer. On a fresh clone, `./setup.sh` runs
 everything below and stops at the first failure. By hand:
 
     npm ci
-    npm run parse            # data/corgo-77-v3.md -> data/*.parsed.json (git-ignored, so run once per clone)
+    npm run parse            # data/corgo-77-v3.md and data/npcs/ -> data/*.parsed.json (git-ignored, so run once per clone)
     npm run build            # parsed data + text/*.json + the document -> src/packs -> dist/corgo-77-collection
     npm run validate         # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
     npm run check:entries    # per-item check that each description carries its own entry's text
@@ -36,13 +40,15 @@ cannot encode them. To test a change against such a console, run with `PYTHONIOE
 
 The build is a pipeline of four steps, each reading the previous step's output:
 
-1. **Parse.** `npm run parse` runs the five parsers in `tools/parse_*.py`. Each reads one or more chapters
-   of `data/corgo-77-v3.md` and writes the stat blocks it finds to `data/*.parsed.json`. These files are
-   git-ignored because they are derived; regenerate them whenever the document changes.
+1. **Parse.** `npm run parse` runs the parsers in `tools/parse_*.py`. Five read chapters of
+   `data/corgo-77-v3.md`; `parse_npcs.py` reads `data/npcs/`. Each writes the stat blocks it finds to
+   `data/*.parsed.json`. These files are git-ignored because they are derived; regenerate them whenever a
+   source changes.
 2. **Build.** `tools/build.py` runs every pack builder in `tools/build_*.py`. A builder joins the parsed
    stats with the automation data in `text/*.json`, looks up the item's entry in Corgo's document through
    `tools/entry_text.py`, and writes one JSON document per item or folder to `src/packs/<pack>/`. The
-   build fails if the document is missing or if any item's entry cannot be found.
+   build fails if the document is missing or if any item's entry cannot be found. `build_npcs.py` runs
+   last, because its actors embed copies of the items every other builder just made.
 3. **Compile.** `tools/compile.mjs` compiles each `src/packs/<pack>/` into a LevelDB pack under
    `dist/corgo-77-collection/packs/` with the Foundry CLI, and copies `module/` in beside them.
 4. **Validate.** `tools/validate.mjs` reads the compiled packs back and checks them against a snapshot of
@@ -81,6 +87,17 @@ world that already holds the item.
 - `tools/entry_text.py`: finds an item's entry in the document by heading, within the right section, and
   converts it to HTML. Its docstring lists the items that have no entry.
 - `tools/check_entries.py`: the `check:entries` command.
+- `data/npcs/*.md`: Corgo's NPC stat blocks, one Google Docs export per faction. Trauma Team and the
+  Scavengers are not here yet (see "Deliberately not built").
+- `tools/parse_npcs.py`: both stat-block layouts (COM# and the full boss layout) into
+  `data/npcs.parsed.json`. Gear lines become item trees ("Neuroport (w/ Pain Editor [w/ Painducer])").
+- `tools/build_npcs.py`: the NPC pack. Its docstring states every conversion rule.
+- `text/npc_aliases.json`: every NPC gear, weapon, and armor name that does not match an item by name:
+  `aliases` (to an item, with an optional note or per-parent choice), `unbuilt` (no Foundry item, with the
+  reason), and `skills` (typos).
+- `tools/cpr-0.92.4-items.json`: a snapshot of the item documents the system ships (core, Black Chrome,
+  and the free DLC, with their Active Effects), which the NPC builder copies into actors. Regenerate it
+  with `tools/snapshot_core_items.mjs` from a v0.92.4 checkout; the command is in its header.
 - `tools/cpr-0.92.4-reference.json`: a snapshot of 0.92.4's allowed values, field sets, and item names, so
   building and validating need no system checkout. The cyberware field sets and enums come from the
   0.92.4 `CyberwareDataModel` and its mixins, checked against all 186 cyberware items the system ships.
@@ -145,6 +162,8 @@ These are left out on purpose. Do not build them without deciding the convention
 - **Vehicles**, the **Vehicle Catalog**, and **Iconic Vehicles**. The 0.92.4 `vehicle` field set is
   untouched; settle it once, for both chapters, before building either.
 - **Drones**, **Drone-related Gear**, and the **Drone Catalog**.
+- **Trauma Team** and the **Scavengers** NPCs. Their exports are plain text in a different layout from the
+  rest; add them to `data/npcs/` as Markdown exports when they are wanted.
 - **Role Tweaks**, **Netrunning**, and **Deep Diving 101**. These are rules rather than items. Journal
   entries are the likely home if they are ever added.
 
@@ -212,6 +231,28 @@ look if a system update changes the behaviour.
   newline after each boundary tag, and the validator enforces it. Inline tags (strong, em, a) are exempt:
   the export splits words across bold runs, so dropping an inline tag with no space is the correct reading.
 
+**NPCs.** Read from the 0.92.4 actor code (`cpr-actor.js`, `mook-datamodel.js`, the container and
+installable mixins).
+
+- An NPC is a `mook` actor: the `character` schema minus wealth, lifepath, and lifestyle. Skills are
+  embedded `skill` items and the Role is an embedded `role` item; neither is an actor field.
+- `CPRActor.create` adds the core skills and the three core cyberware containers only when the incoming data
+  has no `system`. A compendium actor has one, so it gets nothing: every NPC carries all 63 core skills and
+  the containers itself, with the containers in `system.installedItems.list`.
+- "Installed" is not a flag on an item. `isInstalled` and `installedIn` are getters that search the actor's
+  and its items' `installedItems.list`, so those id lists are the only record. Foundational cyberware goes in
+  the actor's list; anything else goes in a foundational piece of the same `type`, as `installCyberware`
+  requires, even when the block lists it under another limb (Integrated Netstation in a Cyberarm).
+- HP and Humanity maximums are stored, not derived. Armor penalty is a roll modifier on REF, DEX, and MOVE
+  skills (`getArmorPenaltyMods`), independent of the STAT value, which is why a skill's printed base, not
+  its bracketed value, sets its level. Role bonuses apply only to the role ability's own roll.
+- Unarmed and Martial Arts damage comes from BODY when `unarmedAutomaticCalculation` is on (1d6 / 2d6 / 3d6
+  / 4d6 at BODY 4 / 6 / 10 / 11+). A printed value that disagrees turns it off and sets the damage.
+- The COM# conversion (unknown STATs are 0, COM# fills unlisted attack skills, printed values win) was the
+  user's decision, not a system fact; it is stated in `build_npcs.py`'s docstring and the user guide.
+- Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
+  `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
+
 **Iconics and drugs.**
 
 - Iconics carry a Category and a Fabrication cost instead of a price. `build_iconics.CATEGORY_PRICE` maps
@@ -229,6 +270,10 @@ any fails.
   replays every weapon's Autofire lookup, resolves every enhancement target, checks description whitespace,
   parses the macros, and confirms the DV compendium still covers Schism989's table names with no item-name
   collisions.
+- `npm run validate` also checks every NPC: its system data against the 0.92.4 `MookDataModel` field set
+  (`mookKeys` in the reference snapshot), all core skills present, every installed id naming one of its own
+  items exactly once, cyberware placed as `installCyberware` would, and tracked armor equipped. The NPC build
+  itself fails on a gear name that is neither resolved nor `unbuilt`, and on an `unbuilt` entry nothing uses.
 - `npm run check:entries` fingerprints each item's entry with its longest unique line, taken from the
   parsers' records rather than from `entry_text.py`, so a heading-matching bug cannot hide itself. It
   fails if an item carries another entry's text, which is how a parent running on into its nested
@@ -240,6 +285,11 @@ any fails.
 ## Known gaps
 
 Things not yet verified in Foundry, and the check that would close each one:
+
+- The NPC actors have only been compiled and read back, not opened in Foundry. Import a few (a COM# mook, a
+  netrunner, a boss) and confirm the mook sheet shows the skills at their printed bases, the equipped armor
+  in the SP slots, the installed cyberware's effects, and the Unarmed damage.
+- `build_npcs.NPC_SOURCE_BOOK` ("Corgo's 77 Collection: Mooks") is a placeholder for the NPC document's title.
 
 - The stat caps (Mechatronic Core at TECH 7 should give 8, not 9), the three enhancement slot modifiers,
   and whether Advanced Neural Link's four Neuralware slots are reachable. That last one is the typing

@@ -2,9 +2,10 @@
 
 An unofficial Foundry VTT module that brings **Corgo's 77 Collection V3** by Corgopolis, a 2070s-era
 homebrew supplement for Cyberpunk RED, into the Cyberpunk RED - Core system as compendiums. It adds
-754 items across 15 packs and changes nothing in the system itself.
+754 items and 114 NPCs across 16 packs and changes nothing in the system itself.
 
 - Corgo's document: <https://docs.google.com/document/d/13EnSAoiLDsC7zmL-Jr1RqIh_EnuVuFnExqiipDVquMk/edit>
+- Corgo's NPC stat blocks: <https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit>
 - Support Corgopolis: <https://patreon.com/Corgopolis>
 - Requires Foundry VTT v12 and Cyberpunk RED - Core v0.92.4
 
@@ -39,6 +40,7 @@ for it and a link back to the document.
 | Iconic Cyberware | 20 | Iconic Neuralware, Cyberoptics, Body Cyberware, Cyberlimbs, and both Relic Biochips |
 | Operating Systems | 18 | The Berserk, Cyberdeck Port, and Sandevistan Operating Systems and the five Cyberdecks they come with |
 | Iconic Gear | 5 | The two Iconic Cyberdecks and three Iconic Drugs |
+| NPCs | 114 | Mook actors for Corgo's NPC stat blocks, one folder per faction, carrying real copies of their gear and cyberware |
 | DV Tables | 51 | The Solo of Fortune 2045 single-shot and Autofire range tables, covering every table name the core system uses |
 | Setup Macros | 2 | Switch the DV ruler to these tables, and back |
 
@@ -53,6 +55,10 @@ after the switch.
 **Iconics** are Corgo's optional item class, found rather than bought. They live in their own packs, carry
 the shared Iconic rules in their notes, and are priced at their Category's benchmark so repair and Tech
 Upgrade maths work.
+
+**NPCs** come from Corgo's separate NPC stat blocks, included with his permission. Most use his quick format
+(COM#, INIT, COOL, MOVE, and skill bases), built so every listed skill rolls exactly the printed number;
+the user guide explains how. Trauma Team and the Scavengers are not converted yet.
 
 ## Not converted
 
