@@ -204,9 +204,9 @@ look if a system update changes the behaviour.
 - An enhancement's `enhances` target must be a real item. `validate.mjs` resolves it against the 0.92.4
   item names in the reference snapshot, the module's own built names, and the allowlist in
   `text/enhance_targets.json`, which names the parents the system lacks (Monowire, Self-ICE, the Neuroport
-  Cyberdeck Port, all from Corgo's required paid content) with the reason. Matching is exact per
-  "or"-separated part after stripping a parenthetical gloss. Do not loosen it: a prefix match lets a
-  renamed parent pass silently, which is the breakage the check exists to catch. Corgo's Neuroport is the
+  Cyberdeck Port, all from official R. Talsorian material the Foundry system does not include) with the
+  reason. Matching is exact per "or"-separated part after stripping a parenthetical gloss. Do not loosen
+  it: a prefix match lets a renamed parent pass silently, which is the breakage the check exists to catch. Corgo's Neuroport is the
   core's Neural Link, his Personal Link is Interface Plugs, and "Implanted Linear Frame (any)" maps to the
   real "Implanted Linear Frame β (Beta)". After any change here, repeat two negative tests: a typo in a
   target must fail, and a dropped allowlist entry must fail.
