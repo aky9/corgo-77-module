@@ -75,6 +75,11 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
   keep working after the switch.
 - **Setup Macros** (2): switch the DV ruler to these tables and back.
 
+Corgo's NPC stat blocks are a separate module, **Corgo's 77 Collection: NPCs**: 114 ready-to-drop mook
+actors. Install it from this manifest URL:
+
+    https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json
+
 ## How the items work
 
 - Stats are Corgo's finished stat lines. Pre-installed attachments are

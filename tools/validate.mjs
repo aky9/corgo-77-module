@@ -3,9 +3,12 @@
 import { ClassicLevel } from "classic-level";
 import fs from "node:fs";
 
-// Checks the built module against a snapshot of CPR 0.92.4 facts (tools/cpr-0.92.4-reference.json),
-// so no CPR checkout is needed. Usage: node tools/validate.mjs dist/corgo-77-collection
+// Checks the built modules against a snapshot of CPR 0.92.4 facts (tools/cpr-0.92.4-reference.json),
+// so no CPR checkout is needed.
+// Usage: node tools/validate.mjs dist/corgo-77-collection dist/corgo-77-npcs
 const DIST = process.argv[2];
+const NPC_DIST = process.argv[3];
+if (!DIST || !NPC_DIST) throw new Error("usage: node tools/validate.mjs <items module dist> <NPC module dist>");
 const REF = JSON.parse(fs.readFileSync(new URL("./cpr-0.92.4-reference.json", import.meta.url)));
 const COMPAT = JSON.parse(fs.readFileSync(new URL("./compat/schism-sof45.json", import.meta.url)));
 const compatNames = new Set(COMPAT.itemNames.map((n) => n.toLowerCase()));
@@ -352,6 +355,65 @@ for (const pack of ["cyberware-upgrades", "operating-systems", "iconic-cyberware
   }
 }
 console.log(`${enhCount} enhancement targets resolved`);
+
+// NPC pack: mook actors with embedded items. Each actor's system data must match the 0.92.4 MookDataModel
+// field set; it must carry every core skill (a compendium actor gets none for free); every installed id
+// must name one of its own items, installed once; cyberware must sit where cpr-actor.js installCyberware
+// would put it; and tracked armor must be an equipped armor item.
+const npcDocs = await readPack(`${NPC_DIST}/packs/npcs`);
+const mookRef = new Set(REF.mookKeys);
+const npcItems = new Map();
+for (const [k, v] of npcDocs) {
+  if (!k.startsWith("!actors.items!")) continue;
+  const aid = k.split("!")[2].split(".")[0];
+  if (!npcItems.has(aid)) npcItems.set(aid, new Map());
+  npcItems.get(aid).set(v._id, v);
+}
+let npcCount = 0, npcItemCount = 0;
+for (const [key, d] of npcDocs) {
+  if (!key.startsWith("!actors!")) continue;
+  npcCount++;
+  const s = d.system, e = (m) => errors.push(`npcs/${d.name}: ${m}`);
+  const own = npcItems.get(d._id) ?? new Map();
+  npcItemCount += own.size;
+  if (d.type !== "mook") e(`type ${d.type}`);
+  const keys = new Set(flat(s));
+  for (const k of mookRef) if (!keys.has(k)) e(`missing ${k}`);
+  for (const k of keys) if (!mookRef.has(k)) e(`unexpected field ${k}`);
+  if (d.items.length !== own.size || d.items.some((id) => !own.has(id))) e("items list does not match stored items");
+  const skillNames = new Set([...own.values()].filter((i) => i.type === "skill").map((i) => i.name));
+  for (const n of REF.skills) if (n !== "Local Expert (Your Home)" && !skillNames.has(n)) e(`lacks core skill ${n}`);
+  for (const i of own.values()) {
+    if (i.type === "skill" && (!Number.isInteger(i.system.level) || i.system.level < 0)) e(`${i.name}: level ${i.system.level}`);
+    if (i.type === "weapon" && !allowed.quality.includes(i.system.quality)) e(`${i.name}: quality ${i.system.quality}`);
+    if (i.type === "weapon" && !/^\d+d6$|^0$/.test(i.system.damage)) e(`${i.name}: damage ${i.system.damage}`);
+  }
+  const host = new Map();
+  const place = (parent, list) => list.forEach((id) => {
+    if (!own.has(id)) e(`${parent} installs ${id}, which is not one of its items`);
+    else if (host.has(id)) e(`${own.get(id).name} is installed twice`);
+    else host.set(id, parent);
+  });
+  place("the actor", s.installedItems.list);
+  for (const i of own.values()) if (i.system.installedItems) place(i._id, i.system.installedItems.list);
+  for (const i of own.values()) {
+    if (i.type !== "cyberware" || !host.has(i._id)) continue;
+    const h = host.get(i._id);
+    if (h === "the actor" && !i.system.isFoundational) e(`${i.name} is installed in the actor but is not foundational`);
+    if (h !== "the actor" && own.get(h).type === "cyberware" && own.get(h).system.isFoundational
+        && own.get(h).system.type !== i.system.type) e(`${i.name} (${i.system.type}) is in ${own.get(h).name} (${own.get(h).system.type})`);
+  }
+  for (const [slot, ref] of Object.entries(s.externalData)) {
+    if (!ref.id) continue;
+    const i = own.get(ref.id);
+    if (!i || i.type !== "armor" || i.system.equipped !== "equipped") e(`${slot} tracks ${ref.id}, which is not equipped armor`);
+  }
+  for (const html of [s.information.description, s.information.notes]) {
+    const welds = weldedText(html);
+    if (welds.length) e(`text welds when tags are stripped: ${welds[0]}`);
+  }
+}
+console.log(`npcs checked: ${npcCount} actors, ${npcItemCount} embedded items`);
 
 console.log(`attachments/mods/ammo checked: ${JSON.stringify(counts)}`);
 console.log(`${items} items, ${folders} folders read back from LevelDB`);

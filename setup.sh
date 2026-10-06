@@ -34,7 +34,7 @@ npm ci
 step "parsing the document into data/*.parsed.json"
 npm run parse
 
-step "building src/packs and dist/corgo-77-collection"
+step "building src/packs, dist/corgo-77-collection, and dist/corgo-77-npcs"
 npm run build
 
 if [ "$run_checks" -eq 1 ]; then
@@ -49,5 +49,5 @@ if [ "$run_checks" -eq 1 ]; then
 fi
 
 step "done"
-echo "The installable module is in dist/corgo-77-collection."
+echo "The installable modules are in dist/corgo-77-collection (items) and dist/corgo-77-npcs (NPCs)."
 echo "See CLAUDE.md for the tooling."
