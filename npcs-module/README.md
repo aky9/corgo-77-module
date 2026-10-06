@@ -1,11 +1,11 @@
 # Corgo's 77 Collection: NPCs for Cyberpunk RED - Core (Unofficial)
 
 An unofficial Foundry VTT conversion of **Corgo's NPC stat blocks** for
-Corgo's 77 Collection by **Corgopolis**, included with his permission: 114
+Corgo's 77 Collection by **Corgopolis**, included with his permission: 128
 ready-to-drop mook actors, one folder per faction (Aldecaldos, Animals,
 Arasaka, Barghest, Generics, Kang Tao, Lazarus Group, Maelstrom, MAX-TAC,
-Mercs, Militech, NCPD, Netwatch, NUSA, Tyger Claws, Valentinos, Voodoo Boys,
-Wraiths). This module only adds a compendium. It does not modify the
+Mercs, Militech, NCPD, Netwatch, NUSA, Scavengers, Trauma Team, Tyger Claws,
+Valentinos, Voodoo Boys, Wraiths). This module only adds a compendium. It does not modify the
 Cyberpunk RED - Core system.
 
 - Original NPC stat blocks:
@@ -60,7 +60,9 @@ into your world to use it.
   Ammunition, and so on).
 - **Humanity** is left at the default 60 on quick-format NPCs, which give no
   EMP.
-- **Not included yet:** Trauma Team and the Scavengers.
+- **Medtech specialties.** A Medtech's Surgery and Medical Tech are rolled
+  through the Medtech role's abilities rather than skill items, so their
+  printed bases are in the notes under Role abilities.
 
 ## Legal
 
