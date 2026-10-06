@@ -1,18 +1,24 @@
-# Builds the module and publishes it as a GitHub Release whenever a version tag is pushed.
+# Builds a module and publishes it as a GitHub Release whenever a version tag is pushed. The repository
+# ships two modules, each released on its own tags:
 #
-#   git tag v0.8.1 && git push origin v0.8.1
+#   git tag v0.8.3 && git push origin v0.8.3            # Corgo's 77 Collection (module/module.json)
+#   git tag npcs-v0.1.0 && git push origin npcs-v0.1.0  # Corgo's 77 NPCs (npcs-module/module.json)
 #
-# The tag must match "version" in module/module.json. The release carries two assets:
-#   module.zip   - dist/corgo-77-collection with module.json at the zip root, which is what Foundry expects
-#   module.json  - the manifest, so https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
-#                  always points at the newest release and Foundry can offer updates
+# The tag's version must match "version" in that module's module.json. Each release carries two assets:
+#   module.zip   - dist/<module-id> with module.json at the zip root, which is what Foundry expects
+#   module.json  - the manifest Foundry installs and updates from
 # The "download" field of the shipped manifest is pinned to this tag's zip, so an older manifest keeps
 # fetching the zip it was built with.
+#
+# Install URLs: the items module's manifest is .../releases/latest/download/module.json, so its releases are
+# marked "latest". NPC releases never are (that would break the items module's URL); instead each one also
+# refreshes the assets on a rolling release tagged "npcs-latest", whose manifest is
+# .../releases/download/npcs-latest/module.json.
 name: Release
 
 on:
   push:
-    tags: ["v*"]
+    tags: ["v*", "npcs-v*"]
 
 permissions:
   contents: write
@@ -20,8 +26,6 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      MODULE_ID: corgo-77-collection
     steps:
       - uses: actions/checkout@v4
 
@@ -34,12 +38,22 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Pick the module this tag releases
+        run: |
+          case "$GITHUB_REF_NAME" in
+            npcs-v*) folder=npcs-module; prefix=npcs-v ;;
+            v*)      folder=module;      prefix=v ;;
+          esac
+          echo "MODULE_FOLDER=$folder" >> "$GITHUB_ENV"
+          echo "TAG_PREFIX=$prefix" >> "$GITHUB_ENV"
+          echo "MODULE_ID=$(node -p "require('./$folder/module.json').id")" >> "$GITHUB_ENV"
+
       - name: Check the tag matches module.json
         run: |
-          version=$(node -p 'require("./module/module.json").version')
-          tag="${GITHUB_REF_NAME#v}"
+          version=$(node -p "require('./$MODULE_FOLDER/module.json').version")
+          tag="${GITHUB_REF_NAME#"$TAG_PREFIX"}"
           if [ "$tag" != "$version" ]; then
-            echo "tag v$tag does not match module.json version $version" >&2
+            echo "tag $GITHUB_REF_NAME does not match $MODULE_FOLDER/module.json version $version" >&2
             exit 1
           fi
 
@@ -65,8 +79,23 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           assets="module.zip dist/$MODULE_ID/module.json"
+          if [ "$MODULE_FOLDER" = module ]; then latest=--latest; else latest=--latest=false; fi
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" $assets --clobber
           else
-            gh release create "$GITHUB_REF_NAME" $assets --title "$GITHUB_REF_NAME" --generate-notes
+            gh release create "$GITHUB_REF_NAME" $assets --title "$GITHUB_REF_NAME" --generate-notes $latest
+          fi
+
+      - name: Refresh the NPC module's rolling release
+        if: env.MODULE_FOLDER == 'npcs-module'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          assets="module.zip dist/$MODULE_ID/module.json"
+          if gh release view npcs-latest >/dev/null 2>&1; then
+            gh release upload npcs-latest $assets --clobber
+          else
+            gh release create npcs-latest $assets --target "$GITHUB_SHA" --title "Corgo's 77 NPCs (latest)" \
+              --notes "Always the newest NPC module. Install URL: https://github.com/$GITHUB_REPOSITORY/releases/download/npcs-latest/module.json" \
+              --latest=false
           fi

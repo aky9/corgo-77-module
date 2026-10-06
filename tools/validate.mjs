@@ -3,9 +3,12 @@
 import { ClassicLevel } from "classic-level";
 import fs from "node:fs";
 
-// Checks the built module against a snapshot of CPR 0.92.4 facts (tools/cpr-0.92.4-reference.json),
-// so no CPR checkout is needed. Usage: node tools/validate.mjs dist/corgo-77-collection
+// Checks the built modules against a snapshot of CPR 0.92.4 facts (tools/cpr-0.92.4-reference.json),
+// so no CPR checkout is needed.
+// Usage: node tools/validate.mjs dist/corgo-77-collection dist/corgo-77-npcs
 const DIST = process.argv[2];
+const NPC_DIST = process.argv[3];
+if (!DIST || !NPC_DIST) throw new Error("usage: node tools/validate.mjs <items module dist> <NPC module dist>");
 const REF = JSON.parse(fs.readFileSync(new URL("./cpr-0.92.4-reference.json", import.meta.url)));
 const COMPAT = JSON.parse(fs.readFileSync(new URL("./compat/schism-sof45.json", import.meta.url)));
 const compatNames = new Set(COMPAT.itemNames.map((n) => n.toLowerCase()));
@@ -357,7 +360,7 @@ console.log(`${enhCount} enhancement targets resolved`);
 // field set; it must carry every core skill (a compendium actor gets none for free); every installed id
 // must name one of its own items, installed once; cyberware must sit where cpr-actor.js installCyberware
 // would put it; and tracked armor must be an equipped armor item.
-const npcDocs = await readPack(`${DIST}/packs/npcs`);
+const npcDocs = await readPack(`${NPC_DIST}/packs/npcs`);
 const mookRef = new Set(REF.mookKeys);
 const npcItems = new Map();
 for (const [k, v] of npcDocs) {

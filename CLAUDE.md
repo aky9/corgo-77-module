@@ -10,7 +10,8 @@ description is its entry from it. This repository adds the automation data and t
 
 The NPCs come from a second document, Corgo's NPC stat blocks (used with his permission), exported one file
 per faction to `data/npcs/`. They are built as `mook` actors that carry copies of the module's and the
-system's items; see "NPCs" below.
+system's items, and ship as a **separate module**, `corgo-77-npcs` (`npcs-module/`), so they can be
+installed on their own; see "NPCs" below.
 
 ## Requirements and commands
 
@@ -19,7 +20,7 @@ everything below and stops at the first failure. By hand:
 
     npm ci
     npm run parse            # data/corgo-77-v3.md and data/npcs/ -> data/*.parsed.json (git-ignored, so run once per clone)
-    npm run build            # parsed data + text/*.json + the document -> src/packs -> dist/corgo-77-collection
+    npm run build            # parsed data + text/*.json + the document -> src/packs -> dist/corgo-77-collection and dist/corgo-77-npcs
     npm run validate         # checks the built packs against CPR 0.92.4 and the Solo of Fortune 2045 module
     npm run check:entries    # per-item check that each description carries its own entry's text
     npm test                 # entry lookup checks against the placeholder document in tests/fixtures/
@@ -49,8 +50,10 @@ The build is a pipeline of four steps, each reading the previous step's output:
    `tools/entry_text.py`, and writes one JSON document per item or folder to `src/packs/<pack>/`. The
    build fails if the document is missing or if any item's entry cannot be found. `build_npcs.py` runs
    last, because its actors embed copies of the items every other builder just made.
-3. **Compile.** `tools/compile.mjs` compiles each `src/packs/<pack>/` into a LevelDB pack under
-   `dist/corgo-77-collection/packs/` with the Foundry CLI, and copies `module/` in beside them.
+3. **Compile.** `tools/compile.mjs` compiles each `src/packs/<pack>/` into a LevelDB pack with the Foundry
+   CLI, once per module: the packs `module/module.json` lists go to `dist/corgo-77-collection/`, and the NPC
+   pack `npcs-module/module.json` lists goes to `dist/corgo-77-npcs/`. Each module folder is copied in beside
+   its packs.
 4. **Validate.** `tools/validate.mjs` reads the compiled packs back and checks them against a snapshot of
    the 0.92.4 system and the Solo of Fortune 2045 compatibility file.
 
@@ -64,6 +67,8 @@ world that already holds the item.
   `entry_text.py` read it; nothing copies it into `dist/`.
 - `module/`: `module.json` and the end-user README. Copied into `dist/` as-is, so the manifest version and
   the README's pack list are edited here.
+- `npcs-module/`: the same for the NPC module (`corgo-77-npcs`), which has its own version and releases.
+  Its NPCs embed copies of their items, so it depends only on the system; it recommends the items module.
 - `src/packs/<pack>/`: one JSON file per document, as the compiler expects.
 - `tools/common.py`: stable IDs, name casing, cost parsing, the description template, and folder documents.
 - `tools/parse_weapons.py`: the Weapon Catalog stat blocks.
@@ -111,7 +116,9 @@ world that already holds the item.
 - `text/enhance_targets.json`: the enhancement parents 0.92.4 has no item for, each with the reason.
 - `tests/`: the `npm test` checks and the placeholder document they build from.
 - `.github/workflows/`: `ci.yml` runs `./setup.sh` on every push and pull request; `release.yml` publishes a
-  tagged release.
+  tagged release: a `v*` tag releases the items module, an `npcs-v*` tag the NPC module. Items releases are
+  marked "latest", which `module/module.json`'s manifest URL relies on; NPC releases never are, and each
+  one also refreshes a rolling `npcs-latest` release that `npcs-module/module.json`'s manifest URL points at.
 - `reference/` (git-ignored): a pinned copy of Schism989's module, used only to refresh `tools/compat/`.
 
 ## Item text and what to put where
@@ -264,7 +271,8 @@ installable mixins).
 ## Checks
 
 Run all of these before tagging a release. The release workflow runs them too and refuses to publish if
-any fails.
+any fails. Bump the version in the module.json of the module being released (`module/` for `v*` tags,
+`npcs-module/` for `npcs-v*` tags); the workflow refuses a tag that does not match it.
 
 - `npm run validate` reads the compiled packs back and checks schema values against the 0.92.4 snapshot,
   replays every weapon's Autofire lookup, resolves every enhancement target, checks description whitespace,

@@ -70,15 +70,15 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
   variants and the four Iconic weapon mods.
 - **Ammunition** (27): Corgo's ammo, one item per caliber it comes in, plus
   the Combo Casings and the Homing and Sticky adapter kits.
-- **NPCs** (114): ready-to-drop mook actors from Corgo's NPC stat blocks, one
-  folder per faction (Aldecaldos, Animals, Arasaka, Barghest, Generics, Kang
-  Tao, Lazarus Group, Maelstrom, MAX-TAC, Mercs, Militech, NCPD, Netwatch,
-  NUSA, Tyger Claws, Valentinos, Voodoo Boys, Wraiths). Source:
-  <https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit>
 - **DV Tables** (51): the *Solo of Fortune 2045* single-shot and Autofire
   range tables, plus every table name the core system uses, so core weapons
   keep working after the switch.
 - **Setup Macros** (2): switch the DV ruler to these tables and back.
+
+Corgo's NPC stat blocks are a separate module, **Corgo's 77 Collection: NPCs**: 114 ready-to-drop mook
+actors. Install it from this manifest URL:
+
+    https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json
 
 ## How the items work
 
@@ -239,36 +239,6 @@ those rules in its notes.
   built as toggles, like the Street Drugs; switch the addiction off while the
   Primary Effect is running, since that cancels it.
 
-## NPC notes
-
-Each NPC is a Cyberpunk RED - Core **mook** actor carrying real copies of its
-weapons, armor, cyberware, and gear, so attacks, armor SP, and installed
-cyberware work like they do on any other sheet. Drag one from the compendium
-into your world to use it.
-
-- **Most NPCs use Corgo's quick format** (COM#, INIT, COOL, MOVE, and skill
-  bases instead of all ten STATs). The sheet is built so every listed skill
-  rolls exactly the printed number: REF is the INIT value, BODY is the Death
-  Save, COOL and MOVE are as printed, and every other STAT is 0, with each
-  skill's level carrying the rest. A straight check on one of those STATs
-  rolls 0 + d10, so make those calls by judgement. **COM#** is the base for
-  every attack skill the block doesn't list separately.
-- **The three named bosses** (Sandayu Oda, Melissa Rory, Kurt Hansen) have
-  full stat blocks, so their STATs are real.
-- **Printed numbers win.** Where a block's weapon damage, ROF, armor SP, or
-  Brawling damage differs from the item's, the NPC's copy is changed to match
-  the block.
-- **Bracketed skill values** ("Athletics 13 (11)") are the skill with a gear
-  or role bonus, or an armor penalty, applied. They're listed in the NPC's
-  notes. Worn armor's penalty is applied by the sheet itself.
-- **The notes tab** has the threat level, Facedown #, COM#, Melee SP, weapon
-  details, Enforcer and other role abilities, and anything the module has no
-  item for (Self-ICE, "GM's Choice" weapons and gear, Corgo's Improved Smart
-  Ammunition, and so on).
-- **Humanity** is left at the default 60 on quick-format NPCs, which give no
-  EMP.
-- **Not included yet:** Trauma Team and the Scavengers.
-
 ## Using this with Schism's "Solo of Fortune 2045" module
 
 [Cyberpunk RED - Solo of Fortune 2045](https://github.com/Schism989/cpred-solo-of-fortune-2045)
@@ -308,8 +278,7 @@ names overlap between the two.
 ## Credits
 
 Corgo's 77 Collection V3 is by Corgopolis. Please support him at
-<https://patreon.com/Corgopolis>. Every item is his text and his stats. The
-NPCs are his stat blocks, included with his permission.
+<https://patreon.com/Corgopolis>. Every item is his text and his stats.
 
 The DV tables are transcribed from Interface RED Vol. 5 (Solo of Fortune
 2045). This module is built to run alongside Schism989's Cyberpunk RED -

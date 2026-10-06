@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "compile": "node tools/compile.mjs",
-    "validate": "node tools/validate.mjs dist/corgo-77-collection",
+    "validate": "node tools/validate.mjs dist/corgo-77-collection dist/corgo-77-npcs",
     "parse": "python3 tools/parse_weapons.py && python3 tools/parse_upgrades.py && python3 tools/parse_cyberware.py && python3 tools/parse_iconics.py && python3 tools/parse_iconic_weapons.py && python3 tools/parse_npcs.py",
     "build": "python3 tools/build.py && node tools/compile.mjs",
     "check:entries": "python3 tools/check_entries.py",
