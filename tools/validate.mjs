@@ -408,6 +408,11 @@ for (const [key, d] of npcDocs) {
     const i = own.get(ref.id);
     if (!i || i.type !== "armor" || i.system.equipped !== "equipped") e(`${slot} tracks ${ref.id}, which is not equipped armor`);
   }
+  // A portrait or token from npcs-module/art/ must have shipped with the module.
+  for (const [what, src] of [["portrait", d.img], ["token", d.prototypeToken?.texture?.src]]) {
+    const m = /^modules\/corgo-77-npcs\/(.+)$/.exec(src ?? "");
+    if (m && !fs.existsSync(`${NPC_DIST}/${m[1]}`)) e(`${what} ${src} is not in the module`);
+  }
   for (const html of [s.information.description, s.information.notes]) {
     const welds = weldedText(html);
     if (welds.length) e(`text welds when tags are stripped: ${welds[0]}`);
