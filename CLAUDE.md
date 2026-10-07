@@ -262,8 +262,8 @@ installable mixins).
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
   `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
 
-**NPC portraits.** The NPC document's portraits are not covered by the permission for the stat blocks, so
-they are built but not shipped until their owner agrees.
+**NPC portraits.** The NPC document's portraits ship with the NPC module, with their creator's permission
+(granted separately from the stat blocks').
 
 - `python3 tools/npc_art.py <zip>...` reads the downloads in place. The export nests each portrait inside
   its NPC's `###` heading; an image anywhere else (the Kang Tao "SOLDIER VARIANTS" one) is reported, not
@@ -271,11 +271,10 @@ they are built but not shipped until their owner agrees.
   margins), and the tool applies that same crop, then shrinks to 1024 px on the long side as WebP.
 - Google's export caps images at about 2000 px wide, so a portrait crop is roughly 500-750 px wide. The
   originals are only reachable from the doc itself.
-- Images go to `npcs-module/art/`, which is git-ignored; the mapping in `text/npc_art.json` is committed.
-  With `"enabled": false` the build ignores it and the packs are unchanged. With `true`, each mapped NPC's
-  `img` and token texture point at `modules/corgo-77-npcs/art/<file>`, the build fails if a file is
-  missing, and `validate` fails if one is not in the compiled module. Shipping them also means removing
-  `npcs-module/art/` from `.gitignore`, since the release builds from the repository.
+- Images go to `npcs-module/art/`, committed with the mapping in `text/npc_art.json`. With `"enabled": true`
+  each mapped NPC's `img` and token texture point at `modules/corgo-77-npcs/art/<file>`, the build fails if
+  a file is missing, and `validate` fails if one is not in the compiled module. With `false` the build
+  ignores the mapping and every NPC keeps the default mook icon.
 
 **Iconics and drugs.**
 
