@@ -262,8 +262,9 @@ installable mixins).
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
   `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
 
-**NPC portraits.** The NPC document's portraits ship with the NPC module, with their creator's permission
-(granted separately from the stat blocks').
+**NPC portraits.** The NPC document's portraits ship with the NPC module. Corgo confirmed they are all
+images from Cyberpunk 2077, so they are CD PROJEKT RED's, not his or another artist's; the module carries
+them as free fan content under CD PROJEKT RED's Fan Content Guidelines, never behind a paywall.
 
 - `python3 tools/npc_art.py <zip>...` reads the downloads in place. The export nests each portrait inside
   its NPC's `###` heading; an image anywhere else (the Kang Tao "SOLDIER VARIANTS" one) is reported, not
