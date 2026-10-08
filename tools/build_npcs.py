@@ -32,11 +32,13 @@ ROOT = Path(__file__).resolve().parent.parent
 PARSED = ROOT / "data/npcs.parsed.json"
 CORE = ROOT / "tools/cpr-0.92.4-items.json"
 ALIASES = ROOT / "text/npc_aliases.json"
+ART = ROOT / "text/npc_art.json"           # written by tools/npc_art.py
 PACK = "npcs"
 
 NPC_SOURCE_URL = "https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit"
 NPC_SOURCE_BOOK = "Corgo's 77 Collection: Mooks"
 MOOK_IMG = "systems/cyberpunk-red-core/icons/compendium/default/Default_Mook.svg"
+ART_PATH = "modules/corgo-77-npcs/art"   # npcs-module/art/, copied into the module by tools/compile.mjs
 
 STATS = ["int", "ref", "dex", "tech", "cool", "will", "luck", "move", "body", "emp"]
 ATTACK_SKILLS = ["Archery", "Autofire", "Brawling", "Handgun", "Heavy Weapons", "Melee Weapon", "Shoulder Arms"]
@@ -569,16 +571,33 @@ def build_actor(rec, cat, folder_id):
         "installedItems": {"allowed": True, "allowedTypes": ["cyberware"], "list": a.installed},
         "weapons": {},
     }
-    return {"_id": a.id, "_key": f"!actors!{a.id}", "name": rec["name"], "type": "mook", "img": MOOK_IMG,
+    img = actor_art(rec, a.cat.art)
+    return {"_id": a.id, "_key": f"!actors!{a.id}", "name": rec["name"], "type": "mook", "img": img,
             "system": system, "items": a.items, "effects": [], "folder": folder_id, "sort": 0,
             "ownership": {"default": 0}, "flags": {},
             "prototypeToken": {"name": rec["name"], "actorLink": False, "disposition": -1,
-                               "bar1": {"attribute": "derivedStats.hp"}}}
+                               "bar1": {"attribute": "derivedStats.hp"},
+                               **({"texture": {"src": img}} if img != MOOK_IMG else {})}}
+
+
+def actor_art(rec, art):
+    """The NPC's portrait, also its token: the default mook icon unless text/npc_art.json is enabled and
+    names one. Off by default: the portraits are not ours to redistribute until their owner agrees, and
+    npcs-module/art/ is git-ignored until then."""
+    if not art.get("enabled"):
+        return MOOK_IMG
+    entry = art["art"].get(f"{rec['faction']}/{rec['title']}")
+    if entry is None:
+        return MOOK_IMG
+    if not (ROOT / "npcs-module/art" / entry["file"]).exists():
+        raise SystemExit(f"npcs-module/art/{entry['file']} is missing; run tools/npc_art.py on the doc's zips")
+    return f"{ART_PATH}/{entry['file']}"
 
 
 def build_all(module_packs):
     records = load_json(PARSED)
     cat = Catalog(module_packs, load_json(CORE), load_json(ALIASES))
+    cat.art = load_json(ART) if ART.exists() else {}
     docs, folders, names = [], {}, set()
     for rec in records:
         # Two blocks in a faction can share the table's name (ASSAULT SPECIALIST and ELITE ASSAULT SPECIALIST

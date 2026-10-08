@@ -15,7 +15,8 @@ installed on their own; see "NPCs" below.
 
 ## Requirements and commands
 
-You need Python 3 (standard library only) and Node 18 or newer. On a fresh clone, `./setup.sh` runs
+You need Python 3 (standard library only) and Node 18 or newer. `tools/npc_art.py` alone also needs
+Pillow, and nothing else depends on it. On a fresh clone, `./setup.sh` runs
 everything below and stops at the first failure. By hand:
 
     npm ci
@@ -96,6 +97,10 @@ world that already holds the item.
 - `tools/parse_npcs.py`: both stat-block layouts (COM# and the full boss layout) into
   `data/npcs.parsed.json`. Gear lines become item trees ("Neuroport (w/ Pain Editor [w/ Painducer])").
 - `tools/build_npcs.py`: the NPC pack. Its docstring states every conversion rule.
+- `tools/npc_art.py`: NPC portraits from Google Docs "Web page (.html, zipped)" downloads of the NPC
+  document. Needs Pillow, so it is not part of the build; see "NPC portraits" below.
+- `text/npc_art.json`: which image is each NPC's portrait, with its source and crop, written by
+  `npc_art.py`, and the `enabled` switch that decides whether the build uses them.
 - `text/npc_aliases.json`: every NPC gear, weapon, and armor name that does not match an item by name:
   `aliases` (to an item, with an optional note or per-parent choice), `unbuilt` (no Foundry item, with the
   reason), and `skills` (typos).
@@ -256,6 +261,21 @@ installable mixins).
   user's decision, not a system fact; it is stated in `build_npcs.py`'s docstring and the user guide.
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
   `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
+
+**NPC portraits.** The NPC document's portraits ship with the NPC module. Corgo confirmed they are all
+images from Cyberpunk 2077, so they are CD PROJEKT RED's, not his or another artist's; the module carries
+them as free fan content under CD PROJEKT RED's Fan Content Guidelines, never behind a paywall.
+
+- `python3 tools/npc_art.py <zip>...` reads the downloads in place. The export nests each portrait inside
+  its NPC's `###` heading; an image anywhere else (the Kang Tao "SOLDIER VARIANTS" one) is reported, not
+  assigned. The doc shows a portrait-shaped window of a landscape image (a clipping span plus negative
+  margins), and the tool applies that same crop, then shrinks to 1024 px on the long side as WebP.
+- Google's export caps images at about 2000 px wide, so a portrait crop is roughly 500-750 px wide. The
+  originals are only reachable from the doc itself.
+- Images go to `npcs-module/art/`, committed with the mapping in `text/npc_art.json`. With `"enabled": true`
+  each mapped NPC's `img` and token texture point at `modules/corgo-77-npcs/art/<file>`, the build fails if
+  a file is missing, and `validate` fails if one is not in the compiled module. With `false` the build
+  ignores the mapping and every NPC keeps the default mook icon.
 
 **Iconics and drugs.**
 
