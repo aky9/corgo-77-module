@@ -571,27 +571,29 @@ def build_actor(rec, cat, folder_id):
         "installedItems": {"allowed": True, "allowedTypes": ["cyberware"], "list": a.installed},
         "weapons": {},
     }
-    img = actor_art(rec, a.cat.art)
+    img, token = actor_art(rec, a.cat.art)
     return {"_id": a.id, "_key": f"!actors!{a.id}", "name": rec["name"], "type": "mook", "img": img,
             "system": system, "items": a.items, "effects": [], "folder": folder_id, "sort": 0,
             "ownership": {"default": 0}, "flags": {},
             "prototypeToken": {"name": rec["name"], "actorLink": False, "disposition": -1,
                                "bar1": {"attribute": "derivedStats.hp"},
-                               **({"texture": {"src": img}} if img != MOOK_IMG else {})}}
+                               **({"texture": {"src": token}} if token != MOOK_IMG else {})}}
 
 
 def actor_art(rec, art):
-    """The NPC's portrait, also its token: the default mook icon unless text/npc_art.json is enabled and
-    names one. Off by default: the portraits are not ours to redistribute until their owner agrees, and
-    npcs-module/art/ is git-ignored until then."""
+    """The NPC's portrait and token image: the default mook icon for both unless text/npc_art.json is
+    enabled and names a portrait. The token is the portrait's square crop from art/tokens/, since Foundry
+    letterboxes a tall image inside a square token."""
     if not art.get("enabled"):
-        return MOOK_IMG
+        return MOOK_IMG, MOOK_IMG
     entry = art["art"].get(f"{rec['faction']}/{rec['title']}")
     if entry is None:
-        return MOOK_IMG
-    if not (ROOT / "npcs-module/art" / entry["file"]).exists():
-        raise SystemExit(f"npcs-module/art/{entry['file']} is missing; run tools/npc_art.py on the doc's zips")
-    return f"{ART_PATH}/{entry['file']}"
+        return MOOK_IMG, MOOK_IMG
+    for sub in ("", "tokens/"):
+        if not (ROOT / "npcs-module/art" / sub / entry["file"]).exists():
+            raise SystemExit(f"npcs-module/art/{sub}{entry['file']} is missing; run tools/npc_art.py "
+                             "(--tokens rebuilds the tokens from the portraits)")
+    return f"{ART_PATH}/{entry['file']}", f"{ART_PATH}/tokens/{entry['file']}"
 
 
 def build_all(module_packs):
