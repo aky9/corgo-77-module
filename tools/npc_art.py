@@ -1,6 +1,7 @@
 """Extract NPC portraits from Google Docs "Web page (.html, zipped)" downloads of Corgo's NPC document.
 
     python3 tools/npc_art.py <download.zip> [<download.zip> ...] [--max 1024]
+    python3 tools/npc_art.py --tokens      # only rebuild the tokens from the portraits already in art/
 
 Needs Pillow (`pip install Pillow`), so it is not part of `npm run build`. Run `npm run parse` first: the
 images are matched against data/npcs.parsed.json.
@@ -14,6 +15,9 @@ the span's size and the image's negative margins. This tool:
   Corgo framed it;
 - shrinks it to at most --max pixels on the long side (never enlarges) and writes it as WebP to
   npcs-module/art/;
+- writes a square token beside it in npcs-module/art/tokens/: the top of the portrait, as wide as the
+  portrait, because Foundry letterboxes a tall image inside a square token and every portrait has the head
+  at the top (a centred crop, Foundry's "cover" fit, cuts many heads off);
 - records the mapping in text/npc_art.json, merged with the entries already there, so zips can be added
   one faction at a time.
 
@@ -39,6 +43,8 @@ ROOT = Path(__file__).resolve().parent.parent
 PARSED = ROOT / "data/npcs.parsed.json"
 MANIFEST = ROOT / "text/npc_art.json"
 ART = ROOT / "npcs-module/art"
+TOKENS = ART / "tokens"
+TOKEN_SIZE = 512
 
 HEADING = re.compile(r"<h([1-4])\b[^>]*>(.*?)</h\1>", re.S)
 IMAGE = re.compile(r"<span style=\"([^\"]*)\"><img\b([^>]*)>", re.S)
@@ -88,11 +94,31 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
+def write_token(im, name):
+    """The top square of a portrait, as tokens/<name>; a landscape image keeps its middle instead."""
+    w, h = im.size
+    side = min(w, h)
+    left = (w - side) // 2
+    tok = im.crop((left, 0, left + side, side))
+    tok.thumbnail((TOKEN_SIZE, TOKEN_SIZE), Image.LANCZOS)
+    TOKENS.mkdir(parents=True, exist_ok=True)
+    tok.save(TOKENS / name, "WEBP", quality=85, method=6)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("zips", nargs="+", type=Path)
+    ap.add_argument("zips", nargs="*", type=Path)
     ap.add_argument("--max", type=int, default=1024, help="longest side of a portrait, in pixels")
+    ap.add_argument("--tokens", action="store_true", help="rebuild every token from the portraits in art/")
     args = ap.parse_args()
+    if args.tokens:
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        for entry in manifest["art"].values():
+            write_token(Image.open(ART / entry["file"]), entry["file"])
+        print(f"{len(manifest['art'])} tokens written to {TOKENS.relative_to(ROOT)}")
+        return
+    if not args.zips:
+        ap.error("give the doc's zips, or --tokens")
 
     npcs = {(norm(r["faction"]), norm(r["title"])): r for r in json.loads(PARSED.read_text(encoding="utf-8"))}
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else {"enabled": False, "art": {}}
@@ -126,6 +152,7 @@ def main():
                     im = im.convert("RGB")
                 name = f"{slug(rec['faction'])}-{slug(rec['title'])}.webp"
                 im.save(ART / name, "WEBP", quality=85, method=6)
+                write_token(im, name)
                 manifest["art"][key] = {"file": name, "source": f"{path.name}:{val['src']}", "crop": list(box),
                                         "size": list(im.size)}
                 done.append(key)

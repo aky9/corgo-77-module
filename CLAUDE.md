@@ -270,10 +270,13 @@ them as free fan content under CD PROJEKT RED's Fan Content Guidelines, never be
   its NPC's `###` heading; an image anywhere else (the Kang Tao "SOLDIER VARIANTS" one) is reported, not
   assigned. The doc shows a portrait-shaped window of a landscape image (a clipping span plus negative
   margins), and the tool applies that same crop, then shrinks to 1024 px on the long side as WebP.
+- Each portrait also gets a square token in `npcs-module/art/tokens/`: the top of the portrait, as wide as it is,
+  at 512 px. Foundry letterboxes a tall image in a square token, and a centred crop (its "cover" fit) cuts
+  heads off; every portrait has the head at the top. `npc_art.py --tokens` rebuilds them without the zips.
 - Google's export caps images at about 2000 px wide, so a portrait crop is roughly 500-750 px wide. The
   originals are only reachable from the doc itself.
 - Images go to `npcs-module/art/`, committed with the mapping in `text/npc_art.json`. With `"enabled": true`
-  each mapped NPC's `img` and token texture point at `modules/corgo-77-npcs/art/<file>`, the build fails if
+  each mapped NPC's `img` points at `modules/corgo-77-npcs/art/<file>` and its token at `art/tokens/<file>`, the build fails if
   a file is missing, and `validate` fails if one is not in the compiled module. With `false` the build
   ignores the mapping and every NPC keeps the default mook icon.
 
