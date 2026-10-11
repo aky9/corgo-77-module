@@ -51,6 +51,13 @@ into your world to use it.
 - **Printed numbers win.** Where a block's weapon damage, ROF, armor SP, or
   Brawling damage differs from the item's, the NPC's copy is changed to match
   the block.
+- **Printed numbers already include the NPC's gear.** Corgo's STATs, armor SP,
+  and attack numbers count the cyberware and upgrades the NPC carries, and the
+  NPC's copies of those items still apply their bonuses in Foundry. So the
+  stored value is the printed one minus what the item adds: an NPC with
+  Grafted Muscle and Bone Lace printed at BODY 9 stores BODY 7 and shows 9,
+  and a Max-Vest with Superheavy Plates printed at SP 19 is SP 16 plus the
+  plates' 3. Take the item off and the number drops by its share.
 - **Bracketed skill values** ("Athletics 13 (11)") are the skill with a gear
   or role bonus, or an armor penalty, applied. They're listed in the NPC's
   notes. Worn armor's penalty is applied by the sheet itself.

@@ -32,7 +32,7 @@
     "value": 8
    },
    "body": {
-    "value": 10
+    "value": 8
    },
    "emp": {
     "value": 3,
@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Most of the files on Kurt Hansen's military past were classified as top secret following the end of the Unification War. Only top Militech execs and certain members of Congress in Washington have clearance to learn just who this former Colonel truly is. He's the man who secured a foothold for the NUSA in Night City as part of Operation \"Midnight Storm\". The same man who then, after being abandoned by the NUS government at war's end, built from that foothold a new homeland for himself, all financed by smuggling and arms deals on a global scale.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Barghest).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Boss<br>\n<strong>Facedown #:</strong> 14<br>\n<strong>COM#:</strong> 17</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Martial Arts (Militech Commando Training): Has MCT Special Moves</li>\n<li>Fang (Kurt Hansen’s Knife): ROF 2, 3d6. Kurt’s Iconic Knife, EQ; See Fang’s full listing</li>\n<li>Bald Eagle (Kurt’s Pistol): ROF 1, 4d6 (Normal) 5d6 (Aimed). Kurt’s Iconic Pistol, EQ; See Bald Eagle’s full listing</li>\n<li>Bald Eagle (Kurt’s Pistol) ammunition: x8 Armor-Piercing</li>\n<li>Wild Dog (Kurt’s Lmg): ROF 1, Autofire (MG 4). Kurt’s Iconic MG, EQ, Has Auto-Compensator; See Wild Dog’s full listing</li>\n<li>Wild Dog (Kurt’s Lmg) ammunition: x150 High-Velocity</li>\n<li>Wild Dog’s Modified Stun Bayonet: ROF 1, 4d6 (not built: no Foundry item)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Tech Upgrade; Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n<li>Subdermal Armor: All SP Ablation this armor suffers from Ranged Weapons (except from Acid) is reduced by 1 [Rangeguard].</li>\n<li>Melee SP (head/body): 7/7</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Human Perception 12 (14)</li>\n<li>Interrogation 10 (12)</li>\n<li>Perception 13 (15)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Dog Tags: flavor</li>\n<li>High-Velocity Machine Gun Ammo x300: no Foundry item</li>\n<li>Sycust Cyberspine: no Foundry item</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Boss<br>\n<strong>Facedown #:</strong> 14<br>\n<strong>COM#:</strong> 17</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Martial Arts (Militech Commando Training): Has MCT Special Moves</li>\n<li>Fang (Kurt Hansen’s Knife): ROF 2, 3d6. Kurt’s Iconic Knife, EQ; See Fang’s full listing</li>\n<li>Bald Eagle (Kurt’s Pistol): ROF 1, 4d6 (Normal) 5d6 (Aimed). Kurt’s Iconic Pistol, EQ; See Bald Eagle’s full listing</li>\n<li>Bald Eagle (Kurt’s Pistol) ammunition: x8 Armor-Piercing</li>\n<li>Wild Dog (Kurt’s Lmg): ROF 1, Autofire (MG 4). Kurt’s Iconic MG, EQ, Has Auto-Compensator; See Wild Dog’s full listing</li>\n<li>Wild Dog (Kurt’s Lmg) ammunition: x150 High-Velocity</li>\n<li>Wild Dog’s Modified Stun Bayonet: ROF 1, 4d6 (not built: no Foundry item)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: All SP Ablation this armor suffers from Ranged Weapons (except from Acid) is reduced by 1 [Rangeguard].</li>\n<li>Melee SP (head/body): 7/7</li>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Tech Upgrade; Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Human Perception 12 (14)</li>\n<li>Interrogation 10 (12)</li>\n<li>Perception 13 (15)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Dog Tags: flavor</li>\n<li>High-Velocity Machine Gun Ammo x300: no Foundry item</li>\n<li>Sycust Cyberspine: no Foundry item</li>\n</ul>"
   },
   "reputation": {
    "value": 8,
@@ -6103,7 +6103,65 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 7,
+     "ref": 8,
+     "dex": 8,
+     "tech": 5,
+     "cool": 6,
+     "will": 8,
+     "luck": 0,
+     "move": 8,
+     "body": 10,
+     "emp": 3
+    },
+    "skills": {
+     "Athletics": 16,
+     "Autofire": 16,
+     "Brawling": 14,
+     "Conceal/Reveal Object": 11,
+     "Concentration": 14,
+     "Conversation": 10,
+     "Deduction": 13,
+     "Education": 11,
+     "Evasion": 16,
+     "First Aid": 10,
+     "Handgun": 16,
+     "Language (Streetslang)": 9,
+     "Melee Weapon": 14,
+     "Resist Torture/Drugs": 16,
+     "Shoulder Arms": 14,
+     "Stealth": 11,
+     "Tactics": 16,
+     "Tracking": 12,
+     "Martial Arts (Militech Commando Training)": 14,
+     "Language (English)": 13,
+     "Local Expert (Dogtown)": 18
+    },
+    "items": {
+     "pqegVmPkDDLjjoN0": {
+      "attackmod": 0,
+      "rof": 2
+     },
+     "crTzr9JiJcr3qR5q": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "oraN1ZBQCb4UfF2C": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "LFfqzawUiGXWyvgB": {
+      "headSp": 13,
+      "bodySp": 13
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Kurt Hansen",
   "actorLink": false,

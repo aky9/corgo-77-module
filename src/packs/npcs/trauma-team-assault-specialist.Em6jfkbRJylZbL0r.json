@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>In the roughest areas of Night City, certain combat professionals get called in to assist Trauma Team on particularly important calls. They aren’t really medics, but they get paid to escort them, so the difference doesn’t matter much at the end of the day.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Trauma Team).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 9<br>\n<strong>COM#:</strong> 15</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Nokota D5-H Longnose: ROF 1, 4d6 &amp; Autofire (MG 3). Rolls 3d6 (drop lowest) for Autofire Damage [Buffer Stock].</li>\n<li>Grenade Launcher Underbarrel: ROF 1, 6d6 (installed in Nokota D5-H Longnose)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Heavy Armorjack (Body): SP 16 as printed (the item is SP 13)</li>\n<li>Melee SP (head/body): 6/8</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 14 (12)</li>\n<li>Brawling 14 (12)</li>\n<li>Evasion 15 (13)</li>\n<li>Resist Torture/Drugs 12 (14)</li>\n<li>Stealth 8 (6)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Smart Ears (w/ Level Damper &amp; Scrambler/Descrambler): no Foundry item</li>\n<li>Tracer Machine Gun Ammunition x90: no Foundry item</li>\n<li>Trauma Team (Silver): a Trauma Team coverage plan is a service, not an item</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 9<br>\n<strong>COM#:</strong> 15</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Nokota D5-H Longnose: ROF 1, 4d6 &amp; Autofire (MG 3). Rolls 3d6 (drop lowest) for Autofire Damage [Buffer Stock].</li>\n<li>Grenade Launcher Underbarrel: ROF 1, 6d6 (installed in Nokota D5-H Longnose)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/8</li>\n<li>Heavy Armorjack (Body): SP 13, plus 3 from its upgrades = the printed 16</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 14 (12)</li>\n<li>Brawling 14 (12)</li>\n<li>Evasion 15 (13)</li>\n<li>Resist Torture/Drugs 12 (14)</li>\n<li>Stealth 8 (6)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Smart Ears (w/ Level Damper &amp; Scrambler/Descrambler): no Foundry item</li>\n<li>Tracer Machine Gun Ammunition x90: no Foundry item</li>\n<li>Trauma Team (Silver): a Trauma Team coverage plan is a service, not an item</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
   },
   "reputation": {
    "value": 4,
@@ -2645,8 +2645,7 @@
      "list": [
       "R7eMZKlYH8grF2Hu",
       "spOWXqvEBBE9mPkF",
-      "VKxpxzZmH1IF4zOG",
-      "3hJnx5RmzZifvCnI"
+      "VKxpxzZmH1IF4zOG"
      ],
      "slots": 4,
      "usedSlots": 0
@@ -3120,154 +3119,6 @@
    }
   },
   {
-   "_id": "3hJnx5RmzZifvCnI",
-   "effects": [],
-   "flags": {
-    "cyberpunk-red-core": {}
-   },
-   "img": "systems/cyberpunk-red-core/icons/compendium/upgrades/grenade_launcher_underbarrel.svg",
-   "name": "Grenade Launcher Underbarrel",
-   "system": {
-    "ammoVariety": [
-     "grenade"
-    ],
-    "attackmod": 0,
-    "brand": "",
-    "concealable": {
-     "concealable": false,
-     "isConcealed": false
-    },
-    "damage": "6d6",
-    "description": {
-     "value": "<p>\n  Functions like a standard grenade launcher, but with a magazine size of 1.\n  Requires 2 hands to use, and takes up 2 attachment slots. While attached, the\n  weapon can't be concealed under clothing.\n</p>\n<p>\n  Note that the weapon inherits any modifiers from the gun it is attached to,\n  such as other attachments and quality.\n</p>\n"
-    },
-    "dvTable": "DV Grenade Launcher",
-    "favorite": false,
-    "fireModes": {
-     "autoFire": 0,
-     "suppressiveFire": false
-    },
-    "handsReq": 0,
-    "installLocation": "mall",
-    "installedItems": {
-     "allowed": true,
-     "allowedTypes": [
-      "itemUpgrade",
-      "ammo"
-     ],
-     "list": [],
-     "slots": 3,
-     "usedSlots": 0
-    },
-    "isElectronic": false,
-    "isRanged": true,
-    "magazine": {
-     "ammoData": null,
-     "max": 1,
-     "value": 0
-    },
-    "modifiers": {
-     "Wardrobe & Style": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "attackmod": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "bodySp": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "cool": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "damage": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "headSp": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "magazine": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "rof": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "sdp": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "seats": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "secondaryWeapon": {
-      "configured": true
-     },
-     "shieldHp": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     },
-     "slots": {
-      "isSituational": false,
-      "onByDefault": false,
-      "type": "modifier",
-      "value": null
-     }
-    },
-    "price": {
-     "market": 500
-    },
-    "providesHardening": false,
-    "rof": 1,
-    "size": 2,
-    "source": {
-     "book": "Core",
-     "page": 343
-    },
-    "type": "weapon",
-    "unarmedAutomaticCalculation": true,
-    "usesType": "magazine",
-    "weaponSkill": "Heavy Weapons",
-    "weaponType": "grenadeLauncher"
-   },
-   "type": "itemUpgrade",
-   "_key": "!actors.items!Em6jfkbRJylZbL0r.3hJnx5RmzZifvCnI",
-   "folder": null,
-   "sort": 0,
-   "ownership": {
-    "default": 0
-   }
-  },
-  {
    "_id": "unTbSUDDjPrB8AYd",
    "_key": "!actors.items!Em6jfkbRJylZbL0r.unTbSUDDjPrB8AYd",
    "name": "Kiroshi Tactical Optics Platform",
@@ -3340,7 +3191,7 @@
    "system": {
     "bodyLocation": {
      "ablation": 0,
-     "sp": 16
+     "sp": 13
     },
     "brand": "",
     "concealable": {
@@ -4546,7 +4397,50 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 6,
+     "dex": 0,
+     "tech": 0,
+     "cool": 5,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 7,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 15,
+     "Autofire": 15,
+     "Concentration": 12,
+     "Education": 8,
+     "First Aid": 8,
+     "Handgun": 15,
+     "Heavy Weapons": 15,
+     "Melee Weapon": 15,
+     "Paramedic": 8,
+     "Perception": 11,
+     "Shoulder Arms": 15,
+     "Tactics": 12
+    },
+    "items": {
+     "2TrTIrdj0LiIIEOH": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "unTbSUDDjPrB8AYd": {
+      "headSp": 12
+     },
+     "6DrzBEVLDimSxcsi": {
+      "bodySp": 16
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Trauma Team Assault Specialist",
   "actorLink": false,

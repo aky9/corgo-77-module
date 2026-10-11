@@ -257,6 +257,15 @@ installable mixins).
   its bracketed value, sets its level. Role bonuses apply only to the role ability's own roll.
 - Unarmed and Martial Arts damage comes from BODY when `unarmedAutomaticCalculation` is on (1d6 / 2d6 / 3d6
   / 4d6 at BODY 4 / 6 / 10 / 11+). A printed value that disagrees turns it off and sets the damage.
+- Printed numbers already include the NPC's items, and the embedded copies keep their effects and upgrades
+  live, so `build_npcs.settle` stores each value as printed minus what the system adds back. STATs: Active
+  Effects from items whose usage makes them live (`cpr-effects.js areEffectsSuppressed`), applied in priority
+  order. Armor SP, ROF, and attack modifier: installed upgrades' modifiers (`cpr-upgradable.js
+  getTotalUpgradeValues`, `ActorUtils.calculateArmorSP`). A skill printed without a bracket loses the
+  always-on `bonuses.<slug>` effects and role bonuses `cpr-skill.js _createSkillRoll` adds; a bracketed one
+  keeps its base. Situational changes that are off by default (Corgo's Kerenzikov Perception) never count.
+  Magazine size is not printed, so magazine upgrades are left to apply. The targets are in each actor's
+  `flags.corgo-77-npcs.printed`, and `validate` replays the system's maths against them.
 - The COM# conversion (unknown STATs are 0, COM# fills unlisted attack skills, printed values win) was the
   user's decision, not a system fact; it is stated in `build_npcs.py`'s docstring and the user guide.
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
@@ -300,7 +309,9 @@ any fails. Bump the version in the module.json of the module being released (`mo
   collisions.
 - `npm run validate` also checks every NPC: its system data against the 0.92.4 `MookDataModel` field set
   (`mookKeys` in the reference snapshot), all core skills present, every installed id naming one of its own
-  items exactly once, cyberware placed as `installCyberware` would, and tracked armor equipped. The NPC build
+  items exactly once, cyberware placed as `installCyberware` would, tracked armor equipped, and every STAT,
+  unbracketed skill, armor SP, ROF, and attack modifier landing on its printed number once the system adds
+  the items' effects and upgrades. The NPC build
   itself fails on a gear name that is neither resolved nor `unbuilt`, and on an `unbuilt` entry nothing uses.
 - `npm run check:entries` fingerprints each item's entry with its longest unique line, taken from the
   parsers' records rather than from `entry_text.py`, so a heading-matching bug cannot hide itself. It

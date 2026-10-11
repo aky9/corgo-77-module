@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>When Arasaka Security has to breach bunkers or other heavily fortified hovels, they call on the specialists of the specialists. These bulky grunts carry the firepower, cybernetics, and explosives to breach any location’s front door without fear. That they tend to prefer the competition’s armaments is only permitted because of their other talents.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Arasaka).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 12</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Kang Tao L-69 Zhuo: ROF 1, 5d6 (Slug) 4d6 (Shell). EQ + Smart</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Hybrid Armorjack (Head): SP 13 as printed (the item is SP 12); Tech Upgrade</li>\n<li>Melee SP (head/body): 7/8</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 13 (10)</li>\n<li>Brawling 13 (10)</li>\n<li>Evasion 12 (9)</li>\n<li>Perception 10 (12)</li>\n<li>Stealth 8 (5)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Improved Smart Shotgun Ammunition x46: Corgo's Improved Smart Ammunition is not built in this module</li>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 12</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Kang Tao L-69 Zhuo: ROF 1, 5d6 (Slug) 4d6 (Shell). EQ + Smart</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 7/8</li>\n<li>Hybrid Armorjack (Head): SP 10, plus 3 from its upgrades = the printed 13 (the item is SP 12); Tech Upgrade</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 13 (10)</li>\n<li>Brawling 13 (10)</li>\n<li>Evasion 12 (9)</li>\n<li>Perception 10 (12)</li>\n<li>Stealth 8 (5)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Improved Smart Shotgun Ammunition x46: Corgo's Improved Smart Ammunition is not built in this module</li>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
   },
   "reputation": {
    "value": 3,
@@ -2753,7 +2753,7 @@
    "system": {
     "bodyLocation": {
      "ablation": 0,
-     "sp": 15
+     "sp": 12
     },
     "brand": "",
     "concealable": {
@@ -2767,7 +2767,7 @@
     "favorite": false,
     "headLocation": {
      "ablation": 0,
-     "sp": 13
+     "sp": 10
     },
     "installedItems": {
      "allowed": true,
@@ -3947,7 +3947,51 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 7,
+     "dex": 0,
+     "tech": 0,
+     "cool": 4,
+     "will": 0,
+     "luck": 0,
+     "move": 5,
+     "body": 7,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 12,
+     "Autofire": 12,
+     "Concentration": 8,
+     "Cybertech": 6,
+     "Demolitions": 12,
+     "Education": 8,
+     "First Aid": 6,
+     "Handgun": 12,
+     "Heavy Weapons": 12,
+     "Human Perception": 7,
+     "Melee Weapon": 12,
+     "Persuasion": 6,
+     "Resist Torture/Drugs": 8,
+     "Shoulder Arms": 12,
+     "Tactics": 8
+    },
+    "items": {
+     "wxZVpxyol1tZ5LW4": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "mGXaeDX2n5J2lHsb": {
+      "headSp": 13,
+      "bodySp": 15
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Arasaka Elite Assault Specialist",
   "actorLink": false,

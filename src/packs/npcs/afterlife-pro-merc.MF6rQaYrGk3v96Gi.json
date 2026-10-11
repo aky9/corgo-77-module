@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Among the Afterlife’s regulars are a few mercs that really know their stuff. They do high-paying gigs for clandestine clients and have an amazing track record of success. They’re close to reaching Legend status, and should thus be opposed with an appropriate amount of wariness, lest they burn you up during their rise to the top.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Mercs).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Mini-Boss<br>\n<strong>Facedown #:</strong> 10<br>\n<strong>COM#:</strong> 15</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice (Cost Limit: 5,000eb) [Typically an Excellent Quality Weapon]: ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n<li>Melee SP (head/body): 6/6</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Grenade (GM’s Choice) x1: GM's choice</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Mini-Boss<br>\n<strong>Facedown #:</strong> 10<br>\n<strong>COM#:</strong> 15</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice (Cost Limit: 5,000eb) [Typically an Excellent Quality Weapon]: ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/6</li>\n<li>Subdermal Armor: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Grenade (GM’s Choice) x1: GM's choice</li>\n</ul>"
   },
   "reputation": {
    "value": 4,
@@ -3628,7 +3628,52 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 8,
+     "dex": 0,
+     "tech": 0,
+     "cool": 6,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 7,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 15,
+     "Athletics": 12,
+     "Autofire": 15,
+     "Brawling": 12,
+     "Concentration": 11,
+     "Education": 6,
+     "Evasion": 14,
+     "First Aid": 8,
+     "Handgun": 15,
+     "Heavy Weapons": 15,
+     "Melee Weapon": 15,
+     "Perception": 10,
+     "Persuasion": 10,
+     "Resist Torture/Drugs": 10,
+     "Shoulder Arms": 15,
+     "Stealth": 12,
+     "Streetwise": 10,
+     "Tactics": 9,
+     "Local Expert (GM’s Choice)": 8,
+     "Martial Arts (GM’s Choice)": 13
+    },
+    "items": {
+     "zKM3VZ4k3koMPAgf": {
+      "headSp": 12,
+      "bodySp": 12
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Afterlife Pro Merc",
   "actorLink": false,

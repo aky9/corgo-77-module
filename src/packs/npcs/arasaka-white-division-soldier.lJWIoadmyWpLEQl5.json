@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Arasaka’s ‘White Division’ are a subsect of the corporation rarely known by outsiders. In essence, they’re special forces mostly utilized by in-corp leaders and notable executives, such as Hanako Arasaka herself. They’re fiercely loyal to Arasaka, and have the skills and gear to put down any traitor — so get in line and play puppet.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Arasaka).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 13</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice of Ranged Weapon (Cost Limit: 3,000eb): ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Hybrid Armorjack (Head): SP 13 as printed (the item is SP 12); Tech Upgrade</li>\n<li>Melee SP (head/body): 7/8</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 12 (11)</li>\n<li>Brawling 12 (11)</li>\n<li>Evasion 12 (11)</li>\n<li>Stealth 8 (7)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 13</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice of Ranged Weapon (Cost Limit: 3,000eb): ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 7/8</li>\n<li>Hybrid Armorjack (Head): SP 10, plus 3 from its upgrades = the printed 13 (the item is SP 12); Tech Upgrade</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 12 (11)</li>\n<li>Brawling 12 (11)</li>\n<li>Evasion 12 (11)</li>\n<li>Stealth 8 (7)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
   },
   "reputation": {
    "value": 2,
@@ -2679,7 +2679,7 @@
    "system": {
     "bodyLocation": {
      "ablation": 0,
-     "sp": 15
+     "sp": 12
     },
     "brand": "",
     "concealable": {
@@ -2693,7 +2693,7 @@
     "favorite": false,
     "headLocation": {
      "ablation": 0,
-     "sp": 13
+     "sp": 10
     },
     "installedItems": {
      "allowed": true,
@@ -3668,7 +3668,47 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 6,
+     "dex": 0,
+     "tech": 0,
+     "cool": 4,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 6,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 13,
+     "Autofire": 13,
+     "Concentration": 8,
+     "Cybertech": 6,
+     "Education": 8,
+     "First Aid": 6,
+     "Handgun": 13,
+     "Heavy Weapons": 13,
+     "Human Perception": 9,
+     "Melee Weapon": 13,
+     "Perception": 11,
+     "Persuasion": 7,
+     "Resist Torture/Drugs": 8,
+     "Shoulder Arms": 13,
+     "Tactics": 12
+    },
+    "items": {
+     "cTD7Ny3jGFMXHtsy": {
+      "headSp": 13,
+      "bodySp": 15
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Arasaka White Division Soldier",
   "actorLink": false,

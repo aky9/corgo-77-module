@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Some Special Agents prefer the cybernetics approach to weaponry.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Arasaka).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Mantis Blade x2 (EQ): ROF 2, 3d6 (Mantis Blade)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Light Armorjack (Body): SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n<li>Melee SP (head/body): 6/6</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Melee Weapon 14 (15/16)</li>\n<li>Perception 10 (12)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Mantis Blade x2 (EQ): ROF 2, 3d6 (Mantis Blade)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/6</li>\n<li>Light Armorjack (Body): SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Melee Weapon 14 (15/16)</li>\n<li>Perception 10 (12)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
   },
   "reputation": {
    "value": 3,
@@ -4479,7 +4479,54 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 10,
+     "dex": 0,
+     "tech": 0,
+     "cool": 4,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 8,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 14,
+     "Athletics": 12,
+     "Autofire": 14,
+     "Brawling": 12,
+     "Conceal/Reveal Object": 10,
+     "Concentration": 10,
+     "Cybertech": 8,
+     "Education": 6,
+     "Evasion": 12,
+     "First Aid": 8,
+     "Handgun": 14,
+     "Heavy Weapons": 14,
+     "Language (Streetslang)": 8,
+     "Persuasion": 6,
+     "Resist Torture/Drugs": 10,
+     "Shoulder Arms": 14,
+     "Stealth": 14,
+     "Tactics": 10,
+     "Language (Japanese)": 8,
+     "Martial Arts (Arasaka-Te)": 12
+    },
+    "items": {
+     "WvLhlXMJVczy3cfl": {
+      "headSp": 12
+     },
+     "VA7x0HVmKk0iLjBQ": {
+      "bodySp": 12
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Arasaka Special Mantis Agent",
   "actorLink": false,
