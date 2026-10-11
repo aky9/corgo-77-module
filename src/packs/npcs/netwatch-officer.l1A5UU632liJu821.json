@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>The standard field agent for Netwatch’s investigative units isn’t anything super special, but has enough chrome and net-talent to still have an imposing presence. Officers tend to work with a partner or two in case a situation gets too hairy for them to handle solo.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Netwatch).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Lieutenant<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 12</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 4/6</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Library Search 10 (12)</li>\n</ul>\n<p><strong>Programs:</strong></p>\n<ul>\n<li>GM’s Choice (No Cost Limit): GM's choice</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Neuroport Cyberdeck Port [w/ EQ Cyberdeck] (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Lieutenant<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 12</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Arasaka Tamayura: attack modifier -1 so its upgrades' +1 is not counted twice; the printed attack number includes it</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 4/6</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Library Search 10 (12)</li>\n</ul>\n<p><strong>Programs:</strong></p>\n<ul>\n<li>GM’s Choice (No Cost Limit): GM's choice</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Neuroport Cyberdeck Port [w/ EQ Cyberdeck] (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Self-ICE x2 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>\n<p><strong>Build warnings:</strong></p>\n<ul>\n<li>Subdermal Grip: no foundational cyberArm to install it in; carried, not installed</li>\n</ul>"
   },
   "reputation": {
    "value": 2,
@@ -2551,7 +2551,7 @@
     "ammoVariety": [
      "vHeavyPistol"
     ],
-    "attackmod": 0,
+    "attackmod": -1,
     "brand": "",
     "canIgnoreArmor": false,
     "concealable": {
@@ -3578,7 +3578,60 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 6,
+     "dex": 0,
+     "tech": 0,
+     "cool": 5,
+     "will": 0,
+     "luck": 0,
+     "move": 5,
+     "body": 6,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 12,
+     "Athletics": 8,
+     "Autofire": 12,
+     "Brawling": 6,
+     "Concentration": 10,
+     "Conversation": 10,
+     "Criminology": 10,
+     "Deduction": 10,
+     "Education": 8,
+     "Electronics/Security Tech": 12,
+     "Evasion": 10,
+     "First Aid": 6,
+     "Handgun": 12,
+     "Heavy Weapons": 12,
+     "Human Perception": 6,
+     "Melee Weapon": 12,
+     "Perception": 10,
+     "Persuasion": 6,
+     "Resist Torture/Drugs": 10,
+     "Shoulder Arms": 12,
+     "Stealth": 6,
+     "Streetwise": 8
+    },
+    "items": {
+     "ORw77lVOkUaOTQm7": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "R5AHNpCKKCNld6Qv": {
+      "headSp": 7
+     },
+     "HjOb46BctVLOhOUu": {
+      "bodySp": 11
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Netwatch Officer",
   "actorLink": false,

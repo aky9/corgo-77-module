@@ -32,7 +32,7 @@
     "value": 8
    },
    "body": {
-    "value": 10
+    "value": 8
    },
    "emp": {
     "value": 0,
@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>A small subsect of commandos among Barghest have dropped their professional training to drown themselves in the lifestyle of the underworld. They’re hand-to-hand specialists, interrogators, and efficient monsters that would love to bite your face off.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Barghest).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 10<br>\n<strong>COM#:</strong> 16</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Heavy Throwing Knife: ROF 2, 2d6. x2, Can be thrown as half of a ROF 2 Action, and still halve the target’s SP when thrown; thrown (built on the core Medium Melee)</li>\n<li>Gorilla Arm (EQ Heavy Melee) [x2]: ROF 2, 3d6 (Gorilla Arm)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n<li>Melee SP (head/body): 7/7</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 16 (14)</li>\n<li>Brawling 18 (16)</li>\n<li>Evasion 16 (14)</li>\n<li>Melee Weapon 18 (16)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 10<br>\n<strong>COM#:</strong> 16</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Heavy Throwing Knife: ROF 2, 2d6. x2, Can be thrown as half of a ROF 2 Action, and still halve the target’s SP when thrown; thrown (built on the core Medium Melee)</li>\n<li>Gorilla Arm (EQ Heavy Melee) [x2]: ROF 2, 3d6 (Gorilla Arm)</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 7/7</li>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Athletics 16 (14)</li>\n<li>Brawling 18 (16)</li>\n<li>Evasion 16 (14)</li>\n<li>Melee Weapon 18 (16)</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
   },
   "reputation": {
    "value": 4,
@@ -3990,7 +3990,53 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 8,
+     "dex": 0,
+     "tech": 0,
+     "cool": 6,
+     "will": 0,
+     "luck": 0,
+     "move": 8,
+     "body": 10,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 16,
+     "Autofire": 16,
+     "Concentration": 14,
+     "Conversation": 6,
+     "Education": 8,
+     "First Aid": 10,
+     "Handgun": 16,
+     "Heavy Weapons": 16,
+     "Interrogation": 12,
+     "Perception": 10,
+     "Persuasion": 10,
+     "Resist Torture/Drugs": 10,
+     "Shoulder Arms": 16,
+     "Stealth": 10,
+     "Tactics": 12,
+     "Local Expert (Dogtown)": 12,
+     "Martial Arts (Wrestling)": 12
+    },
+    "items": {
+     "QLMt4s3QAKcp531x": {
+      "attackmod": 0,
+      "rof": 2
+     },
+     "JCE5VJQSXZLIl3bc": {
+      "headSp": 13,
+      "bodySp": 13
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Barghest Warrior",
   "actorLink": false,

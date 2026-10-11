@@ -369,6 +369,13 @@ for (const [k, v] of npcDocs) {
   if (!npcItems.has(aid)) npcItems.set(aid, new Map());
   npcItems.get(aid).set(v._id, v);
 }
+const npcEffects = new Map();   // "<actor>.<item>" -> that item's effect documents
+for (const [k, v] of npcDocs) {
+  if (!k.startsWith("!actors.items.effects!")) continue;
+  const owner = k.split("!")[2].split(".").slice(0, 2).join(".");
+  if (!npcEffects.has(owner)) npcEffects.set(owner, []);
+  npcEffects.get(owner).push(v);
+}
 let npcCount = 0, npcItemCount = 0;
 for (const [key, d] of npcDocs) {
   if (!key.startsWith("!actors!")) continue;
@@ -407,6 +414,65 @@ for (const [key, d] of npcDocs) {
     if (!ref.id) continue;
     const i = own.get(ref.id);
     if (!i || i.type !== "armor" || i.system.equipped !== "equipped") e(`${slot} tracks ${ref.id}, which is not equipped armor`);
+  }
+  // Printed numbers already include the NPC's items. Replay what the system adds (Active Effects from live
+  // items, upgrades in their parent, role bonuses) and check that the sheet lands on each printed number.
+  const printed = d.flags?.["corgo-77-npcs"]?.printed;
+  if (!printed) e("no printed values in flags.corgo-77-npcs");
+  else {
+    const installed = new Set([...s.installedItems.list, ...[...own.values()].flatMap((i) => i.system.installedItems?.list ?? [])]);
+    const live = (i) => ({ carried: i.system.equipped !== "owned", equipped: i.system.equipped === "equipped",
+      installed: installed.has(i._id), rezzed: !!i.system.isRezzed })[i.system.usage] ?? true;
+    const changes = [...own.values()].filter(live).flatMap((i) => (npcEffects.get(`${d._id}.${i._id}`) ?? []).filter((ef) => !ef.disabled)
+      .flatMap((ef) => ef.changes.map((c, n) => {
+        const sit = ef.flags?.["cyberpunk-red-core"]?.changes?.situational?.[n] ?? {};
+        return { ...c, on: !sit.isSituational || !!sit.onByDefault };
+      })));
+    const statOf = {};
+    for (const [stat, want] of Object.entries(printed.stats)) {
+      let v = s.stats[stat].value;
+      for (const c of changes.filter((c) => c.key === `system.stats.${stat}.value`)
+        .sort((x, y) => (x.priority ?? x.mode * 10) - (y.priority ?? y.mode * 10))) {
+        const n = Number(c.value);
+        v = [v, v * n, v + n, Math.min(v, n), Math.max(v, n), n][c.mode] ?? v;
+      }
+      statOf[stat] = v;
+      if (v !== want) e(`${stat.toUpperCase()} is ${v} with its items, printed ${want}`);
+    }
+    const slug = (n) => {
+      const s2 = ["Conceal/Reveal Object", "Paint/Draw/Sculpt", "Resist Torture/Drugs"].includes(n) ? n.replaceAll(" ", "").replaceAll("/", "Or")
+        : n === "Language (Streetslang)" ? n.replace(/[ ()]/g, "") : n.replaceAll(" ", "").replaceAll("/", "And").replaceAll("&", "And");
+      return s2[0].toLowerCase() + s2.slice(1);
+    };
+    const roles = [...own.values()].filter((i) => i.type === "role");
+    for (const [name, want] of Object.entries(printed.skills)) {
+      const sk = [...own.values()].find((i) => i.type === "skill" && i.name === name);
+      if (!sk) { e(`printed skill ${name} has no skill item`); continue; }
+      const keys = [slug(name), `${slug(name)}Hearing`, `${slug(name)}Sight`, "allActions", "allActionsSpeech", "allActionsHands"]
+        .map((k) => `bonuses.${k}`);
+      let total = statOf[sk.system.stat] + sk.system.level;
+      total += changes.filter((c) => c.on && c.mode === 2 && keys.includes(c.key)).reduce((t, c) => t + Number(c.value), 0);
+      for (const r of roles) for (const ab of [r.system, ...(r.system.abilities ?? [])]) {
+        if ((ab.bonuses ?? []).some((b) => b.name === name) && (!ab.isSituational || ab.onByDefault))
+          total += Math.floor((ab.rank ?? 0) / Math.max(ab.bonusRatio ?? 1, 1));
+      }
+      if (total !== want && !(sk.system.level === 0 && total > want)) e(`${name} rolls ${total}, printed ${want}`);
+    }
+    const path = { headSp: ["headLocation", "sp"], bodySp: ["bodyLocation", "sp"], rof: ["rof"], attackmod: ["attackmod"] };
+    for (const [id, targets] of Object.entries(printed.items)) {
+      const i = own.get(id);
+      if (!i) { e(`printed values for missing item ${id}`); continue; }
+      const ups = (i.system.installedItems?.list ?? []).map((u) => own.get(u)).filter((u) => u?.type === "itemUpgrade");
+      for (const [point, want] of Object.entries(targets)) {
+        const base = path[point].reduce((o, k) => o?.[k], i.system);
+        if (base === undefined) continue;
+        const mods = ups.map((u) => u.system.modifiers?.[point]).filter((m) => typeof m?.value === "number" && m.value);
+        const over = mods.filter((m) => m.type === "override").map((m) => m.value);
+        const got = over.length && Math.max(...over) ? Math.max(...over)
+          : base + mods.filter((m) => m.type !== "override").reduce((t, m) => t + m.value, 0);
+        if (got !== want && !over.length) e(`${i.name}: ${point} is ${got} with its upgrades, printed ${want}`);
+      }
+    }
   }
   // A portrait or token from npcs-module/art/ must have shipped with the module.
   for (const [what, src] of [["portrait", d.img], ["token", d.prototypeToken?.texture?.src]]) {

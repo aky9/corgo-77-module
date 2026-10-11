@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Undertakers are some of the better fighters among the Animals that have been gifted more designer drugs and combat ‘ware to really shine in the ring. They usually lack any sort of ranged capability, but they hit so hard that it doesn’t matter against most foes.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Animals).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Repurposed Sledgehammer: ROF 1, 5d6. VH Melee; Has a 4m/yds range. Requires BODY 9+ to wield.</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n<li>Melee SP (head/body): 6/6</li>\n</ul>\n<p><strong>Gear details:</strong></p>\n<ul>\n<li>Juice: always on: one dose active</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Lieutenant<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>Repurposed Sledgehammer: ROF 1, 5d6. VH Melee; Has a 4m/yds range. Requires BODY 9+ to wield.</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/6</li>\n<li>Subdermal Armor: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n</ul>\n<p><strong>Gear details:</strong></p>\n<ul>\n<li>Juice: always on: one dose active</li>\n</ul>"
   },
   "reputation": {
    "value": 2,
@@ -3692,7 +3692,52 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 7,
+     "dex": 0,
+     "tech": 0,
+     "cool": 5,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 11,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 14,
+     "Athletics": 10,
+     "Autofire": 14,
+     "Brawling": 16,
+     "Concentration": 10,
+     "Education": 6,
+     "Evasion": 12,
+     "First Aid": 8,
+     "Handgun": 14,
+     "Heavy Weapons": 14,
+     "Melee Weapon": 14,
+     "Perception": 9,
+     "Resist Torture/Drugs": 12,
+     "Shoulder Arms": 14,
+     "Stealth": 8,
+     "Tactics": 6
+    },
+    "items": {
+     "OUwLSAK8on6MtaBQ": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "jEZvusmzxLQfvG8t": {
+      "headSp": 12,
+      "bodySp": 12
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Animals Undertaker",
   "actorLink": false,

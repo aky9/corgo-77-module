@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>The lowest bottom-feeder of Arasaka’s security details is the humble security guard. They defend corporate interests all across the globe, with gear and armor only slightly better than what you can get on the street. Still, they’re just the fodder before the real threats show up, so make sure they don’t call on their friends.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Arasaka).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Mook<br>\n<strong>Facedown #:</strong> 3<br>\n<strong>COM#:</strong> 10</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Kevlar® (Body): SP 8 as printed (the item is SP 7); Tech Upgrade</li>\n<li>Melee SP (head/body): 2/4</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Mook<br>\n<strong>Facedown #:</strong> 3<br>\n<strong>COM#:</strong> 10</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 2/4</li>\n<li>Kevlar® (Body): SP 8 as printed (the item is SP 7); Tech Upgrade</li>\n</ul>"
   },
   "reputation": {
    "value": 0,
@@ -3008,7 +3008,60 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 4,
+     "dex": 0,
+     "tech": 0,
+     "cool": 3,
+     "will": 0,
+     "luck": 0,
+     "move": 4,
+     "body": 5,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 10,
+     "Athletics": 8,
+     "Autofire": 10,
+     "Brawling": 8,
+     "Concentration": 6,
+     "Cybertech": 8,
+     "Education": 8,
+     "Evasion": 8,
+     "First Aid": 6,
+     "Handgun": 10,
+     "Heavy Weapons": 10,
+     "Melee Weapon": 10,
+     "Perception": 6,
+     "Persuasion": 5,
+     "Resist Torture/Drugs": 8,
+     "Shoulder Arms": 10,
+     "Stealth": 6,
+     "Tactics": 6
+    },
+    "items": {
+     "MNFbm2vqAVBLfUo6": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "E8Tk9HqiSE7WObRO": {
+      "attackmod": 0,
+      "rof": 2
+     },
+     "a8FLbTqBdJhFbava": {
+      "headSp": 4
+     },
+     "E3r75JjG95RYNGbM": {
+      "bodySp": 8
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Arasaka Guard",
   "actorLink": false,

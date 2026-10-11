@@ -32,7 +32,7 @@
     "value": 4
    },
    "body": {
-    "value": 10
+    "value": 8
    },
    "emp": {
     "value": 0,
@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>As the name might imply, Ironstormers are hulking brutes of crude cybernetics and bulky firepower. Their fondness for body augmentation makes them hard to kill, and their automatic MGs make approaching them a deadly proposition for the unprepared. More akin to attack dogs than leaders, Ironstormers are most often used to ensure a deal or similar gang activity goes well for Maelstrom and ends brutally for anyone that gets in its way.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Maelstrom).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Mini-Boss<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n<li>Melee SP (head/body): 7/7</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Perception 10 (12)</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Mini-Boss<br>\n<strong>Facedown #:</strong> 6<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 7/7</li>\n<li>Subdermal Armor: SP 13 as printed (the item is SP 11); Heavy Subdermal Plating, which has no Foundry item: built as Subdermal Armor at its printed SP</li>\n</ul>\n<p><strong>Situational skill values:</strong></p>\n<ul>\n<li>Perception 10 (12)</li>\n</ul>"
   },
   "reputation": {
    "value": 2,
@@ -4402,7 +4402,54 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 8,
+     "dex": 0,
+     "tech": 0,
+     "cool": 4,
+     "will": 0,
+     "luck": 0,
+     "move": 4,
+     "body": 10,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 14,
+     "Athletics": 12,
+     "Autofire": 14,
+     "Basic Tech": 6,
+     "Brawling": 12,
+     "Concentration": 8,
+     "Cybertech": 12,
+     "Education": 6,
+     "Evasion": 12,
+     "First Aid": 6,
+     "Handgun": 14,
+     "Heavy Weapons": 14,
+     "Melee Weapon": 14,
+     "Resist Torture/Drugs": 10,
+     "Shoulder Arms": 14,
+     "Stealth": 6,
+     "Streetwise": 11,
+     "Tactics": 10
+    },
+    "items": {
+     "niWqrwKYtThev3pi": {
+      "attackmod": 0,
+      "rof": 1
+     },
+     "Tv7cUR27UXNlxEYb": {
+      "headSp": 13,
+      "bodySp": 13
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Maelstrom Ironstormer",
   "actorLink": false,

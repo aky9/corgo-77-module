@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>Throughout the VDB, certain Netrunners have proven themselves to be such NET-savantes that they’ve been given command over smaller sects, typically for a specific job or to protect vital gang territory. A Manbo can put down most threats with a mere thought, and are extra protected against hostile intrusions. Your best bet is to get in close and put them down before they get a chance to fry your everything.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Voodoo Boys).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Mini-Boss<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Bodyweight Suit: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n<li>Melee SP (head/body): 6/6</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Neuroport Cyberdeck Port [w/ EQ Cyberdeck] (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Self-ICE x3 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Mini-Boss<br>\n<strong>Facedown #:</strong> 7<br>\n<strong>COM#:</strong> 14</p>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/6</li>\n<li>Bodyweight Suit: SP 12 as printed (the item is SP 11); Tech Upgrade</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Neuroport Cyberdeck Port [w/ EQ Cyberdeck] (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n<li>Self-ICE x3 (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
   },
   "reputation": {
    "value": 3,
@@ -4030,7 +4030,55 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 9,
+     "dex": 0,
+     "tech": 0,
+     "cool": 4,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 6,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 14,
+     "Athletics": 10,
+     "Autofire": 14,
+     "Basic Tech": 12,
+     "Brawling": 10,
+     "Concentration": 10,
+     "Cybertech": 10,
+     "Education": 8,
+     "Electronics/Security Tech": 12,
+     "Evasion": 12,
+     "First Aid": 8,
+     "Handgun": 14,
+     "Heavy Weapons": 14,
+     "Melee Weapon": 14,
+     "Perception": 8,
+     "Resist Torture/Drugs": 8,
+     "Shoulder Arms": 14,
+     "Stealth": 8,
+     "Streetwise": 8
+    },
+    "items": {
+     "GclRaVawERACThxM": {
+      "attackmod": 0,
+      "rof": 2
+     },
+     "Na2t1RWtNrLb7jzn": {
+      "headSp": 12,
+      "bodySp": 12
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Voodoo Boys Manbo",
   "actorLink": false,

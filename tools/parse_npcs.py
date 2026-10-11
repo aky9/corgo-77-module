@@ -135,7 +135,10 @@ def role_line(s):
 
 
 def sp(s):
-    return int(re.sub(r"\D", "", s) or 0)
+    """The first number in a cell: "SP 16" -> 16, "N/A" -> 0. A STAT printed "8(7)" is 8, its value before the
+    armor penalty, which the system applies itself."""
+    m = re.search(r"\d+", s)
+    return int(m.group(0)) if m else 0
 
 
 def parse_com(rec, rows):

@@ -32,7 +32,7 @@
     "value": 6
    },
    "body": {
-    "value": 10
+    "value": 8
    },
    "emp": {
     "value": 0,
@@ -90,7 +90,7 @@
    "alias": "",
    "description": "<p>When unnamed faces are needed to protect top-level black sites, those who get hired are usually of a much higher caliber than your typical bodyguard. When this hired gun also wears reinforced armor, installs extra cyberware, and totes heavy firepower, they become a true menace that can fend off large-scale opposition almost single-handedly.</p>\n<p><em>From <a href=\"https://docs.google.com/document/d/1gdiAH9cuuy43O5IN2V4BdV45gm-j0GAO_TrBtNm6T-o/edit\">Corgo's 77 Collection: Mooks</a> by Corgopolis (Generics).</em></p>",
    "history": "",
-   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 9<br>\n<strong>COM#:</strong> 16</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice (Cost Limit: 1,500eb) [Typically a Heavy Weapon, Machine Gun, or Shotgun]: ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Heavy Armorjack (Body): SP 14 as printed (the item is SP 13); Tech Upgrade</li>\n<li>Melee SP (head/body): 6/7</li>\n</ul>\n<p><strong>Gear details:</strong></p>\n<ul>\n<li>TechGogs: Function as Smart Glasses w/ pre-installed Image Enhance that consumes no Option Slots</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
+   "notes": "<p><strong>Threat level:</strong> Elite Hardened Mini-Boss<br>\n<strong>Facedown #:</strong> 9<br>\n<strong>COM#:</strong> 16</p>\n<p><strong>Weapons:</strong></p>\n<ul>\n<li>GM’s Choice (Cost Limit: 1,500eb) [Typically a Heavy Weapon, Machine Gun, or Shotgun]: ROF ?, ?</li>\n</ul>\n<p><strong>Armor:</strong></p>\n<ul>\n<li>Melee SP (head/body): 6/7</li>\n<li>Heavy Armorjack (Body): SP 14 as printed (the item is SP 13); Tech Upgrade</li>\n</ul>\n<p><strong>Gear details:</strong></p>\n<ul>\n<li>TechGogs: Function as Smart Glasses w/ pre-installed Image Enhance that consumes no Option Slots</li>\n</ul>\n<p><strong>Not built:</strong></p>\n<ul>\n<li>Self-ICE (in Neural Link): from official Cyberpunk RED material by R. Talsorian Games; not in the Cyberpunk RED - Core Foundry system</li>\n</ul>"
   },
   "reputation": {
    "value": 4,
@@ -3589,7 +3589,50 @@
  "ownership": {
   "default": 0
  },
- "flags": {},
+ "flags": {
+  "corgo-77-npcs": {
+   "printed": {
+    "stats": {
+     "int": 0,
+     "ref": 10,
+     "dex": 0,
+     "tech": 0,
+     "cool": 5,
+     "will": 0,
+     "luck": 0,
+     "move": 6,
+     "body": 10,
+     "emp": 0
+    },
+    "skills": {
+     "Archery": 16,
+     "Athletics": 12,
+     "Autofire": 16,
+     "Brawling": 14,
+     "Concentration": 12,
+     "Education": 6,
+     "Evasion": 14,
+     "First Aid": 8,
+     "Handgun": 16,
+     "Heavy Weapons": 16,
+     "Melee Weapon": 16,
+     "Perception": 11,
+     "Resist Torture/Drugs": 12,
+     "Shoulder Arms": 16,
+     "Stealth": 8,
+     "Tactics": 12
+    },
+    "items": {
+     "KwsaPDwTA4CMxDI6": {
+      "headSp": 12
+     },
+     "O1OPPFpaSr4NJd09": {
+      "bodySp": 14
+     }
+    }
+   }
+  }
+ },
  "prototypeToken": {
   "name": "Superheavy Guard",
   "actorLink": false,

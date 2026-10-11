@@ -13,9 +13,17 @@ How a COM# stat block becomes an actor (the full-layout bosses give all ten STAT
   Martial Art) keeps its own number.
 - Printed values win: weapon damage and ROF, armor SP, Brawling and Martial Arts damage. Where the printed
   number differs from the item's, the embedded copy is changed to match.
+- Printed numbers already include everything the NPC carries. The embedded items keep their Active Effects
+  and upgrades live, so `settle` stores each value as the printed number minus what Foundry will add back:
+  a STAT minus its cyberware (Grafted Muscle and Bone Lace's BODY), an armor's SP minus its upgrades'
+  (Superheavy Plates), a weapon's ROF and attack modifier minus its attachments' (Smartgun Link). The
+  sheet then shows the printed number, and removing the item removes its share.
 - A skill's bracketed value ("Athletics 13 (11)") is the base with a gear or role bonus or a gear penalty
-  applied. The level comes from the printed base; the system applies worn armor's penalty itself, and the
-  bracketed values are listed in the actor's notes.
+  applied. The level comes from the printed base; the system applies worn armor's penalty and the items'
+  bonuses itself, and the bracketed values are listed in the actor's notes. A skill printed without a bracket
+  (COM# included) is final: the always-on bonuses Foundry adds to it are taken off its level.
+- The printed targets are kept in the actor's flags.corgo-77-npcs.printed, and validate.mjs replays the
+  system's maths against them.
 - What has no Foundry item (Self-ICE, a "GM's Choice" weapon, Melee SP, Enforcer abilities) goes in the
   notes. Every gear name must either resolve to an item or be named in text/npc_aliases.json "unbuilt" with
   the reason; anything else fails the build.
@@ -137,6 +145,9 @@ class Actor:
         self.items, self.notes, self.installed = [], {}, []
         self.cyberware = []     # cyberware not installed in a parent yet; install_cyberware places it
         self.cyberweapons = []  # weapon rows that are cyberware; build_cyberweapons places them
+        self.printed = {}       # item id -> {upgrade data point: printed value}; settle applies them
+        self.armor_src = {}     # worn armor id -> (SP data point, the item's own SP, detail) for settle's note
+        self.final_skills = {}  # skill name -> printed base, for skills printed without a bracket
         self.seen = {}
         self.where = f"{rec['file']}: {rec['name']}"
 
@@ -240,6 +251,8 @@ def build_skills(a, stats):
             a.note("Build warnings", f"{name}: printed base is below its STAT; level set to 0")
             level = 0
         a.embed(src, rename=name, level=level)
+        if name in bases and not (listed.get(name) or {}).get("alt"):
+            a.final_skills[name] = bases[name]
 
 
 def build_roles(a):
@@ -312,11 +325,13 @@ def build_weapon(a, w):
         a.cyberweapons.append((item, name, w))
         return
     if item["type"] == "itemUpgrade":
-        # An underbarrel weapon row: install it in the weapon listed above it.
+        # An underbarrel weapon row: install it in the weapon listed above it, unless that weapon's own
+        # "(w/ ...)" list already did.
         host = next((i for i in reversed(a.items) if i["type"] == "weapon" and i["system"].get("installedItems")),
                     None)
-        up = a.embed(item)
-        if host:
+        inside = [i for i in a.items if host and i["_id"] in host["system"]["installedItems"]["list"]]
+        up = next((i for i in inside if i["name"] == item["name"]), None) or a.embed(item)
+        if host and up not in inside:
             install(host, up)
         a.note("Weapons", f"{up['name']}: {weapon_line(w)}" + (f" (installed in {host['name']})" if host else ""))
         return
@@ -330,6 +345,10 @@ def build_weapon(a, w):
     if rof and item["system"].get("rof") != int(rof.group(0)):
         fields["rof"] = int(rof.group(0))
     weapon = a.embed(item, rename=rename, **fields)
+    # The printed attack number already counts the weapon's attachments, so they must not add to it again.
+    a.printed[weapon["_id"]] = {"attackmod": item["system"].get("attackmod", 0)}
+    if rof:
+        a.printed[weapon["_id"]]["rof"] = int(rof.group(0))
     extra = "; ".join(filter(None, [", ".join(tags), ", ".join(own_gloss(node, item)), alias_note, w.get("notes")]))
     if rename or extra or "&" in (w["damage"] or "") or w["damage"].count("d6") > 1:
         a.note("Weapons", f"{weapon['name']}: {weapon_line(w)}" + (f". {extra}" if extra else "")
@@ -398,6 +417,7 @@ def build_armor(a):
             item = done[norm(base)]
             item["system"][f"{loc}Location"]["sp"] = slot["sp"]
             item["system"][f"is{loc.title()}Location"] = True
+            a.printed[item["_id"]][f"{loc}Sp"] = slot["sp"]
             external[f"currentArmor{loc.title()}"] = {"id": item["_id"], "value": slot["sp"], "max": slot["sp"]}
             for child in node["children"]:
                 build_child(a, item, child, base)
@@ -418,12 +438,10 @@ def build_armor(a):
                   f"is{('Body' if loc == 'head' else 'Head')}Location": False}
         item = a.embed(src, **fields)
         item["system"][f"{loc}Location"]["sp"] = slot["sp"]
-        detail = "; ".join(filter(None, [", ".join(tags), alias_note]))
-        if slot["sp"] != src["system"][f"{loc}Location"]["sp"] or detail:
-            a.note("Armor", f"{item['name']}: SP {slot['sp']} as printed"
-                            + (f" (the item is SP {src['system'][f'{loc}Location']['sp']})"
-                               if slot["sp"] != src["system"][f"{loc}Location"]["sp"] else "")
-                            + (f"; {detail}" if detail else ""))
+        a.printed[item["_id"]] = {f"{loc}Sp": slot["sp"]}
+        # settle writes the note once the upgrades are installed and counted
+        a.armor_src[item["_id"]] = (f"{loc}Sp", src["system"][f"{loc}Location"]["sp"],
+                                    "; ".join(filter(None, [", ".join(tags), alias_note])))
         if slot.get("notes"):
             a.note("Armor", f"{item['name']}: {slot['notes']}")
         done[norm(base)] = item
@@ -501,6 +519,150 @@ def build_programs(a):
                 a.embed(item)
 
 
+# ---------------------------------------------------------------- printed numbers include the items
+
+SYSTEM_ID = "cyberpunk-red-core"
+UPGRADE_FIELDS = {"headSp": ("headLocation", "sp"), "bodySp": ("bodyLocation", "sp"), "rof": ("rof",),
+                  "attackmod": ("attackmod",)}
+UPGRADE_LABELS = {"headSp": "head SP", "bodySp": "body SP", "rof": "ROF", "attackmod": "attack modifier"}
+
+
+def slugify(name):
+    """SystemUtils.slugify: the bonuses.<key> a skill's roll reads."""
+    if name in ("Conceal/Reveal Object", "Paint/Draw/Sculpt", "Resist Torture/Drugs"):
+        s = name.replace(" ", "").replace("/", "Or")
+    elif name == "Language (Streetslang)":
+        s = name.replace(" ", "").replace("(", "").replace(")", "")
+    else:
+        s = name.replace(" ", "").replace("/", "And").replace("&", "And")
+    return s[:1].lower() + s[1:]
+
+
+def effects_live(item, installed):
+    """cpr-effects.js areEffectsSuppressed, inverted."""
+    s, usage = item["system"], item["system"].get("usage")
+    if usage == "carried":
+        return s.get("equipped") != "owned"
+    if usage == "equipped":
+        return s.get("equipped") == "equipped"
+    if usage == "installed":
+        return item["_id"] in installed
+    if usage == "rezzed":
+        return bool(s.get("isRezzed"))
+    return True
+
+
+def live_changes(a):
+    """-> [(change, always_on)] for every Active Effect change Foundry applies to the actor. A situational change
+    that is off by default only shows as a toggle in the roll dialog, so it is not always on."""
+    installed = set(a.installed) | {i for it in a.items for i in it["system"].get("installedItems", {}).get("list", [])}
+    out = []
+    for item in a.items:
+        if not effects_live(item, installed):
+            continue
+        for e in item.get("effects", []):
+            if e.get("disabled"):
+                continue
+            sit = e.get("flags", {}).get(SYSTEM_ID, {}).get("changes", {}).get("situational") or {}
+            for n, ch in enumerate(e["changes"]):
+                flag = (sit[n] if isinstance(sit, list) and n < len(sit) else
+                        sit.get(str(n), {}) if isinstance(sit, dict) else {}) or {}
+                out.append((ch, not flag.get("isSituational") or bool(flag.get("onByDefault"))))
+    return out
+
+
+def apply_changes(value, changes):
+    """Foundry's ActiveEffect.apply for a number, in priority order (mode x 10 unless a priority is set)."""
+    for ch in sorted(changes, key=lambda c: c["priority"] if c.get("priority") is not None else c["mode"] * 10):
+        v = float(ch["value"])
+        value = {1: value * v, 2: value + v, 3: min(value, v), 4: max(value, v), 5: v}.get(ch["mode"], value)
+    return value
+
+
+def role_skill_bonus(a, skill):
+    """cpr-role.js getRoleMods: a role's skill bonus is floor(rank / bonusRatio), main ability and sub-abilities."""
+    total = 0
+    for r in (i for i in a.items if i["type"] == "role"):
+        s = r["system"]
+        for ab in [s] + s.get("abilities", []):
+            if (any(b.get("name") == skill for b in ab.get("bonuses", []))
+                    and (not ab.get("isSituational") or ab.get("onByDefault"))):
+                total += ab.get("rank", 0) // max(ab.get("bonusRatio", 1), 1)
+    return total
+
+
+def upgrade_total(a, item, point):
+    """cpr-upgradable.js getTotalUpgradeValues -> (type, value)."""
+    ids = item["system"].get("installedItems", {}).get("list", [])
+    mods = [u["system"]["modifiers"].get(point) or {} for u in a.items
+            if u["_id"] in ids and u["type"] == "itemUpgrade"]
+    vals = [(m.get("type"), m.get("value")) for m in mods if isinstance(m.get("value"), (int, float)) and m["value"]]
+    overrides = [v for t, v in vals if t == "override"]
+    if overrides and max(overrides) != 0:
+        return "override", max(overrides)
+    return "modifier", sum(v for t, v in vals if t != "override")
+
+
+def settle(a, stats):
+    """Store each printed number less what Foundry adds back, so the sheet shows the printed number.
+    -> the STAT values to store."""
+    changes = live_changes(a)
+    stored = {}
+    for stat, printed in stats.items():
+        mine = [c for c, _ in changes if c["key"] == f"system.stats.{stat}.value" and c["mode"] in (1, 2, 3, 4, 5)]
+        start = printed - sum(int(float(c["value"])) for c in mine if c["mode"] == 2)
+        fit = next((v for v in sorted(range(0, 31), key=lambda v: abs(v - start))
+                    if apply_changes(v, mine) == printed), None) if mine else printed
+        if fit is None:
+            a.note("Build warnings", f"{stat.upper()}: printed {printed}, but its cyberware sets it to "
+                                     f"{apply_changes(printed, mine):g}")
+            fit = printed
+        stored[stat] = fit
+    # Skills printed without a bracket are final: take the bonuses Foundry adds off the level.
+    for skill in (i for i in a.items if i["type"] == "skill" and i["name"] in a.final_skills):
+        keys = {f"bonuses.{k}" for k in (slugify(skill["name"]), "allActions", "allActionsSpeech", "allActionsHands")}
+        keys |= {f"bonuses.{slugify(skill['name'])}{s}" for s in ("Hearing", "Sight")}
+        bonus = sum(int(float(c["value"])) for c, on in changes if on and c["key"] in keys and c["mode"] == 2)
+        bonus += role_skill_bonus(a, skill["name"])
+        if bonus:
+            level = skill["system"]["level"] - bonus
+            if level < 0:
+                a.note("Build warnings", f"{skill['name']}: printed {a.final_skills[skill['name']]} is below its "
+                                         f"STAT plus its +{bonus} from gear; level set to 0")
+            skill["system"]["level"] = max(level, 0)
+    # Upgrades installed in a weapon or armor add to the item's own values.
+    for item in a.items:
+        for point, target in a.printed.get(item["_id"], {}).items():
+            *path, field = UPGRADE_FIELDS[point]
+            holder = item["system"]
+            for p in path:
+                holder = holder[p]
+            if field not in holder:
+                continue
+            kind, value = upgrade_total(a, item, point)
+            if kind == "override" and value != target:
+                a.note("Build warnings", f"{item['name']}: an upgrade sets {point} to {value}; printed {target}")
+            elif kind == "modifier" and value:
+                holder[field] = target - value
+                if point == "attackmod":
+                    a.note("Weapons", f"{item['name']}: attack modifier {target - value:+d} so its upgrades' "
+                                      f"{value:+d} is not counted twice; the printed attack number includes it")
+                elif item["_id"] not in a.armor_src:
+                    a.note("Weapons", f"{item['name']}: {UPGRADE_LABELS[point]} {target - value}, plus {value} "
+                                      f"from its upgrades = the printed {target}")
+        if item["_id"] in a.armor_src:
+            point, own, detail = a.armor_src[item["_id"]]
+            target = a.printed[item["_id"]][point]
+            sp = item["system"][UPGRADE_FIELDS[point][0]]["sp"]
+            parts = [f"SP {sp}, plus {target - sp} from its upgrades = the printed {target}" if sp != target
+                     else f"SP {sp} as printed"] if sp != own or sp != target else []
+            if sp != own:
+                parts[0] += f" (the item is SP {own})"
+            if parts or detail:
+                a.note("Armor", f"{item['name']}: " + "; ".join(parts + ([detail] if detail else [])))
+    return stored
+
+
 def notes_html(a):
     order = ["Weapons", "Armor", "Role abilities", "Situational skill values", "Gear details", "Programs",
              "Not built", "Build warnings"]
@@ -544,11 +706,12 @@ def build_actor(rec, cat, folder_id):
     build_cyberweapons(a)
     build_programs(a)
     install_cyberware(a)
+    stored = settle(a, stats)
 
     emp = (stats["emp"], maxes["emp"])
     humanity = (emp[0] * 10, emp[1] * 10) if rec["layout"] == "full" else (60, 60)
     system = {
-        "stats": {s: ({"value": stats[s], "max": maxes[s]} if s in ("luck", "emp") else {"value": stats[s]})
+        "stats": {s: ({"value": stored[s], "max": maxes[s]} if s in ("luck", "emp") else {"value": stored[s]})
                   for s in STATS},
         "derivedStats": {"hp": {"value": rec["hp"], "max": rec["hp"], "transactions": []},
                          "humanity": {"value": humanity[0], "max": humanity[1], "transactions": []},
@@ -574,7 +737,8 @@ def build_actor(rec, cat, folder_id):
     img, token = actor_art(rec, a.cat.art)
     return {"_id": a.id, "_key": f"!actors!{a.id}", "name": rec["name"], "type": "mook", "img": img,
             "system": system, "items": a.items, "effects": [], "folder": folder_id, "sort": 0,
-            "ownership": {"default": 0}, "flags": {},
+            "ownership": {"default": 0},
+            "flags": {"corgo-77-npcs": {"printed": {"stats": stats, "skills": a.final_skills, "items": a.printed}}},
             "prototypeToken": {"name": rec["name"], "actorLink": False, "disposition": -1,
                                "bar1": {"attribute": "derivedStats.hp"},
                                **({"texture": {"src": token}} if token != MOOK_IMG else {})}}
