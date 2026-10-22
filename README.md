@@ -10,14 +10,22 @@ separate module, **Corgo's 77 Collection: NPCs** (128 mook actors), built from t
 - Support Corgopolis: <https://patreon.com/Corgopolis>
 - Requires Foundry VTT v12 and Cyberpunk RED - Core v0.92.4
 
-In Foundry's Setup screen, open **Add-on Modules**, click **Install Module**, and paste this manifest URL:
+## Installing
 
-## Installing Corgo's Items: https://github.com/aky9/corgo-77-module/releases/tag/v0.8.2
+The items and the NPCs are two modules, each with its own manifest URL. In Foundry's Setup screen, open
+**Add-on Modules**, click **Install Module**, paste a manifest URL into **Manifest URL**, and click
+**Install**. Repeat with the other URL to install both.
 
-## Install Corgo's NPC's: https://github.com/aky9/corgo-77-module/releases/tag/npcs-latest
+**Corgo's 77 Collection (items):**
 
-Foundry offers updates from the same URL. Once the module is enabled, run the **Use Corgo's 77 DV Tables**
-macro once per world. [`module/README.md`](module/README.md) is the full user guide: what each pack
+    https://github.com/aky9/corgo-77-module/releases/download/items-latest/module.json
+
+**Corgo's 77 Collection: NPCs:**
+
+    https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json
+
+Foundry offers updates for each module from its own URL. Once the items module is enabled, run the
+**Use Corgo's 77 DV Tables** macro once per world. [`module/README.md`](module/README.md) is the full user guide: what each pack
 automates, what is left to apply by hand, and how to run it alongside Schism989's Solo of Fortune 2045
 module.
 
@@ -59,8 +67,8 @@ Upgrade maths work.
 **The NPC module** holds Corgo's NPC stat blocks, included with his permission, as 128 mook actors that
 carry real copies of their gear and cyberware, so it works without the items module. Most use his quick
 format (COM#, INIT, COOL, MOVE, and skill bases), built so every listed skill rolls exactly the printed
-number; [`npcs-module/README.md`](npcs-module/README.md) explains how. Install it from
-`https://github.com/aky9/corgo-77-module/releases/download/npcs-latest/module.json`.
+number; [`npcs-module/README.md`](npcs-module/README.md) explains how. Install it from its manifest URL
+under [Installing](#installing).
 
 ## Not converted
 
@@ -81,10 +89,12 @@ layout, and the conventions settled against the 0.92.4 source.
 
 ## Releasing
 
-A release is a git tag. Bump `"version"` in `module/module.json`, commit, tag the commit `vX.Y.Z`, and
-push the tag; [`.github/workflows/release.yml`](.github/workflows/release.yml) builds the module and
-attaches `module.zip` and `module.json` to a GitHub Release, which is where the manifest URL above
-points. The workflow refuses a tag that does not match the manifest's version.
+A release is a git tag. For the items module, bump `"version"` in `module/module.json`, commit, tag the
+commit `vX.Y.Z`, and push the tag; for the NPC module, bump `npcs-module/module.json` and tag
+`npcs-vX.Y.Z`. [`.github/workflows/release.yml`](.github/workflows/release.yml) builds the module,
+attaches `module.zip` and `module.json` to a GitHub Release for the tag, and copies both onto the module's
+rolling release (`items-latest` or `npcs-latest`), which is where its manifest URL above points. The
+workflow refuses a tag that does not match the manifest's version.
 
 ## Credits
 

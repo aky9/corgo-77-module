@@ -10,10 +10,12 @@
 # The "download" field of the shipped manifest is pinned to this tag's zip, so an older manifest keeps
 # fetching the zip it was built with.
 #
-# Install URLs: the items module's manifest is .../releases/latest/download/module.json, so its releases are
-# marked "latest". NPC releases never are (that would break the items module's URL); instead each one also
-# refreshes the assets on a rolling release tagged "npcs-latest", whose manifest is
-# .../releases/download/npcs-latest/module.json.
+# Install URLs: each module has a rolling release that every one of its releases refreshes, so each has a
+# fixed manifest URL of its own that does not depend on which release GitHub calls "latest":
+#   items: .../releases/download/items-latest/module.json
+#   NPCs:  .../releases/download/npcs-latest/module.json
+# Items installs from before items-latest existed use .../releases/latest/download/module.json, so the
+# newest v* release is (re)marked "latest" on every run; nothing else ever is.
 name: Release
 
 on:
@@ -86,16 +88,26 @@ jobs:
             gh release create "$GITHUB_REF_NAME" $assets --title "$GITHUB_REF_NAME" --generate-notes $latest
           fi
 
-      - name: Refresh the NPC module's rolling release
-        if: env.MODULE_FOLDER == 'npcs-module'
+      - name: Refresh the module's rolling release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          case "$MODULE_FOLDER" in
+            npcs-module) rolling=npcs-latest;  title="Corgo's 77 NPCs (latest)" ;;
+            module)      rolling=items-latest; title="Corgo's 77 Collection (latest)" ;;
+          esac
           assets="module.zip dist/$MODULE_ID/module.json"
-          if gh release view npcs-latest >/dev/null 2>&1; then
-            gh release upload npcs-latest $assets --clobber
+          if gh release view "$rolling" >/dev/null 2>&1; then
+            gh release upload "$rolling" $assets --clobber
           else
-            gh release create npcs-latest $assets --target "$GITHUB_SHA" --title "Corgo's 77 NPCs (latest)" \
-              --notes "Always the newest NPC module. Install URL: https://github.com/$GITHUB_REPOSITORY/releases/download/npcs-latest/module.json" \
+            gh release create "$rolling" $assets --target "$GITHUB_SHA" --title "$title" \
+              --notes "Always the newest release of this module. Install URL: https://github.com/$GITHUB_REPOSITORY/releases/download/$rolling/module.json" \
               --latest=false
           fi
+
+      - name: Keep the newest items release marked latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          newest=$(gh release list --limit 100 --json tagName --jq '.[].tagName' | grep -E '^v[0-9]' | sort -V | tail -1)
+          if [ -n "$newest" ]; then gh release edit "$newest" --latest; fi
