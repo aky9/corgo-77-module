@@ -10,11 +10,11 @@ separate module, **Corgo's 77 Collection: NPCs** (128 mook actors), built from t
 - Support Corgopolis: <https://patreon.com/Corgopolis>
 - Requires Foundry VTT v12 and Cyberpunk RED - Core v0.92.4
 
-## Installing
-
 In Foundry's Setup screen, open **Add-on Modules**, click **Install Module**, and paste this manifest URL:
 
-    https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
+## Installing Corgo's Items: https://github.com/aky9/corgo-77-module/releases/tag/v0.8.2
+
+## Install Corgo's NPC's: https://github.com/aky9/corgo-77-module/releases/tag/npcs-latest
 
 Foundry offers updates from the same URL. Once the module is enabled, run the **Use Corgo's 77 DV Tables**
 macro once per world. [`module/README.md`](module/README.md) is the full user guide: what each pack
