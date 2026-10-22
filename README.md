@@ -87,15 +87,6 @@ what ships. On a fresh clone, `./setup.sh` installs the toolchain, parses, build
 tests, and the CI workflow runs the same on every push. [`CLAUDE.md`](CLAUDE.md) covers the commands, the
 layout, and the conventions settled against the 0.92.4 source.
 
-## Releasing
-
-A release is a git tag. For the items module, bump `"version"` in `module/module.json`, commit, tag the
-commit `vX.Y.Z`, and push the tag; for the NPC module, bump `npcs-module/module.json` and tag
-`npcs-vX.Y.Z`. [`.github/workflows/release.yml`](.github/workflows/release.yml) builds the module,
-attaches `module.zip` and `module.json` to a GitHub Release for the tag, and copies both onto the module's
-rolling release (`items-latest` or `npcs-latest`), which is where its manifest URL above points. The
-workflow refuses a tag that does not match the manifest's version.
-
 ## Credits
 
 Corgo's 77 Collection V3 is by Corgopolis (<https://patreon.com/Corgopolis>); every item is his text and
