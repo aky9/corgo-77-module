@@ -120,9 +120,10 @@ world that already holds the item.
 - `text/enhance_targets.json`: the enhancement parents 0.92.4 has no item for, each with the reason.
 - `tests/`: the `npm test` checks and the placeholder document they build from.
 - `.github/workflows/`: `ci.yml` runs `./setup.sh` on every push and pull request; `release.yml` publishes a
-  tagged release: a `v*` tag releases the items module, an `npcs-v*` tag the NPC module. Items releases are
-  marked "latest", which `module/module.json`'s manifest URL relies on; NPC releases never are, and each
-  one also refreshes a rolling `npcs-latest` release that `npcs-module/module.json`'s manifest URL points at.
+  tagged release: a `v*` tag releases the items module, an `npcs-v*` tag the NPC module. Each release also
+  refreshes its module's rolling release, `items-latest` or `npcs-latest`, which is what that module's
+  manifest URL points at, so neither depends on GitHub's "latest" flag. Every run re-marks the newest `v*`
+  release "latest" for items installs made before `items-latest` existed.
 - `reference/` (git-ignored): a pinned copy of Schism989's module, used only to refresh `tools/compat/`.
 
 ## Item text and what to put where

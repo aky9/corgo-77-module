@@ -18,7 +18,7 @@ only adds compendiums. It does not modify the Cyberpunk RED - Core system.
 1. In Foundry's Setup screen open **Add-on Modules**, click **Install Module**,
    paste this into **Manifest URL**, and click **Install**:
 
-       https://github.com/aky9/corgo-77-module/releases/latest/download/module.json
+       https://github.com/aky9/corgo-77-module/releases/download/items-latest/module.json
 
    Foundry will offer updates from the same place. If you were handed a
    `module.zip` instead, unzip it so the folder `corgo-77-collection` sits

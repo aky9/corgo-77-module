@@ -20,7 +20,7 @@ Cyberpunk RED - Core system.
 Each NPC carries its own copies of its items, so this module works on its
 own. The **Corgo's 77 Collection** module is recommended alongside it for
 the full item compendiums (manifest:
-<https://github.com/aky9/corgo-77-module/releases/latest/download/module.json>).
+<https://github.com/aky9/corgo-77-module/releases/download/items-latest/module.json>).
 
 ## Installing
 
