@@ -19,6 +19,8 @@ How a COM# stat block becomes an actor (the full-layout bosses give all ten STAT
 - What has no Foundry item (Self-ICE, a "GM's Choice" weapon, Melee SP, Enforcer abilities) goes in the
   notes. Every gear name must either resolve to an item or be named in text/npc_aliases.json "unbuilt" with
   the reason; anything else fails the build.
+- Every gun starts loaded (load_weapons): its own stack of Basic ammo for its caliber, installed in it, with the
+  magazine full and SPARE_ROUNDS left in the stack, so a spawned NPC can fire without a reload.
 
 A compendium actor gets none of what CPRActor.create gives a new one, so every actor carries all 63 core
 skills and the three core cyberware containers, installed, itself (see CLAUDE.md, "NPCs").
@@ -53,6 +55,8 @@ WEAPON_CLASSES = [
     (r"\bAssault Rifle", "Assault Rifle"), (r"\bSniper Rifle", "Sniper Rifle"), (r"\bShotgun", "Shotgun"),
 ]
 GENERIC_WEAPONS = {c for _, c in WEAPON_CLASSES}
+SPARE_ROUNDS = 40          # left in each gun's ammo stack after its magazine is filled
+PREFERRED_VARIETY = ["shotgunSlug"]   # a shotgun takes shells or slugs; slugs are its standard load
 # Core items whose name is shared across packs: which pack a stat block means in each slot.
 PACK_PREFERENCE = {
     "armor": ["armor", "cyberware"],
@@ -488,6 +492,33 @@ def install_cyberware(a):
                                      "carried, not installed")
 
 
+def load_weapons(a):
+    """Load every gun the way cpr-loadable.js load() and reload() do: a Basic ammo stack of the gun's caliber
+    in its installedItems.list, magazine.value filled to capacity (counting magazine upgrades as
+    getMagazineSpace does), and SPARE_ROUNDS left in the stack. Each gun gets its own stack, since an item
+    may be installed in only one place."""
+    by_id = {i["_id"]: i for i in a.items}
+    for w in [i for i in a.items if i["type"] == "weapon"]:
+        s = w["system"]
+        if not s.get("ammoVariety") or not s.get("magazine", {}).get("max"):
+            continue                         # melee, unarmed, or no magazine
+        installed = [by_id[i] for i in s["installedItems"]["list"]]
+        if any(i["type"] == "ammo" for i in installed):
+            continue
+        mods = [m for u in installed if u["type"] == "itemUpgrade"
+                for m in [u["system"].get("modifiers", {}).get("magazine")]
+                if m and isinstance(m.get("value"), (int, float)) and m["value"]]
+        overrides = [m["value"] for m in mods if m["type"] == "override"]
+        capacity = max(overrides) if overrides else s["magazine"]["max"] + sum(m["value"] for m in mods)
+        variety = next((v for v in PREFERRED_VARIETY if v in s["ammoVariety"]), s["ammoVariety"][0])
+        src = next((d for d in a.cat.core["items"] if d["type"] == "ammo" and d["pack"] == "core/ammo"
+                    and d["system"]["variety"] == variety and d["system"]["type"] == "basic"), None)
+        if src is None:
+            raise SystemExit(f"{a.where}: no core Basic ammo for {w['name']} ({variety})")
+        install(w, a.embed(src, amount=SPARE_ROUNDS))
+        s["magazine"]["value"] = capacity
+
+
 def build_programs(a):
     for line in a.rec["programs"]:
         for name in [p.strip() for p in line.split(",")]:
@@ -544,6 +575,7 @@ def build_actor(rec, cat, folder_id):
     build_cyberweapons(a)
     build_programs(a)
     install_cyberware(a)
+    load_weapons(a)
 
     emp = (stats["emp"], maxes["emp"])
     humanity = (emp[0] * 10, emp[1] * 10) if rec["layout"] == "full" else (60, 60)

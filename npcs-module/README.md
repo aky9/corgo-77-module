@@ -51,6 +51,10 @@ into your world to use it.
 - **Printed numbers win.** Where a block's weapon damage, ROF, armor SP, or
   Brawling damage differs from the item's, the NPC's copy is changed to match
   the block.
+- **Guns come loaded.** Every gun has a full magazine of Basic ammo for its
+  caliber (slugs for shotguns) plus 40 spare rounds in its own stack. Any other
+  ammo the block lists is carried in the inventory; use the gun's load button
+  to switch to it.
 - **Bracketed skill values** ("Athletics 13 (11)") are the skill with a gear
   or role bonus, or an armor penalty, applied. They're listed in the NPC's
   notes. Worn armor's penalty is applied by the sheet itself.

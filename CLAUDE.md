@@ -260,6 +260,10 @@ installable mixins).
   / 4d6 at BODY 4 / 6 / 10 / 11+). A printed value that disagrees turns it off and sets the damage.
 - The COM# conversion (unknown STATs are 0, COM# fills unlisted attack skills, printed values win) was the
   user's decision, not a system fact; it is stated in `build_npcs.py`'s docstring and the user guide.
+- A loaded gun is its ammo item's id in the weapon's `installedItems.list` plus the rounds in
+  `magazine.value` (`cpr-loadable.js`; `magazine.ammoData` is deprecated). `load_weapons` gives each gun its
+  own Basic stack (`SPARE_ROUNDS` left after filling), because an id may be installed in only one place.
+  Capacity counts magazine upgrades the way `getMagazineSpace` does.
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
   `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
 

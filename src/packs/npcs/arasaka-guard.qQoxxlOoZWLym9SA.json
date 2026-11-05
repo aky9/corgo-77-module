@@ -2540,7 +2540,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "cx6eNOh8apppDRXY"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2548,7 +2550,7 @@
     "magazine": {
      "ammoData": null,
      "max": 8,
-     "value": 0
+     "value": 8
     },
     "price": {
      "market": 100
@@ -2995,6 +2997,56 @@
    },
    "type": "gear",
    "_key": "!actors.items!qQoxxlOoZWLym9SA.AbgDPob5UXJ1FxHL",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "cx6eNOh8apppDRXY",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/pistolveryheavy_basic.png",
+   "name": "Very Heavy Pistol (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "vHeavyPistol"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!qQoxxlOoZWLym9SA.cx6eNOh8apppDRXY",
    "folder": null,
    "sort": 0,
    "ownership": {
