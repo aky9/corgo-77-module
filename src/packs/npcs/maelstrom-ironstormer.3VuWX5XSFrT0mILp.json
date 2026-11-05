@@ -2716,7 +2716,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "Rdk84oSc1FkV04oK"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2724,7 +2726,7 @@
     "magazine": {
      "ammoData": null,
      "max": 80,
-     "value": 0
+     "value": 80
     },
     "price": {
      "market": 1000
@@ -4394,6 +4396,56 @@
     "default": 0
    },
    "flags": {}
+  },
+  {
+   "_id": "Rdk84oSc1FkV04oK",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/rifle_basic.png",
+   "name": "Rifle (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "rifle"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!3VuWX5XSFrT0mILp.Rdk84oSc1FkV04oK",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
   }
  ],
  "effects": [],

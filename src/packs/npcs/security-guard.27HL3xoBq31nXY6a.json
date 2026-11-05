@@ -2636,7 +2636,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "e6nPwmM0OLuo2e03"
+     ],
      "slots": 3,
      "usedSlots": 0
     },
@@ -2644,7 +2646,7 @@
     "magazine": {
      "ammoData": null,
      "max": 40,
-     "value": 0
+     "value": 40
     },
     "price": {
      "market": 350
@@ -2989,6 +2991,56 @@
    },
    "type": "gear",
    "_key": "!actors.items!27HL3xoBq31nXY6a.euQIT3RvfEuB2aj7",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "e6nPwmM0OLuo2e03",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/pistolmedium_basic.png",
+   "name": "Medium Pistol (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "medPistol"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!27HL3xoBq31nXY6a.e6nPwmM0OLuo2e03",
    "folder": null,
    "sort": 0,
    "ownership": {

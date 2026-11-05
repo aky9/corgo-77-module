@@ -2912,7 +2912,8 @@
       "ammo"
      ],
      "list": [
-      "iQCWon2ygEwzR9Dt"
+      "iQCWon2ygEwzR9Dt",
+      "e9Yx190PJoA9GvOy"
      ],
      "slots": 2,
      "usedSlots": 0
@@ -2921,7 +2922,7 @@
     "magazine": {
      "ammoData": null,
      "max": 12,
-     "value": 0
+     "value": 12
     },
     "price": {
      "market": 500
@@ -4122,6 +4123,56 @@
    },
    "type": "itemUpgrade",
    "_key": "!actors.items!UaQaGZodbkzp4A7M.1Bkrm4dqbFDt7jcJ",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "e9Yx190PJoA9GvOy",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/shotgun_slug_basic.png",
+   "name": "Shotgun Slug (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "shotgunSlug"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!UaQaGZodbkzp4A7M.e9Yx190PJoA9GvOy",
    "folder": null,
    "sort": 0,
    "ownership": {

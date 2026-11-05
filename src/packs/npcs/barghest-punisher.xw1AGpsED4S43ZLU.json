@@ -2639,7 +2639,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "yZHVh2wRBjykOx75"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2647,7 +2649,7 @@
     "magazine": {
      "ammoData": null,
      "max": 21,
-     "value": 0
+     "value": 21
     },
     "price": {
      "market": 750
@@ -2712,7 +2714,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "G71vBVsAfauAPDQU"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2720,7 +2724,7 @@
     "magazine": {
      "ammoData": null,
      "max": 8,
-     "value": 0
+     "value": 8
     },
     "price": {
      "market": 1500
@@ -3628,6 +3632,106 @@
    },
    "type": "cyberware",
    "_key": "!actors.items!xw1AGpsED4S43ZLU.czR71iZAsTXV0zkj",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "yZHVh2wRBjykOx75",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/pistolheavy_basic.png",
+   "name": "Heavy Pistol (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "heavyPistol"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!xw1AGpsED4S43ZLU.yZHVh2wRBjykOx75",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "G71vBVsAfauAPDQU",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/shotgun_slug_basic.png",
+   "name": "Shotgun Slug (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "shotgunSlug"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!xw1AGpsED4S43ZLU.G71vBVsAfauAPDQU",
    "folder": null,
    "sort": 0,
    "ownership": {

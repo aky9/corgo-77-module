@@ -2638,7 +2638,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "NnzzPeRtY4MS05Os"
+     ],
      "slots": 3,
      "usedSlots": 0
     },
@@ -2646,7 +2648,7 @@
     "magazine": {
      "ammoData": null,
      "max": 30,
-     "value": 0
+     "value": 30
     },
     "price": {
      "market": 350
@@ -2710,7 +2712,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "0m2G3GdGUsHmobAr"
+     ],
      "slots": 3,
      "usedSlots": 0
     },
@@ -2718,7 +2722,7 @@
     "magazine": {
      "ammoData": null,
      "max": 12,
-     "value": 0
+     "value": 12
     },
     "price": {
      "market": 125
@@ -3203,6 +3207,106 @@
    },
    "type": "cyberware",
    "_key": "!actors.items!ouxuPIFyY0wGKaeD.FdNSQUq35hDJllYm",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "NnzzPeRtY4MS05Os",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/rifle_basic.png",
+   "name": "Rifle (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "rifle"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!ouxuPIFyY0wGKaeD.NnzzPeRtY4MS05Os",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "0m2G3GdGUsHmobAr",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/pistolheavy_basic.png",
+   "name": "Heavy Pistol (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "heavyPistol"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!ouxuPIFyY0wGKaeD.0m2G3GdGUsHmobAr",
    "folder": null,
    "sort": 0,
    "ownership": {

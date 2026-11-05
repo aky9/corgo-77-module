@@ -2742,7 +2742,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "I7ec6nfirw279dLc"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2750,7 +2752,7 @@
     "magazine": {
      "ammoData": null,
      "max": 21,
-     "value": 0
+     "value": 21
     },
     "price": {
      "market": 250
@@ -2814,7 +2816,9 @@
       "itemUpgrade",
       "ammo"
      ],
-     "list": [],
+     "list": [
+      "ks40mGqVc0XBbrWZ"
+     ],
      "slots": 2,
      "usedSlots": 0
     },
@@ -2822,7 +2826,7 @@
     "magazine": {
      "ammoData": null,
      "max": 8,
-     "value": 0
+     "value": 8
     },
     "price": {
      "market": 100
@@ -3734,6 +3738,106 @@
     "default": 0
    },
    "flags": {}
+  },
+  {
+   "_id": "I7ec6nfirw279dLc",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/rifle_basic.png",
+   "name": "Rifle (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "rifle"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!NbXBwvfFkhRDqGuy.I7ec6nfirw279dLc",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
+  },
+  {
+   "_id": "ks40mGqVc0XBbrWZ",
+   "effects": [],
+   "flags": {
+    "cyberpunk-red-core": {}
+   },
+   "img": "systems/cyberpunk-red-core/icons/compendium/ammo/pistolveryheavy_basic.png",
+   "name": "Very Heavy Pistol (Basic)",
+   "system": {
+    "ablationValue": 1,
+    "amount": 40,
+    "brand": "",
+    "concealable": {
+     "concealable": true,
+     "isConcealed": false
+    },
+    "description": {
+     "value": "<p>Basic ammo, nothing special.</p>\n"
+    },
+    "favorite": false,
+    "overrides": {
+     "autofire": {
+      "minimum": 3,
+      "mode": "none",
+      "value": -1
+     },
+     "damage": {
+      "minimum": "1d6",
+      "mode": "none",
+      "value": "3d6"
+     }
+    },
+    "price": {
+     "market": 10
+    },
+    "source": {
+     "book": "Core",
+     "page": 345
+    },
+    "type": "basic",
+    "variety": "vHeavyPistol"
+   },
+   "type": "ammo",
+   "_key": "!actors.items!NbXBwvfFkhRDqGuy.ks40mGqVc0XBbrWZ",
+   "folder": null,
+   "sort": 0,
+   "ownership": {
+    "default": 0
+   }
   }
  ],
  "effects": [],
