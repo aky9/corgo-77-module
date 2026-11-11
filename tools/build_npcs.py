@@ -12,7 +12,8 @@ How a COM# stat block becomes an actor (the full-layout bosses give all ten STAT
 - COM# is the base of every attack skill the block does not list itself. A listed skill (Brawling, a
   Martial Art) keeps its own number.
 - Printed values win: weapon damage and ROF, armor SP, Brawling and Martial Arts damage. Where the printed
-  number differs from the item's, the embedded copy is changed to match.
+  number differs from the item's, the embedded copy is changed to match. Printed armor SP already counts the
+  armor's upgrades, so an upgrade installed in armor has its own SP bonus zeroed (neutralize_sp).
 - A skill's bracketed value ("Athletics 13 (11)") is the base with a gear or role bonus or a gear penalty
   applied. The level comes from the printed base; the system applies worn armor's penalty itself, and the
   bracketed values are listed in the actor's notes.
@@ -349,6 +350,23 @@ def own_gloss(node, item):
     return [g for g in node["gloss"] if f"({norm(g)})" not in norm(item["name"])]
 
 
+def neutralize_sp(a, armor, upgrade):
+    """The printed armor SP already counts the armor's upgrades (Corgo confirmed), and build_armor sets the
+    item to it. The system adds an installed upgrade's bodySp/headSp on top (calculateArmorSP), so the copy
+    in the NPC's armor gets those modifiers zeroed; the tracker, sheet, damage, and ablation then all read the
+    printed number."""
+    mods = upgrade["system"].get("modifiers") or {}
+    zeroed = [k for k in ("headSp", "bodySp")
+              if isinstance(mods.get(k, {}).get("value"), (int, float)) and mods[k]["value"]]
+    if not zeroed:
+        return
+    was = ", ".join(f"{k[:-2]} SP {mods[k]['type']} {mods[k]['value']:+g}" for k in zeroed)
+    for k in zeroed:
+        mods[k]["value"] = 0
+    a.note("Armor", f"{upgrade['name']} in {armor['name']}: its SP bonus ({was}) is set to 0, because the "
+                    "printed SP already includes it")
+
+
 def build_child(a, parent, node, printed_parent=None):
     """Something installed in a weapon, armor, or cyberware: installed if the parent takes it, else carried."""
     base, tags = strip_prefixes(node["name"])
@@ -372,6 +390,8 @@ def build_child(a, parent, node, printed_parent=None):
         slots = parent["system"].get("installedItems")
         if slots and child["type"] in slots.get("allowedTypes", []) and not mismatched:
             install(parent, child)
+            if parent["type"] == "armor":
+                neutralize_sp(a, parent, child)
         elif child["type"] == "cyberware":
             a.cyberware.append(child)
         for grandchild in node["children"]:

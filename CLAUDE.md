@@ -264,6 +264,10 @@ installable mixins).
   `magazine.value` (`cpr-loadable.js`; `magazine.ammoData` is deprecated). `load_weapons` gives each gun its
   own Basic stack (`SPARE_ROUNDS` left after filling), because an id may be installed in only one place.
   Capacity counts magazine upgrades the way `getMagazineSpace` does.
+- Printed armor SP already counts the armor's upgrades (confirmed by Corgo). The system adds an installed
+  upgrade's `bodySp`/`headSp` on top (`ActorUtils.calculateArmorSP`, used by damage, ablation, and the sheet)
+  while the tracker max is the raw SP (`updateTrackedArmor`), so `neutralize_sp` zeroes those modifiers on any
+  upgrade installed in an NPC's armor and notes it.
 - Each embedded item and effect needs its own `_key` (`!actors.items!<actor>.<item>`,
   `!actors.items.effects!<actor>.<item>.<effect>`); the Foundry CLI rejects duplicate keys otherwise.
 

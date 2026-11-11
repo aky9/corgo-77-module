@@ -50,7 +50,8 @@ into your world to use it.
   full stat blocks, so their STATs are real.
 - **Printed numbers win.** Where a block's weapon damage, ROF, armor SP, or
   Brawling damage differs from the item's, the NPC's copy is changed to match
-  the block.
+  the block. A block's armor SP already includes its armor upgrades, so an
+  upgrade such as Superheavy Plates adds no SP of its own on these NPCs.
 - **Guns come loaded.** Every gun has a full magazine of Basic ammo for its
   caliber (slugs for shotguns) plus 40 spare rounds in its own stack. Any other
   ammo the block lists is carried in the inventory; use the gun's load button
